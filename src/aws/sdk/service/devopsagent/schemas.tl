@@ -1240,6 +1240,28 @@ M.MCPServerSplunkConfiguration = schema.new({
     type = "structure",
 })
 
+M.MSTeamsBidirectionalConfiguration = schema.new({
+    id = id.from(_N, "MSTeamsBidirectionalConfiguration"),
+    type = "structure",
+    members = {
+        roleArn = schema.new({
+            id = id.from(_N, "MSTeamsBidirectionalConfiguration", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        enabled = schema.new({
+            id = id.from(_N, "MSTeamsBidirectionalConfiguration", "enabled"),
+            type = "boolean",
+            name = "enabled",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
 M.MSTeamsChannel = schema.new({
     id = id.from(_N, "MSTeamsChannel"),
     type = "structure",
@@ -1317,6 +1339,13 @@ M.MSTeamsConfiguration = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        bidirectional = schema.new({
+            id = id.from(_N, "MSTeamsConfiguration", "bidirectional"),
+            type = "structure",
+            name = "bidirectional",
+            target_id = id.from(_N, "MSTeamsBidirectionalConfiguration"),
+            target = M.MSTeamsBidirectionalConfiguration,
         }),
     },
 })

@@ -181,6 +181,7 @@ local record Client
     describeClusterEvent: function(Client, types.DescribeClusterEventInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterEventOutput>
     describeClusterExtension: function(Client, types.DescribeClusterExtensionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterExtensionOutput>
     describeClusterNode: function(Client, types.DescribeClusterNodeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterNodeOutput>
+    describeClusterOperation: function(Client, types.DescribeClusterOperationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterOperationOutput>
     describeClusterSchedulerConfig: function(Client, types.DescribeClusterSchedulerConfigInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterSchedulerConfigOutput>
     describeCodeRepository: function(Client, types.DescribeCodeRepositoryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCodeRepositoryOutput>
     describeCompilationJob: function(Client, types.DescribeCompilationJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCompilationJobOutput>
@@ -271,7 +272,9 @@ local record Client
     listCandidatesForAutoMLJob: function(Client, types.ListCandidatesForAutoMLJobInput, ? base_client.InvokeOptions): async.Operation<types.ListCandidatesForAutoMLJobOutput>
     listClusterEvents: function(Client, types.ListClusterEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListClusterEventsOutput>
     listClusterExtensions: function(Client, types.ListClusterExtensionsInput, ? base_client.InvokeOptions): async.Operation<types.ListClusterExtensionsOutput>
+    listClusterExtensionVersions: function(Client, types.ListClusterExtensionVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListClusterExtensionVersionsOutput>
     listClusterNodes: function(Client, types.ListClusterNodesInput, ? base_client.InvokeOptions): async.Operation<types.ListClusterNodesOutput>
+    listClusterOperations: function(Client, types.ListClusterOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListClusterOperationsOutput>
     listClusters: function(Client, types.ListClustersInput, ? base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
     listClusterSchedulerConfigs: function(Client, types.ListClusterSchedulerConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListClusterSchedulerConfigsOutput>
     listCodeRepositories: function(Client, types.ListCodeRepositoriesInput, ? base_client.InvokeOptions): async.Operation<types.ListCodeRepositoriesOutput>
@@ -1128,6 +1131,10 @@ function C:describeClusterNode(input: types.DescribeClusterNodeInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClusterNode as schema.OperationSchema, input, options) as async.Operation<types.DescribeClusterNodeOutput>
 end
 
+function C:describeClusterOperation(input: types.DescribeClusterOperationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClusterOperationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClusterOperation as schema.OperationSchema, input, options) as async.Operation<types.DescribeClusterOperationOutput>
+end
+
 function C:describeClusterSchedulerConfig(input: types.DescribeClusterSchedulerConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClusterSchedulerConfigOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeClusterSchedulerConfig as schema.OperationSchema, input, options) as async.Operation<types.DescribeClusterSchedulerConfigOutput>
 end
@@ -1488,8 +1495,16 @@ function C:listClusterExtensions(input: types.ListClusterExtensionsInput, option
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClusterExtensions as schema.OperationSchema, input, options) as async.Operation<types.ListClusterExtensionsOutput>
 end
 
+function C:listClusterExtensionVersions(input: types.ListClusterExtensionVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListClusterExtensionVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClusterExtensionVersions as schema.OperationSchema, input, options) as async.Operation<types.ListClusterExtensionVersionsOutput>
+end
+
 function C:listClusterNodes(input: types.ListClusterNodesInput, options?: base_client.InvokeOptions): async.Operation<types.ListClusterNodesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClusterNodes as schema.OperationSchema, input, options) as async.Operation<types.ListClusterNodesOutput>
+end
+
+function C:listClusterOperations(input: types.ListClusterOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListClusterOperationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClusterOperations as schema.OperationSchema, input, options) as async.Operation<types.ListClusterOperationsOutput>
 end
 
 function C:listClusters(input: types.ListClustersInput, options?: base_client.InvokeOptions): async.Operation<types.ListClustersOutput>

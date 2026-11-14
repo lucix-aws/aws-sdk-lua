@@ -274,6 +274,24 @@ function M.items_list_cluster_events(client, input)
     })
 end
 
+--- Returns a page iterator for listClusterExtensionVersions.
+function M.pages_list_cluster_extension_versions(client, input)
+    return paginator.pages(client, "listClusterExtensionVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ExtensionVersions",
+    })
+end
+
+--- Returns an item iterator for listClusterExtensionVersions.
+function M.items_list_cluster_extension_versions(client, input)
+    return paginator.items(client, "listClusterExtensionVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ExtensionVersions",
+    })
+end
+
 --- Returns a page iterator for listClusterExtensions.
 function M.pages_list_cluster_extensions(client, input)
     return paginator.pages(client, "listClusterExtensions", input, {
@@ -307,6 +325,24 @@ function M.items_list_cluster_nodes(client, input)
         input_token = "NextToken",
         output_token = "NextToken",
         items = "ClusterNodeSummaries",
+    })
+end
+
+--- Returns a page iterator for listClusterOperations.
+function M.pages_list_cluster_operations(client, input)
+    return paginator.pages(client, "listClusterOperations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ClusterOperationSummaries",
+    })
+end
+
+--- Returns an item iterator for listClusterOperations.
+function M.items_list_cluster_operations(client, input)
+    return paginator.items(client, "listClusterOperations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ClusterOperationSummaries",
     })
 end
 

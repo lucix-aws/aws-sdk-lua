@@ -7,6 +7,30 @@ local record M
         "WebFunction"
     end
 
+    enum RuntimeArchitecture
+        "x86_64"
+        "arm64"
+    end
+
+    enum IntegrationModel
+        "RuntimeAPI"
+    end
+
+    enum CompatibilityPolicy
+        "Supported"
+        "NotSupported"
+    end
+
+    -- Defines the compatibility matrix for a runtime version, indicating supported integration models, architectures, and feature availability.
+    record Compatibility
+        -- Supported integration models for the runtime version.
+        IntegrationModels: {string}
+        -- Supported architectures for the runtime version.
+        Architectures: {string}
+        -- Whether the runtime version is compatible with managed instances.
+        ManagedInstances: string
+    end
+
     enum NetworkProtocol
         "IPv4"
         "DualStack"
@@ -75,6 +99,7 @@ local record M
     record InvalidParameterValueException
         -- The exception type.
         Type: string
+        -- The error message that describes the exception.
         message: string
     end
 
@@ -86,10 +111,11 @@ local record M
         message: string
     end
 
-    -- The request could not be completed due to a conflict with the current state of the resource. For example, attempting to update a connector that is not in ACTIVE state.
+    -- The request could not be completed due to a conflict with the current state of the resource. For example, attempting to modify a resource that is not in a state that permits the operation.
     record ResourceConflictException
         -- The exception type.
         Type: string
+        -- The error message that describes the exception.
         message: string
     end
 
@@ -97,6 +123,7 @@ local record M
     record ServiceException
         -- The exception type.
         Type: string
+        -- The error message that describes the exception.
         Message: string
     end
 
@@ -115,9 +142,168 @@ local record M
         retryAfterSeconds: string
         -- The exception type.
         Type: string
+        -- The error message that describes the exception.
         message: string
         -- The reason for the throttling.
         Reason: string
+    end
+
+    enum RuntimeReleaseState
+        "PREVIEW"
+        "GA"
+        "DEPRECATED"
+    end
+
+    -- The runtime lifecycle for the runtime or alias. Optional. Used to schedule runtime deprecation. Omitting or providing an empty object removes the existing lifecycle.
+    record RuntimeReleaseLifecycle
+        -- Optional, with no default applied. DEPRECATED requires a DeprecationDate on or before today (UTC); PREVIEW and GA require a later one, or none. Reads report DEPRECATED once DeprecationDate is reached.
+        ReleaseState: string
+        -- The date (UTC) on which the runtime or alias becomes deprecated.
+        DeprecationDate: string
+        -- The date (UTC) on which creating new functions that use this runtime or alias is blocked.
+        FunctionCreateBlockDate: string
+        -- The date (UTC) on which updating existing functions that use this runtime or alias is blocked.
+        FunctionUpdateBlockDate: string
+    end
+
+    record CreateRuntimeInput
+        -- The name of the runtime to create.
+        Name: string
+        -- A map of tag keys and values to associate with the runtime.
+        Tags: {string : string}
+        -- A description of the runtime.
+        Description: string
+        -- The license information for the runtime.
+        LicenseInfo: string
+        -- The runtime lifecycle for the runtime (optional). Use this to schedule runtime deprecation.
+        ReleaseLifecycle: RuntimeReleaseLifecycle
+    end
+
+    record CreateRuntimeOutput
+        -- The Amazon Resource Name (ARN) of the runtime.
+        Arn: string
+        -- The name of the runtime.
+        Name: string
+        -- The description of the runtime.
+        Description: string
+        -- The license information for the runtime.
+        LicenseInfo: string
+        -- The runtime lifecycle for the runtime. Used to schedule runtime deprecation.
+        ReleaseLifecycle: RuntimeReleaseLifecycle
+        -- The date and time when the runtime was created.
+        Created: string
+        -- The date and time when the runtime was last modified.
+        LastModified: string
+    end
+
+    -- The request would exceed a service quota for your account. Request a quota increase or reduce the number of resources in use, then retry the request.
+    record ServiceQuotaExceededException
+        -- The exception type.
+        Type: string
+        -- The error message that describes the exception.
+        Message: string
+    end
+
+    record CreateRuntimeAliasInput
+        -- The name or ARN of the runtime to create an alias for.
+        RuntimeName: string
+        -- The name of the runtime version the alias points to.
+        RuntimeVersion: string
+        -- The name to assign to the new runtime alias.
+        Name: string
+        -- A description of the runtime alias.
+        Description: string
+        -- The runtime lifecycle for the alias. By default, this is inherited from the runtime lifecycle. Optionally, you can override the lifecycle information at the alias level, if required.
+        ReleaseLifecycle: RuntimeReleaseLifecycle
+    end
+
+    enum RuntimeAliasState
+        "CREATING"
+        "ACTIVE"
+        "UPDATING"
+        "DELETING"
+        "PENDING_DELETION"
+    end
+
+    record CreateRuntimeAliasOutput
+        -- The name of the runtime alias.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the runtime alias.
+        Arn: string
+        -- The name of the runtime version the alias points to.
+        RuntimeVersion: string
+        -- The Amazon Resource Name (ARN) of the runtime version the alias points to.
+        RuntimeVersionArn: string
+        -- The current state of the runtime alias.
+        State: string
+        -- A description of the runtime alias.
+        Description: string
+        -- The runtime lifecycle for the alias. By default, this is inherited from the runtime lifecycle. Optionally, you can override the lifecycle information at the alias level, if required.
+        ReleaseLifecycle: RuntimeReleaseLifecycle
+        -- The date and time when the runtime alias was created.
+        Created: string
+        -- The date and time when the runtime alias was last modified.
+        LastModified: string
+    end
+
+    -- The specified resource does not exist. Verify the identifier and Region.
+    record ResourceNotFoundException
+        -- The exception type.
+        Type: string
+        -- The error message that describes the exception.
+        Message: string
+    end
+
+    record CreateRuntimeVersionInput
+        -- The name or ARN of the runtime to create a version for.
+        RuntimeName: string
+        -- The URI of the container image used to define the function execution environment for this runtime version.
+        ImageUri: string
+        -- The name to assign to the new runtime version.
+        Name: string
+        -- The release notes to associate with the runtime version.
+        ReleaseNotes: string
+        -- When set to true, the request is validated without creating a new runtime version. Use this to check that the request would succeed. No runtime version is created and no changes are made.
+        DryRun: boolean
+    end
+
+    -- Describes a single OCI platform (CPU architecture and operating system) available for a runtime version.
+    record Platform
+        -- The CPU architecture of the platform, for example x86_64 or arm64.
+        Architecture: string
+        -- The operating system of the platform.
+        Os: string
+        -- The content digest of the platform-specific image.
+        Digest: string
+    end
+
+    enum RuntimeVersionState
+        "CREATING"
+        "ACTIVE"
+        "FAILED"
+        "DELETING"
+        "PENDING_DELETION"
+    end
+
+    record CreateRuntimeVersionOutput
+        -- The name of the runtime version.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the runtime version.
+        Arn: string
+        -- The resolved image URI of the runtime version.
+        ResolvedUri: string
+        -- The current state of the runtime version.
+        State: string
+        -- The release notes associated with the runtime version.
+        ReleaseNotes: string
+        -- The platforms (architecture and OS combinations) available for the runtime version.
+        Platforms: {Platform}
+        -- The compatibility matrix of the runtime version.
+        Compatibility: Compatibility
+        -- The date and time when the runtime version was created.
+        Created: string
+        -- The date and time when the runtime version was last modified.
+        LastModified: string
     end
 
     record DeleteNetworkConnectorInput
@@ -144,11 +330,38 @@ local record M
         State: string
     end
 
-    -- The specified network connector does not exist. Verify the identifier (ID, name, or ARN) and Region.
-    record ResourceNotFoundException
-        -- The exception type.
-        Type: string
-        Message: string
+    record DeleteRuntimeInput
+        -- The name or ARN of the runtime to delete.
+        RuntimeName: string
+        -- Optional. The waiting period, in days (7-30), before the runtime is permanently deleted.
+        RecoveryWindowInDays: number
+    end
+
+    record DeleteRuntimeOutput
+    end
+
+    record DeleteRuntimeAliasInput
+        -- The name or ARN of the runtime.
+        RuntimeName: string
+        -- The name of the runtime alias to delete.
+        Name: string
+        -- Optional. The waiting period, in days (7-30), before the runtime alias is permanently deleted.
+        RecoveryWindowInDays: number
+    end
+
+    record DeleteRuntimeAliasOutput
+    end
+
+    record DeleteRuntimeVersionInput
+        -- The name or ARN of the runtime.
+        RuntimeName: string
+        -- The name of the runtime version to delete.
+        Name: string
+        -- Optional. The waiting period, in days (7-30), before the runtime version is permanently deleted.
+        RecoveryWindowInDays: number
+    end
+
+    record DeleteRuntimeVersionOutput
     end
 
     record GetNetworkConnectorInput
@@ -217,6 +430,339 @@ local record M
         LastUpdateStatusReasonCode: string
         -- The date and time when the connector configuration was last modified.
         LastModified: number
+    end
+
+    record GetRuntimeInput
+        -- The name or ARN of the runtime to retrieve.
+        RuntimeName: string
+    end
+
+    enum RuntimeState
+        "ACTIVE"
+        "PENDING_DELETION"
+        "DELETING"
+        "FAILED"
+    end
+
+    record GetRuntimeOutput
+        -- The Amazon Resource Name (ARN) of the runtime.
+        Arn: string
+        -- The name of the runtime.
+        Name: string
+        -- The description of the runtime.
+        Description: string
+        -- The license information for the runtime.
+        LicenseInfo: string
+        -- The runtime lifecycle for the runtime. Used to schedule runtime deprecation.
+        ReleaseLifecycle: RuntimeReleaseLifecycle
+        -- The current state of the runtime.
+        State: string
+        -- Present only when State is PENDING_DELETION. The date and time at which the runtime will be permanently deleted.
+        PendingDeletionAt: string
+        -- The date and time when the runtime was created.
+        Created: string
+        -- The date and time when the runtime was last modified.
+        LastModified: string
+        -- The unique identifier of the runtime.
+        Id: string
+    end
+
+    record GetRuntimeAliasInput
+        -- The name or ARN of the runtime.
+        RuntimeName: string
+        -- The name of the runtime alias to retrieve.
+        Name: string
+    end
+
+    record GetRuntimeAliasOutput
+        -- The name of the runtime alias.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the runtime alias.
+        Arn: string
+        -- The name of the runtime version the alias points to.
+        RuntimeVersion: string
+        -- The Amazon Resource Name (ARN) of the runtime version the alias points to.
+        RuntimeVersionArn: string
+        -- The current state of the runtime alias.
+        State: string
+        -- Present only when State is PENDING_DELETION. The date and time at which the runtime alias will be permanently deleted.
+        PendingDeletionAt: string
+        -- A description of the runtime alias.
+        Description: string
+        -- The compatibility matrix of the runtime version the alias points to.
+        Compatibility: Compatibility
+        -- The runtime lifecycle for the alias. By default, this is inherited from the runtime lifecycle. Optionally, you can override the lifecycle information at the alias level, if required.
+        ReleaseLifecycle: RuntimeReleaseLifecycle
+        -- The date and time when the runtime alias was created.
+        Created: string
+        -- The date and time when the runtime alias was last modified.
+        LastModified: string
+    end
+
+    record GetRuntimeVersionInput
+        -- The name or ARN of the runtime.
+        RuntimeName: string
+        -- The name of the runtime version to retrieve.
+        Name: string
+    end
+
+    record GetRuntimeVersionOutput
+        -- The name of the runtime version.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the runtime version.
+        Arn: string
+        -- The resolved image URI of the runtime version.
+        ResolvedUri: string
+        -- The current state of the runtime version.
+        State: string
+        -- Present only when State is PENDING_DELETION. The date and time at which the runtime version will be permanently deleted.
+        PendingDeletionAt: string
+        -- The release notes associated with the runtime version.
+        ReleaseNotes: string
+        -- The platforms (architecture and OS combinations) available for the runtime version.
+        Platforms: {Platform}
+        -- The compatibility matrix of the runtime version.
+        Compatibility: Compatibility
+        -- The date and time when the runtime version was created.
+        Created: string
+        -- The date and time when the runtime version was last modified.
+        LastModified: string
+    end
+
+    record ListRuntimesInput
+        -- The pagination token from a previous response. Use it to retrieve the next page of results.
+        NextToken: string
+        -- The maximum number of runtimes to return per page. Valid range: 1 to 100.
+        MaxResults: number
+    end
+
+    -- Summary information about a runtime returned by ListRuntimes.
+    record RuntimeInfo
+        -- The Amazon Resource Name (ARN) of the runtime.
+        Arn: string
+        -- The name of the runtime.
+        Name: string
+        -- The description of the runtime.
+        Description: string
+        -- The license information for the runtime.
+        LicenseInfo: string
+        -- The runtime lifecycle for the runtime. Used to schedule runtime deprecation.
+        ReleaseLifecycle: RuntimeReleaseLifecycle
+        -- The current state of the runtime.
+        State: string
+        -- Present only when State is PENDING_DELETION. The date and time at which the runtime will be permanently deleted.
+        PendingDeletionAt: string
+        -- The date and time when the runtime was created.
+        Created: string
+        -- The date and time when the runtime was last modified.
+        LastModified: string
+    end
+
+    record ListRuntimesOutput
+        -- The pagination token to include in a subsequent request to retrieve the next page of results.
+        NextToken: string
+        -- The list of runtimes for the current page of results.
+        Items: {RuntimeInfo}
+    end
+
+    record RestoreRuntimeInput
+        -- The name or ARN of the runtime to restore. When RuntimeVersion or RuntimeAlias is specified, the runtime that owns the runtime version or runtime alias to restore.
+        RuntimeName: string
+        -- Optional. Restores the named RuntimeVersion under RuntimeName. Mutually exclusive with RuntimeAlias; supplying both is rejected with InvalidParameterValueException.
+        RuntimeVersion: string
+        -- Optional. Restores the named RuntimeAlias under RuntimeName. Mutually exclusive with RuntimeVersion; supplying both is rejected with InvalidParameterValueException.
+        RuntimeAlias: string
+    end
+
+    record RestoreRuntimeOutput
+        -- The name or ARN of the runtime.
+        RuntimeName: string
+        -- Echoed back only when the request supplied a RuntimeVersion qualifier.
+        RuntimeVersion: string
+        -- Echoed back only when the request supplied a RuntimeAlias qualifier.
+        RuntimeAlias: string
+        -- The fully qualified ARN of the resource that was restored (runtime, version, or alias).
+        Arn: string
+        -- The state of the restored resource, ACTIVE on success.
+        State: string
+        -- The date and time when the restored resource was last modified.
+        LastModified: string
+    end
+
+    record ListRuntimeAliasesInput
+        -- The name or ARN of the runtime whose aliases to list.
+        RuntimeName: string
+        -- The pagination token from a previous response. Use it to retrieve the next page of results.
+        NextToken: string
+        -- The maximum number of runtime aliases to return per page. Valid range: 1 to 100.
+        MaxResults: number
+    end
+
+    -- Summary information about a runtime alias returned by ListRuntimeAliases.
+    record RuntimeAliasInfo
+        -- The name of the runtime alias.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the runtime alias.
+        Arn: string
+        -- The name of the runtime version the alias points to.
+        RuntimeVersion: string
+        -- The Amazon Resource Name (ARN) of the runtime version the alias points to.
+        RuntimeVersionArn: string
+        -- The current state of the runtime alias.
+        State: string
+        -- Present only when State is PENDING_DELETION. The date and time at which the runtime alias will be permanently deleted.
+        PendingDeletionAt: string
+        -- A description of the runtime alias.
+        Description: string
+        -- The compatibility matrix of the runtime version the alias points to.
+        Compatibility: Compatibility
+        -- The lifecycle for the alias. By default, this is inherited from the runtime lifecycle. Optionally, you can override the lifecycle information at the alias level, if required.
+        ReleaseLifecycle: RuntimeReleaseLifecycle
+        -- The date and time when the runtime alias was created.
+        Created: string
+        -- The date and time when the runtime alias was last modified.
+        LastModified: string
+    end
+
+    record ListRuntimeAliasesOutput
+        -- The list of runtime aliases for the current page of results.
+        Items: {RuntimeAliasInfo}
+        -- The pagination token to include in a subsequent request to retrieve the next page of results.
+        NextToken: string
+    end
+
+    record UpdateRuntimeAliasInput
+        -- The name or ARN of the runtime.
+        RuntimeName: string
+        -- The name of the runtime alias to update.
+        Name: string
+        -- The name of the runtime version the alias should point to.
+        RuntimeVersion: string
+        -- A description of the runtime alias.
+        Description: string
+        -- The lifecycle for the alias. By default, this is inherited from the runtime lifecycle. Optionally, you can override the lifecycle information at the alias level, if required. Omitting or providing an empty object removes the existing lifecycle override.
+        ReleaseLifecycle: RuntimeReleaseLifecycle
+    end
+
+    record UpdateRuntimeAliasOutput
+        -- The name of the runtime.
+        RuntimeName: string
+        -- The name of the runtime alias.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the runtime alias.
+        Arn: string
+        -- The name of the runtime version the alias points to.
+        RuntimeVersion: string
+        -- The Amazon Resource Name (ARN) of the runtime version the alias points to.
+        RuntimeVersionArn: string
+        -- The current state of the runtime alias.
+        State: string
+        -- A description of the runtime alias.
+        Description: string
+        -- The compatibility matrix of the runtime version the alias points to.
+        Compatibility: Compatibility
+        -- The runtime lifecycle for the alias. By default, this is inherited from the runtime lifecycle. Optionally, you can override the lifecycle information at the alias level, if required.
+        ReleaseLifecycle: RuntimeReleaseLifecycle
+        -- The date and time when the runtime alias was created.
+        Created: string
+        -- The date and time when the runtime alias was last modified.
+        LastModified: string
+    end
+
+    record ListRuntimeVersionsInput
+        -- The name or ARN of the runtime whose versions to list.
+        RuntimeName: string
+        -- The pagination token from a previous response. Use it to retrieve the next page of results.
+        NextToken: string
+        -- The maximum number of runtime versions to return per page. Valid range: 1 to 100.
+        MaxResults: number
+    end
+
+    -- Summary information about a runtime version returned by ListRuntimeVersions.
+    record RuntimeVersionInfo
+        -- The name of the runtime version.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the runtime version.
+        Arn: string
+        -- The resolved image URI of the runtime version.
+        ResolvedUri: string
+        -- The current state of the runtime version.
+        State: string
+        -- Present only when State is PENDING_DELETION. The date and time at which the runtime version will be permanently deleted.
+        PendingDeletionAt: string
+        -- The release notes associated with the runtime version.
+        ReleaseNotes: string
+        -- The compatibility matrix of the runtime version.
+        Compatibility: Compatibility
+        -- The date and time when the runtime version was created.
+        Created: string
+        -- The date and time when the runtime version was last modified.
+        LastModified: string
+    end
+
+    record ListRuntimeVersionsOutput
+        -- The list of runtime versions for the current page of results.
+        Items: {RuntimeVersionInfo}
+        -- The pagination token to include in a subsequent request to retrieve the next page of results.
+        NextToken: string
+    end
+
+    record UpdateRuntimeVersionInput
+        -- The name or ARN of the runtime.
+        RuntimeName: string
+        -- The name of the runtime version to update.
+        Name: string
+        -- The release notes to associate with the runtime version.
+        ReleaseNotes: string
+    end
+
+    record UpdateRuntimeVersionOutput
+        -- The name of the runtime version.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the runtime version.
+        Arn: string
+        -- The resolved image URI of the runtime version.
+        ResolvedUri: string
+        -- The current state of the runtime version.
+        State: string
+        -- The release notes associated with the runtime version.
+        ReleaseNotes: string
+        -- The platforms (architecture and OS combinations) available for the runtime version.
+        Platforms: {Platform}
+        -- The compatibility matrix of the runtime version.
+        Compatibility: Compatibility
+        -- The date and time when the runtime version was created.
+        Created: string
+        -- The date and time when the runtime version was last modified.
+        LastModified: string
+    end
+
+    record UpdateRuntimeInput
+        -- The name or ARN of the runtime to update.
+        RuntimeName: string
+        -- The updated description of the runtime.
+        Description: string
+        -- The updated license information for the runtime.
+        LicenseInfo: string
+        -- The runtime lifecycle for the runtime. Optional. Used to schedule runtime deprecation. Omitting or providing an empty object removes the existing lifecycle.
+        ReleaseLifecycle: RuntimeReleaseLifecycle
+    end
+
+    record UpdateRuntimeOutput
+        -- The Amazon Resource Name (ARN) of the runtime.
+        Arn: string
+        -- The name of the runtime.
+        Name: string
+        -- The description of the runtime.
+        Description: string
+        -- The license information for the runtime.
+        LicenseInfo: string
+        -- The runtime lifecycle for the runtime. Used to schedule runtime deprecation.
+        ReleaseLifecycle: RuntimeReleaseLifecycle
+        -- The date and time when the runtime was created.
+        Created: string
+        -- The date and time when the runtime was last modified.
+        LastModified: string
     end
 
     record ListNetworkConnectorsInput

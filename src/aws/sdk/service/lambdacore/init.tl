@@ -19,11 +19,27 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     createNetworkConnector: function(Client, types.CreateNetworkConnectorInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkConnectorOutput>
+    createRuntime: function(Client, types.CreateRuntimeInput, ? base_client.InvokeOptions): async.Operation<types.CreateRuntimeOutput>
+    createRuntimeAlias: function(Client, types.CreateRuntimeAliasInput, ? base_client.InvokeOptions): async.Operation<types.CreateRuntimeAliasOutput>
+    createRuntimeVersion: function(Client, types.CreateRuntimeVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateRuntimeVersionOutput>
     deleteNetworkConnector: function(Client, types.DeleteNetworkConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkConnectorOutput>
+    deleteRuntime: function(Client, types.DeleteRuntimeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRuntimeOutput>
+    deleteRuntimeAlias: function(Client, types.DeleteRuntimeAliasInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRuntimeAliasOutput>
+    deleteRuntimeVersion: function(Client, types.DeleteRuntimeVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRuntimeVersionOutput>
     getNetworkConnector: function(Client, types.GetNetworkConnectorInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkConnectorOutput>
+    getRuntime: function(Client, types.GetRuntimeInput, ? base_client.InvokeOptions): async.Operation<types.GetRuntimeOutput>
+    getRuntimeAlias: function(Client, types.GetRuntimeAliasInput, ? base_client.InvokeOptions): async.Operation<types.GetRuntimeAliasOutput>
+    getRuntimeVersion: function(Client, types.GetRuntimeVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetRuntimeVersionOutput>
     listNetworkConnectors: function(Client, types.ListNetworkConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkConnectorsOutput>
     listNetworkConnectorVersions: function(Client, types.ListNetworkConnectorVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListNetworkConnectorVersionsOutput>
+    listRuntimeAliases: function(Client, types.ListRuntimeAliasesInput, ? base_client.InvokeOptions): async.Operation<types.ListRuntimeAliasesOutput>
+    listRuntimes: function(Client, types.ListRuntimesInput, ? base_client.InvokeOptions): async.Operation<types.ListRuntimesOutput>
+    listRuntimeVersions: function(Client, types.ListRuntimeVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListRuntimeVersionsOutput>
+    restoreRuntime: function(Client, types.RestoreRuntimeInput, ? base_client.InvokeOptions): async.Operation<types.RestoreRuntimeOutput>
     updateNetworkConnector: function(Client, types.UpdateNetworkConnectorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNetworkConnectorOutput>
+    updateRuntime: function(Client, types.UpdateRuntimeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRuntimeOutput>
+    updateRuntimeAlias: function(Client, types.UpdateRuntimeAliasInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRuntimeAliasOutput>
+    updateRuntimeVersion: function(Client, types.UpdateRuntimeVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRuntimeVersionOutput>
 end
 
 local record M
@@ -72,12 +88,48 @@ function C:createNetworkConnector(input: types.CreateNetworkConnectorInput, opti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNetworkConnector as schema.OperationSchema, input, options) as async.Operation<types.CreateNetworkConnectorOutput>
 end
 
+function C:createRuntime(input: types.CreateRuntimeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRuntimeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRuntime as schema.OperationSchema, input, options) as async.Operation<types.CreateRuntimeOutput>
+end
+
+function C:createRuntimeAlias(input: types.CreateRuntimeAliasInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRuntimeAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRuntimeAlias as schema.OperationSchema, input, options) as async.Operation<types.CreateRuntimeAliasOutput>
+end
+
+function C:createRuntimeVersion(input: types.CreateRuntimeVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRuntimeVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRuntimeVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateRuntimeVersionOutput>
+end
+
 function C:deleteNetworkConnector(input: types.DeleteNetworkConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkConnectorOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNetworkConnector as schema.OperationSchema, input, options) as async.Operation<types.DeleteNetworkConnectorOutput>
 end
 
+function C:deleteRuntime(input: types.DeleteRuntimeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRuntimeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRuntime as schema.OperationSchema, input, options) as async.Operation<types.DeleteRuntimeOutput>
+end
+
+function C:deleteRuntimeAlias(input: types.DeleteRuntimeAliasInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRuntimeAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRuntimeAlias as schema.OperationSchema, input, options) as async.Operation<types.DeleteRuntimeAliasOutput>
+end
+
+function C:deleteRuntimeVersion(input: types.DeleteRuntimeVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRuntimeVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRuntimeVersion as schema.OperationSchema, input, options) as async.Operation<types.DeleteRuntimeVersionOutput>
+end
+
 function C:getNetworkConnector(input: types.GetNetworkConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.GetNetworkConnectorOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNetworkConnector as schema.OperationSchema, input, options) as async.Operation<types.GetNetworkConnectorOutput>
+end
+
+function C:getRuntime(input: types.GetRuntimeInput, options?: base_client.InvokeOptions): async.Operation<types.GetRuntimeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRuntime as schema.OperationSchema, input, options) as async.Operation<types.GetRuntimeOutput>
+end
+
+function C:getRuntimeAlias(input: types.GetRuntimeAliasInput, options?: base_client.InvokeOptions): async.Operation<types.GetRuntimeAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRuntimeAlias as schema.OperationSchema, input, options) as async.Operation<types.GetRuntimeAliasOutput>
+end
+
+function C:getRuntimeVersion(input: types.GetRuntimeVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetRuntimeVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRuntimeVersion as schema.OperationSchema, input, options) as async.Operation<types.GetRuntimeVersionOutput>
 end
 
 function C:listNetworkConnectors(input: types.ListNetworkConnectorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNetworkConnectorsOutput>
@@ -88,8 +140,36 @@ function C:listNetworkConnectorVersions(input: types.ListNetworkConnectorVersion
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNetworkConnectorVersions as schema.OperationSchema, input, options) as async.Operation<types.ListNetworkConnectorVersionsOutput>
 end
 
+function C:listRuntimeAliases(input: types.ListRuntimeAliasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRuntimeAliasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRuntimeAliases as schema.OperationSchema, input, options) as async.Operation<types.ListRuntimeAliasesOutput>
+end
+
+function C:listRuntimes(input: types.ListRuntimesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRuntimesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRuntimes as schema.OperationSchema, input, options) as async.Operation<types.ListRuntimesOutput>
+end
+
+function C:listRuntimeVersions(input: types.ListRuntimeVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRuntimeVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRuntimeVersions as schema.OperationSchema, input, options) as async.Operation<types.ListRuntimeVersionsOutput>
+end
+
+function C:restoreRuntime(input: types.RestoreRuntimeInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreRuntimeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreRuntime as schema.OperationSchema, input, options) as async.Operation<types.RestoreRuntimeOutput>
+end
+
 function C:updateNetworkConnector(input: types.UpdateNetworkConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNetworkConnectorOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNetworkConnector as schema.OperationSchema, input, options) as async.Operation<types.UpdateNetworkConnectorOutput>
+end
+
+function C:updateRuntime(input: types.UpdateRuntimeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRuntimeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRuntime as schema.OperationSchema, input, options) as async.Operation<types.UpdateRuntimeOutput>
+end
+
+function C:updateRuntimeAlias(input: types.UpdateRuntimeAliasInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRuntimeAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRuntimeAlias as schema.OperationSchema, input, options) as async.Operation<types.UpdateRuntimeAliasOutput>
+end
+
+function C:updateRuntimeVersion(input: types.UpdateRuntimeVersionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRuntimeVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRuntimeVersion as schema.OperationSchema, input, options) as async.Operation<types.UpdateRuntimeVersionOutput>
 end
 
 return M

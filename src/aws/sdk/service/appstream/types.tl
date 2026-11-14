@@ -79,12 +79,16 @@ local record M
 
     -- The configuration for agent access on a stack. Agent access enables AI agents to interact with desktop applications during streaming sessions.
     record AgentAccessConfig
-        -- The list of agent access settings that define permissions for each agent action. You must specify at least one setting.
+        -- The list of agent access settings that define permissions for each agent action. You must specify at least one setting, and at least one agent action must be enabled.
         Settings: {AgentAccessSetting}
-        -- The Amazon Resource Name (ARN) of the Amazon S3 bucket where agent screenshots are stored. Required when ScreenshotsUploadEnabled is true.
+        -- The Amazon Resource Name (ARN) of the Amazon S3 bucket where agent screenshots and Replay Session artifacts are stored. Required when ScreenshotsUploadEnabled or ReplaySessionEnabled is true.
         S3BucketArn: string
         -- Indicates whether screenshot uploads to Amazon S3 are enabled for agent sessions.
         ScreenshotsUploadEnabled: boolean
+        -- Indicates whether Replay Session is enabled for agent sessions. WorkSpaces Applications delivers a video combining session screenshots, a transcript, and a report for each session. Requires the COMPUTER_VISION agent action.
+        ReplaySessionEnabled: boolean
+        -- The Amazon Resource Name (ARN) of the customer managed symmetric encryption KMS key that encrypts Replay Session artifacts while WorkSpaces Applications processes them. The key must be in the same Region as the stack, and ReplaySessionEnabled must be true.
+        KmsKeyArn: string
         -- The screen resolution for the agent streaming environment.
         ScreenResolution: string
         -- The image format for agent screen captures.
@@ -95,12 +99,16 @@ local record M
 
     -- The configuration for updating agent access on a stack. This type supports partial updates, so you only need to specify the fields you want to change.
     record AgentAccessConfigForUpdate
-        -- The list of agent access settings that define permissions for each agent action.
+        -- The list of agent access settings that define permissions for each agent action. The merged settings must have at least one agent action enabled.
         Settings: {AgentAccessSetting}
-        -- The Amazon Resource Name (ARN) of the Amazon S3 bucket where agent screenshots are stored.
+        -- The Amazon Resource Name (ARN) of the Amazon S3 bucket where agent screenshots and Replay Session artifacts are stored.
         S3BucketArn: string
         -- Indicates whether screenshot uploads to Amazon S3 are enabled for agent sessions.
         ScreenshotsUploadEnabled: boolean
+        -- Indicates whether Replay Session is enabled for agent sessions. Setting this attribute to false also removes the KmsKeyArn value from the stack.
+        ReplaySessionEnabled: boolean
+        -- The Amazon Resource Name (ARN) of the customer managed symmetric encryption KMS key that encrypts Replay Session artifacts while WorkSpaces Applications processes them. To remove the key, use AttributesToDelete with the AGENT_ACCESS_CONFIG_KMS_KEY_ARN value.
+        KmsKeyArn: string
         -- The screen resolution for the agent streaming environment.
         ScreenResolution: string
         -- The image format for agent screen captures.
@@ -1309,6 +1317,28 @@ local record M
         Fleet: Fleet
     end
 
+    -- The configuration for agent access on an image builder. Agent access enables AI agents to interact with desktop applications during streaming sessions to the image builder.
+    record ImageBuilderAgentAccessConfig
+        -- The list of agent access settings that define permissions for each agent action. You must specify at least one setting, and at least one agent action must be enabled.
+        Settings: {AgentAccessSetting}
+        -- The Amazon Resource Name (ARN) of the Amazon S3 bucket where agent screenshots are stored. Required when ScreenshotsUploadEnabled is true.
+        S3BucketArn: string
+        -- Specifies whether screenshot uploads to Amazon S3 are enabled for agent sessions.
+        ScreenshotsUploadEnabled: boolean
+        -- The screen resolution for the agent streaming environment.
+        -- W_1280xH_720 - 1280 x 720 pixels.
+        ScreenResolution: string
+        -- The image format for agent screen captures.
+        -- PNG - PNG format.
+        -- JPEG - JPEG format.
+        ScreenImageFormat: string
+        -- The user control mode for agent sessions. This setting determines how users can interact with agent sessions.
+        -- VIEW_ONLY - Users can view and observe agent actions as they happen.
+        -- VIEW_STOP - Users can view agent actions and stop the agent if needed.
+        -- DISABLED - Users cannot view or stop the agent session.
+        UserControlMode: string
+    end
+
     record CreateImageBuilderInput
         -- A unique name for the image builder.
         Name: string
@@ -1446,6 +1476,8 @@ local record M
         -- Set to true to disable Instance Metadata Service Version 1 (IMDSv1) and enforce IMDSv2. Set to false to enable both IMDSv1 and IMDSv2.
         -- Before disabling IMDSv1, ensure your WorkSpaces Applications images are running the agent version or managed image update released on or after January 16, 2024 to support IMDSv2 enforcement.
         DisableIMDSV1: boolean
+        -- The configuration for agent access on the image builder. If specified, agent access is enabled for the image builder.
+        AgentAccessConfig: ImageBuilderAgentAccessConfig
     end
 
     enum LatestAppstreamAgentVersion
@@ -1583,6 +1615,8 @@ local record M
         LatestAppstreamAgentVersion: string
         -- Indicates whether Instance Metadata Service Version 1 (IMDSv1) is disabled for the image builder.
         DisableIMDSV1: boolean
+        -- The agent access configuration of the image builder, if agent access is enabled.
+        AgentAccessConfig: ImageBuilderAgentAccessConfig
     end
 
     record CreateImageBuilderOutput
@@ -2822,6 +2856,32 @@ local record M
         ExportImageTask: ExportImageTask
     end
 
+    -- The configuration for updating agent access on an image builder. This type supports partial updates, so you only need to specify the fields you want to change. Fields that you omit keep their stored values.
+    record ImageBuilderAgentAccessConfigForUpdate
+        -- The list of agent access settings that define permissions for each agent action. These settings are merged with the stored settings by agent action. A setting that you specify replaces the stored setting for the same agent action. The merged settings must have at least one agent action enabled.
+        Settings: {AgentAccessSetting}
+        -- The Amazon Resource Name (ARN) of the Amazon S3 bucket where agent screenshots are stored. If ScreenshotsUploadEnabled is false after the merge, the stored bucket ARN is removed.
+        S3BucketArn: string
+        -- Specifies whether screenshot uploads to Amazon S3 are enabled for agent sessions.
+        ScreenshotsUploadEnabled: boolean
+        -- The screen resolution for the agent streaming environment.
+        -- W_1280xH_720 - 1280 x 720 pixels.
+        ScreenResolution: string
+        -- The image format for agent screen captures.
+        -- PNG - PNG format.
+        -- JPEG - JPEG format.
+        ScreenImageFormat: string
+        -- The user control mode for agent sessions. This setting determines how users can interact with agent sessions.
+        -- VIEW_ONLY - Users can view and observe agent actions as they happen.
+        -- VIEW_STOP - Users can view agent actions and stop the agent if needed.
+        -- DISABLED - Users cannot view or stop the agent session.
+        UserControlMode: string
+    end
+
+    enum ImageBuilderAttribute
+        "AGENT_ACCESS_CONFIG"
+    end
+
     record ListAssociatedFleetsInput
         -- The name of the stack.
         StackName: string
@@ -3217,6 +3277,24 @@ local record M
         Fleet: Fleet
     end
 
+    record UpdateImageBuilderInput
+        -- The name of the image builder.
+        Name: string
+        -- The description to display.
+        Description: string
+        -- The image builder name to display.
+        DisplayName: string
+        -- The configuration for agent access on the image builder. Specify this to update agent access settings. To remove agent access, use AttributesToDelete with the AGENT_ACCESS_CONFIG value.
+        AgentAccessConfig: ImageBuilderAgentAccessConfigForUpdate
+        -- The image builder attributes to delete.
+        AttributesToDelete: {string}
+    end
+
+    record UpdateImageBuilderOutput
+        -- Information about the image builder.
+        ImageBuilder: ImageBuilder
+    end
+
     record UpdateImagePermissionsInput
         -- The name of the private image.
         Name: string
@@ -3245,6 +3323,7 @@ local record M
         "CONTENT_REDIRECTION"
         "AGENT_ACCESS_CONFIG"
         "STORAGE_CONNECTOR_AUTHENTICATION"
+        "AGENT_ACCESS_CONFIG_KMS_KEY_ARN"
     end
 
     record UpdateStackInput

@@ -493,6 +493,8 @@ local record M
         entryLimitsConfig: EntryLimitsConfig
         communicationTimeConfig: CommunicationTimeConfig
         communicationLimitsOverride: CommunicationLimitsConfig
+        -- The timestamp of the most recent modification to the campaign or its configuration. Null for campaigns created before this field was introduced.
+        lastModifiedTime: number
         tags: {string : string}
     end
 
@@ -649,6 +651,8 @@ local record M
         schedule: Schedule
         entryLimitsConfig: EntryLimitsConfig
         connectCampaignFlowArn: string
+        -- The timestamp of the most recent modification to the campaign or its configuration. Null for campaigns created before this field was introduced.
+        lastModifiedTime: number
     end
 
     -- The response for ListCampaigns API.

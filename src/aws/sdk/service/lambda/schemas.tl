@@ -5723,6 +5723,31 @@ M.LoggingConfig = schema.new({
     },
 })
 
+M.FunctionRuntimeConfig = schema.new({
+    id = id.from(_N, "FunctionRuntimeConfig"),
+    type = "structure",
+    members = {
+        RuntimeArn = schema.new({
+            id = id.from(_N, "FunctionRuntimeConfig", "RuntimeArn"),
+            type = "string",
+            name = "RuntimeArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuntimeAlias = schema.new({
+            id = id.from(_N, "FunctionRuntimeConfig", "RuntimeAlias"),
+            type = "string",
+            name = "RuntimeAlias",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.SnapStart = schema.new({
     id = id.from(_N, "SnapStart"),
     type = "structure",
@@ -5992,6 +6017,13 @@ M.CreateFunctionInput = schema.new({
             name = "DurableConfig",
             target_id = id.from(_N, "DurableConfig"),
             target = M.DurableConfig,
+        }),
+        RuntimeConfig = schema.new({
+            id = id.from(_N, "CreateFunctionInput", "RuntimeConfig"),
+            type = "structure",
+            name = "RuntimeConfig",
+            target_id = id.from(_N, "FunctionRuntimeConfig"),
+            target = M.FunctionRuntimeConfig,
         }),
     },
 })
@@ -6476,6 +6508,13 @@ M.CreateFunctionOutput = schema.new({
             name = "DurableConfig",
             target_id = id.from(_N, "DurableConfig"),
             target = M.DurableConfig,
+        }),
+        RuntimeConfig = schema.new({
+            id = id.from(_N, "CreateFunctionOutput", "RuntimeConfig"),
+            type = "structure",
+            name = "RuntimeConfig",
+            target_id = id.from(_N, "FunctionRuntimeConfig"),
+            target = M.FunctionRuntimeConfig,
         }),
     },
 })
@@ -7137,6 +7176,13 @@ M.FunctionConfiguration = schema.new({
             target_id = id.from(_N, "DurableConfig"),
             target = M.DurableConfig,
         }),
+        RuntimeConfig = schema.new({
+            id = id.from(_N, "FunctionConfiguration", "RuntimeConfig"),
+            type = "structure",
+            name = "RuntimeConfig",
+            target_id = id.from(_N, "FunctionRuntimeConfig"),
+            target = M.FunctionRuntimeConfig,
+        }),
     },
 })
 
@@ -7567,6 +7613,13 @@ M.GetFunctionConfigurationOutput = schema.new({
             name = "DurableConfig",
             target_id = id.from(_N, "DurableConfig"),
             target = M.DurableConfig,
+        }),
+        RuntimeConfig = schema.new({
+            id = id.from(_N, "GetFunctionConfigurationOutput", "RuntimeConfig"),
+            type = "structure",
+            name = "RuntimeConfig",
+            target_id = id.from(_N, "FunctionRuntimeConfig"),
+            target = M.FunctionRuntimeConfig,
         }),
     },
 })
@@ -8508,6 +8561,50 @@ M.ResourceNotReadyException = schema.new({
         }),
         message = schema.new({
             id = id.from(_N, "ResourceNotReadyException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RuntimeAliasDeletedException = schema.new({
+    id = id.from(_N, "RuntimeAliasDeletedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "RuntimeAliasDeletedException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "RuntimeAliasDeletedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RuntimeVersionDeletedException = schema.new({
+    id = id.from(_N, "RuntimeVersionDeletedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "RuntimeVersionDeletedException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "RuntimeVersionDeletedException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -10059,6 +10156,13 @@ M.UpdateFunctionCodeOutput = schema.new({
             target_id = id.from(_N, "DurableConfig"),
             target = M.DurableConfig,
         }),
+        RuntimeConfig = schema.new({
+            id = id.from(_N, "UpdateFunctionCodeOutput", "RuntimeConfig"),
+            type = "structure",
+            name = "RuntimeConfig",
+            target_id = id.from(_N, "FunctionRuntimeConfig"),
+            target = M.FunctionRuntimeConfig,
+        }),
     },
 })
 
@@ -10207,6 +10311,13 @@ M.UpdateFunctionConfigurationInput = schema.new({
             name = "DurableConfig",
             target_id = id.from(_N, "DurableConfig"),
             target = M.DurableConfig,
+        }),
+        RuntimeConfig = schema.new({
+            id = id.from(_N, "UpdateFunctionConfigurationInput", "RuntimeConfig"),
+            type = "structure",
+            name = "RuntimeConfig",
+            target_id = id.from(_N, "FunctionRuntimeConfig"),
+            target = M.FunctionRuntimeConfig,
         }),
     },
 })
@@ -10472,6 +10583,13 @@ M.UpdateFunctionConfigurationOutput = schema.new({
             name = "DurableConfig",
             target_id = id.from(_N, "DurableConfig"),
             target = M.DurableConfig,
+        }),
+        RuntimeConfig = schema.new({
+            id = id.from(_N, "UpdateFunctionConfigurationOutput", "RuntimeConfig"),
+            type = "structure",
+            name = "RuntimeConfig",
+            target_id = id.from(_N, "FunctionRuntimeConfig"),
+            target = M.FunctionRuntimeConfig,
         }),
     },
 })
@@ -11295,6 +11413,13 @@ M.PublishVersionOutput = schema.new({
             name = "DurableConfig",
             target_id = id.from(_N, "DurableConfig"),
             target = M.DurableConfig,
+        }),
+        RuntimeConfig = schema.new({
+            id = id.from(_N, "PublishVersionOutput", "RuntimeConfig"),
+            type = "structure",
+            name = "RuntimeConfig",
+            target_id = id.from(_N, "FunctionRuntimeConfig"),
+            target = M.FunctionRuntimeConfig,
         }),
     },
 })

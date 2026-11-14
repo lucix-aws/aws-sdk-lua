@@ -188,6 +188,12 @@ M.CreateProfileInput = schema.new({
             name = "acceptRoleSessionName",
             target_id = prelude.Boolean.id,
         }),
+        aliasName = schema.new({
+            id = id.from(_N, "CreateProfileInput", "aliasName"),
+            type = "string",
+            name = "aliasName",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -287,6 +293,24 @@ M.ProfileDetail = schema.new({
             name = "attributeMappings",
             target_id = prelude.Document.id,
             list_member = M.AttributeMapping,
+        }),
+        aliasName = schema.new({
+            id = id.from(_N, "ProfileDetail", "aliasName"),
+            type = "string",
+            name = "aliasName",
+            target_id = prelude.String.id,
+        }),
+        aliasArn = schema.new({
+            id = id.from(_N, "ProfileDetail", "aliasArn"),
+            type = "string",
+            name = "aliasArn",
+            target_id = prelude.String.id,
+        }),
+        previousAliasName = schema.new({
+            id = id.from(_N, "ProfileDetail", "previousAliasName"),
+            type = "string",
+            name = "previousAliasName",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -471,6 +495,12 @@ M.CreateTrustAnchorInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.NotificationSetting,
         }),
+        aliasName = schema.new({
+            id = id.from(_N, "CreateTrustAnchorInput", "aliasName"),
+            type = "string",
+            name = "aliasName",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -582,6 +612,24 @@ M.TrustAnchorDetail = schema.new({
             name = "notificationSettings",
             target_id = prelude.Document.id,
             list_member = M.NotificationSettingDetail,
+        }),
+        aliasName = schema.new({
+            id = id.from(_N, "TrustAnchorDetail", "aliasName"),
+            type = "string",
+            name = "aliasName",
+            target_id = prelude.String.id,
+        }),
+        aliasArn = schema.new({
+            id = id.from(_N, "TrustAnchorDetail", "aliasArn"),
+            type = "string",
+            name = "aliasArn",
+            target_id = prelude.String.id,
+        }),
+        previousAliasName = schema.new({
+            id = id.from(_N, "TrustAnchorDetail", "previousAliasName"),
+            type = "string",
+            name = "previousAliasName",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -723,6 +771,24 @@ M.CrlDetail = schema.new({
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
+        }),
+        aliasName = schema.new({
+            id = id.from(_N, "CrlDetail", "aliasName"),
+            type = "string",
+            name = "aliasName",
+            target_id = prelude.String.id,
+        }),
+        aliasArn = schema.new({
+            id = id.from(_N, "CrlDetail", "aliasArn"),
+            type = "string",
+            name = "aliasArn",
+            target_id = prelude.String.id,
+        }),
+        previousAliasName = schema.new({
+            id = id.from(_N, "CrlDetail", "previousAliasName"),
+            type = "string",
+            name = "previousAliasName",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -906,6 +972,12 @@ M.ImportCrlInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        aliasName = schema.new({
+            id = id.from(_N, "ImportCrlInput", "aliasName"),
+            type = "string",
+            name = "aliasName",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -996,6 +1068,12 @@ M.UpdateCrlInput = schema.new({
             type = "blob",
             name = "crlData",
             target_id = prelude.Blob.id,
+        }),
+        aliasName = schema.new({
+            id = id.from(_N, "UpdateCrlInput", "aliasName"),
+            type = "string",
+            name = "aliasName",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1815,6 +1893,12 @@ M.UpdateProfileInput = schema.new({
             name = "acceptRoleSessionName",
             target_id = prelude.Boolean.id,
         }),
+        aliasName = schema.new({
+            id = id.from(_N, "UpdateProfileInput", "aliasName"),
+            type = "string",
+            name = "aliasName",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1997,6 +2081,12 @@ M.UpdateTrustAnchorInput = schema.new({
             type = "boolean",
             name = "crlDpRevocationEnabled",
             target_id = prelude.Boolean.id,
+        }),
+        aliasName = schema.new({
+            id = id.from(_N, "UpdateTrustAnchorInput", "aliasName"),
+            type = "string",
+            name = "aliasName",
+            target_id = prelude.String.id,
         }),
     },
 })

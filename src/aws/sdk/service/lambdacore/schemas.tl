@@ -10,17 +10,58 @@ local _N = "com.amazonaws.lambdacore"
 
 local M: {string:any} = {}
 
+M.PlatformList = schema.new({ type = "list", list_member = M.Platform })
+
+M.IntegrationModelList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuntimeArchitectureList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RuntimeList = schema.new({ type = "list", list_member = M.RuntimeInfo })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.NetworkConnectorsList = schema.new({ type = "list", list_member = M.NetworkConnectorSummary })
 
 M.NetworkConnectorTags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.NetworkConnectorVersionsList = schema.new({ type = "list", list_member = M.NetworkConnectorVersionSummary })
 
+M.RuntimeAliasList = schema.new({ type = "list", list_member = M.RuntimeAliasInfo })
+
+M.RuntimeVersionList = schema.new({ type = "list", list_member = M.RuntimeVersionInfo })
+
 M.NetworkConnectorSubnetIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.NetworkConnectorSecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.AssociatedComputeResourceTypesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Compatibility = schema.new({
+    id = id.from(_N, "Compatibility"),
+    type = "structure",
+    members = {
+        IntegrationModels = schema.new({
+            id = id.from(_N, "Compatibility", "IntegrationModels"),
+            type = "list",
+            name = "IntegrationModels",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Architectures = schema.new({
+            id = id.from(_N, "Compatibility", "Architectures"),
+            type = "list",
+            name = "Architectures",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ManagedInstances = schema.new({
+            id = id.from(_N, "Compatibility", "ManagedInstances"),
+            type = "string",
+            name = "ManagedInstances",
+            target_id = prelude.String.id,
+        }),
+    },
+})
 
 M.NetworkConnectorVpcEgressConfiguration = schema.new({
     id = id.from(_N, "NetworkConnectorVpcEgressConfiguration"),
@@ -309,6 +350,482 @@ M.TooManyRequestsException = schema.new({
     },
 })
 
+M.RuntimeReleaseLifecycle = schema.new({
+    id = id.from(_N, "RuntimeReleaseLifecycle"),
+    type = "structure",
+    members = {
+        ReleaseState = schema.new({
+            id = id.from(_N, "RuntimeReleaseLifecycle", "ReleaseState"),
+            type = "string",
+            name = "ReleaseState",
+            target_id = prelude.String.id,
+        }),
+        DeprecationDate = schema.new({
+            id = id.from(_N, "RuntimeReleaseLifecycle", "DeprecationDate"),
+            type = "string",
+            name = "DeprecationDate",
+            target_id = prelude.String.id,
+        }),
+        FunctionCreateBlockDate = schema.new({
+            id = id.from(_N, "RuntimeReleaseLifecycle", "FunctionCreateBlockDate"),
+            type = "string",
+            name = "FunctionCreateBlockDate",
+            target_id = prelude.String.id,
+        }),
+        FunctionUpdateBlockDate = schema.new({
+            id = id.from(_N, "RuntimeReleaseLifecycle", "FunctionUpdateBlockDate"),
+            type = "string",
+            name = "FunctionUpdateBlockDate",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateRuntimeInput = schema.new({
+    id = id.from(_N, "CreateRuntimeRequest"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateRuntimeInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateRuntimeInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateRuntimeInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        LicenseInfo = schema.new({
+            id = id.from(_N, "CreateRuntimeInput", "LicenseInfo"),
+            type = "string",
+            name = "LicenseInfo",
+            target_id = prelude.String.id,
+        }),
+        ReleaseLifecycle = schema.new({
+            id = id.from(_N, "CreateRuntimeInput", "ReleaseLifecycle"),
+            type = "structure",
+            name = "ReleaseLifecycle",
+            target_id = id.from(_N, "RuntimeReleaseLifecycle"),
+            target = M.RuntimeReleaseLifecycle,
+        }),
+    },
+})
+
+M.CreateRuntimeOutput = schema.new({
+    id = id.from(_N, "CreateRuntimeResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "CreateRuntimeOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateRuntimeOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateRuntimeOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        LicenseInfo = schema.new({
+            id = id.from(_N, "CreateRuntimeOutput", "LicenseInfo"),
+            type = "string",
+            name = "LicenseInfo",
+            target_id = prelude.String.id,
+        }),
+        ReleaseLifecycle = schema.new({
+            id = id.from(_N, "CreateRuntimeOutput", "ReleaseLifecycle"),
+            type = "structure",
+            name = "ReleaseLifecycle",
+            target_id = id.from(_N, "RuntimeReleaseLifecycle"),
+            target = M.RuntimeReleaseLifecycle,
+        }),
+        Created = schema.new({
+            id = id.from(_N, "CreateRuntimeOutput", "Created"),
+            type = "string",
+            name = "Created",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModified = schema.new({
+            id = id.from(_N, "CreateRuntimeOutput", "LastModified"),
+            type = "string",
+            name = "LastModified",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateRuntimeAliasInput = schema.new({
+    id = id.from(_N, "CreateRuntimeAliasRequest"),
+    type = "structure",
+    members = {
+        RuntimeName = schema.new({
+            id = id.from(_N, "CreateRuntimeAliasInput", "RuntimeName"),
+            type = "string",
+            name = "RuntimeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RuntimeVersion = schema.new({
+            id = id.from(_N, "CreateRuntimeAliasInput", "RuntimeVersion"),
+            type = "string",
+            name = "RuntimeVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateRuntimeAliasInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateRuntimeAliasInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ReleaseLifecycle = schema.new({
+            id = id.from(_N, "CreateRuntimeAliasInput", "ReleaseLifecycle"),
+            type = "structure",
+            name = "ReleaseLifecycle",
+            target_id = id.from(_N, "RuntimeReleaseLifecycle"),
+            target = M.RuntimeReleaseLifecycle,
+        }),
+    },
+})
+
+M.CreateRuntimeAliasOutput = schema.new({
+    id = id.from(_N, "CreateRuntimeAliasResponse"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateRuntimeAliasOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "CreateRuntimeAliasOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuntimeVersion = schema.new({
+            id = id.from(_N, "CreateRuntimeAliasOutput", "RuntimeVersion"),
+            type = "string",
+            name = "RuntimeVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuntimeVersionArn = schema.new({
+            id = id.from(_N, "CreateRuntimeAliasOutput", "RuntimeVersionArn"),
+            type = "string",
+            name = "RuntimeVersionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "CreateRuntimeAliasOutput", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateRuntimeAliasOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ReleaseLifecycle = schema.new({
+            id = id.from(_N, "CreateRuntimeAliasOutput", "ReleaseLifecycle"),
+            type = "structure",
+            name = "ReleaseLifecycle",
+            target_id = id.from(_N, "RuntimeReleaseLifecycle"),
+            target = M.RuntimeReleaseLifecycle,
+        }),
+        Created = schema.new({
+            id = id.from(_N, "CreateRuntimeAliasOutput", "Created"),
+            type = "string",
+            name = "Created",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModified = schema.new({
+            id = id.from(_N, "CreateRuntimeAliasOutput", "LastModified"),
+            type = "string",
+            name = "LastModified",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateRuntimeVersionInput = schema.new({
+    id = id.from(_N, "CreateRuntimeVersionRequest"),
+    type = "structure",
+    members = {
+        RuntimeName = schema.new({
+            id = id.from(_N, "CreateRuntimeVersionInput", "RuntimeName"),
+            type = "string",
+            name = "RuntimeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ImageUri = schema.new({
+            id = id.from(_N, "CreateRuntimeVersionInput", "ImageUri"),
+            type = "string",
+            name = "ImageUri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateRuntimeVersionInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ReleaseNotes = schema.new({
+            id = id.from(_N, "CreateRuntimeVersionInput", "ReleaseNotes"),
+            type = "string",
+            name = "ReleaseNotes",
+            target_id = prelude.String.id,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "CreateRuntimeVersionInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
+M.Platform = schema.new({
+    id = id.from(_N, "Platform"),
+    type = "structure",
+    members = {
+        Architecture = schema.new({
+            id = id.from(_N, "Platform", "Architecture"),
+            type = "string",
+            name = "Architecture",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Os = schema.new({
+            id = id.from(_N, "Platform", "Os"),
+            type = "string",
+            name = "Os",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Digest = schema.new({
+            id = id.from(_N, "Platform", "Digest"),
+            type = "string",
+            name = "Digest",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateRuntimeVersionOutput = schema.new({
+    id = id.from(_N, "CreateRuntimeVersionResponse"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateRuntimeVersionOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "CreateRuntimeVersionOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResolvedUri = schema.new({
+            id = id.from(_N, "CreateRuntimeVersionOutput", "ResolvedUri"),
+            type = "string",
+            name = "ResolvedUri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "CreateRuntimeVersionOutput", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ReleaseNotes = schema.new({
+            id = id.from(_N, "CreateRuntimeVersionOutput", "ReleaseNotes"),
+            type = "string",
+            name = "ReleaseNotes",
+            target_id = prelude.String.id,
+        }),
+        Platforms = schema.new({
+            id = id.from(_N, "CreateRuntimeVersionOutput", "Platforms"),
+            type = "list",
+            name = "Platforms",
+            target_id = prelude.Document.id,
+            list_member = M.Platform,
+        }),
+        Compatibility = schema.new({
+            id = id.from(_N, "CreateRuntimeVersionOutput", "Compatibility"),
+            type = "structure",
+            name = "Compatibility",
+            target_id = id.from(_N, "Compatibility"),
+            target = M.Compatibility,
+        }),
+        Created = schema.new({
+            id = id.from(_N, "CreateRuntimeVersionOutput", "Created"),
+            type = "string",
+            name = "Created",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModified = schema.new({
+            id = id.from(_N, "CreateRuntimeVersionOutput", "LastModified"),
+            type = "string",
+            name = "LastModified",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DeleteNetworkConnectorInput = schema.new({
     id = id.from(_N, "DeleteNetworkConnectorRequest"),
     type = "structure",
@@ -391,26 +908,117 @@ M.DeleteNetworkConnectorOutput = schema.new({
     },
 })
 
-M.ResourceNotFoundException = schema.new({
-    id = id.from(_N, "ResourceNotFoundException"),
+M.DeleteRuntimeInput = schema.new({
+    id = id.from(_N, "DeleteRuntimeRequest"),
     type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
     members = {
-        Type = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "Type"),
+        RuntimeName = schema.new({
+            id = id.from(_N, "DeleteRuntimeInput", "RuntimeName"),
             type = "string",
-            name = "Type",
+            name = "RuntimeName",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
         }),
-        Message = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
+        RecoveryWindowInDays = schema.new({
+            id = id.from(_N, "DeleteRuntimeInput", "RecoveryWindowInDays"),
+            type = "integer",
+            name = "RecoveryWindowInDays",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-runtime-recovery-window-in-days" },
+            },
         }),
     },
+})
+
+M.DeleteRuntimeOutput = schema.new({
+    id = id.from(_N, "DeleteRuntimeResponse"),
+    type = "structure",
+})
+
+M.DeleteRuntimeAliasInput = schema.new({
+    id = id.from(_N, "DeleteRuntimeAliasRequest"),
+    type = "structure",
+    members = {
+        RuntimeName = schema.new({
+            id = id.from(_N, "DeleteRuntimeAliasInput", "RuntimeName"),
+            type = "string",
+            name = "RuntimeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "DeleteRuntimeAliasInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RecoveryWindowInDays = schema.new({
+            id = id.from(_N, "DeleteRuntimeAliasInput", "RecoveryWindowInDays"),
+            type = "integer",
+            name = "RecoveryWindowInDays",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-runtime-recovery-window-in-days" },
+            },
+        }),
+    },
+})
+
+M.DeleteRuntimeAliasOutput = schema.new({
+    id = id.from(_N, "DeleteRuntimeAliasResponse"),
+    type = "structure",
+})
+
+M.DeleteRuntimeVersionInput = schema.new({
+    id = id.from(_N, "DeleteRuntimeVersionRequest"),
+    type = "structure",
+    members = {
+        RuntimeName = schema.new({
+            id = id.from(_N, "DeleteRuntimeVersionInput", "RuntimeName"),
+            type = "string",
+            name = "RuntimeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "DeleteRuntimeVersionInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RecoveryWindowInDays = schema.new({
+            id = id.from(_N, "DeleteRuntimeVersionInput", "RecoveryWindowInDays"),
+            type = "integer",
+            name = "RecoveryWindowInDays",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-runtime-recovery-window-in-days" },
+            },
+        }),
+    },
+})
+
+M.DeleteRuntimeVersionOutput = schema.new({
+    id = id.from(_N, "DeleteRuntimeVersionResponse"),
+    type = "structure",
 })
 
 M.GetNetworkConnectorInput = schema.new({
@@ -541,6 +1149,1210 @@ M.GetNetworkConnectorOutput = schema.new({
             target_id = prelude.Timestamp.id,
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.GetRuntimeInput = schema.new({
+    id = id.from(_N, "GetRuntimeRequest"),
+    type = "structure",
+    members = {
+        RuntimeName = schema.new({
+            id = id.from(_N, "GetRuntimeInput", "RuntimeName"),
+            type = "string",
+            name = "RuntimeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetRuntimeOutput = schema.new({
+    id = id.from(_N, "GetRuntimeResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "GetRuntimeOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "GetRuntimeOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "GetRuntimeOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        LicenseInfo = schema.new({
+            id = id.from(_N, "GetRuntimeOutput", "LicenseInfo"),
+            type = "string",
+            name = "LicenseInfo",
+            target_id = prelude.String.id,
+        }),
+        ReleaseLifecycle = schema.new({
+            id = id.from(_N, "GetRuntimeOutput", "ReleaseLifecycle"),
+            type = "structure",
+            name = "ReleaseLifecycle",
+            target_id = id.from(_N, "RuntimeReleaseLifecycle"),
+            target = M.RuntimeReleaseLifecycle,
+        }),
+        State = schema.new({
+            id = id.from(_N, "GetRuntimeOutput", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+        }),
+        PendingDeletionAt = schema.new({
+            id = id.from(_N, "GetRuntimeOutput", "PendingDeletionAt"),
+            type = "string",
+            name = "PendingDeletionAt",
+            target_id = prelude.String.id,
+        }),
+        Created = schema.new({
+            id = id.from(_N, "GetRuntimeOutput", "Created"),
+            type = "string",
+            name = "Created",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModified = schema.new({
+            id = id.from(_N, "GetRuntimeOutput", "LastModified"),
+            type = "string",
+            name = "LastModified",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Id = schema.new({
+            id = id.from(_N, "GetRuntimeOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetRuntimeAliasInput = schema.new({
+    id = id.from(_N, "GetRuntimeAliasRequest"),
+    type = "structure",
+    members = {
+        RuntimeName = schema.new({
+            id = id.from(_N, "GetRuntimeAliasInput", "RuntimeName"),
+            type = "string",
+            name = "RuntimeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "GetRuntimeAliasInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetRuntimeAliasOutput = schema.new({
+    id = id.from(_N, "GetRuntimeAliasResponse"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "GetRuntimeAliasOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "GetRuntimeAliasOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuntimeVersion = schema.new({
+            id = id.from(_N, "GetRuntimeAliasOutput", "RuntimeVersion"),
+            type = "string",
+            name = "RuntimeVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuntimeVersionArn = schema.new({
+            id = id.from(_N, "GetRuntimeAliasOutput", "RuntimeVersionArn"),
+            type = "string",
+            name = "RuntimeVersionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "GetRuntimeAliasOutput", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PendingDeletionAt = schema.new({
+            id = id.from(_N, "GetRuntimeAliasOutput", "PendingDeletionAt"),
+            type = "string",
+            name = "PendingDeletionAt",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "GetRuntimeAliasOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Compatibility = schema.new({
+            id = id.from(_N, "GetRuntimeAliasOutput", "Compatibility"),
+            type = "structure",
+            name = "Compatibility",
+            target_id = id.from(_N, "Compatibility"),
+            target = M.Compatibility,
+        }),
+        ReleaseLifecycle = schema.new({
+            id = id.from(_N, "GetRuntimeAliasOutput", "ReleaseLifecycle"),
+            type = "structure",
+            name = "ReleaseLifecycle",
+            target_id = id.from(_N, "RuntimeReleaseLifecycle"),
+            target = M.RuntimeReleaseLifecycle,
+        }),
+        Created = schema.new({
+            id = id.from(_N, "GetRuntimeAliasOutput", "Created"),
+            type = "string",
+            name = "Created",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModified = schema.new({
+            id = id.from(_N, "GetRuntimeAliasOutput", "LastModified"),
+            type = "string",
+            name = "LastModified",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetRuntimeVersionInput = schema.new({
+    id = id.from(_N, "GetRuntimeVersionRequest"),
+    type = "structure",
+    members = {
+        RuntimeName = schema.new({
+            id = id.from(_N, "GetRuntimeVersionInput", "RuntimeName"),
+            type = "string",
+            name = "RuntimeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "GetRuntimeVersionInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetRuntimeVersionOutput = schema.new({
+    id = id.from(_N, "GetRuntimeVersionResponse"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "GetRuntimeVersionOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "GetRuntimeVersionOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResolvedUri = schema.new({
+            id = id.from(_N, "GetRuntimeVersionOutput", "ResolvedUri"),
+            type = "string",
+            name = "ResolvedUri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "GetRuntimeVersionOutput", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PendingDeletionAt = schema.new({
+            id = id.from(_N, "GetRuntimeVersionOutput", "PendingDeletionAt"),
+            type = "string",
+            name = "PendingDeletionAt",
+            target_id = prelude.String.id,
+        }),
+        ReleaseNotes = schema.new({
+            id = id.from(_N, "GetRuntimeVersionOutput", "ReleaseNotes"),
+            type = "string",
+            name = "ReleaseNotes",
+            target_id = prelude.String.id,
+        }),
+        Platforms = schema.new({
+            id = id.from(_N, "GetRuntimeVersionOutput", "Platforms"),
+            type = "list",
+            name = "Platforms",
+            target_id = prelude.Document.id,
+            list_member = M.Platform,
+        }),
+        Compatibility = schema.new({
+            id = id.from(_N, "GetRuntimeVersionOutput", "Compatibility"),
+            type = "structure",
+            name = "Compatibility",
+            target_id = id.from(_N, "Compatibility"),
+            target = M.Compatibility,
+        }),
+        Created = schema.new({
+            id = id.from(_N, "GetRuntimeVersionOutput", "Created"),
+            type = "string",
+            name = "Created",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModified = schema.new({
+            id = id.from(_N, "GetRuntimeVersionOutput", "LastModified"),
+            type = "string",
+            name = "LastModified",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListRuntimesInput = schema.new({
+    id = id.from(_N, "ListRuntimesRequest"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListRuntimesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListRuntimesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.RuntimeInfo = schema.new({
+    id = id.from(_N, "RuntimeInfo"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "RuntimeInfo", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "RuntimeInfo", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "RuntimeInfo", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        LicenseInfo = schema.new({
+            id = id.from(_N, "RuntimeInfo", "LicenseInfo"),
+            type = "string",
+            name = "LicenseInfo",
+            target_id = prelude.String.id,
+        }),
+        ReleaseLifecycle = schema.new({
+            id = id.from(_N, "RuntimeInfo", "ReleaseLifecycle"),
+            type = "structure",
+            name = "ReleaseLifecycle",
+            target_id = id.from(_N, "RuntimeReleaseLifecycle"),
+            target = M.RuntimeReleaseLifecycle,
+        }),
+        State = schema.new({
+            id = id.from(_N, "RuntimeInfo", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+        }),
+        PendingDeletionAt = schema.new({
+            id = id.from(_N, "RuntimeInfo", "PendingDeletionAt"),
+            type = "string",
+            name = "PendingDeletionAt",
+            target_id = prelude.String.id,
+        }),
+        Created = schema.new({
+            id = id.from(_N, "RuntimeInfo", "Created"),
+            type = "string",
+            name = "Created",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModified = schema.new({
+            id = id.from(_N, "RuntimeInfo", "LastModified"),
+            type = "string",
+            name = "LastModified",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListRuntimesOutput = schema.new({
+    id = id.from(_N, "ListRuntimesResponse"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListRuntimesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        Items = schema.new({
+            id = id.from(_N, "ListRuntimesOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.RuntimeInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RestoreRuntimeInput = schema.new({
+    id = id.from(_N, "RestoreRuntimeRequest"),
+    type = "structure",
+    members = {
+        RuntimeName = schema.new({
+            id = id.from(_N, "RestoreRuntimeInput", "RuntimeName"),
+            type = "string",
+            name = "RuntimeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RuntimeVersion = schema.new({
+            id = id.from(_N, "RestoreRuntimeInput", "RuntimeVersion"),
+            type = "string",
+            name = "RuntimeVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "RuntimeVersion" },
+            },
+        }),
+        RuntimeAlias = schema.new({
+            id = id.from(_N, "RestoreRuntimeInput", "RuntimeAlias"),
+            type = "string",
+            name = "RuntimeAlias",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "RuntimeAlias" },
+            },
+        }),
+    },
+})
+
+M.RestoreRuntimeOutput = schema.new({
+    id = id.from(_N, "RestoreRuntimeResponse"),
+    type = "structure",
+    members = {
+        RuntimeName = schema.new({
+            id = id.from(_N, "RestoreRuntimeOutput", "RuntimeName"),
+            type = "string",
+            name = "RuntimeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuntimeVersion = schema.new({
+            id = id.from(_N, "RestoreRuntimeOutput", "RuntimeVersion"),
+            type = "string",
+            name = "RuntimeVersion",
+            target_id = prelude.String.id,
+        }),
+        RuntimeAlias = schema.new({
+            id = id.from(_N, "RestoreRuntimeOutput", "RuntimeAlias"),
+            type = "string",
+            name = "RuntimeAlias",
+            target_id = prelude.String.id,
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "RestoreRuntimeOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "RestoreRuntimeOutput", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModified = schema.new({
+            id = id.from(_N, "RestoreRuntimeOutput", "LastModified"),
+            type = "string",
+            name = "LastModified",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListRuntimeAliasesInput = schema.new({
+    id = id.from(_N, "ListRuntimeAliasesRequest"),
+    type = "structure",
+    members = {
+        RuntimeName = schema.new({
+            id = id.from(_N, "ListRuntimeAliasesInput", "RuntimeName"),
+            type = "string",
+            name = "RuntimeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRuntimeAliasesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListRuntimeAliasesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.RuntimeAliasInfo = schema.new({
+    id = id.from(_N, "RuntimeAliasInfo"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "RuntimeAliasInfo", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "RuntimeAliasInfo", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuntimeVersion = schema.new({
+            id = id.from(_N, "RuntimeAliasInfo", "RuntimeVersion"),
+            type = "string",
+            name = "RuntimeVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuntimeVersionArn = schema.new({
+            id = id.from(_N, "RuntimeAliasInfo", "RuntimeVersionArn"),
+            type = "string",
+            name = "RuntimeVersionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "RuntimeAliasInfo", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PendingDeletionAt = schema.new({
+            id = id.from(_N, "RuntimeAliasInfo", "PendingDeletionAt"),
+            type = "string",
+            name = "PendingDeletionAt",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "RuntimeAliasInfo", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Compatibility = schema.new({
+            id = id.from(_N, "RuntimeAliasInfo", "Compatibility"),
+            type = "structure",
+            name = "Compatibility",
+            target_id = id.from(_N, "Compatibility"),
+            target = M.Compatibility,
+        }),
+        ReleaseLifecycle = schema.new({
+            id = id.from(_N, "RuntimeAliasInfo", "ReleaseLifecycle"),
+            type = "structure",
+            name = "ReleaseLifecycle",
+            target_id = id.from(_N, "RuntimeReleaseLifecycle"),
+            target = M.RuntimeReleaseLifecycle,
+        }),
+        Created = schema.new({
+            id = id.from(_N, "RuntimeAliasInfo", "Created"),
+            type = "string",
+            name = "Created",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModified = schema.new({
+            id = id.from(_N, "RuntimeAliasInfo", "LastModified"),
+            type = "string",
+            name = "LastModified",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListRuntimeAliasesOutput = schema.new({
+    id = id.from(_N, "ListRuntimeAliasesResponse"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListRuntimeAliasesOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.RuntimeAliasInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRuntimeAliasesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateRuntimeAliasInput = schema.new({
+    id = id.from(_N, "UpdateRuntimeAliasRequest"),
+    type = "structure",
+    members = {
+        RuntimeName = schema.new({
+            id = id.from(_N, "UpdateRuntimeAliasInput", "RuntimeName"),
+            type = "string",
+            name = "RuntimeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateRuntimeAliasInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RuntimeVersion = schema.new({
+            id = id.from(_N, "UpdateRuntimeAliasInput", "RuntimeVersion"),
+            type = "string",
+            name = "RuntimeVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateRuntimeAliasInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ReleaseLifecycle = schema.new({
+            id = id.from(_N, "UpdateRuntimeAliasInput", "ReleaseLifecycle"),
+            type = "structure",
+            name = "ReleaseLifecycle",
+            target_id = id.from(_N, "RuntimeReleaseLifecycle"),
+            target = M.RuntimeReleaseLifecycle,
+        }),
+    },
+})
+
+M.UpdateRuntimeAliasOutput = schema.new({
+    id = id.from(_N, "UpdateRuntimeAliasResponse"),
+    type = "structure",
+    members = {
+        RuntimeName = schema.new({
+            id = id.from(_N, "UpdateRuntimeAliasOutput", "RuntimeName"),
+            type = "string",
+            name = "RuntimeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateRuntimeAliasOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "UpdateRuntimeAliasOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuntimeVersion = schema.new({
+            id = id.from(_N, "UpdateRuntimeAliasOutput", "RuntimeVersion"),
+            type = "string",
+            name = "RuntimeVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuntimeVersionArn = schema.new({
+            id = id.from(_N, "UpdateRuntimeAliasOutput", "RuntimeVersionArn"),
+            type = "string",
+            name = "RuntimeVersionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "UpdateRuntimeAliasOutput", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateRuntimeAliasOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Compatibility = schema.new({
+            id = id.from(_N, "UpdateRuntimeAliasOutput", "Compatibility"),
+            type = "structure",
+            name = "Compatibility",
+            target_id = id.from(_N, "Compatibility"),
+            target = M.Compatibility,
+        }),
+        ReleaseLifecycle = schema.new({
+            id = id.from(_N, "UpdateRuntimeAliasOutput", "ReleaseLifecycle"),
+            type = "structure",
+            name = "ReleaseLifecycle",
+            target_id = id.from(_N, "RuntimeReleaseLifecycle"),
+            target = M.RuntimeReleaseLifecycle,
+        }),
+        Created = schema.new({
+            id = id.from(_N, "UpdateRuntimeAliasOutput", "Created"),
+            type = "string",
+            name = "Created",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModified = schema.new({
+            id = id.from(_N, "UpdateRuntimeAliasOutput", "LastModified"),
+            type = "string",
+            name = "LastModified",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListRuntimeVersionsInput = schema.new({
+    id = id.from(_N, "ListRuntimeVersionsRequest"),
+    type = "structure",
+    members = {
+        RuntimeName = schema.new({
+            id = id.from(_N, "ListRuntimeVersionsInput", "RuntimeName"),
+            type = "string",
+            name = "RuntimeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRuntimeVersionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListRuntimeVersionsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.RuntimeVersionInfo = schema.new({
+    id = id.from(_N, "RuntimeVersionInfo"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "RuntimeVersionInfo", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "RuntimeVersionInfo", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResolvedUri = schema.new({
+            id = id.from(_N, "RuntimeVersionInfo", "ResolvedUri"),
+            type = "string",
+            name = "ResolvedUri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "RuntimeVersionInfo", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PendingDeletionAt = schema.new({
+            id = id.from(_N, "RuntimeVersionInfo", "PendingDeletionAt"),
+            type = "string",
+            name = "PendingDeletionAt",
+            target_id = prelude.String.id,
+        }),
+        ReleaseNotes = schema.new({
+            id = id.from(_N, "RuntimeVersionInfo", "ReleaseNotes"),
+            type = "string",
+            name = "ReleaseNotes",
+            target_id = prelude.String.id,
+        }),
+        Compatibility = schema.new({
+            id = id.from(_N, "RuntimeVersionInfo", "Compatibility"),
+            type = "structure",
+            name = "Compatibility",
+            target_id = id.from(_N, "Compatibility"),
+            target = M.Compatibility,
+        }),
+        Created = schema.new({
+            id = id.from(_N, "RuntimeVersionInfo", "Created"),
+            type = "string",
+            name = "Created",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModified = schema.new({
+            id = id.from(_N, "RuntimeVersionInfo", "LastModified"),
+            type = "string",
+            name = "LastModified",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListRuntimeVersionsOutput = schema.new({
+    id = id.from(_N, "ListRuntimeVersionsResponse"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListRuntimeVersionsOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.RuntimeVersionInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRuntimeVersionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateRuntimeVersionInput = schema.new({
+    id = id.from(_N, "UpdateRuntimeVersionRequest"),
+    type = "structure",
+    members = {
+        RuntimeName = schema.new({
+            id = id.from(_N, "UpdateRuntimeVersionInput", "RuntimeName"),
+            type = "string",
+            name = "RuntimeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateRuntimeVersionInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ReleaseNotes = schema.new({
+            id = id.from(_N, "UpdateRuntimeVersionInput", "ReleaseNotes"),
+            type = "string",
+            name = "ReleaseNotes",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateRuntimeVersionOutput = schema.new({
+    id = id.from(_N, "UpdateRuntimeVersionResponse"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "UpdateRuntimeVersionOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "UpdateRuntimeVersionOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResolvedUri = schema.new({
+            id = id.from(_N, "UpdateRuntimeVersionOutput", "ResolvedUri"),
+            type = "string",
+            name = "ResolvedUri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "UpdateRuntimeVersionOutput", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ReleaseNotes = schema.new({
+            id = id.from(_N, "UpdateRuntimeVersionOutput", "ReleaseNotes"),
+            type = "string",
+            name = "ReleaseNotes",
+            target_id = prelude.String.id,
+        }),
+        Platforms = schema.new({
+            id = id.from(_N, "UpdateRuntimeVersionOutput", "Platforms"),
+            type = "list",
+            name = "Platforms",
+            target_id = prelude.Document.id,
+            list_member = M.Platform,
+        }),
+        Compatibility = schema.new({
+            id = id.from(_N, "UpdateRuntimeVersionOutput", "Compatibility"),
+            type = "structure",
+            name = "Compatibility",
+            target_id = id.from(_N, "Compatibility"),
+            target = M.Compatibility,
+        }),
+        Created = schema.new({
+            id = id.from(_N, "UpdateRuntimeVersionOutput", "Created"),
+            type = "string",
+            name = "Created",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModified = schema.new({
+            id = id.from(_N, "UpdateRuntimeVersionOutput", "LastModified"),
+            type = "string",
+            name = "LastModified",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateRuntimeInput = schema.new({
+    id = id.from(_N, "UpdateRuntimeRequest"),
+    type = "structure",
+    members = {
+        RuntimeName = schema.new({
+            id = id.from(_N, "UpdateRuntimeInput", "RuntimeName"),
+            type = "string",
+            name = "RuntimeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateRuntimeInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        LicenseInfo = schema.new({
+            id = id.from(_N, "UpdateRuntimeInput", "LicenseInfo"),
+            type = "string",
+            name = "LicenseInfo",
+            target_id = prelude.String.id,
+        }),
+        ReleaseLifecycle = schema.new({
+            id = id.from(_N, "UpdateRuntimeInput", "ReleaseLifecycle"),
+            type = "structure",
+            name = "ReleaseLifecycle",
+            target_id = id.from(_N, "RuntimeReleaseLifecycle"),
+            target = M.RuntimeReleaseLifecycle,
+        }),
+    },
+})
+
+M.UpdateRuntimeOutput = schema.new({
+    id = id.from(_N, "UpdateRuntimeResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "UpdateRuntimeOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateRuntimeOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateRuntimeOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        LicenseInfo = schema.new({
+            id = id.from(_N, "UpdateRuntimeOutput", "LicenseInfo"),
+            type = "string",
+            name = "LicenseInfo",
+            target_id = prelude.String.id,
+        }),
+        ReleaseLifecycle = schema.new({
+            id = id.from(_N, "UpdateRuntimeOutput", "ReleaseLifecycle"),
+            type = "structure",
+            name = "ReleaseLifecycle",
+            target_id = id.from(_N, "RuntimeReleaseLifecycle"),
+            target = M.RuntimeReleaseLifecycle,
+        }),
+        Created = schema.new({
+            id = id.from(_N, "UpdateRuntimeOutput", "Created"),
+            type = "string",
+            name = "Created",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModified = schema.new({
+            id = id.from(_N, "UpdateRuntimeOutput", "LastModified"),
+            type = "string",
+            name = "LastModified",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
             },
         }),
     },
@@ -984,6 +2796,42 @@ M.CreateNetworkConnector = schema.operation({
     },
 })
 
+M.CreateRuntime = schema.operation({
+    id = id.from("com.amazonaws.lambdacore", "CreateRuntime"),
+    input = M.CreateRuntimeInput,
+    output = M.CreateRuntimeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2026-10-01/runtimes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRuntimeAlias = schema.operation({
+    id = id.from("com.amazonaws.lambdacore", "CreateRuntimeAlias"),
+    input = M.CreateRuntimeAliasInput,
+    output = M.CreateRuntimeAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2026-10-01/runtimes/{RuntimeName}/aliases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateRuntimeVersion = schema.operation({
+    id = id.from("com.amazonaws.lambdacore", "CreateRuntimeVersion"),
+    input = M.CreateRuntimeVersionInput,
+    output = M.CreateRuntimeVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2026-10-01/runtimes/{RuntimeName}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteNetworkConnector = schema.operation({
     id = id.from("com.amazonaws.lambdacore", "DeleteNetworkConnector"),
     input = M.DeleteNetworkConnectorInput,
@@ -996,12 +2844,84 @@ M.DeleteNetworkConnector = schema.operation({
     },
 })
 
+M.DeleteRuntime = schema.operation({
+    id = id.from("com.amazonaws.lambdacore", "DeleteRuntime"),
+    input = M.DeleteRuntimeInput,
+    output = M.DeleteRuntimeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2026-10-01/runtimes/{RuntimeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRuntimeAlias = schema.operation({
+    id = id.from("com.amazonaws.lambdacore", "DeleteRuntimeAlias"),
+    input = M.DeleteRuntimeAliasInput,
+    output = M.DeleteRuntimeAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2026-10-01/runtimes/{RuntimeName}/aliases/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRuntimeVersion = schema.operation({
+    id = id.from("com.amazonaws.lambdacore", "DeleteRuntimeVersion"),
+    input = M.DeleteRuntimeVersionInput,
+    output = M.DeleteRuntimeVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2026-10-01/runtimes/{RuntimeName}/versions/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetNetworkConnector = schema.operation({
     id = id.from("com.amazonaws.lambdacore", "GetNetworkConnector"),
     input = M.GetNetworkConnectorInput,
     output = M.GetNetworkConnectorOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/2026-04-04/network-connectors/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRuntime = schema.operation({
+    id = id.from("com.amazonaws.lambdacore", "GetRuntime"),
+    input = M.GetRuntimeInput,
+    output = M.GetRuntimeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2026-10-01/runtimes/{RuntimeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRuntimeAlias = schema.operation({
+    id = id.from("com.amazonaws.lambdacore", "GetRuntimeAlias"),
+    input = M.GetRuntimeAliasInput,
+    output = M.GetRuntimeAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2026-10-01/runtimes/{RuntimeName}/aliases/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRuntimeVersion = schema.operation({
+    id = id.from("com.amazonaws.lambdacore", "GetRuntimeVersion"),
+    input = M.GetRuntimeVersionInput,
+    output = M.GetRuntimeVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2026-10-01/runtimes/{RuntimeName}/versions/{Name}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -1032,12 +2952,96 @@ M.ListNetworkConnectorVersions = schema.operation({
     },
 })
 
+M.ListRuntimeAliases = schema.operation({
+    id = id.from("com.amazonaws.lambdacore", "ListRuntimeAliases"),
+    input = M.ListRuntimeAliasesInput,
+    output = M.ListRuntimeAliasesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2026-10-01/runtimes/{RuntimeName}/aliases" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRuntimes = schema.operation({
+    id = id.from("com.amazonaws.lambdacore", "ListRuntimes"),
+    input = M.ListRuntimesInput,
+    output = M.ListRuntimesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2026-10-01/runtimes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRuntimeVersions = schema.operation({
+    id = id.from("com.amazonaws.lambdacore", "ListRuntimeVersions"),
+    input = M.ListRuntimeVersionsInput,
+    output = M.ListRuntimeVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2026-10-01/runtimes/{RuntimeName}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreRuntime = schema.operation({
+    id = id.from("com.amazonaws.lambdacore", "RestoreRuntime"),
+    input = M.RestoreRuntimeInput,
+    output = M.RestoreRuntimeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2026-10-01/runtimes/{RuntimeName}/restore" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.UpdateNetworkConnector = schema.operation({
     id = id.from("com.amazonaws.lambdacore", "UpdateNetworkConnector"),
     input = M.UpdateNetworkConnectorInput,
     output = M.UpdateNetworkConnectorOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/2026-04-04/network-connectors/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRuntime = schema.operation({
+    id = id.from("com.amazonaws.lambdacore", "UpdateRuntime"),
+    input = M.UpdateRuntimeInput,
+    output = M.UpdateRuntimeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2026-10-01/runtimes/{RuntimeName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRuntimeAlias = schema.operation({
+    id = id.from("com.amazonaws.lambdacore", "UpdateRuntimeAlias"),
+    input = M.UpdateRuntimeAliasInput,
+    output = M.UpdateRuntimeAliasOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/2026-10-01/runtimes/{RuntimeName}/aliases/{Name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateRuntimeVersion = schema.operation({
+    id = id.from("com.amazonaws.lambdacore", "UpdateRuntimeVersion"),
+    input = M.UpdateRuntimeVersionInput,
+    output = M.UpdateRuntimeVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/2026-10-01/runtimes/{RuntimeName}/versions/{Name}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -408,6 +408,8 @@ M.InventoryItemContentContext = schema.new({ type = "map", map_key = prelude.Str
 
 M.AzureSubscriptionList = schema.new({ type = "list", list_member = M.AzureSubscription })
 
+M.GcpProjectList = schema.new({ type = "list", list_member = M.GcpProject })
+
 M.PatchFilterValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.InstanceAssociationStatusAggregatedCount = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
@@ -2171,6 +2173,80 @@ M.AzureConfiguration = schema.new({
     },
 })
 
+M.GcpProject = schema.new({
+    id = id.from(_N, "GcpProject"),
+    type = "structure",
+    members = {
+        ProjectId = schema.new({
+            id = id.from(_N, "GcpProject", "ProjectId"),
+            type = "string",
+            name = "ProjectId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProjectDisplayName = schema.new({
+            id = id.from(_N, "GcpProject", "ProjectDisplayName"),
+            type = "string",
+            name = "ProjectDisplayName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GcpConfigurationTargets = schema.new({
+    id = id.from(_N, "GcpConfigurationTargets"),
+    type = "union",
+    members = {
+        Projects = schema.new({
+            id = id.from(_N, "GcpConfigurationTargets", "Projects"),
+            type = "list",
+            name = "Projects",
+            target_id = prelude.Document.id,
+            list_member = M.GcpProject,
+        }),
+    },
+})
+
+M.GcpConfiguration = schema.new({
+    id = id.from(_N, "GcpConfiguration"),
+    type = "structure",
+    members = {
+        OrganizationId = schema.new({
+            id = id.from(_N, "GcpConfiguration", "OrganizationId"),
+            type = "string",
+            name = "OrganizationId",
+            target_id = prelude.String.id,
+        }),
+        WorkloadIdentityPoolProvider = schema.new({
+            id = id.from(_N, "GcpConfiguration", "WorkloadIdentityPoolProvider"),
+            type = "string",
+            name = "WorkloadIdentityPoolProvider",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ServiceAccountEmail = schema.new({
+            id = id.from(_N, "GcpConfiguration", "ServiceAccountEmail"),
+            type = "string",
+            name = "ServiceAccountEmail",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Targets = schema.new({
+            id = id.from(_N, "GcpConfiguration", "Targets"),
+            type = "union",
+            name = "Targets",
+            target_id = id.from(_N, "GcpConfigurationTargets"),
+            target = M.GcpConfigurationTargets,
+        }),
+    },
+})
+
 M.CloudConnectorConfiguration = schema.new({
     id = id.from(_N, "CloudConnectorConfiguration"),
     type = "union",
@@ -2181,6 +2257,13 @@ M.CloudConnectorConfiguration = schema.new({
             name = "AzureConfiguration",
             target_id = id.from(_N, "AzureConfiguration"),
             target = M.AzureConfiguration,
+        }),
+        GcpConfiguration = schema.new({
+            id = id.from(_N, "CloudConnectorConfiguration", "GcpConfiguration"),
+            type = "structure",
+            name = "GcpConfiguration",
+            target_id = id.from(_N, "GcpConfiguration"),
+            target = M.GcpConfiguration,
         }),
     },
 })
@@ -2228,9 +2311,6 @@ M.CreateCloudConnectorInput = schema.new({
             type = "string",
             name = "ConfigConnectorArn",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         Tags = schema.new({
             id = id.from(_N, "CreateCloudConnectorInput", "Tags"),
@@ -10125,6 +10205,58 @@ M.ProgressCounters = schema.new({
     },
 })
 
+M.TargetsSummary = schema.new({
+    id = id.from(_N, "TargetsSummary"),
+    type = "structure",
+    members = {
+        TotalCount = schema.new({
+            id = id.from(_N, "TargetsSummary", "TotalCount"),
+            type = "integer",
+            name = "TotalCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        StartedCount = schema.new({
+            id = id.from(_N, "TargetsSummary", "StartedCount"),
+            type = "integer",
+            name = "StartedCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        CompletedCount = schema.new({
+            id = id.from(_N, "TargetsSummary", "CompletedCount"),
+            type = "integer",
+            name = "CompletedCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        SuccessfulCount = schema.new({
+            id = id.from(_N, "TargetsSummary", "SuccessfulCount"),
+            type = "integer",
+            name = "SuccessfulCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        FailedCount = schema.new({
+            id = id.from(_N, "TargetsSummary", "FailedCount"),
+            type = "integer",
+            name = "FailedCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
 M.AutomationExecution = schema.new({
     id = id.from(_N, "AutomationExecution"),
     type = "structure",
@@ -10362,6 +10494,13 @@ M.AutomationExecution = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = schema.new({ type = "list", list_member = prelude.String }),
+        }),
+        TargetsSummary = schema.new({
+            id = id.from(_N, "AutomationExecution", "TargetsSummary"),
+            type = "structure",
+            name = "TargetsSummary",
+            target_id = id.from(_N, "TargetsSummary"),
+            target = M.TargetsSummary,
         }),
     },
 })
@@ -13938,6 +14077,18 @@ M.CloudConnectorSummary = schema.new({
             type = "timestamp",
             name = "UpdatedAt",
             target_id = prelude.Timestamp.id,
+        }),
+        Provider = schema.new({
+            id = id.from(_N, "CloudConnectorSummary", "Provider"),
+            type = "string",
+            name = "Provider",
+            target_id = prelude.String.id,
+        }),
+        ConfigConnectorArn = schema.new({
+            id = id.from(_N, "CloudConnectorSummary", "ConfigConnectorArn"),
+            type = "string",
+            name = "ConfigConnectorArn",
+            target_id = prelude.String.id,
         }),
     },
 })

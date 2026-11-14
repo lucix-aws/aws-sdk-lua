@@ -14,21 +14,13 @@ M.AvailabilityZoneMappings = schema.new({ type = "list", list_member = M.Availab
 
 M.SubnetMappings = schema.new({ type = "list", list_member = M.SubnetMapping })
 
-M.ProxyRuleGroupAttachmentList = schema.new({ type = "list", list_member = M.ProxyRuleGroupAttachment })
+M.NatGatewayCreateMappingsList = schema.new({ type = "list", list_member = M.NatGatewayCreateMapping })
 
 M.ContainerMonitoringConfigurations = schema.new({ type = "list", list_member = M.ContainerMonitoringConfiguration })
 
 M.TagList = schema.new({ type = "list", list_member = M.Tag })
 
 M.EnabledAnalysisTypes = schema.new({ type = "list", list_member = prelude.String })
-
-M.NatGatewayMappingsList = schema.new({ type = "list", list_member = M.NatGatewayMapping })
-
-M.ListenerPropertiesRequest = schema.new({ type = "list", list_member = M.ListenerPropertyRequest })
-
-M.ResourceNameList = schema.new({ type = "list", list_member = prelude.String })
-
-M.ResourceArnList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SupportedAvailabilityZones = schema.new({ type = "map", map_key = prelude.String, map_value = M.AvailabilityZoneMetadata })
 
@@ -52,12 +44,6 @@ M.Flows = schema.new({ type = "list", list_member = M.Flow })
 
 M.FlowOperations = schema.new({ type = "list", list_member = M.FlowOperationMetadata })
 
-M.Proxies = schema.new({ type = "list", list_member = M.ProxyMetadata })
-
-M.ProxyConfigurations = schema.new({ type = "list", list_member = M.ProxyConfigurationMetadata })
-
-M.ProxyRuleGroups = schema.new({ type = "list", list_member = M.ProxyRuleGroupMetadata })
-
 M.RuleGroups = schema.new({ type = "list", list_member = M.RuleGroupMetadata })
 
 M.TLSInspectionConfigurations = schema.new({ type = "list", list_member = M.TLSInspectionConfigurationMetadata })
@@ -67,16 +53,6 @@ M.VpcEndpointAssociations = schema.new({ type = "list", list_member = M.VpcEndpo
 M.FlowFilters = schema.new({ type = "list", list_member = M.FlowFilter })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
-
-M.ProxyRuleConditionList = schema.new({ type = "list", list_member = M.ProxyRuleCondition })
-
-M.ProxyRuleGroupPriorityList = schema.new({ type = "list", list_member = M.ProxyRuleGroupPriority })
-
-M.ProxyRuleGroupPriorityResultList = schema.new({ type = "list", list_member = M.ProxyRuleGroupPriorityResult })
-
-M.ProxyRulePriorityList = schema.new({ type = "list", list_member = M.ProxyRulePriority })
-
-M.ProxyConfigRuleGroupSet = schema.new({ type = "list", list_member = M.ProxyConfigRuleGroup })
 
 M.ListenerProperties = schema.new({ type = "list", list_member = M.ListenerProperty })
 
@@ -98,10 +74,6 @@ M.FirewallRuleGroupEntries = schema.new({ type = "list", list_member = M.Firewal
 
 M.IpsRuleGroupEntries = schema.new({ type = "list", list_member = M.IpsRuleGroupEntry })
 
-M.ProxyRuleList = schema.new({ type = "list", list_member = M.ProxyRule })
-
-M.CreateProxyRuleList = schema.new({ type = "list", list_member = M.CreateProxyRule })
-
 M.SummaryRuleOptions = schema.new({ type = "list", list_member = prelude.String })
 
 M.AnalysisResultList = schema.new({ type = "list", list_member = M.AnalysisResult })
@@ -115,6 +87,10 @@ M.AssociationSyncState = schema.new({ type = "map", map_key = prelude.String, ma
 M.LogDestinationConfigs = schema.new({ type = "list", list_member = M.LogDestinationConfig })
 
 M.RuleSummaries = schema.new({ type = "list", list_member = M.RuleSummary })
+
+M.NatGatewayAllocationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NatGatewayPrivateIpList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ContainerAttributes = schema.new({ type = "list", list_member = M.ContainerAttribute })
 
@@ -131,8 +107,6 @@ M.StatefulRules = schema.new({ type = "list", list_member = M.StatefulRule })
 M.FirewallRules = schema.new({ type = "list", list_member = M.FirewallRule })
 
 M.ProtocolStrings = schema.new({ type = "list", list_member = prelude.String })
-
-M.ProxyConditionValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SyncStateConfig = schema.new({ type = "map", map_key = prelude.String, map_value = M.PerObjectStatus })
 
@@ -167,6 +141,8 @@ M.PortRanges = schema.new({ type = "list", list_member = M.PortRange })
 M.ProtocolNumbers = schema.new({ type = "list", list_member = prelude.Integer })
 
 M.Settings = schema.new({ type = "list", list_member = prelude.String })
+
+M.TLSInspectionDomains = schema.new({ type = "list", list_member = prelude.String })
 
 M.TCPFlags = schema.new({ type = "list", list_member = M.TCPFlagField })
 
@@ -670,6 +646,36 @@ M.AssociateFirewallPolicyOutput = schema.new({
     },
 })
 
+M.NatGatewayCreateMapping = schema.new({
+    id = id.from(_N, "NatGatewayCreateMapping"),
+    type = "structure",
+    members = {
+        SubnetId = schema.new({
+            id = id.from(_N, "NatGatewayCreateMapping", "SubnetId"),
+            type = "string",
+            name = "SubnetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AllocationIds = schema.new({
+            id = id.from(_N, "NatGatewayCreateMapping", "AllocationIds"),
+            type = "list",
+            name = "AllocationIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        PrivateIps = schema.new({
+            id = id.from(_N, "NatGatewayCreateMapping", "PrivateIps"),
+            type = "list",
+            name = "PrivateIps",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.SubnetMapping = schema.new({
     id = id.from(_N, "SubnetMapping"),
     type = "structure",
@@ -723,6 +729,13 @@ M.AssociateSubnetsInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        NatGatewayCreateMappings = schema.new({
+            id = id.from(_N, "AssociateSubnetsInput", "NatGatewayCreateMappings"),
+            type = "list",
+            name = "NatGatewayCreateMappings",
+            target_id = prelude.Document.id,
+            list_member = M.NatGatewayCreateMapping,
         }),
     },
 })
@@ -806,222 +819,6 @@ M.AZSyncState = schema.new({
             name = "Attachment",
             target_id = id.from(_N, "Attachment"),
             target = M.Attachment,
-        }),
-    },
-})
-
-M.ProxyRuleGroupAttachment = schema.new({
-    id = id.from(_N, "ProxyRuleGroupAttachment"),
-    type = "structure",
-    members = {
-        ProxyRuleGroupName = schema.new({
-            id = id.from(_N, "ProxyRuleGroupAttachment", "ProxyRuleGroupName"),
-            type = "string",
-            name = "ProxyRuleGroupName",
-            target_id = prelude.String.id,
-        }),
-        InsertPosition = schema.new({
-            id = id.from(_N, "ProxyRuleGroupAttachment", "InsertPosition"),
-            type = "integer",
-            name = "InsertPosition",
-            target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.AttachRuleGroupsToProxyConfigurationInput = schema.new({
-    id = id.from(_N, "AttachRuleGroupsToProxyConfigurationRequest"),
-    type = "structure",
-    members = {
-        ProxyConfigurationName = schema.new({
-            id = id.from(_N, "AttachRuleGroupsToProxyConfigurationInput", "ProxyConfigurationName"),
-            type = "string",
-            name = "ProxyConfigurationName",
-            target_id = prelude.String.id,
-        }),
-        ProxyConfigurationArn = schema.new({
-            id = id.from(_N, "AttachRuleGroupsToProxyConfigurationInput", "ProxyConfigurationArn"),
-            type = "string",
-            name = "ProxyConfigurationArn",
-            target_id = prelude.String.id,
-        }),
-        RuleGroups = schema.new({
-            id = id.from(_N, "AttachRuleGroupsToProxyConfigurationInput", "RuleGroups"),
-            type = "list",
-            name = "RuleGroups",
-            target_id = prelude.Document.id,
-            list_member = M.ProxyRuleGroupAttachment,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "AttachRuleGroupsToProxyConfigurationInput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ProxyConfigDefaultRulePhaseActionsRequest = schema.new({
-    id = id.from(_N, "ProxyConfigDefaultRulePhaseActionsRequest"),
-    type = "structure",
-    members = {
-        PreDNS = schema.new({
-            id = id.from(_N, "ProxyConfigDefaultRulePhaseActionsRequest", "PreDNS"),
-            type = "string",
-            name = "PreDNS",
-            target_id = prelude.String.id,
-        }),
-        PreREQUEST = schema.new({
-            id = id.from(_N, "ProxyConfigDefaultRulePhaseActionsRequest", "PreREQUEST"),
-            type = "string",
-            name = "PreREQUEST",
-            target_id = prelude.String.id,
-        }),
-        PostRESPONSE = schema.new({
-            id = id.from(_N, "ProxyConfigDefaultRulePhaseActionsRequest", "PostRESPONSE"),
-            type = "string",
-            name = "PostRESPONSE",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ProxyConfigRuleGroup = schema.new({
-    id = id.from(_N, "ProxyConfigRuleGroup"),
-    type = "structure",
-    members = {
-        ProxyRuleGroupName = schema.new({
-            id = id.from(_N, "ProxyConfigRuleGroup", "ProxyRuleGroupName"),
-            type = "string",
-            name = "ProxyRuleGroupName",
-            target_id = prelude.String.id,
-        }),
-        ProxyRuleGroupArn = schema.new({
-            id = id.from(_N, "ProxyConfigRuleGroup", "ProxyRuleGroupArn"),
-            type = "string",
-            name = "ProxyRuleGroupArn",
-            target_id = prelude.String.id,
-        }),
-        Type = schema.new({
-            id = id.from(_N, "ProxyConfigRuleGroup", "Type"),
-            type = "string",
-            name = "Type",
-            target_id = prelude.String.id,
-        }),
-        Priority = schema.new({
-            id = id.from(_N, "ProxyConfigRuleGroup", "Priority"),
-            type = "integer",
-            name = "Priority",
-            target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.Tag = schema.new({
-    id = id.from(_N, "Tag"),
-    type = "structure",
-    members = {
-        Key = schema.new({
-            id = id.from(_N, "Tag", "Key"),
-            type = "string",
-            name = "Key",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Value = schema.new({
-            id = id.from(_N, "Tag", "Value"),
-            type = "string",
-            name = "Value",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ProxyConfiguration = schema.new({
-    id = id.from(_N, "ProxyConfiguration"),
-    type = "structure",
-    members = {
-        ProxyConfigurationName = schema.new({
-            id = id.from(_N, "ProxyConfiguration", "ProxyConfigurationName"),
-            type = "string",
-            name = "ProxyConfigurationName",
-            target_id = prelude.String.id,
-        }),
-        ProxyConfigurationArn = schema.new({
-            id = id.from(_N, "ProxyConfiguration", "ProxyConfigurationArn"),
-            type = "string",
-            name = "ProxyConfigurationArn",
-            target_id = prelude.String.id,
-        }),
-        Description = schema.new({
-            id = id.from(_N, "ProxyConfiguration", "Description"),
-            type = "string",
-            name = "Description",
-            target_id = prelude.String.id,
-        }),
-        CreateTime = schema.new({
-            id = id.from(_N, "ProxyConfiguration", "CreateTime"),
-            type = "timestamp",
-            name = "CreateTime",
-            target_id = prelude.Timestamp.id,
-        }),
-        DeleteTime = schema.new({
-            id = id.from(_N, "ProxyConfiguration", "DeleteTime"),
-            type = "timestamp",
-            name = "DeleteTime",
-            target_id = prelude.Timestamp.id,
-        }),
-        RuleGroups = schema.new({
-            id = id.from(_N, "ProxyConfiguration", "RuleGroups"),
-            type = "list",
-            name = "RuleGroups",
-            target_id = prelude.Document.id,
-            list_member = M.ProxyConfigRuleGroup,
-        }),
-        DefaultRulePhaseActions = schema.new({
-            id = id.from(_N, "ProxyConfiguration", "DefaultRulePhaseActions"),
-            type = "structure",
-            name = "DefaultRulePhaseActions",
-            target_id = id.from(_N, "ProxyConfigDefaultRulePhaseActionsRequest"),
-            target = M.ProxyConfigDefaultRulePhaseActionsRequest,
-        }),
-        Tags = schema.new({
-            id = id.from(_N, "ProxyConfiguration", "Tags"),
-            type = "list",
-            name = "Tags",
-            target_id = prelude.Document.id,
-            list_member = M.Tag,
-        }),
-    },
-})
-
-M.AttachRuleGroupsToProxyConfigurationOutput = schema.new({
-    id = id.from(_N, "AttachRuleGroupsToProxyConfigurationResponse"),
-    type = "structure",
-    members = {
-        ProxyConfiguration = schema.new({
-            id = id.from(_N, "AttachRuleGroupsToProxyConfigurationOutput", "ProxyConfiguration"),
-            type = "structure",
-            name = "ProxyConfiguration",
-            target_id = id.from(_N, "ProxyConfiguration"),
-            target = M.ProxyConfiguration,
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "AttachRuleGroupsToProxyConfigurationOutput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -1210,6 +1007,31 @@ M.ContainerMonitoringConfiguration = schema.new({
     },
 })
 
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "Tag", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "Tag", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CreateContainerAssociationInput = schema.new({
     id = id.from(_N, "CreateContainerAssociationRequest"),
     type = "structure",
@@ -1353,22 +1175,6 @@ M.EncryptionConfiguration = schema.new({
     },
 })
 
-M.NatGatewayMapping = schema.new({
-    id = id.from(_N, "NatGatewayMapping"),
-    type = "structure",
-    members = {
-        NatGatewayId = schema.new({
-            id = id.from(_N, "NatGatewayMapping", "NatGatewayId"),
-            type = "string",
-            name = "NatGatewayId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
 M.ListenerProperty = schema.new({
     id = id.from(_N, "ListenerProperty"),
     type = "structure",
@@ -1401,6 +1207,18 @@ M.ProxySettings = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        CertificateArn = schema.new({
+            id = id.from(_N, "ProxySettings", "CertificateArn"),
+            type = "string",
+            name = "CertificateArn",
+            target_id = prelude.String.id,
+        }),
+        DomainName = schema.new({
+            id = id.from(_N, "ProxySettings", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1542,12 +1360,12 @@ M.CreateFirewallInput = schema.new({
                 [traits.DEFAULT] = { value = false },
             },
         }),
-        NatGatewayMappings = schema.new({
-            id = id.from(_N, "CreateFirewallInput", "NatGatewayMappings"),
+        NatGatewayCreateMappings = schema.new({
+            id = id.from(_N, "CreateFirewallInput", "NatGatewayCreateMappings"),
             type = "list",
-            name = "NatGatewayMappings",
+            name = "NatGatewayCreateMappings",
             target_id = prelude.Document.id,
-            list_member = M.NatGatewayMapping,
+            list_member = M.NatGatewayCreateMapping,
         }),
         ProxySettings = schema.new({
             id = id.from(_N, "CreateFirewallInput", "ProxySettings"),
@@ -1556,21 +1374,18 @@ M.CreateFirewallInput = schema.new({
             target_id = id.from(_N, "ProxySettings"),
             target = M.ProxySettings,
         }),
-        NoSourcePreservation = schema.new({
-            id = id.from(_N, "CreateFirewallInput", "NoSourcePreservation"),
-            type = "boolean",
-            name = "NoSourcePreservation",
-            target_id = prelude.Boolean.id,
-            traits = {
-                [traits.DEFAULT] = { value = false },
-            },
-        }),
         VpcEndpoint = schema.new({
             id = id.from(_N, "CreateFirewallInput", "VpcEndpoint"),
             type = "structure",
             name = "VpcEndpoint",
             target_id = id.from(_N, "VpcEndpoint"),
             target = M.VpcEndpoint,
+        }),
+        TransparentFilteringNatScope = schema.new({
+            id = id.from(_N, "CreateFirewallInput", "TransparentFilteringNatScope"),
+            type = "string",
+            name = "TransparentFilteringNatScope",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1716,12 +1531,12 @@ M.Firewall = schema.new({
                 [traits.DEFAULT] = { value = false },
             },
         }),
-        NatGatewayMappings = schema.new({
-            id = id.from(_N, "Firewall", "NatGatewayMappings"),
+        NatGatewayCreateMappings = schema.new({
+            id = id.from(_N, "Firewall", "NatGatewayCreateMappings"),
             type = "list",
-            name = "NatGatewayMappings",
+            name = "NatGatewayCreateMappings",
             target_id = prelude.Document.id,
-            list_member = M.NatGatewayMapping,
+            list_member = M.NatGatewayCreateMapping,
         }),
         ProxySettings = schema.new({
             id = id.from(_N, "Firewall", "ProxySettings"),
@@ -1730,21 +1545,18 @@ M.Firewall = schema.new({
             target_id = id.from(_N, "ProxySettings"),
             target = M.ProxySettings,
         }),
-        NoSourcePreservation = schema.new({
-            id = id.from(_N, "Firewall", "NoSourcePreservation"),
-            type = "boolean",
-            name = "NoSourcePreservation",
-            target_id = prelude.Boolean.id,
-            traits = {
-                [traits.DEFAULT] = { value = false },
-            },
-        }),
         VpcEndpoint = schema.new({
             id = id.from(_N, "Firewall", "VpcEndpoint"),
             type = "structure",
             name = "VpcEndpoint",
             target_id = id.from(_N, "VpcEndpoint"),
             target = M.VpcEndpoint,
+        }),
+        TransparentFilteringNatScope = schema.new({
+            id = id.from(_N, "Firewall", "TransparentFilteringNatScope"),
+            type = "string",
+            name = "TransparentFilteringNatScope",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -3122,647 +2934,6 @@ M.CreateFirewallPolicyV2Output = schema.new({
     },
 })
 
-M.ListenerPropertyRequest = schema.new({
-    id = id.from(_N, "ListenerPropertyRequest"),
-    type = "structure",
-    members = {
-        Port = schema.new({
-            id = id.from(_N, "ListenerPropertyRequest", "Port"),
-            type = "integer",
-            name = "Port",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Type = schema.new({
-            id = id.from(_N, "ListenerPropertyRequest", "Type"),
-            type = "string",
-            name = "Type",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.TlsInterceptPropertiesRequest = schema.new({
-    id = id.from(_N, "TlsInterceptPropertiesRequest"),
-    type = "structure",
-    members = {
-        PcaArn = schema.new({
-            id = id.from(_N, "TlsInterceptPropertiesRequest", "PcaArn"),
-            type = "string",
-            name = "PcaArn",
-            target_id = prelude.String.id,
-        }),
-        TlsInterceptMode = schema.new({
-            id = id.from(_N, "TlsInterceptPropertiesRequest", "TlsInterceptMode"),
-            type = "string",
-            name = "TlsInterceptMode",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.CreateProxyInput = schema.new({
-    id = id.from(_N, "CreateProxyRequest"),
-    type = "structure",
-    members = {
-        ProxyName = schema.new({
-            id = id.from(_N, "CreateProxyInput", "ProxyName"),
-            type = "string",
-            name = "ProxyName",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        NatGatewayId = schema.new({
-            id = id.from(_N, "CreateProxyInput", "NatGatewayId"),
-            type = "string",
-            name = "NatGatewayId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        ProxyConfigurationName = schema.new({
-            id = id.from(_N, "CreateProxyInput", "ProxyConfigurationName"),
-            type = "string",
-            name = "ProxyConfigurationName",
-            target_id = prelude.String.id,
-        }),
-        ProxyConfigurationArn = schema.new({
-            id = id.from(_N, "CreateProxyInput", "ProxyConfigurationArn"),
-            type = "string",
-            name = "ProxyConfigurationArn",
-            target_id = prelude.String.id,
-        }),
-        ListenerProperties = schema.new({
-            id = id.from(_N, "CreateProxyInput", "ListenerProperties"),
-            type = "list",
-            name = "ListenerProperties",
-            target_id = prelude.Document.id,
-            list_member = M.ListenerPropertyRequest,
-        }),
-        TlsInterceptProperties = schema.new({
-            id = id.from(_N, "CreateProxyInput", "TlsInterceptProperties"),
-            type = "structure",
-            name = "TlsInterceptProperties",
-            target_id = id.from(_N, "TlsInterceptPropertiesRequest"),
-            target = M.TlsInterceptPropertiesRequest,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Tags = schema.new({
-            id = id.from(_N, "CreateProxyInput", "Tags"),
-            type = "list",
-            name = "Tags",
-            target_id = prelude.Document.id,
-            list_member = M.Tag,
-        }),
-    },
-})
-
-M.TlsInterceptProperties = schema.new({
-    id = id.from(_N, "TlsInterceptProperties"),
-    type = "structure",
-    members = {
-        PcaArn = schema.new({
-            id = id.from(_N, "TlsInterceptProperties", "PcaArn"),
-            type = "string",
-            name = "PcaArn",
-            target_id = prelude.String.id,
-        }),
-        TlsInterceptMode = schema.new({
-            id = id.from(_N, "TlsInterceptProperties", "TlsInterceptMode"),
-            type = "string",
-            name = "TlsInterceptMode",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.Proxy = schema.new({
-    id = id.from(_N, "Proxy"),
-    type = "structure",
-    members = {
-        CreateTime = schema.new({
-            id = id.from(_N, "Proxy", "CreateTime"),
-            type = "timestamp",
-            name = "CreateTime",
-            target_id = prelude.Timestamp.id,
-        }),
-        DeleteTime = schema.new({
-            id = id.from(_N, "Proxy", "DeleteTime"),
-            type = "timestamp",
-            name = "DeleteTime",
-            target_id = prelude.Timestamp.id,
-        }),
-        UpdateTime = schema.new({
-            id = id.from(_N, "Proxy", "UpdateTime"),
-            type = "timestamp",
-            name = "UpdateTime",
-            target_id = prelude.Timestamp.id,
-        }),
-        FailureCode = schema.new({
-            id = id.from(_N, "Proxy", "FailureCode"),
-            type = "string",
-            name = "FailureCode",
-            target_id = prelude.String.id,
-        }),
-        FailureMessage = schema.new({
-            id = id.from(_N, "Proxy", "FailureMessage"),
-            type = "string",
-            name = "FailureMessage",
-            target_id = prelude.String.id,
-        }),
-        ProxyState = schema.new({
-            id = id.from(_N, "Proxy", "ProxyState"),
-            type = "string",
-            name = "ProxyState",
-            target_id = prelude.String.id,
-        }),
-        ProxyModifyState = schema.new({
-            id = id.from(_N, "Proxy", "ProxyModifyState"),
-            type = "string",
-            name = "ProxyModifyState",
-            target_id = prelude.String.id,
-        }),
-        NatGatewayId = schema.new({
-            id = id.from(_N, "Proxy", "NatGatewayId"),
-            type = "string",
-            name = "NatGatewayId",
-            target_id = prelude.String.id,
-        }),
-        ProxyConfigurationName = schema.new({
-            id = id.from(_N, "Proxy", "ProxyConfigurationName"),
-            type = "string",
-            name = "ProxyConfigurationName",
-            target_id = prelude.String.id,
-        }),
-        ProxyConfigurationArn = schema.new({
-            id = id.from(_N, "Proxy", "ProxyConfigurationArn"),
-            type = "string",
-            name = "ProxyConfigurationArn",
-            target_id = prelude.String.id,
-        }),
-        ProxyName = schema.new({
-            id = id.from(_N, "Proxy", "ProxyName"),
-            type = "string",
-            name = "ProxyName",
-            target_id = prelude.String.id,
-        }),
-        ProxyArn = schema.new({
-            id = id.from(_N, "Proxy", "ProxyArn"),
-            type = "string",
-            name = "ProxyArn",
-            target_id = prelude.String.id,
-        }),
-        ListenerProperties = schema.new({
-            id = id.from(_N, "Proxy", "ListenerProperties"),
-            type = "list",
-            name = "ListenerProperties",
-            target_id = prelude.Document.id,
-            list_member = M.ListenerProperty,
-        }),
-        TlsInterceptProperties = schema.new({
-            id = id.from(_N, "Proxy", "TlsInterceptProperties"),
-            type = "structure",
-            name = "TlsInterceptProperties",
-            target_id = id.from(_N, "TlsInterceptProperties"),
-            target = M.TlsInterceptProperties,
-        }),
-        Tags = schema.new({
-            id = id.from(_N, "Proxy", "Tags"),
-            type = "list",
-            name = "Tags",
-            target_id = prelude.Document.id,
-            list_member = M.Tag,
-        }),
-    },
-})
-
-M.CreateProxyOutput = schema.new({
-    id = id.from(_N, "CreateProxyResponse"),
-    type = "structure",
-    members = {
-        Proxy = schema.new({
-            id = id.from(_N, "CreateProxyOutput", "Proxy"),
-            type = "structure",
-            name = "Proxy",
-            target_id = id.from(_N, "Proxy"),
-            target = M.Proxy,
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "CreateProxyOutput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.UnsupportedOperationException = schema.new({
-    id = id.from(_N, "UnsupportedOperationException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "UnsupportedOperationException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.CreateProxyConfigurationInput = schema.new({
-    id = id.from(_N, "CreateProxyConfigurationRequest"),
-    type = "structure",
-    members = {
-        ProxyConfigurationName = schema.new({
-            id = id.from(_N, "CreateProxyConfigurationInput", "ProxyConfigurationName"),
-            type = "string",
-            name = "ProxyConfigurationName",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Description = schema.new({
-            id = id.from(_N, "CreateProxyConfigurationInput", "Description"),
-            type = "string",
-            name = "Description",
-            target_id = prelude.String.id,
-        }),
-        RuleGroupNames = schema.new({
-            id = id.from(_N, "CreateProxyConfigurationInput", "RuleGroupNames"),
-            type = "list",
-            name = "RuleGroupNames",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-        RuleGroupArns = schema.new({
-            id = id.from(_N, "CreateProxyConfigurationInput", "RuleGroupArns"),
-            type = "list",
-            name = "RuleGroupArns",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-        DefaultRulePhaseActions = schema.new({
-            id = id.from(_N, "CreateProxyConfigurationInput", "DefaultRulePhaseActions"),
-            type = "structure",
-            name = "DefaultRulePhaseActions",
-            target_id = id.from(_N, "ProxyConfigDefaultRulePhaseActionsRequest"),
-            target = M.ProxyConfigDefaultRulePhaseActionsRequest,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Tags = schema.new({
-            id = id.from(_N, "CreateProxyConfigurationInput", "Tags"),
-            type = "list",
-            name = "Tags",
-            target_id = prelude.Document.id,
-            list_member = M.Tag,
-        }),
-    },
-})
-
-M.CreateProxyConfigurationOutput = schema.new({
-    id = id.from(_N, "CreateProxyConfigurationResponse"),
-    type = "structure",
-    members = {
-        ProxyConfiguration = schema.new({
-            id = id.from(_N, "CreateProxyConfigurationOutput", "ProxyConfiguration"),
-            type = "structure",
-            name = "ProxyConfiguration",
-            target_id = id.from(_N, "ProxyConfiguration"),
-            target = M.ProxyConfiguration,
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "CreateProxyConfigurationOutput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ProxyRuleCondition = schema.new({
-    id = id.from(_N, "ProxyRuleCondition"),
-    type = "structure",
-    members = {
-        ConditionOperator = schema.new({
-            id = id.from(_N, "ProxyRuleCondition", "ConditionOperator"),
-            type = "string",
-            name = "ConditionOperator",
-            target_id = prelude.String.id,
-        }),
-        ConditionKey = schema.new({
-            id = id.from(_N, "ProxyRuleCondition", "ConditionKey"),
-            type = "string",
-            name = "ConditionKey",
-            target_id = prelude.String.id,
-        }),
-        ConditionValues = schema.new({
-            id = id.from(_N, "ProxyRuleCondition", "ConditionValues"),
-            type = "list",
-            name = "ConditionValues",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-    },
-})
-
-M.CreateProxyRule = schema.new({
-    id = id.from(_N, "CreateProxyRule"),
-    type = "structure",
-    members = {
-        ProxyRuleName = schema.new({
-            id = id.from(_N, "CreateProxyRule", "ProxyRuleName"),
-            type = "string",
-            name = "ProxyRuleName",
-            target_id = prelude.String.id,
-        }),
-        Description = schema.new({
-            id = id.from(_N, "CreateProxyRule", "Description"),
-            type = "string",
-            name = "Description",
-            target_id = prelude.String.id,
-        }),
-        Action = schema.new({
-            id = id.from(_N, "CreateProxyRule", "Action"),
-            type = "string",
-            name = "Action",
-            target_id = prelude.String.id,
-        }),
-        Conditions = schema.new({
-            id = id.from(_N, "CreateProxyRule", "Conditions"),
-            type = "list",
-            name = "Conditions",
-            target_id = prelude.Document.id,
-            list_member = M.ProxyRuleCondition,
-        }),
-        InsertPosition = schema.new({
-            id = id.from(_N, "CreateProxyRule", "InsertPosition"),
-            type = "integer",
-            name = "InsertPosition",
-            target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.ProxyRule = schema.new({
-    id = id.from(_N, "ProxyRule"),
-    type = "structure",
-    members = {
-        ProxyRuleName = schema.new({
-            id = id.from(_N, "ProxyRule", "ProxyRuleName"),
-            type = "string",
-            name = "ProxyRuleName",
-            target_id = prelude.String.id,
-        }),
-        Description = schema.new({
-            id = id.from(_N, "ProxyRule", "Description"),
-            type = "string",
-            name = "Description",
-            target_id = prelude.String.id,
-        }),
-        Action = schema.new({
-            id = id.from(_N, "ProxyRule", "Action"),
-            type = "string",
-            name = "Action",
-            target_id = prelude.String.id,
-        }),
-        Conditions = schema.new({
-            id = id.from(_N, "ProxyRule", "Conditions"),
-            type = "list",
-            name = "Conditions",
-            target_id = prelude.Document.id,
-            list_member = M.ProxyRuleCondition,
-        }),
-    },
-})
-
-M.ProxyRulesByRequestPhase = schema.new({
-    id = id.from(_N, "ProxyRulesByRequestPhase"),
-    type = "structure",
-    members = {
-        PreDNS = schema.new({
-            id = id.from(_N, "ProxyRulesByRequestPhase", "PreDNS"),
-            type = "list",
-            name = "PreDNS",
-            target_id = prelude.Document.id,
-            list_member = M.ProxyRule,
-        }),
-        PreREQUEST = schema.new({
-            id = id.from(_N, "ProxyRulesByRequestPhase", "PreREQUEST"),
-            type = "list",
-            name = "PreREQUEST",
-            target_id = prelude.Document.id,
-            list_member = M.ProxyRule,
-        }),
-        PostRESPONSE = schema.new({
-            id = id.from(_N, "ProxyRulesByRequestPhase", "PostRESPONSE"),
-            type = "list",
-            name = "PostRESPONSE",
-            target_id = prelude.Document.id,
-            list_member = M.ProxyRule,
-        }),
-    },
-})
-
-M.CreateProxyRuleGroupInput = schema.new({
-    id = id.from(_N, "CreateProxyRuleGroupRequest"),
-    type = "structure",
-    members = {
-        ProxyRuleGroupName = schema.new({
-            id = id.from(_N, "CreateProxyRuleGroupInput", "ProxyRuleGroupName"),
-            type = "string",
-            name = "ProxyRuleGroupName",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Description = schema.new({
-            id = id.from(_N, "CreateProxyRuleGroupInput", "Description"),
-            type = "string",
-            name = "Description",
-            target_id = prelude.String.id,
-        }),
-        Rules = schema.new({
-            id = id.from(_N, "CreateProxyRuleGroupInput", "Rules"),
-            type = "structure",
-            name = "Rules",
-            target_id = id.from(_N, "ProxyRulesByRequestPhase"),
-            target = M.ProxyRulesByRequestPhase,
-        }),
-        Tags = schema.new({
-            id = id.from(_N, "CreateProxyRuleGroupInput", "Tags"),
-            type = "list",
-            name = "Tags",
-            target_id = prelude.Document.id,
-            list_member = M.Tag,
-        }),
-    },
-})
-
-M.ProxyRuleGroup = schema.new({
-    id = id.from(_N, "ProxyRuleGroup"),
-    type = "structure",
-    members = {
-        ProxyRuleGroupName = schema.new({
-            id = id.from(_N, "ProxyRuleGroup", "ProxyRuleGroupName"),
-            type = "string",
-            name = "ProxyRuleGroupName",
-            target_id = prelude.String.id,
-        }),
-        ProxyRuleGroupArn = schema.new({
-            id = id.from(_N, "ProxyRuleGroup", "ProxyRuleGroupArn"),
-            type = "string",
-            name = "ProxyRuleGroupArn",
-            target_id = prelude.String.id,
-        }),
-        CreateTime = schema.new({
-            id = id.from(_N, "ProxyRuleGroup", "CreateTime"),
-            type = "timestamp",
-            name = "CreateTime",
-            target_id = prelude.Timestamp.id,
-        }),
-        DeleteTime = schema.new({
-            id = id.from(_N, "ProxyRuleGroup", "DeleteTime"),
-            type = "timestamp",
-            name = "DeleteTime",
-            target_id = prelude.Timestamp.id,
-        }),
-        Rules = schema.new({
-            id = id.from(_N, "ProxyRuleGroup", "Rules"),
-            type = "structure",
-            name = "Rules",
-            target_id = id.from(_N, "ProxyRulesByRequestPhase"),
-            target = M.ProxyRulesByRequestPhase,
-        }),
-        Description = schema.new({
-            id = id.from(_N, "ProxyRuleGroup", "Description"),
-            type = "string",
-            name = "Description",
-            target_id = prelude.String.id,
-        }),
-        Tags = schema.new({
-            id = id.from(_N, "ProxyRuleGroup", "Tags"),
-            type = "list",
-            name = "Tags",
-            target_id = prelude.Document.id,
-            list_member = M.Tag,
-        }),
-    },
-})
-
-M.CreateProxyRuleGroupOutput = schema.new({
-    id = id.from(_N, "CreateProxyRuleGroupResponse"),
-    type = "structure",
-    members = {
-        ProxyRuleGroup = schema.new({
-            id = id.from(_N, "CreateProxyRuleGroupOutput", "ProxyRuleGroup"),
-            type = "structure",
-            name = "ProxyRuleGroup",
-            target_id = id.from(_N, "ProxyRuleGroup"),
-            target = M.ProxyRuleGroup,
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "CreateProxyRuleGroupOutput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.CreateProxyRulesByRequestPhase = schema.new({
-    id = id.from(_N, "CreateProxyRulesByRequestPhase"),
-    type = "structure",
-    members = {
-        PreDNS = schema.new({
-            id = id.from(_N, "CreateProxyRulesByRequestPhase", "PreDNS"),
-            type = "list",
-            name = "PreDNS",
-            target_id = prelude.Document.id,
-            list_member = M.CreateProxyRule,
-        }),
-        PreREQUEST = schema.new({
-            id = id.from(_N, "CreateProxyRulesByRequestPhase", "PreREQUEST"),
-            type = "list",
-            name = "PreREQUEST",
-            target_id = prelude.Document.id,
-            list_member = M.CreateProxyRule,
-        }),
-        PostRESPONSE = schema.new({
-            id = id.from(_N, "CreateProxyRulesByRequestPhase", "PostRESPONSE"),
-            type = "list",
-            name = "PostRESPONSE",
-            target_id = prelude.Document.id,
-            list_member = M.CreateProxyRule,
-        }),
-    },
-})
-
-M.CreateProxyRulesInput = schema.new({
-    id = id.from(_N, "CreateProxyRulesRequest"),
-    type = "structure",
-    members = {
-        ProxyRuleGroupArn = schema.new({
-            id = id.from(_N, "CreateProxyRulesInput", "ProxyRuleGroupArn"),
-            type = "string",
-            name = "ProxyRuleGroupArn",
-            target_id = prelude.String.id,
-        }),
-        ProxyRuleGroupName = schema.new({
-            id = id.from(_N, "CreateProxyRulesInput", "ProxyRuleGroupName"),
-            type = "string",
-            name = "ProxyRuleGroupName",
-            target_id = prelude.String.id,
-        }),
-        Rules = schema.new({
-            id = id.from(_N, "CreateProxyRulesInput", "Rules"),
-            type = "structure",
-            name = "Rules",
-            target_id = id.from(_N, "CreateProxyRulesByRequestPhase"),
-            target = M.CreateProxyRulesByRequestPhase,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.CreateProxyRulesOutput = schema.new({
-    id = id.from(_N, "CreateProxyRulesResponse"),
-    type = "structure",
-    members = {
-        ProxyRuleGroup = schema.new({
-            id = id.from(_N, "CreateProxyRulesOutput", "ProxyRuleGroup"),
-            type = "structure",
-            name = "ProxyRuleGroup",
-            target_id = id.from(_N, "ProxyRuleGroup"),
-            target = M.ProxyRuleGroup,
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "CreateProxyRulesOutput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.Header = schema.new({
     id = id.from(_N, "Header"),
     type = "structure",
@@ -4411,6 +3582,23 @@ M.CreateRuleGroupOutput = schema.new({
     },
 })
 
+M.DomainMatch = schema.new({
+    id = id.from(_N, "DomainMatch"),
+    type = "structure",
+    members = {
+        Domains = schema.new({
+            id = id.from(_N, "DomainMatch", "Domains"),
+            type = "list",
+            name = "Domains",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ServerCertificateScope = schema.new({
     id = id.from(_N, "ServerCertificateScope"),
     type = "structure",
@@ -4449,6 +3637,25 @@ M.ServerCertificateScope = schema.new({
             name = "Protocols",
             target_id = prelude.Document.id,
             list_member = prelude.Integer,
+        }),
+        DomainMatch = schema.new({
+            id = id.from(_N, "ServerCertificateScope", "DomainMatch"),
+            type = "structure",
+            name = "DomainMatch",
+            target_id = id.from(_N, "DomainMatch"),
+            target = M.DomainMatch,
+        }),
+        DecryptionAction = schema.new({
+            id = id.from(_N, "ServerCertificateScope", "DecryptionAction"),
+            type = "string",
+            name = "DecryptionAction",
+            target_id = prelude.String.id,
+        }),
+        DeploymentMode = schema.new({
+            id = id.from(_N, "ServerCertificateScope", "DeploymentMode"),
+            type = "string",
+            name = "DeploymentMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -4496,6 +3703,12 @@ M.ServerCertificateConfiguration = schema.new({
             name = "CheckCertificateRevocationStatus",
             target_id = id.from(_N, "CheckCertificateRevocationStatusActions"),
             target = M.CheckCertificateRevocationStatusActions,
+        }),
+        DefaultDecryptionBehavior = schema.new({
+            id = id.from(_N, "ServerCertificateConfiguration", "DefaultDecryptionBehavior"),
+            type = "string",
+            name = "DefaultDecryptionBehavior",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -4888,6 +4101,15 @@ M.DeleteFirewallInput = schema.new({
             name = "FirewallArn",
             target_id = prelude.String.id,
         }),
+        DeleteAssociatedNatGateways = schema.new({
+            id = id.from(_N, "DeleteFirewallInput", "DeleteAssociatedNatGateways"),
+            type = "boolean",
+            name = "DeleteAssociatedNatGateways",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
     },
 })
 
@@ -4908,6 +4130,22 @@ M.DeleteFirewallOutput = schema.new({
             name = "FirewallStatus",
             target_id = id.from(_N, "FirewallStatus"),
             target = M.FirewallStatus,
+        }),
+    },
+})
+
+M.UnsupportedOperationException = schema.new({
+    id = id.from(_N, "UnsupportedOperationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "UnsupportedOperationException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -5074,125 +4312,6 @@ M.DeleteProxyOutput = schema.new({
             type = "string",
             name = "ProxyArn",
             target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.DeleteProxyConfigurationInput = schema.new({
-    id = id.from(_N, "DeleteProxyConfigurationRequest"),
-    type = "structure",
-    members = {
-        ProxyConfigurationName = schema.new({
-            id = id.from(_N, "DeleteProxyConfigurationInput", "ProxyConfigurationName"),
-            type = "string",
-            name = "ProxyConfigurationName",
-            target_id = prelude.String.id,
-        }),
-        ProxyConfigurationArn = schema.new({
-            id = id.from(_N, "DeleteProxyConfigurationInput", "ProxyConfigurationArn"),
-            type = "string",
-            name = "ProxyConfigurationArn",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.DeleteProxyConfigurationOutput = schema.new({
-    id = id.from(_N, "DeleteProxyConfigurationResponse"),
-    type = "structure",
-    members = {
-        ProxyConfigurationName = schema.new({
-            id = id.from(_N, "DeleteProxyConfigurationOutput", "ProxyConfigurationName"),
-            type = "string",
-            name = "ProxyConfigurationName",
-            target_id = prelude.String.id,
-        }),
-        ProxyConfigurationArn = schema.new({
-            id = id.from(_N, "DeleteProxyConfigurationOutput", "ProxyConfigurationArn"),
-            type = "string",
-            name = "ProxyConfigurationArn",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.DeleteProxyRuleGroupInput = schema.new({
-    id = id.from(_N, "DeleteProxyRuleGroupRequest"),
-    type = "structure",
-    members = {
-        ProxyRuleGroupName = schema.new({
-            id = id.from(_N, "DeleteProxyRuleGroupInput", "ProxyRuleGroupName"),
-            type = "string",
-            name = "ProxyRuleGroupName",
-            target_id = prelude.String.id,
-        }),
-        ProxyRuleGroupArn = schema.new({
-            id = id.from(_N, "DeleteProxyRuleGroupInput", "ProxyRuleGroupArn"),
-            type = "string",
-            name = "ProxyRuleGroupArn",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.DeleteProxyRuleGroupOutput = schema.new({
-    id = id.from(_N, "DeleteProxyRuleGroupResponse"),
-    type = "structure",
-    members = {
-        ProxyRuleGroupName = schema.new({
-            id = id.from(_N, "DeleteProxyRuleGroupOutput", "ProxyRuleGroupName"),
-            type = "string",
-            name = "ProxyRuleGroupName",
-            target_id = prelude.String.id,
-        }),
-        ProxyRuleGroupArn = schema.new({
-            id = id.from(_N, "DeleteProxyRuleGroupOutput", "ProxyRuleGroupArn"),
-            type = "string",
-            name = "ProxyRuleGroupArn",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.DeleteProxyRulesInput = schema.new({
-    id = id.from(_N, "DeleteProxyRulesRequest"),
-    type = "structure",
-    members = {
-        ProxyRuleGroupArn = schema.new({
-            id = id.from(_N, "DeleteProxyRulesInput", "ProxyRuleGroupArn"),
-            type = "string",
-            name = "ProxyRuleGroupArn",
-            target_id = prelude.String.id,
-        }),
-        ProxyRuleGroupName = schema.new({
-            id = id.from(_N, "DeleteProxyRulesInput", "ProxyRuleGroupName"),
-            type = "string",
-            name = "ProxyRuleGroupName",
-            target_id = prelude.String.id,
-        }),
-        Rules = schema.new({
-            id = id.from(_N, "DeleteProxyRulesInput", "Rules"),
-            type = "list",
-            name = "Rules",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.DeleteProxyRulesOutput = schema.new({
-    id = id.from(_N, "DeleteProxyRulesResponse"),
-    type = "structure",
-    members = {
-        ProxyRuleGroup = schema.new({
-            id = id.from(_N, "DeleteProxyRulesOutput", "ProxyRuleGroup"),
-            type = "structure",
-            name = "ProxyRuleGroup",
-            target_id = id.from(_N, "ProxyRuleGroup"),
-            target = M.ProxyRuleGroup,
         }),
     },
 })
@@ -5951,6 +5070,25 @@ M.DescribeProxyInput = schema.new({
     },
 })
 
+M.TlsInterceptProperties = schema.new({
+    id = id.from(_N, "TlsInterceptProperties"),
+    type = "structure",
+    members = {
+        PcaArn = schema.new({
+            id = id.from(_N, "TlsInterceptProperties", "PcaArn"),
+            type = "string",
+            name = "PcaArn",
+            target_id = prelude.String.id,
+        }),
+        TlsInterceptMode = schema.new({
+            id = id.from(_N, "TlsInterceptProperties", "TlsInterceptMode"),
+            type = "string",
+            name = "TlsInterceptMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DescribeProxyResource = schema.new({
     id = id.from(_N, "DescribeProxyResource"),
     type = "structure",
@@ -6076,132 +5214,6 @@ M.DescribeProxyOutput = schema.new({
         }),
         UpdateToken = schema.new({
             id = id.from(_N, "DescribeProxyOutput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.DescribeProxyConfigurationInput = schema.new({
-    id = id.from(_N, "DescribeProxyConfigurationRequest"),
-    type = "structure",
-    members = {
-        ProxyConfigurationName = schema.new({
-            id = id.from(_N, "DescribeProxyConfigurationInput", "ProxyConfigurationName"),
-            type = "string",
-            name = "ProxyConfigurationName",
-            target_id = prelude.String.id,
-        }),
-        ProxyConfigurationArn = schema.new({
-            id = id.from(_N, "DescribeProxyConfigurationInput", "ProxyConfigurationArn"),
-            type = "string",
-            name = "ProxyConfigurationArn",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.DescribeProxyConfigurationOutput = schema.new({
-    id = id.from(_N, "DescribeProxyConfigurationResponse"),
-    type = "structure",
-    members = {
-        ProxyConfiguration = schema.new({
-            id = id.from(_N, "DescribeProxyConfigurationOutput", "ProxyConfiguration"),
-            type = "structure",
-            name = "ProxyConfiguration",
-            target_id = id.from(_N, "ProxyConfiguration"),
-            target = M.ProxyConfiguration,
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "DescribeProxyConfigurationOutput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.DescribeProxyRuleInput = schema.new({
-    id = id.from(_N, "DescribeProxyRuleRequest"),
-    type = "structure",
-    members = {
-        ProxyRuleName = schema.new({
-            id = id.from(_N, "DescribeProxyRuleInput", "ProxyRuleName"),
-            type = "string",
-            name = "ProxyRuleName",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        ProxyRuleGroupName = schema.new({
-            id = id.from(_N, "DescribeProxyRuleInput", "ProxyRuleGroupName"),
-            type = "string",
-            name = "ProxyRuleGroupName",
-            target_id = prelude.String.id,
-        }),
-        ProxyRuleGroupArn = schema.new({
-            id = id.from(_N, "DescribeProxyRuleInput", "ProxyRuleGroupArn"),
-            type = "string",
-            name = "ProxyRuleGroupArn",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.DescribeProxyRuleOutput = schema.new({
-    id = id.from(_N, "DescribeProxyRuleResponse"),
-    type = "structure",
-    members = {
-        ProxyRule = schema.new({
-            id = id.from(_N, "DescribeProxyRuleOutput", "ProxyRule"),
-            type = "structure",
-            name = "ProxyRule",
-            target_id = id.from(_N, "ProxyRule"),
-            target = M.ProxyRule,
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "DescribeProxyRuleOutput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.DescribeProxyRuleGroupInput = schema.new({
-    id = id.from(_N, "DescribeProxyRuleGroupRequest"),
-    type = "structure",
-    members = {
-        ProxyRuleGroupName = schema.new({
-            id = id.from(_N, "DescribeProxyRuleGroupInput", "ProxyRuleGroupName"),
-            type = "string",
-            name = "ProxyRuleGroupName",
-            target_id = prelude.String.id,
-        }),
-        ProxyRuleGroupArn = schema.new({
-            id = id.from(_N, "DescribeProxyRuleGroupInput", "ProxyRuleGroupArn"),
-            type = "string",
-            name = "ProxyRuleGroupArn",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.DescribeProxyRuleGroupOutput = schema.new({
-    id = id.from(_N, "DescribeProxyRuleGroupResponse"),
-    type = "structure",
-    members = {
-        ProxyRuleGroup = schema.new({
-            id = id.from(_N, "DescribeProxyRuleGroupOutput", "ProxyRuleGroup"),
-            type = "structure",
-            name = "ProxyRuleGroup",
-            target_id = id.from(_N, "ProxyRuleGroup"),
-            target = M.ProxyRuleGroup,
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "DescribeProxyRuleGroupOutput", "UpdateToken"),
             type = "string",
             name = "UpdateToken",
             target_id = prelude.String.id,
@@ -6602,68 +5614,6 @@ M.DescribeVpcEndpointAssociationOutput = schema.new({
             name = "VpcEndpointAssociationStatus",
             target_id = id.from(_N, "VpcEndpointAssociationStatus"),
             target = M.VpcEndpointAssociationStatus,
-        }),
-    },
-})
-
-M.DetachRuleGroupsFromProxyConfigurationInput = schema.new({
-    id = id.from(_N, "DetachRuleGroupsFromProxyConfigurationRequest"),
-    type = "structure",
-    members = {
-        ProxyConfigurationName = schema.new({
-            id = id.from(_N, "DetachRuleGroupsFromProxyConfigurationInput", "ProxyConfigurationName"),
-            type = "string",
-            name = "ProxyConfigurationName",
-            target_id = prelude.String.id,
-        }),
-        ProxyConfigurationArn = schema.new({
-            id = id.from(_N, "DetachRuleGroupsFromProxyConfigurationInput", "ProxyConfigurationArn"),
-            type = "string",
-            name = "ProxyConfigurationArn",
-            target_id = prelude.String.id,
-        }),
-        RuleGroupNames = schema.new({
-            id = id.from(_N, "DetachRuleGroupsFromProxyConfigurationInput", "RuleGroupNames"),
-            type = "list",
-            name = "RuleGroupNames",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-        RuleGroupArns = schema.new({
-            id = id.from(_N, "DetachRuleGroupsFromProxyConfigurationInput", "RuleGroupArns"),
-            type = "list",
-            name = "RuleGroupArns",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "DetachRuleGroupsFromProxyConfigurationInput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.DetachRuleGroupsFromProxyConfigurationOutput = schema.new({
-    id = id.from(_N, "DetachRuleGroupsFromProxyConfigurationResponse"),
-    type = "structure",
-    members = {
-        ProxyConfiguration = schema.new({
-            id = id.from(_N, "DetachRuleGroupsFromProxyConfigurationOutput", "ProxyConfiguration"),
-            type = "structure",
-            name = "ProxyConfiguration",
-            target_id = id.from(_N, "ProxyConfiguration"),
-            target = M.ProxyConfiguration,
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "DetachRuleGroupsFromProxyConfigurationOutput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -7469,180 +6419,6 @@ M.ListFlowOperationsOutput = schema.new({
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListFlowOperationsOutput", "NextToken"),
-            type = "string",
-            name = "NextToken",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ListProxiesInput = schema.new({
-    id = id.from(_N, "ListProxiesRequest"),
-    type = "structure",
-    members = {
-        NextToken = schema.new({
-            id = id.from(_N, "ListProxiesInput", "NextToken"),
-            type = "string",
-            name = "NextToken",
-            target_id = prelude.String.id,
-        }),
-        MaxResults = schema.new({
-            id = id.from(_N, "ListProxiesInput", "MaxResults"),
-            type = "integer",
-            name = "MaxResults",
-            target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.ProxyMetadata = schema.new({
-    id = id.from(_N, "ProxyMetadata"),
-    type = "structure",
-    members = {
-        Name = schema.new({
-            id = id.from(_N, "ProxyMetadata", "Name"),
-            type = "string",
-            name = "Name",
-            target_id = prelude.String.id,
-        }),
-        Arn = schema.new({
-            id = id.from(_N, "ProxyMetadata", "Arn"),
-            type = "string",
-            name = "Arn",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ListProxiesOutput = schema.new({
-    id = id.from(_N, "ListProxiesResponse"),
-    type = "structure",
-    members = {
-        Proxies = schema.new({
-            id = id.from(_N, "ListProxiesOutput", "Proxies"),
-            type = "list",
-            name = "Proxies",
-            target_id = prelude.Document.id,
-            list_member = M.ProxyMetadata,
-        }),
-        NextToken = schema.new({
-            id = id.from(_N, "ListProxiesOutput", "NextToken"),
-            type = "string",
-            name = "NextToken",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ListProxyConfigurationsInput = schema.new({
-    id = id.from(_N, "ListProxyConfigurationsRequest"),
-    type = "structure",
-    members = {
-        NextToken = schema.new({
-            id = id.from(_N, "ListProxyConfigurationsInput", "NextToken"),
-            type = "string",
-            name = "NextToken",
-            target_id = prelude.String.id,
-        }),
-        MaxResults = schema.new({
-            id = id.from(_N, "ListProxyConfigurationsInput", "MaxResults"),
-            type = "integer",
-            name = "MaxResults",
-            target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.ProxyConfigurationMetadata = schema.new({
-    id = id.from(_N, "ProxyConfigurationMetadata"),
-    type = "structure",
-    members = {
-        Name = schema.new({
-            id = id.from(_N, "ProxyConfigurationMetadata", "Name"),
-            type = "string",
-            name = "Name",
-            target_id = prelude.String.id,
-        }),
-        Arn = schema.new({
-            id = id.from(_N, "ProxyConfigurationMetadata", "Arn"),
-            type = "string",
-            name = "Arn",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ListProxyConfigurationsOutput = schema.new({
-    id = id.from(_N, "ListProxyConfigurationsResponse"),
-    type = "structure",
-    members = {
-        ProxyConfigurations = schema.new({
-            id = id.from(_N, "ListProxyConfigurationsOutput", "ProxyConfigurations"),
-            type = "list",
-            name = "ProxyConfigurations",
-            target_id = prelude.Document.id,
-            list_member = M.ProxyConfigurationMetadata,
-        }),
-        NextToken = schema.new({
-            id = id.from(_N, "ListProxyConfigurationsOutput", "NextToken"),
-            type = "string",
-            name = "NextToken",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ListProxyRuleGroupsInput = schema.new({
-    id = id.from(_N, "ListProxyRuleGroupsRequest"),
-    type = "structure",
-    members = {
-        NextToken = schema.new({
-            id = id.from(_N, "ListProxyRuleGroupsInput", "NextToken"),
-            type = "string",
-            name = "NextToken",
-            target_id = prelude.String.id,
-        }),
-        MaxResults = schema.new({
-            id = id.from(_N, "ListProxyRuleGroupsInput", "MaxResults"),
-            type = "integer",
-            name = "MaxResults",
-            target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.ProxyRuleGroupMetadata = schema.new({
-    id = id.from(_N, "ProxyRuleGroupMetadata"),
-    type = "structure",
-    members = {
-        Name = schema.new({
-            id = id.from(_N, "ProxyRuleGroupMetadata", "Name"),
-            type = "string",
-            name = "Name",
-            target_id = prelude.String.id,
-        }),
-        Arn = schema.new({
-            id = id.from(_N, "ProxyRuleGroupMetadata", "Arn"),
-            type = "string",
-            name = "Arn",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ListProxyRuleGroupsOutput = schema.new({
-    id = id.from(_N, "ListProxyRuleGroupsResponse"),
-    type = "structure",
-    members = {
-        ProxyRuleGroups = schema.new({
-            id = id.from(_N, "ListProxyRuleGroupsOutput", "ProxyRuleGroups"),
-            type = "list",
-            name = "ProxyRuleGroups",
-            target_id = prelude.Document.id,
-            list_member = M.ProxyRuleGroupMetadata,
-        }),
-        NextToken = schema.new({
-            id = id.from(_N, "ListProxyRuleGroupsOutput", "NextToken"),
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
@@ -9023,432 +7799,6 @@ M.UpdateLoggingConfigurationOutput = schema.new({
     },
 })
 
-M.UpdateProxyInput = schema.new({
-    id = id.from(_N, "UpdateProxyRequest"),
-    type = "structure",
-    members = {
-        NatGatewayId = schema.new({
-            id = id.from(_N, "UpdateProxyInput", "NatGatewayId"),
-            type = "string",
-            name = "NatGatewayId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        ProxyName = schema.new({
-            id = id.from(_N, "UpdateProxyInput", "ProxyName"),
-            type = "string",
-            name = "ProxyName",
-            target_id = prelude.String.id,
-        }),
-        ProxyArn = schema.new({
-            id = id.from(_N, "UpdateProxyInput", "ProxyArn"),
-            type = "string",
-            name = "ProxyArn",
-            target_id = prelude.String.id,
-        }),
-        ListenerPropertiesToAdd = schema.new({
-            id = id.from(_N, "UpdateProxyInput", "ListenerPropertiesToAdd"),
-            type = "list",
-            name = "ListenerPropertiesToAdd",
-            target_id = prelude.Document.id,
-            list_member = M.ListenerPropertyRequest,
-        }),
-        ListenerPropertiesToRemove = schema.new({
-            id = id.from(_N, "UpdateProxyInput", "ListenerPropertiesToRemove"),
-            type = "list",
-            name = "ListenerPropertiesToRemove",
-            target_id = prelude.Document.id,
-            list_member = M.ListenerPropertyRequest,
-        }),
-        TlsInterceptProperties = schema.new({
-            id = id.from(_N, "UpdateProxyInput", "TlsInterceptProperties"),
-            type = "structure",
-            name = "TlsInterceptProperties",
-            target_id = id.from(_N, "TlsInterceptPropertiesRequest"),
-            target = M.TlsInterceptPropertiesRequest,
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "UpdateProxyInput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.UpdateProxyOutput = schema.new({
-    id = id.from(_N, "UpdateProxyResponse"),
-    type = "structure",
-    members = {
-        Proxy = schema.new({
-            id = id.from(_N, "UpdateProxyOutput", "Proxy"),
-            type = "structure",
-            name = "Proxy",
-            target_id = id.from(_N, "Proxy"),
-            target = M.Proxy,
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "UpdateProxyOutput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.UpdateProxyConfigurationInput = schema.new({
-    id = id.from(_N, "UpdateProxyConfigurationRequest"),
-    type = "structure",
-    members = {
-        ProxyConfigurationName = schema.new({
-            id = id.from(_N, "UpdateProxyConfigurationInput", "ProxyConfigurationName"),
-            type = "string",
-            name = "ProxyConfigurationName",
-            target_id = prelude.String.id,
-        }),
-        ProxyConfigurationArn = schema.new({
-            id = id.from(_N, "UpdateProxyConfigurationInput", "ProxyConfigurationArn"),
-            type = "string",
-            name = "ProxyConfigurationArn",
-            target_id = prelude.String.id,
-        }),
-        DefaultRulePhaseActions = schema.new({
-            id = id.from(_N, "UpdateProxyConfigurationInput", "DefaultRulePhaseActions"),
-            type = "structure",
-            name = "DefaultRulePhaseActions",
-            target_id = id.from(_N, "ProxyConfigDefaultRulePhaseActionsRequest"),
-            target = M.ProxyConfigDefaultRulePhaseActionsRequest,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "UpdateProxyConfigurationInput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.UpdateProxyConfigurationOutput = schema.new({
-    id = id.from(_N, "UpdateProxyConfigurationResponse"),
-    type = "structure",
-    members = {
-        ProxyConfiguration = schema.new({
-            id = id.from(_N, "UpdateProxyConfigurationOutput", "ProxyConfiguration"),
-            type = "structure",
-            name = "ProxyConfiguration",
-            target_id = id.from(_N, "ProxyConfiguration"),
-            target = M.ProxyConfiguration,
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "UpdateProxyConfigurationOutput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.UpdateProxyRuleInput = schema.new({
-    id = id.from(_N, "UpdateProxyRuleRequest"),
-    type = "structure",
-    members = {
-        ProxyRuleGroupName = schema.new({
-            id = id.from(_N, "UpdateProxyRuleInput", "ProxyRuleGroupName"),
-            type = "string",
-            name = "ProxyRuleGroupName",
-            target_id = prelude.String.id,
-        }),
-        ProxyRuleGroupArn = schema.new({
-            id = id.from(_N, "UpdateProxyRuleInput", "ProxyRuleGroupArn"),
-            type = "string",
-            name = "ProxyRuleGroupArn",
-            target_id = prelude.String.id,
-        }),
-        ProxyRuleName = schema.new({
-            id = id.from(_N, "UpdateProxyRuleInput", "ProxyRuleName"),
-            type = "string",
-            name = "ProxyRuleName",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Description = schema.new({
-            id = id.from(_N, "UpdateProxyRuleInput", "Description"),
-            type = "string",
-            name = "Description",
-            target_id = prelude.String.id,
-        }),
-        Action = schema.new({
-            id = id.from(_N, "UpdateProxyRuleInput", "Action"),
-            type = "string",
-            name = "Action",
-            target_id = prelude.String.id,
-        }),
-        AddConditions = schema.new({
-            id = id.from(_N, "UpdateProxyRuleInput", "AddConditions"),
-            type = "list",
-            name = "AddConditions",
-            target_id = prelude.Document.id,
-            list_member = M.ProxyRuleCondition,
-        }),
-        RemoveConditions = schema.new({
-            id = id.from(_N, "UpdateProxyRuleInput", "RemoveConditions"),
-            type = "list",
-            name = "RemoveConditions",
-            target_id = prelude.Document.id,
-            list_member = M.ProxyRuleCondition,
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "UpdateProxyRuleInput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.UpdateProxyRuleOutput = schema.new({
-    id = id.from(_N, "UpdateProxyRuleResponse"),
-    type = "structure",
-    members = {
-        ProxyRule = schema.new({
-            id = id.from(_N, "UpdateProxyRuleOutput", "ProxyRule"),
-            type = "structure",
-            name = "ProxyRule",
-            target_id = id.from(_N, "ProxyRule"),
-            target = M.ProxyRule,
-        }),
-        RemovedConditions = schema.new({
-            id = id.from(_N, "UpdateProxyRuleOutput", "RemovedConditions"),
-            type = "list",
-            name = "RemovedConditions",
-            target_id = prelude.Document.id,
-            list_member = M.ProxyRuleCondition,
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "UpdateProxyRuleOutput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ProxyRuleGroupPriority = schema.new({
-    id = id.from(_N, "ProxyRuleGroupPriority"),
-    type = "structure",
-    members = {
-        ProxyRuleGroupName = schema.new({
-            id = id.from(_N, "ProxyRuleGroupPriority", "ProxyRuleGroupName"),
-            type = "string",
-            name = "ProxyRuleGroupName",
-            target_id = prelude.String.id,
-        }),
-        NewPosition = schema.new({
-            id = id.from(_N, "ProxyRuleGroupPriority", "NewPosition"),
-            type = "integer",
-            name = "NewPosition",
-            target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.UpdateProxyRuleGroupPrioritiesInput = schema.new({
-    id = id.from(_N, "UpdateProxyRuleGroupPrioritiesRequest"),
-    type = "structure",
-    members = {
-        ProxyConfigurationName = schema.new({
-            id = id.from(_N, "UpdateProxyRuleGroupPrioritiesInput", "ProxyConfigurationName"),
-            type = "string",
-            name = "ProxyConfigurationName",
-            target_id = prelude.String.id,
-        }),
-        ProxyConfigurationArn = schema.new({
-            id = id.from(_N, "UpdateProxyRuleGroupPrioritiesInput", "ProxyConfigurationArn"),
-            type = "string",
-            name = "ProxyConfigurationArn",
-            target_id = prelude.String.id,
-        }),
-        RuleGroups = schema.new({
-            id = id.from(_N, "UpdateProxyRuleGroupPrioritiesInput", "RuleGroups"),
-            type = "list",
-            name = "RuleGroups",
-            target_id = prelude.Document.id,
-            list_member = M.ProxyRuleGroupPriority,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "UpdateProxyRuleGroupPrioritiesInput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ProxyRuleGroupPriorityResult = schema.new({
-    id = id.from(_N, "ProxyRuleGroupPriorityResult"),
-    type = "structure",
-    members = {
-        ProxyRuleGroupName = schema.new({
-            id = id.from(_N, "ProxyRuleGroupPriorityResult", "ProxyRuleGroupName"),
-            type = "string",
-            name = "ProxyRuleGroupName",
-            target_id = prelude.String.id,
-        }),
-        Priority = schema.new({
-            id = id.from(_N, "ProxyRuleGroupPriorityResult", "Priority"),
-            type = "integer",
-            name = "Priority",
-            target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.UpdateProxyRuleGroupPrioritiesOutput = schema.new({
-    id = id.from(_N, "UpdateProxyRuleGroupPrioritiesResponse"),
-    type = "structure",
-    members = {
-        ProxyRuleGroups = schema.new({
-            id = id.from(_N, "UpdateProxyRuleGroupPrioritiesOutput", "ProxyRuleGroups"),
-            type = "list",
-            name = "ProxyRuleGroups",
-            target_id = prelude.Document.id,
-            list_member = M.ProxyRuleGroupPriorityResult,
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "UpdateProxyRuleGroupPrioritiesOutput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ProxyRulePriority = schema.new({
-    id = id.from(_N, "ProxyRulePriority"),
-    type = "structure",
-    members = {
-        ProxyRuleName = schema.new({
-            id = id.from(_N, "ProxyRulePriority", "ProxyRuleName"),
-            type = "string",
-            name = "ProxyRuleName",
-            target_id = prelude.String.id,
-        }),
-        NewPosition = schema.new({
-            id = id.from(_N, "ProxyRulePriority", "NewPosition"),
-            type = "integer",
-            name = "NewPosition",
-            target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.UpdateProxyRulePrioritiesInput = schema.new({
-    id = id.from(_N, "UpdateProxyRulePrioritiesRequest"),
-    type = "structure",
-    members = {
-        ProxyRuleGroupName = schema.new({
-            id = id.from(_N, "UpdateProxyRulePrioritiesInput", "ProxyRuleGroupName"),
-            type = "string",
-            name = "ProxyRuleGroupName",
-            target_id = prelude.String.id,
-        }),
-        ProxyRuleGroupArn = schema.new({
-            id = id.from(_N, "UpdateProxyRulePrioritiesInput", "ProxyRuleGroupArn"),
-            type = "string",
-            name = "ProxyRuleGroupArn",
-            target_id = prelude.String.id,
-        }),
-        RuleGroupRequestPhase = schema.new({
-            id = id.from(_N, "UpdateProxyRulePrioritiesInput", "RuleGroupRequestPhase"),
-            type = "string",
-            name = "RuleGroupRequestPhase",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Rules = schema.new({
-            id = id.from(_N, "UpdateProxyRulePrioritiesInput", "Rules"),
-            type = "list",
-            name = "Rules",
-            target_id = prelude.Document.id,
-            list_member = M.ProxyRulePriority,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "UpdateProxyRulePrioritiesInput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.UpdateProxyRulePrioritiesOutput = schema.new({
-    id = id.from(_N, "UpdateProxyRulePrioritiesResponse"),
-    type = "structure",
-    members = {
-        ProxyRuleGroupName = schema.new({
-            id = id.from(_N, "UpdateProxyRulePrioritiesOutput", "ProxyRuleGroupName"),
-            type = "string",
-            name = "ProxyRuleGroupName",
-            target_id = prelude.String.id,
-        }),
-        ProxyRuleGroupArn = schema.new({
-            id = id.from(_N, "UpdateProxyRulePrioritiesOutput", "ProxyRuleGroupArn"),
-            type = "string",
-            name = "ProxyRuleGroupArn",
-            target_id = prelude.String.id,
-        }),
-        RuleGroupRequestPhase = schema.new({
-            id = id.from(_N, "UpdateProxyRulePrioritiesOutput", "RuleGroupRequestPhase"),
-            type = "string",
-            name = "RuleGroupRequestPhase",
-            target_id = prelude.String.id,
-        }),
-        Rules = schema.new({
-            id = id.from(_N, "UpdateProxyRulePrioritiesOutput", "Rules"),
-            type = "list",
-            name = "Rules",
-            target_id = prelude.Document.id,
-            list_member = M.ProxyRulePriority,
-        }),
-        UpdateToken = schema.new({
-            id = id.from(_N, "UpdateProxyRulePrioritiesOutput", "UpdateToken"),
-            type = "string",
-            name = "UpdateToken",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.UpdateProxySettingsInput = schema.new({
     id = id.from(_N, "UpdateProxySettingsRequest"),
     type = "structure",
@@ -9860,17 +8210,6 @@ M.AssociateSubnets = schema.operation({
     },
 })
 
-M.AttachRuleGroupsToProxyConfiguration = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "AttachRuleGroupsToProxyConfiguration"),
-    input = M.AttachRuleGroupsToProxyConfigurationInput,
-    output = M.AttachRuleGroupsToProxyConfigurationOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
 M.CreateContainerAssociation = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "CreateContainerAssociation"),
     input = M.CreateContainerAssociationInput,
@@ -9908,50 +8247,6 @@ M.CreateFirewallPolicyV2 = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "CreateFirewallPolicyV2"),
     input = M.CreateFirewallPolicyV2Input,
     output = M.CreateFirewallPolicyV2Output,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
-M.CreateProxy = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "CreateProxy"),
-    input = M.CreateProxyInput,
-    output = M.CreateProxyOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
-M.CreateProxyConfiguration = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "CreateProxyConfiguration"),
-    input = M.CreateProxyConfigurationInput,
-    output = M.CreateProxyConfigurationOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
-M.CreateProxyRuleGroup = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "CreateProxyRuleGroup"),
-    input = M.CreateProxyRuleGroupInput,
-    output = M.CreateProxyRuleGroupOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
-M.CreateProxyRules = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "CreateProxyRules"),
-    input = M.CreateProxyRulesInput,
-    output = M.CreateProxyRulesOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -10051,39 +8346,6 @@ M.DeleteProxy = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "DeleteProxy"),
     input = M.DeleteProxyInput,
     output = M.DeleteProxyOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
-M.DeleteProxyConfiguration = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "DeleteProxyConfiguration"),
-    input = M.DeleteProxyConfigurationInput,
-    output = M.DeleteProxyConfigurationOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
-M.DeleteProxyRuleGroup = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "DeleteProxyRuleGroup"),
-    input = M.DeleteProxyRuleGroupInput,
-    output = M.DeleteProxyRuleGroupOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
-M.DeleteProxyRules = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "DeleteProxyRules"),
-    input = M.DeleteProxyRulesInput,
-    output = M.DeleteProxyRulesOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -10223,39 +8485,6 @@ M.DescribeProxy = schema.operation({
     },
 })
 
-M.DescribeProxyConfiguration = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "DescribeProxyConfiguration"),
-    input = M.DescribeProxyConfigurationInput,
-    output = M.DescribeProxyConfigurationOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
-M.DescribeProxyRule = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "DescribeProxyRule"),
-    input = M.DescribeProxyRuleInput,
-    output = M.DescribeProxyRuleOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
-M.DescribeProxyRuleGroup = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "DescribeProxyRuleGroup"),
-    input = M.DescribeProxyRuleGroupInput,
-    output = M.DescribeProxyRuleGroupOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
 M.DescribeResourcePolicy = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "DescribeResourcePolicy"),
     input = M.DescribeResourcePolicyInput,
@@ -10315,17 +8544,6 @@ M.DescribeVpcEndpointAssociation = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "DescribeVpcEndpointAssociation"),
     input = M.DescribeVpcEndpointAssociationInput,
     output = M.DescribeVpcEndpointAssociationOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
-M.DetachRuleGroupsFromProxyConfiguration = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "DetachRuleGroupsFromProxyConfiguration"),
-    input = M.DetachRuleGroupsFromProxyConfigurationInput,
-    output = M.DetachRuleGroupsFromProxyConfigurationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -10436,39 +8654,6 @@ M.ListFlowOperations = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "ListFlowOperations"),
     input = M.ListFlowOperationsInput,
     output = M.ListFlowOperationsOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
-M.ListProxies = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "ListProxies"),
-    input = M.ListProxiesInput,
-    output = M.ListProxiesOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
-M.ListProxyConfigurations = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "ListProxyConfigurations"),
-    input = M.ListProxyConfigurationsInput,
-    output = M.ListProxyConfigurationsOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
-M.ListProxyRuleGroups = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "ListProxyRuleGroups"),
-    input = M.ListProxyRuleGroupsInput,
-    output = M.ListProxyRuleGroupsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -10700,61 +8885,6 @@ M.UpdateLoggingConfiguration = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "UpdateLoggingConfiguration"),
     input = M.UpdateLoggingConfigurationInput,
     output = M.UpdateLoggingConfigurationOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
-M.UpdateProxy = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "UpdateProxy"),
-    input = M.UpdateProxyInput,
-    output = M.UpdateProxyOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
-M.UpdateProxyConfiguration = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "UpdateProxyConfiguration"),
-    input = M.UpdateProxyConfigurationInput,
-    output = M.UpdateProxyConfigurationOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
-M.UpdateProxyRule = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "UpdateProxyRule"),
-    input = M.UpdateProxyRuleInput,
-    output = M.UpdateProxyRuleOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
-M.UpdateProxyRuleGroupPriorities = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "UpdateProxyRuleGroupPriorities"),
-    input = M.UpdateProxyRuleGroupPrioritiesInput,
-    output = M.UpdateProxyRuleGroupPrioritiesOutput,
-    traits = {
-        [traits.AUTH] = {
-            { scheme_id = "aws.auth#sigv4" },
-        },
-    },
-})
-
-M.UpdateProxyRulePriorities = schema.operation({
-    id = id.from("com.amazonaws.networkfirewall", "UpdateProxyRulePriorities"),
-    input = M.UpdateProxyRulePrioritiesInput,
-    output = M.UpdateProxyRulePrioritiesOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

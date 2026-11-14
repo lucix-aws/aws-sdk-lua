@@ -1506,7 +1506,7 @@ local record M
     record DeleteServiceLinkedRoleOutput
         -- The deletion task identifier that you can use to check the status of the deletion.
         -- This identifier is returned in the format
-        -- task/aws-service-role///.
+        -- task/aws-service-role/<service-principal-name>/<role-name>/<task-uuid>.
         DeletionTaskId: string
     end
 
@@ -3147,7 +3147,7 @@ local record M
 
     record GetServiceLinkedRoleDeletionStatusInput
         -- The deletion task identifier. This identifier is returned by the DeleteServiceLinkedRole operation in the format
-        -- task/aws-service-role///.
+        -- task/aws-service-role/<service-principal-name>/<role-name>/<task-uuid>.
         DeletionTaskId: string
     end
 

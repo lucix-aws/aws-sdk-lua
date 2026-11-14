@@ -567,6 +567,7 @@ local record M
         "PENDING"
         "SUCCESS"
         "FAILED"
+        "DISABLED"
     end
 
     enum AssociationType
@@ -582,7 +583,10 @@ local record M
         -- Indicates whether the association between a target and a configuration was directly applied by the
         -- Security Hub CSPM delegated administrator or inherited from a parent.
         AssociationType: string
-        -- The current status of the association between a target and a configuration policy.
+        -- The current status of the association between a target and a configuration policy. Possible values are
+        -- PENDING, SUCCESS, FAILED, and DISABLED. The value is
+        -- DISABLED when central configuration is disabled because the organization is managed by
+        -- Security Hub CSPM policies in Organizations.
         AssociationStatus: string
     end
 
@@ -11178,7 +11182,12 @@ local record M
         AssociationType: string
         -- The date and time, in UTC and ISO 8601 format, that the configuration policy association was last updated.
         UpdatedAt: number
-        -- The current status of the association between the specified target and the configuration.
+        -- The current status of the association between the specified target and the configuration. Possible values are:
+        -- PENDING - The association is in progress.
+        -- SUCCESS - The association succeeded.
+        -- FAILED - The association failed. For details, see AssociationStatusMessage.
+        -- DISABLED - Central configuration is disabled because the organization is managed by
+        -- Security Hub CSPM policies in Organizations.
         AssociationStatus: string
         -- The explanation for a FAILED value for AssociationStatus.
         AssociationStatusMessage: string
@@ -12813,6 +12822,7 @@ local record M
         "PENDING"
         "ENABLED"
         "FAILED"
+        "DISABLED"
     end
 
     -- Provides information about the way an organization is configured in Security Hub CSPM.
@@ -12832,6 +12842,8 @@ local record M
         -- Describes whether central configuration could be enabled as the ConfigurationType for the
         -- organization. If your ConfigurationType is local configuration, then the value of Status
         -- is always ENABLED.
+        -- If the value of Status is DISABLED, central configuration is disabled because the
+        -- organization is managed by Security Hub CSPM policies in Organizations.
         Status: string
         -- Provides an explanation if the value of Status is equal to FAILED when ConfigurationType
         -- is equal to CENTRAL.
@@ -13664,7 +13676,12 @@ local record M
         AssociationType: string
         -- The date and time, in UTC and ISO 8601 format, that the configuration policy association was last updated.
         UpdatedAt: number
-        -- The current status of the association between the specified target and the configuration.
+        -- The current status of the association between the specified target and the configuration. Possible values are:
+        -- PENDING - The association is in progress.
+        -- SUCCESS - The association succeeded.
+        -- FAILED - The association failed. For details, see AssociationStatusMessage.
+        -- DISABLED - Central configuration is disabled because the organization is managed by
+        -- Security Hub CSPM policies in Organizations.
         AssociationStatus: string
         -- The explanation for a FAILED value for AssociationStatus.
         AssociationStatusMessage: string
@@ -15346,7 +15363,12 @@ local record M
         AssociationType: string
         -- The date and time, in UTC and ISO 8601 format, that the configuration policy association was last updated.
         UpdatedAt: number
-        -- The current status of the association between the specified target and the configuration.
+        -- The current status of the association between the specified target and the configuration. Possible values are:
+        -- PENDING - The association is in progress.
+        -- SUCCESS - The association succeeded.
+        -- FAILED - The association failed. For details, see AssociationStatusMessage.
+        -- DISABLED - Central configuration is disabled because the organization is managed by
+        -- Security Hub CSPM policies in Organizations.
         AssociationStatus: string
         -- An explanation for a FAILED value for AssociationStatus.
         AssociationStatusMessage: string

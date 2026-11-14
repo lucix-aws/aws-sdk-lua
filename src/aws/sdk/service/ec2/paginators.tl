@@ -1444,6 +1444,42 @@ function M.items_describe_network_interfaces(client, input)
     })
 end
 
+--- Returns a page iterator for describeNetworkingFlexCostAllocationPolicies.
+function M.pages_describe_networking_flex_cost_allocation_policies(client, input)
+    return paginator.pages(client, "describeNetworkingFlexCostAllocationPolicies", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FlexCostAllocationPolicies",
+    })
+end
+
+--- Returns an item iterator for describeNetworkingFlexCostAllocationPolicies.
+function M.items_describe_networking_flex_cost_allocation_policies(client, input)
+    return paginator.items(client, "describeNetworkingFlexCostAllocationPolicies", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FlexCostAllocationPolicies",
+    })
+end
+
+--- Returns a page iterator for describeNetworkingFlexCostAllocationPolicyAssociations.
+function M.pages_describe_networking_flex_cost_allocation_policy_associations(client, input)
+    return paginator.pages(client, "describeNetworkingFlexCostAllocationPolicyAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FcaPolicyAssociations",
+    })
+end
+
+--- Returns an item iterator for describeNetworkingFlexCostAllocationPolicyAssociations.
+function M.items_describe_networking_flex_cost_allocation_policy_associations(client, input)
+    return paginator.items(client, "describeNetworkingFlexCostAllocationPolicyAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FcaPolicyAssociations",
+    })
+end
+
 --- Returns a page iterator for describePrefixLists.
 function M.pages_describe_prefix_lists(client, input)
     return paginator.pages(client, "describePrefixLists", input, {

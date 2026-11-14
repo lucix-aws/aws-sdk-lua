@@ -104,6 +104,7 @@ local record Client
     updateDirectoryConfig: function(Client, types.UpdateDirectoryConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDirectoryConfigOutput>
     updateEntitlement: function(Client, types.UpdateEntitlementInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEntitlementOutput>
     updateFleet: function(Client, types.UpdateFleetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFleetOutput>
+    updateImageBuilder: function(Client, types.UpdateImageBuilderInput, ? base_client.InvokeOptions): async.Operation<types.UpdateImageBuilderOutput>
     updateImagePermissions: function(Client, types.UpdateImagePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateImagePermissionsOutput>
     updateStack: function(Client, types.UpdateStackInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStackOutput>
     updateThemeForStack: function(Client, types.UpdateThemeForStackInput, ? base_client.InvokeOptions): async.Operation<types.UpdateThemeForStackOutput>
@@ -493,6 +494,10 @@ end
 
 function C:updateFleet(input: types.UpdateFleetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFleetOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFleet as schema.OperationSchema, input, options) as async.Operation<types.UpdateFleetOutput>
+end
+
+function C:updateImageBuilder(input: types.UpdateImageBuilderInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateImageBuilderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateImageBuilder as schema.OperationSchema, input, options) as async.Operation<types.UpdateImageBuilderOutput>
 end
 
 function C:updateImagePermissions(input: types.UpdateImagePermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateImagePermissionsOutput>

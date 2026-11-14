@@ -1217,8 +1217,10 @@ local record M
         -- Image Builder pushes to the Amazon ECR repository from your ecrConfiguration
         -- settings.
         -- To use container image scans, you must activate Amazon Inspector for Amazon ECR
-        -- scanning in your account. The Image Builder ListImageScanFindings
-        -- operation returns the findings of these scans.
+        -- scanning in the account and Amazon Web Services Region where the build runs. Amazon Inspector
+        -- activation is Regional. The Image Builder
+        -- ListImageScanFindings operation returns the findings of these
+        -- scans.
         imageScanningEnabled: boolean
         -- Contains Amazon ECR settings for vulnerability scans.
         ecrConfiguration: EcrConfiguration
@@ -1228,8 +1230,9 @@ local record M
         -- TEST_INSTANCE_CVE. The scan types work as follows:
         -- With TEST_INSTANCE_CVE, Amazon Inspector scans the test instance
         -- during image tests. To use this scan, you must activate Amazon Inspector for Amazon EC2
-        -- scanning in your account. The Image Builder ListImageScanFindings
-        -- operation returns the findings.
+        -- scanning in the account and Amazon Web Services Region where the build runs. The Image Builder
+        -- ListImageScanFindings operation returns the
+        -- findings.
         -- With ON_DEMAND_AMI_CVE, Amazon Inspector starts an on-demand scan of
         -- the output AMI during image tests. To use this scan, you must build from
         -- an image recipe, but you do not need to activate Amazon Inspector in your
@@ -1489,8 +1492,11 @@ local record M
         -- this pipeline creates.
         imageScanningConfiguration: ImageScanningConfiguration
         -- The array of workflow configuration objects for builds that this pipeline
-        -- starts. You must also specify executionRole when you provide
-        -- workflows.
+        -- starts. If you specify workflows, they replace the default workflows that
+        -- Image Builder otherwise runs for the pipeline's builds. For example, if your
+        -- list doesn't include a test workflow, the pipeline's builds
+        -- don't run one. You must also specify executionRole when
+        -- you provide workflows.
         workflows: {WorkflowConfiguration}
         -- The name or Amazon Resource Name (ARN) for the IAM role you create that grants
         -- Image Builder access to perform workflow actions.
@@ -2303,6 +2309,12 @@ local record M
     -- criteria, such as tags, attributes, or IDs.
     record Filter
         -- The name of the filter. Filter names are case-sensitive.
+        -- The name filter matches the name that you gave the resource
+        -- when you created it, exactly as you entered it. It doesn't match the name
+        -- segment of the resource ARN, which Image Builder converts to lowercase with hyphens
+        -- in place of spaces and underscores. For example, a resource named My Image has
+        -- an ARN that contains my-image – filter on
+        -- My Image to find it.
         name: string
         -- The filter values. Filter values are case-sensitive.
         -- The name filter can use a wildcard: web* matches names that
@@ -3389,6 +3401,8 @@ local record M
         -- must specify an exact version, without a build number suffix. If you
         -- don't specify an ARN, Image Builder returns build versions for the components
         -- that your account owns.
+        -- If the ARN that you specify doesn't exist, Image Builder returns an empty list
+        -- rather than a ResourceNotFoundException error.
         componentVersionArn: string
         -- The maximum number of items to return in a single request. If you don't specify
         -- a value, Image Builder returns up to 25 items. The largest page size that you can request is 100 items.
@@ -3526,6 +3540,8 @@ local record M
         -- (..) - wildcards aren't allowed.
         -- This parameter is optional. If you don't specify it, Image Builder returns build
         -- versions for all of the images in your account.
+        -- If the ARN that you specify doesn't exist, Image Builder returns an empty list
+        -- rather than a ResourceNotFoundException error.
         imageVersionArn: string
         -- Use the following filters to streamline results:
         -- name
@@ -3637,6 +3653,8 @@ local record M
     record ListImagePipelineImagesInput
         -- The Amazon Resource Name (ARN) of the image pipeline whose images you want to
         -- view.
+        -- If the ARN that you specify doesn't exist, Image Builder returns an empty list
+        -- rather than a ResourceNotFoundException error.
         imagePipelineArn: string
         -- Use the following filters to streamline results:
         -- name
@@ -4944,8 +4962,11 @@ local record M
         -- images that this pipeline creates.
         imageScanningConfiguration: ImageScanningConfiguration
         -- The array of workflow configuration objects for builds that this pipeline
-        -- starts. You must also specify executionRole when you provide
-        -- workflows.
+        -- starts. If you specify workflows, they replace the default workflows that
+        -- Image Builder otherwise runs for the pipeline's builds. For example, if your
+        -- list doesn't include a test workflow, the pipeline's builds
+        -- don't run one. You must also specify executionRole when
+        -- you provide workflows.
         workflows: {WorkflowConfiguration}
         -- Specifies the logging configuration for the image pipeline. Use this
         -- to define custom CloudWatch Logs log groups for your pipeline execution

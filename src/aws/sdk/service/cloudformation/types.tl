@@ -3455,6 +3455,10 @@ local record M
         DetailedStatus: string
         -- Information about the most recent operations performed on this stack.
         LastOperations: {OperationEntry}
+        -- The alias assigned to the stack, if one has been set. An alias is an alternative name that
+        -- can be used in place of the stack name in any CloudFormation API call that accepts the
+        -- StackName parameter.
+        AliasName: string
     end
 
     -- The output for a DescribeStacks action.
@@ -6000,6 +6004,15 @@ local record M
         RegistrationToken: string
     end
 
+    -- The input for the RemoveAlias action.
+    record RemoveAliasInput
+        -- The alias name to remove.
+        AliasName: string
+    end
+
+    record RemoveAliasOutput
+    end
+
     record RollbackStackInput
         -- The name that's associated with the stack.
         StackName: string
@@ -6024,6 +6037,22 @@ local record M
         -- A unique identifier for this rollback operation that can be used to track the operation's
         -- progress and events.
         OperationId: string
+    end
+
+    -- The input for the SetAlias action.
+    record SetAliasInput
+        -- The name or unique stack ID of the stack to assign an alias to.
+        StackName: string
+        -- The alias to assign to the stack. The alias can then be used in place of the stack name in
+        -- any API call that accepts StackName.
+        -- The name must be unique within the same account and Region. It cannot match an
+        -- existing stack name or another active alias.
+        -- An alias name can contain only alphanumeric characters (case-sensitive) and hyphens. It
+        -- must start with an alphabetic character and can't be longer than 128 characters.
+        AliasName: string
+    end
+
+    record SetAliasOutput
     end
 
     -- The input for the SetStackPolicy action.

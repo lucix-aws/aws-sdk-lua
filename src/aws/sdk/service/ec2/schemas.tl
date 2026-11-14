@@ -56,6 +56,12 @@ M.UnsuccessfulAssociationResponseSet = schema.new({ type = "list", list_member =
 
 M.AllocationIdList = schema.new({ type = "list", list_member = prelude.String })
 
+M.FlexCostAllocationNetworkResourceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FlexCostAllocationPolicyAssociationSet = schema.new({ type = "list", list_member = M.FlexCostAllocationPolicyAssociationDescription })
+
+M.FlexCostAllocationOperationFailureList = schema.new({ type = "list", list_member = M.FlexCostAllocationOperationFailure })
+
 M.TransitGatewaySubnetIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.GroupIdStringList = schema.new({ type = "list", list_member = prelude.String })
@@ -179,6 +185,8 @@ M.VersionStringList = schema.new({ type = "list", list_member = prelude.String }
 M.DeleteLaunchTemplateVersionsResponseSuccessSet = schema.new({ type = "list", list_member = M.DeleteLaunchTemplateVersionsResponseSuccessItem })
 
 M.DeleteLaunchTemplateVersionsResponseErrorSet = schema.new({ type = "list", list_member = M.DeleteLaunchTemplateVersionsResponseErrorItem })
+
+M.FlexCostAllocationPolicyIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.DeleteQueuedReservedInstancesIdList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -518,6 +526,12 @@ M.NetworkAclIdStringList = schema.new({ type = "list", list_member = prelude.Str
 
 M.NetworkAclList = schema.new({ type = "list", list_member = M.NetworkAcl })
 
+M.FlexCostAllocationPolicyIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.FlexCostAllocationPolicySet = schema.new({ type = "list", list_member = M.FlexCostAllocationPolicyDescription })
+
+M.FlexCostAllocationPolicyAssociationIdList = schema.new({ type = "list", list_member = prelude.String })
+
 M.NetworkInsightsAccessScopeAnalysisIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.NetworkInsightsAccessScopeAnalysisList = schema.new({ type = "list", list_member = M.NetworkInsightsAccessScopeAnalysis })
@@ -810,6 +824,8 @@ M.InstanceIdUpdateStringList = schema.new({ type = "list", list_member = prelude
 
 M.EipAssociationIdList = schema.new({ type = "list", list_member = prelude.String })
 
+M.FlexCostAllocationPolicyDisassociateAssociationIdList = schema.new({ type = "list", list_member = prelude.String })
+
 M.EnableFastSnapshotRestoreSuccessSet = schema.new({ type = "list", list_member = M.EnableFastSnapshotRestoreSuccessItem })
 
 M.EnableFastSnapshotRestoreErrorSet = schema.new({ type = "list", list_member = M.EnableFastSnapshotRestoreErrorItem })
@@ -909,6 +925,10 @@ M.IpamRoutingPolicyRegistrationSet = schema.new({ type = "list", list_member = M
 M.PrefixListAssociationSet = schema.new({ type = "list", list_member = M.PrefixListAssociation })
 
 M.PrefixListEntrySet = schema.new({ type = "list", list_member = M.PrefixListEntry })
+
+M.FlexCostAllocationVersionsToIncludeList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.FlexCostAllocationPolicyVersionSet = schema.new({ type = "list", list_member = M.FlexCostAllocationPolicyVersion })
 
 M.AccessScopeAnalysisFindingList = schema.new({ type = "list", list_member = M.AccessScopeAnalysisFinding })
 
@@ -1074,6 +1094,8 @@ M.DedicatedHostIdList = schema.new({ type = "list", list_member = prelude.String
 
 M.InstanceEventWindowTimeRangeList = schema.new({ type = "list", list_member = M.InstanceEventWindowTimeRange })
 
+M.FlexCostAllocationNetworkResourceScopeIdList = schema.new({ type = "list", list_member = prelude.String })
+
 M.VerifiedAccessTrustProviderCondensedList = schema.new({ type = "list", list_member = M.VerifiedAccessTrustProviderCondensed })
 
 M.HealthCheckPathResponseList = schema.new({ type = "list", list_member = M.HealthCheckPathResponseObject })
@@ -1149,6 +1171,10 @@ M.NatGatewayAttachedApplianceList = schema.new({ type = "list", list_member = M.
 M.NetworkAclAssociationList = schema.new({ type = "list", list_member = M.NetworkAclAssociation })
 
 M.NetworkAclEntryList = schema.new({ type = "list", list_member = M.NetworkAclEntry })
+
+M.FlexCostAllocationReportingGranularityList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FlexCostAllocationCostDimensionList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AccessScopePathList = schema.new({ type = "list", list_member = M.AccessScopePath })
 
@@ -1301,6 +1327,8 @@ M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 M.ImageUsageResourceTypeOptionRequestList = schema.new({ type = "list", list_member = M.ImageUsageResourceTypeOptionRequest })
 
 M.IpamPrefixListResolverRuleConditionRequestSet = schema.new({ type = "list", list_member = M.IpamPrefixListResolverRuleConditionRequest })
+
+M.FlexCostAllocationCidrMappingList = schema.new({ type = "list", list_member = M.FlexCostAllocationCidrMapping })
 
 M.ThroughResourcesStatementRequestList = schema.new({ type = "list", list_member = M.ThroughResourcesStatementRequest })
 
@@ -8501,6 +8529,230 @@ M.AssociateNatGatewayAddressOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "natGatewayAddressSet" },
                 [traits.EC2_QUERY_NAME] = { name = "NatGatewayAddressSet" },
+            },
+        }),
+    },
+})
+
+M.FlexCostAllocationNetworkResourceScope = schema.new({
+    id = id.from(_N, "FlexCostAllocationNetworkResourceScope"),
+    type = "structure",
+    members = {
+        ResourceType = schema.new({
+            id = id.from(_N, "FlexCostAllocationNetworkResourceScope", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceIds = schema.new({
+            id = id.from(_N, "FlexCostAllocationNetworkResourceScope", "ResourceIds"),
+            type = "list",
+            name = "ResourceIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssociateNetworkingFlexCostAllocationPolicyInput = schema.new({
+    id = id.from(_N, "AssociateNetworkingFlexCostAllocationPolicyRequest"),
+    type = "structure",
+    members = {
+        FcaPolicyId = schema.new({
+            id = id.from(_N, "AssociateNetworkingFlexCostAllocationPolicyInput", "FcaPolicyId"),
+            type = "string",
+            name = "FcaPolicyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NetworkResourceIds = schema.new({
+            id = id.from(_N, "AssociateNetworkingFlexCostAllocationPolicyInput", "NetworkResourceIds"),
+            type = "list",
+            name = "NetworkResourceIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+        }),
+        NetworkResourceScope = schema.new({
+            id = id.from(_N, "AssociateNetworkingFlexCostAllocationPolicyInput", "NetworkResourceScope"),
+            type = "structure",
+            name = "NetworkResourceScope",
+            target_id = id.from(_N, "FlexCostAllocationNetworkResourceScope"),
+            target = M.FlexCostAllocationNetworkResourceScope,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "AssociateNetworkingFlexCostAllocationPolicyInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "AssociateNetworkingFlexCostAllocationPolicyInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.FlexCostAllocationOperationFailure = schema.new({
+    id = id.from(_N, "FlexCostAllocationOperationFailure"),
+    type = "structure",
+    members = {
+        ResourceId = schema.new({
+            id = id.from(_N, "FlexCostAllocationOperationFailure", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "resourceId" },
+                [traits.EC2_QUERY_NAME] = { name = "ResourceId" },
+            },
+        }),
+        FailureCode = schema.new({
+            id = id.from(_N, "FlexCostAllocationOperationFailure", "FailureCode"),
+            type = "string",
+            name = "FailureCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "failureCode" },
+                [traits.EC2_QUERY_NAME] = { name = "FailureCode" },
+            },
+        }),
+        FailureReason = schema.new({
+            id = id.from(_N, "FlexCostAllocationOperationFailure", "FailureReason"),
+            type = "string",
+            name = "FailureReason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "failureReason" },
+                [traits.EC2_QUERY_NAME] = { name = "FailureReason" },
+            },
+        }),
+    },
+})
+
+M.FlexCostAllocationPolicyAssociationDescription = schema.new({
+    id = id.from(_N, "FlexCostAllocationPolicyAssociationDescription"),
+    type = "structure",
+    members = {
+        FcaPolicyAssociationId = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyAssociationDescription", "FcaPolicyAssociationId"),
+            type = "string",
+            name = "FcaPolicyAssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "fcaPolicyAssociationId" },
+                [traits.EC2_QUERY_NAME] = { name = "FcaPolicyAssociationId" },
+            },
+        }),
+        FcaPolicyId = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyAssociationDescription", "FcaPolicyId"),
+            type = "string",
+            name = "FcaPolicyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "fcaPolicyId" },
+                [traits.EC2_QUERY_NAME] = { name = "FcaPolicyId" },
+            },
+        }),
+        NetworkResourceId = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyAssociationDescription", "NetworkResourceId"),
+            type = "string",
+            name = "NetworkResourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "networkResourceId" },
+                [traits.EC2_QUERY_NAME] = { name = "NetworkResourceId" },
+            },
+        }),
+        OwnerAccount = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyAssociationDescription", "OwnerAccount"),
+            type = "string",
+            name = "OwnerAccount",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "ownerAccount" },
+                [traits.EC2_QUERY_NAME] = { name = "OwnerAccount" },
+            },
+        }),
+        AssociatedAt = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyAssociationDescription", "AssociatedAt"),
+            type = "timestamp",
+            name = "AssociatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "associatedAt" },
+                [traits.EC2_QUERY_NAME] = { name = "AssociatedAt" },
+            },
+        }),
+        ExpectedEffectiveAt = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyAssociationDescription", "ExpectedEffectiveAt"),
+            type = "timestamp",
+            name = "ExpectedEffectiveAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "expectedEffectiveAt" },
+                [traits.EC2_QUERY_NAME] = { name = "ExpectedEffectiveAt" },
+            },
+        }),
+        AssociationMode = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyAssociationDescription", "AssociationMode"),
+            type = "string",
+            name = "AssociationMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "associationMode" },
+                [traits.EC2_QUERY_NAME] = { name = "AssociationMode" },
+            },
+        }),
+        ManagedBy = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyAssociationDescription", "ManagedBy"),
+            type = "string",
+            name = "ManagedBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "managedBy" },
+                [traits.EC2_QUERY_NAME] = { name = "ManagedBy" },
+            },
+        }),
+    },
+})
+
+M.AssociateNetworkingFlexCostAllocationPolicyOutput = schema.new({
+    id = id.from(_N, "AssociateNetworkingFlexCostAllocationPolicyResult"),
+    type = "structure",
+    members = {
+        FcaPolicyAssociations = schema.new({
+            id = id.from(_N, "AssociateNetworkingFlexCostAllocationPolicyOutput", "FcaPolicyAssociations"),
+            type = "list",
+            name = "FcaPolicyAssociations",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.FlexCostAllocationPolicyAssociationDescription, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "fcaPolicyAssociations" },
+                [traits.EC2_QUERY_NAME] = { name = "FcaPolicyAssociations" },
+            },
+        }),
+        FcaPolicyAssociationFailures = schema.new({
+            id = id.from(_N, "AssociateNetworkingFlexCostAllocationPolicyOutput", "FcaPolicyAssociationFailures"),
+            type = "list",
+            name = "FcaPolicyAssociationFailures",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.FlexCostAllocationOperationFailure, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "fcaPolicyAssociationFailures" },
+                [traits.EC2_QUERY_NAME] = { name = "FcaPolicyAssociationFailures" },
             },
         }),
     },
@@ -30273,6 +30525,277 @@ M.CreateNetworkAclEntryInput = schema.new({
 
 M.CreateNetworkAclEntryOutput = prelude.Unit
 
+M.FlexCostAllocationCidrMapping = schema.new({
+    id = id.from(_N, "FlexCostAllocationCidrMapping"),
+    type = "structure",
+    members = {
+        CidrRange = schema.new({
+            id = id.from(_N, "FlexCostAllocationCidrMapping", "CidrRange"),
+            type = "string",
+            name = "CidrRange",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CidrLabel = schema.new({
+            id = id.from(_N, "FlexCostAllocationCidrMapping", "CidrLabel"),
+            type = "string",
+            name = "CidrLabel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FlexCostAllocationCidrRangeSpecifications = schema.new({
+    id = id.from(_N, "FlexCostAllocationCidrRangeSpecifications"),
+    type = "structure",
+    members = {
+        PrefixesType = schema.new({
+            id = id.from(_N, "FlexCostAllocationCidrRangeSpecifications", "PrefixesType"),
+            type = "string",
+            name = "PrefixesType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Prefixes = schema.new({
+            id = id.from(_N, "FlexCostAllocationCidrRangeSpecifications", "Prefixes"),
+            type = "list",
+            name = "Prefixes",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.FlexCostAllocationCidrMapping, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InstanceFlexCostAllocationPolicyDocument = schema.new({
+    id = id.from(_N, "InstanceFlexCostAllocationPolicyDocument"),
+    type = "structure",
+    members = {
+        ReportingGranularity = schema.new({
+            id = id.from(_N, "InstanceFlexCostAllocationPolicyDocument", "ReportingGranularity"),
+            type = "list",
+            name = "ReportingGranularity",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Dimensions = schema.new({
+            id = id.from(_N, "InstanceFlexCostAllocationPolicyDocument", "Dimensions"),
+            type = "list",
+            name = "Dimensions",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CidrRangeSpecifications = schema.new({
+            id = id.from(_N, "InstanceFlexCostAllocationPolicyDocument", "CidrRangeSpecifications"),
+            type = "structure",
+            name = "CidrRangeSpecifications",
+            target_id = id.from(_N, "FlexCostAllocationCidrRangeSpecifications"),
+            target = M.FlexCostAllocationCidrRangeSpecifications,
+        }),
+    },
+})
+
+M.NatFlexCostAllocationPolicyDocument = schema.new({
+    id = id.from(_N, "NatFlexCostAllocationPolicyDocument"),
+    type = "structure",
+    members = {
+        ReportingGranularity = schema.new({
+            id = id.from(_N, "NatFlexCostAllocationPolicyDocument", "ReportingGranularity"),
+            type = "list",
+            name = "ReportingGranularity",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Dimensions = schema.new({
+            id = id.from(_N, "NatFlexCostAllocationPolicyDocument", "Dimensions"),
+            type = "list",
+            name = "Dimensions",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CidrRangeSpecifications = schema.new({
+            id = id.from(_N, "NatFlexCostAllocationPolicyDocument", "CidrRangeSpecifications"),
+            type = "structure",
+            name = "CidrRangeSpecifications",
+            target_id = id.from(_N, "FlexCostAllocationCidrRangeSpecifications"),
+            target = M.FlexCostAllocationCidrRangeSpecifications,
+        }),
+    },
+})
+
+M.PcxFlexCostAllocationPolicyDocument = schema.new({
+    id = id.from(_N, "PcxFlexCostAllocationPolicyDocument"),
+    type = "structure",
+    members = {
+        ReportingGranularity = schema.new({
+            id = id.from(_N, "PcxFlexCostAllocationPolicyDocument", "ReportingGranularity"),
+            type = "list",
+            name = "ReportingGranularity",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Dimensions = schema.new({
+            id = id.from(_N, "PcxFlexCostAllocationPolicyDocument", "Dimensions"),
+            type = "list",
+            name = "Dimensions",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CidrRangeSpecifications = schema.new({
+            id = id.from(_N, "PcxFlexCostAllocationPolicyDocument", "CidrRangeSpecifications"),
+            type = "structure",
+            name = "CidrRangeSpecifications",
+            target_id = id.from(_N, "FlexCostAllocationCidrRangeSpecifications"),
+            target = M.FlexCostAllocationCidrRangeSpecifications,
+        }),
+    },
+})
+
+M.CreateNetworkingFlexCostAllocationPolicyInput = schema.new({
+    id = id.from(_N, "CreateNetworkingFlexCostAllocationPolicyRequest"),
+    type = "structure",
+    members = {
+        NetworkResourceType = schema.new({
+            id = id.from(_N, "CreateNetworkingFlexCostAllocationPolicyInput", "NetworkResourceType"),
+            type = "string",
+            name = "NetworkResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NatFcaPolicyDocument = schema.new({
+            id = id.from(_N, "CreateNetworkingFlexCostAllocationPolicyInput", "NatFcaPolicyDocument"),
+            type = "structure",
+            name = "NatFcaPolicyDocument",
+            target_id = id.from(_N, "NatFlexCostAllocationPolicyDocument"),
+            target = M.NatFlexCostAllocationPolicyDocument,
+        }),
+        InstanceFcaPolicyDocument = schema.new({
+            id = id.from(_N, "CreateNetworkingFlexCostAllocationPolicyInput", "InstanceFcaPolicyDocument"),
+            type = "structure",
+            name = "InstanceFcaPolicyDocument",
+            target_id = id.from(_N, "InstanceFlexCostAllocationPolicyDocument"),
+            target = M.InstanceFlexCostAllocationPolicyDocument,
+        }),
+        PcxFcaPolicyDocument = schema.new({
+            id = id.from(_N, "CreateNetworkingFlexCostAllocationPolicyInput", "PcxFcaPolicyDocument"),
+            type = "structure",
+            name = "PcxFcaPolicyDocument",
+            target_id = id.from(_N, "PcxFlexCostAllocationPolicyDocument"),
+            target = M.PcxFlexCostAllocationPolicyDocument,
+        }),
+        ShowBackEnabled = schema.new({
+            id = id.from(_N, "CreateNetworkingFlexCostAllocationPolicyInput", "ShowBackEnabled"),
+            type = "boolean",
+            name = "ShowBackEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateNetworkingFlexCostAllocationPolicyInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        TagSpecifications = schema.new({
+            id = id.from(_N, "CreateNetworkingFlexCostAllocationPolicyInput", "TagSpecifications"),
+            type = "list",
+            name = "TagSpecifications",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateNetworkingFlexCostAllocationPolicyInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "CreateNetworkingFlexCostAllocationPolicyInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.CreateNetworkingFlexCostAllocationPolicyOutput = schema.new({
+    id = id.from(_N, "CreateNetworkingFlexCostAllocationPolicyResult"),
+    type = "structure",
+    members = {
+        FcaPolicyId = schema.new({
+            id = id.from(_N, "CreateNetworkingFlexCostAllocationPolicyOutput", "FcaPolicyId"),
+            type = "string",
+            name = "FcaPolicyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "fcaPolicyId" },
+                [traits.EC2_QUERY_NAME] = { name = "FcaPolicyId" },
+            },
+        }),
+        FcaPolicyArn = schema.new({
+            id = id.from(_N, "CreateNetworkingFlexCostAllocationPolicyOutput", "FcaPolicyArn"),
+            type = "string",
+            name = "FcaPolicyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "fcaPolicyArn" },
+                [traits.EC2_QUERY_NAME] = { name = "FcaPolicyArn" },
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "CreateNetworkingFlexCostAllocationPolicyOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "createdAt" },
+                [traits.EC2_QUERY_NAME] = { name = "CreatedAt" },
+            },
+        }),
+        ExpectedEffectiveAt = schema.new({
+            id = id.from(_N, "CreateNetworkingFlexCostAllocationPolicyOutput", "ExpectedEffectiveAt"),
+            type = "timestamp",
+            name = "ExpectedEffectiveAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "expectedEffectiveAt" },
+                [traits.EC2_QUERY_NAME] = { name = "ExpectedEffectiveAt" },
+            },
+        }),
+    },
+})
+
 M.CreateNetworkInsightsAccessScopeInput = schema.new({
     id = id.from(_N, "CreateNetworkInsightsAccessScopeRequest"),
     type = "structure",
@@ -46038,6 +46561,58 @@ M.DeleteNetworkAclEntryInput = schema.new({
 })
 
 M.DeleteNetworkAclEntryOutput = prelude.Unit
+
+M.DeleteNetworkingFlexCostAllocationPoliciesInput = schema.new({
+    id = id.from(_N, "DeleteNetworkingFlexCostAllocationPoliciesRequest"),
+    type = "structure",
+    members = {
+        FcaPolicyIds = schema.new({
+            id = id.from(_N, "DeleteNetworkingFlexCostAllocationPoliciesInput", "FcaPolicyIds"),
+            type = "list",
+            name = "FcaPolicyIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DeleteNetworkingFlexCostAllocationPoliciesInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DeleteNetworkingFlexCostAllocationPoliciesOutput = schema.new({
+    id = id.from(_N, "DeleteNetworkingFlexCostAllocationPoliciesResult"),
+    type = "structure",
+    members = {
+        Successful = schema.new({
+            id = id.from(_N, "DeleteNetworkingFlexCostAllocationPoliciesOutput", "Successful"),
+            type = "list",
+            name = "Successful",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "successful" },
+                [traits.EC2_QUERY_NAME] = { name = "Successful" },
+            },
+        }),
+        Failed = schema.new({
+            id = id.from(_N, "DeleteNetworkingFlexCostAllocationPoliciesOutput", "Failed"),
+            type = "list",
+            name = "Failed",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.FlexCostAllocationOperationFailure, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "failed" },
+                [traits.EC2_QUERY_NAME] = { name = "Failed" },
+            },
+        }),
+    },
+})
 
 M.DeleteNetworkInsightsAccessScopeInput = schema.new({
     id = id.from(_N, "DeleteNetworkInsightsAccessScopeRequest"),
@@ -69223,6 +69798,301 @@ M.DescribeNetworkAclsOutput = schema.new({
     },
 })
 
+M.DescribeNetworkingFlexCostAllocationPoliciesInput = schema.new({
+    id = id.from(_N, "DescribeNetworkingFlexCostAllocationPoliciesRequest"),
+    type = "structure",
+    members = {
+        FcaPolicyIds = schema.new({
+            id = id.from(_N, "DescribeNetworkingFlexCostAllocationPoliciesInput", "FcaPolicyIds"),
+            type = "list",
+            name = "FcaPolicyIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "DescribeNetworkingFlexCostAllocationPoliciesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "DescribeNetworkingFlexCostAllocationPoliciesInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeNetworkingFlexCostAllocationPoliciesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DescribeNetworkingFlexCostAllocationPoliciesInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.FlexCostAllocationPolicyDescription = schema.new({
+    id = id.from(_N, "FlexCostAllocationPolicyDescription"),
+    type = "structure",
+    members = {
+        FcaPolicyId = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyDescription", "FcaPolicyId"),
+            type = "string",
+            name = "FcaPolicyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "fcaPolicyId" },
+                [traits.EC2_QUERY_NAME] = { name = "FcaPolicyId" },
+            },
+        }),
+        FcaPolicyArn = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyDescription", "FcaPolicyArn"),
+            type = "string",
+            name = "FcaPolicyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "fcaPolicyArn" },
+                [traits.EC2_QUERY_NAME] = { name = "FcaPolicyArn" },
+            },
+        }),
+        NetworkResourceType = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyDescription", "NetworkResourceType"),
+            type = "string",
+            name = "NetworkResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "networkResourceType" },
+                [traits.EC2_QUERY_NAME] = { name = "NetworkResourceType" },
+            },
+        }),
+        NatFcaPolicyDocument = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyDescription", "NatFcaPolicyDocument"),
+            type = "structure",
+            name = "NatFcaPolicyDocument",
+            target_id = id.from(_N, "NatFlexCostAllocationPolicyDocument"),
+            target = M.NatFlexCostAllocationPolicyDocument,
+            traits = {
+                [traits.XML_NAME] = { name = "natFcaPolicyDocument" },
+                [traits.EC2_QUERY_NAME] = { name = "NatFcaPolicyDocument" },
+            },
+        }),
+        InstanceFcaPolicyDocument = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyDescription", "InstanceFcaPolicyDocument"),
+            type = "structure",
+            name = "InstanceFcaPolicyDocument",
+            target_id = id.from(_N, "InstanceFlexCostAllocationPolicyDocument"),
+            target = M.InstanceFlexCostAllocationPolicyDocument,
+            traits = {
+                [traits.XML_NAME] = { name = "instanceFcaPolicyDocument" },
+                [traits.EC2_QUERY_NAME] = { name = "InstanceFcaPolicyDocument" },
+            },
+        }),
+        PcxFcaPolicyDocument = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyDescription", "PcxFcaPolicyDocument"),
+            type = "structure",
+            name = "PcxFcaPolicyDocument",
+            target_id = id.from(_N, "PcxFlexCostAllocationPolicyDocument"),
+            target = M.PcxFlexCostAllocationPolicyDocument,
+            traits = {
+                [traits.XML_NAME] = { name = "pcxFcaPolicyDocument" },
+                [traits.EC2_QUERY_NAME] = { name = "PcxFcaPolicyDocument" },
+            },
+        }),
+        ShowBackEnabled = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyDescription", "ShowBackEnabled"),
+            type = "boolean",
+            name = "ShowBackEnabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.XML_NAME] = { name = "showBackEnabled" },
+                [traits.EC2_QUERY_NAME] = { name = "ShowBackEnabled" },
+            },
+        }),
+        OwnerAccount = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyDescription", "OwnerAccount"),
+            type = "string",
+            name = "OwnerAccount",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "ownerAccount" },
+                [traits.EC2_QUERY_NAME] = { name = "OwnerAccount" },
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyDescription", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "description" },
+                [traits.EC2_QUERY_NAME] = { name = "Description" },
+            },
+        }),
+        LatestVersion = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyDescription", "LatestVersion"),
+            type = "integer",
+            name = "LatestVersion",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "latestVersion" },
+                [traits.EC2_QUERY_NAME] = { name = "LatestVersion" },
+            },
+        }),
+        VersionExpectedEffectiveAt = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyDescription", "VersionExpectedEffectiveAt"),
+            type = "timestamp",
+            name = "VersionExpectedEffectiveAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "versionExpectedEffectiveAt" },
+                [traits.EC2_QUERY_NAME] = { name = "VersionExpectedEffectiveAt" },
+            },
+        }),
+        PolicyCreatedAt = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyDescription", "PolicyCreatedAt"),
+            type = "timestamp",
+            name = "PolicyCreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "policyCreatedAt" },
+                [traits.EC2_QUERY_NAME] = { name = "PolicyCreatedAt" },
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyDescription", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "updatedAt" },
+                [traits.EC2_QUERY_NAME] = { name = "UpdatedAt" },
+            },
+        }),
+        ManagedBy = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyDescription", "ManagedBy"),
+            type = "string",
+            name = "ManagedBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "managedBy" },
+                [traits.EC2_QUERY_NAME] = { name = "ManagedBy" },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyDescription", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "tags" },
+                [traits.EC2_QUERY_NAME] = { name = "Tags" },
+            },
+        }),
+    },
+})
+
+M.DescribeNetworkingFlexCostAllocationPoliciesOutput = schema.new({
+    id = id.from(_N, "DescribeNetworkingFlexCostAllocationPoliciesResult"),
+    type = "structure",
+    members = {
+        FlexCostAllocationPolicies = schema.new({
+            id = id.from(_N, "DescribeNetworkingFlexCostAllocationPoliciesOutput", "FlexCostAllocationPolicies"),
+            type = "list",
+            name = "FlexCostAllocationPolicies",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.FlexCostAllocationPolicyDescription, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "flexCostAllocationPolicies" },
+                [traits.EC2_QUERY_NAME] = { name = "FlexCostAllocationPolicies" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeNetworkingFlexCostAllocationPoliciesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
+            },
+        }),
+    },
+})
+
+M.DescribeNetworkingFlexCostAllocationPolicyAssociationsInput = schema.new({
+    id = id.from(_N, "DescribeNetworkingFlexCostAllocationPolicyAssociationsRequest"),
+    type = "structure",
+    members = {
+        FcaPolicyAssociationIds = schema.new({
+            id = id.from(_N, "DescribeNetworkingFlexCostAllocationPolicyAssociationsInput", "FcaPolicyAssociationIds"),
+            type = "list",
+            name = "FcaPolicyAssociationIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "DescribeNetworkingFlexCostAllocationPolicyAssociationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "DescribeNetworkingFlexCostAllocationPolicyAssociationsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeNetworkingFlexCostAllocationPolicyAssociationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DescribeNetworkingFlexCostAllocationPolicyAssociationsInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DescribeNetworkingFlexCostAllocationPolicyAssociationsOutput = schema.new({
+    id = id.from(_N, "DescribeNetworkingFlexCostAllocationPolicyAssociationsResult"),
+    type = "structure",
+    members = {
+        FcaPolicyAssociations = schema.new({
+            id = id.from(_N, "DescribeNetworkingFlexCostAllocationPolicyAssociationsOutput", "FcaPolicyAssociations"),
+            type = "list",
+            name = "FcaPolicyAssociations",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.FlexCostAllocationPolicyAssociationDescription, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "fcaPolicyAssociations" },
+                [traits.EC2_QUERY_NAME] = { name = "FcaPolicyAssociations" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeNetworkingFlexCostAllocationPolicyAssociationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
+            },
+        }),
+    },
+})
+
 M.DescribeNetworkInsightsAccessScopeAnalysesInput = schema.new({
     id = id.from(_N, "DescribeNetworkInsightsAccessScopeAnalysesRequest"),
     type = "structure",
@@ -84384,6 +85254,58 @@ M.DisassociateNatGatewayAddressOutput = schema.new({
     },
 })
 
+M.DisassociateNetworkingFlexCostAllocationPolicyInput = schema.new({
+    id = id.from(_N, "DisassociateNetworkingFlexCostAllocationPolicyRequest"),
+    type = "structure",
+    members = {
+        FcaPolicyAssociationIds = schema.new({
+            id = id.from(_N, "DisassociateNetworkingFlexCostAllocationPolicyInput", "FcaPolicyAssociationIds"),
+            type = "list",
+            name = "FcaPolicyAssociationIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DisassociateNetworkingFlexCostAllocationPolicyInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DisassociateNetworkingFlexCostAllocationPolicyOutput = schema.new({
+    id = id.from(_N, "DisassociateNetworkingFlexCostAllocationPolicyResult"),
+    type = "structure",
+    members = {
+        FcaPolicyDisassociations = schema.new({
+            id = id.from(_N, "DisassociateNetworkingFlexCostAllocationPolicyOutput", "FcaPolicyDisassociations"),
+            type = "list",
+            name = "FcaPolicyDisassociations",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "fcaPolicyDisassociations" },
+                [traits.EC2_QUERY_NAME] = { name = "FcaPolicyDisassociations" },
+            },
+        }),
+        FcaPolicyDisassociationFailures = schema.new({
+            id = id.from(_N, "DisassociateNetworkingFlexCostAllocationPolicyOutput", "FcaPolicyDisassociationFailures"),
+            type = "list",
+            name = "FcaPolicyDisassociationFailures",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.FlexCostAllocationOperationFailure, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "fcaPolicyDisassociationFailures" },
+                [traits.EC2_QUERY_NAME] = { name = "FcaPolicyDisassociationFailures" },
+            },
+        }),
+    },
+})
+
 M.DisassociateRouteServerInput = schema.new({
     id = id.from(_N, "DisassociateRouteServerRequest"),
     type = "structure",
@@ -93920,6 +94842,163 @@ M.GetManagedResourceVisibilityOutput = schema.new({
     },
 })
 
+M.GetNetworkingFlexCostAllocationPolicyVersionsInput = schema.new({
+    id = id.from(_N, "GetNetworkingFlexCostAllocationPolicyVersionsRequest"),
+    type = "structure",
+    members = {
+        FcaPolicyId = schema.new({
+            id = id.from(_N, "GetNetworkingFlexCostAllocationPolicyVersionsInput", "FcaPolicyId"),
+            type = "string",
+            name = "FcaPolicyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        VersionsToInclude = schema.new({
+            id = id.from(_N, "GetNetworkingFlexCostAllocationPolicyVersionsInput", "VersionsToInclude"),
+            type = "list",
+            name = "VersionsToInclude",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "integer", target = prelude.Integer, traits = { [traits.XML_NAME] = { name = "item" } } }),
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "GetNetworkingFlexCostAllocationPolicyVersionsInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.FlexCostAllocationPolicyVersion = schema.new({
+    id = id.from(_N, "FlexCostAllocationPolicyVersion"),
+    type = "structure",
+    members = {
+        FcaPolicyId = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyVersion", "FcaPolicyId"),
+            type = "string",
+            name = "FcaPolicyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "fcaPolicyId" },
+                [traits.EC2_QUERY_NAME] = { name = "FcaPolicyId" },
+            },
+        }),
+        Version = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyVersion", "Version"),
+            type = "integer",
+            name = "Version",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "version" },
+                [traits.EC2_QUERY_NAME] = { name = "Version" },
+            },
+        }),
+        NetworkResourceType = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyVersion", "NetworkResourceType"),
+            type = "string",
+            name = "NetworkResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "networkResourceType" },
+                [traits.EC2_QUERY_NAME] = { name = "NetworkResourceType" },
+            },
+        }),
+        NatFcaPolicyDocument = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyVersion", "NatFcaPolicyDocument"),
+            type = "structure",
+            name = "NatFcaPolicyDocument",
+            target_id = id.from(_N, "NatFlexCostAllocationPolicyDocument"),
+            target = M.NatFlexCostAllocationPolicyDocument,
+            traits = {
+                [traits.XML_NAME] = { name = "natFcaPolicyDocument" },
+                [traits.EC2_QUERY_NAME] = { name = "NatFcaPolicyDocument" },
+            },
+        }),
+        InstanceFcaPolicyDocument = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyVersion", "InstanceFcaPolicyDocument"),
+            type = "structure",
+            name = "InstanceFcaPolicyDocument",
+            target_id = id.from(_N, "InstanceFlexCostAllocationPolicyDocument"),
+            target = M.InstanceFlexCostAllocationPolicyDocument,
+            traits = {
+                [traits.XML_NAME] = { name = "instanceFcaPolicyDocument" },
+                [traits.EC2_QUERY_NAME] = { name = "InstanceFcaPolicyDocument" },
+            },
+        }),
+        PcxFcaPolicyDocument = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyVersion", "PcxFcaPolicyDocument"),
+            type = "structure",
+            name = "PcxFcaPolicyDocument",
+            target_id = id.from(_N, "PcxFlexCostAllocationPolicyDocument"),
+            target = M.PcxFlexCostAllocationPolicyDocument,
+            traits = {
+                [traits.XML_NAME] = { name = "pcxFcaPolicyDocument" },
+                [traits.EC2_QUERY_NAME] = { name = "PcxFcaPolicyDocument" },
+            },
+        }),
+        ShowBackEnabled = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyVersion", "ShowBackEnabled"),
+            type = "boolean",
+            name = "ShowBackEnabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.XML_NAME] = { name = "showBackEnabled" },
+                [traits.EC2_QUERY_NAME] = { name = "ShowBackEnabled" },
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyVersion", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "description" },
+                [traits.EC2_QUERY_NAME] = { name = "Description" },
+            },
+        }),
+        ExpectedEffectiveAt = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyVersion", "ExpectedEffectiveAt"),
+            type = "timestamp",
+            name = "ExpectedEffectiveAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "expectedEffectiveAt" },
+                [traits.EC2_QUERY_NAME] = { name = "ExpectedEffectiveAt" },
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "FlexCostAllocationPolicyVersion", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "createdAt" },
+                [traits.EC2_QUERY_NAME] = { name = "CreatedAt" },
+            },
+        }),
+    },
+})
+
+M.GetNetworkingFlexCostAllocationPolicyVersionsOutput = schema.new({
+    id = id.from(_N, "GetNetworkingFlexCostAllocationPolicyVersionsResult"),
+    type = "structure",
+    members = {
+        FcaPolicyVersions = schema.new({
+            id = id.from(_N, "GetNetworkingFlexCostAllocationPolicyVersionsOutput", "FcaPolicyVersions"),
+            type = "list",
+            name = "FcaPolicyVersions",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.FlexCostAllocationPolicyVersion, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "fcaPolicyVersions" },
+                [traits.EC2_QUERY_NAME] = { name = "FcaPolicyVersions" },
+            },
+        }),
+    },
+})
+
 M.GetNetworkInsightsAccessScopeAnalysisFindingsInput = schema.new({
     id = id.from(_N, "GetNetworkInsightsAccessScopeAnalysisFindingsRequest"),
     type = "structure",
@@ -101793,6 +102872,117 @@ M.ModifyMetricCategoryOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "metricCategory" },
                 [traits.EC2_QUERY_NAME] = { name = "MetricCategory" },
+            },
+        }),
+    },
+})
+
+M.ModifyNetworkingFlexCostAllocationPolicyInput = schema.new({
+    id = id.from(_N, "ModifyNetworkingFlexCostAllocationPolicyRequest"),
+    type = "structure",
+    members = {
+        FcaPolicyId = schema.new({
+            id = id.from(_N, "ModifyNetworkingFlexCostAllocationPolicyInput", "FcaPolicyId"),
+            type = "string",
+            name = "FcaPolicyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NatFcaPolicyDocument = schema.new({
+            id = id.from(_N, "ModifyNetworkingFlexCostAllocationPolicyInput", "NatFcaPolicyDocument"),
+            type = "structure",
+            name = "NatFcaPolicyDocument",
+            target_id = id.from(_N, "NatFlexCostAllocationPolicyDocument"),
+            target = M.NatFlexCostAllocationPolicyDocument,
+        }),
+        InstanceFcaPolicyDocument = schema.new({
+            id = id.from(_N, "ModifyNetworkingFlexCostAllocationPolicyInput", "InstanceFcaPolicyDocument"),
+            type = "structure",
+            name = "InstanceFcaPolicyDocument",
+            target_id = id.from(_N, "InstanceFlexCostAllocationPolicyDocument"),
+            target = M.InstanceFlexCostAllocationPolicyDocument,
+        }),
+        PcxFcaPolicyDocument = schema.new({
+            id = id.from(_N, "ModifyNetworkingFlexCostAllocationPolicyInput", "PcxFcaPolicyDocument"),
+            type = "structure",
+            name = "PcxFcaPolicyDocument",
+            target_id = id.from(_N, "PcxFlexCostAllocationPolicyDocument"),
+            target = M.PcxFlexCostAllocationPolicyDocument,
+        }),
+        ShowBackEnabled = schema.new({
+            id = id.from(_N, "ModifyNetworkingFlexCostAllocationPolicyInput", "ShowBackEnabled"),
+            type = "boolean",
+            name = "ShowBackEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "ModifyNetworkingFlexCostAllocationPolicyInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "ModifyNetworkingFlexCostAllocationPolicyInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "ModifyNetworkingFlexCostAllocationPolicyInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ModifyNetworkingFlexCostAllocationPolicyOutput = schema.new({
+    id = id.from(_N, "ModifyNetworkingFlexCostAllocationPolicyResult"),
+    type = "structure",
+    members = {
+        FcaPolicyId = schema.new({
+            id = id.from(_N, "ModifyNetworkingFlexCostAllocationPolicyOutput", "FcaPolicyId"),
+            type = "string",
+            name = "FcaPolicyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "fcaPolicyId" },
+                [traits.EC2_QUERY_NAME] = { name = "FcaPolicyId" },
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "ModifyNetworkingFlexCostAllocationPolicyOutput", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "updatedAt" },
+                [traits.EC2_QUERY_NAME] = { name = "UpdatedAt" },
+            },
+        }),
+        Version = schema.new({
+            id = id.from(_N, "ModifyNetworkingFlexCostAllocationPolicyOutput", "Version"),
+            type = "integer",
+            name = "Version",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "version" },
+                [traits.EC2_QUERY_NAME] = { name = "Version" },
+            },
+        }),
+        VersionExpectedEffectiveAt = schema.new({
+            id = id.from(_N, "ModifyNetworkingFlexCostAllocationPolicyOutput", "VersionExpectedEffectiveAt"),
+            type = "timestamp",
+            name = "VersionExpectedEffectiveAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "versionExpectedEffectiveAt" },
+                [traits.EC2_QUERY_NAME] = { name = "VersionExpectedEffectiveAt" },
             },
         }),
     },
@@ -113276,6 +114466,17 @@ M.AssociateNatGatewayAddress = schema.operation({
     },
 })
 
+M.AssociateNetworkingFlexCostAllocationPolicy = schema.operation({
+    id = id.from("com.amazonaws.ec2", "AssociateNetworkingFlexCostAllocationPolicy"),
+    input = M.AssociateNetworkingFlexCostAllocationPolicyInput,
+    output = M.AssociateNetworkingFlexCostAllocationPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.AssociateRouteServer = schema.operation({
     id = id.from("com.amazonaws.ec2", "AssociateRouteServer"),
     input = M.AssociateRouteServerInput,
@@ -114259,6 +115460,17 @@ M.CreateNetworkAclEntry = schema.operation({
     id = id.from("com.amazonaws.ec2", "CreateNetworkAclEntry"),
     input = M.CreateNetworkAclEntryInput,
     output = M.CreateNetworkAclEntryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateNetworkingFlexCostAllocationPolicy = schema.operation({
+    id = id.from("com.amazonaws.ec2", "CreateNetworkingFlexCostAllocationPolicy"),
+    input = M.CreateNetworkingFlexCostAllocationPolicyInput,
+    output = M.CreateNetworkingFlexCostAllocationPolicyOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -115359,6 +116571,17 @@ M.DeleteNetworkAclEntry = schema.operation({
     id = id.from("com.amazonaws.ec2", "DeleteNetworkAclEntry"),
     input = M.DeleteNetworkAclEntryInput,
     output = M.DeleteNetworkAclEntryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNetworkingFlexCostAllocationPolicies = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DeleteNetworkingFlexCostAllocationPolicies"),
+    input = M.DeleteNetworkingFlexCostAllocationPoliciesInput,
+    output = M.DeleteNetworkingFlexCostAllocationPoliciesOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -117247,6 +118470,28 @@ M.DescribeNetworkAcls = schema.operation({
     },
 })
 
+M.DescribeNetworkingFlexCostAllocationPolicies = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DescribeNetworkingFlexCostAllocationPolicies"),
+    input = M.DescribeNetworkingFlexCostAllocationPoliciesInput,
+    output = M.DescribeNetworkingFlexCostAllocationPoliciesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeNetworkingFlexCostAllocationPolicyAssociations = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DescribeNetworkingFlexCostAllocationPolicyAssociations"),
+    input = M.DescribeNetworkingFlexCostAllocationPolicyAssociationsInput,
+    output = M.DescribeNetworkingFlexCostAllocationPolicyAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeNetworkInsightsAccessScopeAnalyses = schema.operation({
     id = id.from("com.amazonaws.ec2", "DescribeNetworkInsightsAccessScopeAnalyses"),
     input = M.DescribeNetworkInsightsAccessScopeAnalysesInput,
@@ -118644,6 +119889,17 @@ M.DisassociateNatGatewayAddress = schema.operation({
     },
 })
 
+M.DisassociateNetworkingFlexCostAllocationPolicy = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DisassociateNetworkingFlexCostAllocationPolicy"),
+    input = M.DisassociateNetworkingFlexCostAllocationPolicyInput,
+    output = M.DisassociateNetworkingFlexCostAllocationPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DisassociateRouteServer = schema.operation({
     id = id.from("com.amazonaws.ec2", "DisassociateRouteServer"),
     input = M.DisassociateRouteServerInput,
@@ -119656,6 +120912,17 @@ M.GetManagedResourceVisibility = schema.operation({
     },
 })
 
+M.GetNetworkingFlexCostAllocationPolicyVersions = schema.operation({
+    id = id.from("com.amazonaws.ec2", "GetNetworkingFlexCostAllocationPolicyVersions"),
+    input = M.GetNetworkingFlexCostAllocationPolicyVersionsInput,
+    output = M.GetNetworkingFlexCostAllocationPolicyVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetNetworkInsightsAccessScopeAnalysisFindings = schema.operation({
     id = id.from("com.amazonaws.ec2", "GetNetworkInsightsAccessScopeAnalysisFindings"),
     input = M.GetNetworkInsightsAccessScopeAnalysisFindingsInput,
@@ -120540,6 +121807,17 @@ M.ModifyMetricCategory = schema.operation({
     id = id.from("com.amazonaws.ec2", "ModifyMetricCategory"),
     input = M.ModifyMetricCategoryInput,
     output = M.ModifyMetricCategoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyNetworkingFlexCostAllocationPolicy = schema.operation({
+    id = id.from("com.amazonaws.ec2", "ModifyNetworkingFlexCostAllocationPolicy"),
+    input = M.ModifyNetworkingFlexCostAllocationPolicyInput,
+    output = M.ModifyNetworkingFlexCostAllocationPolicyOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

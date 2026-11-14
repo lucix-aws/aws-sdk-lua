@@ -134,6 +134,10 @@ M.ClusterInstanceGroupDetailsList = schema.new({ type = "list", list_member = M.
 
 M.ClusterRestrictedInstanceGroupDetailsList = schema.new({ type = "list", list_member = M.ClusterRestrictedInstanceGroupDetails })
 
+M.ClusterOperationScalingDetailsList = schema.new({ type = "list", list_member = M.ClusterOperationScalingDetails })
+
+M.DeepHealthCheckConfigurations = schema.new({ type = "list", list_member = M.InstanceGroupHealthCheckConfiguration })
+
 M.StatusDetailsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.EdgeModels = schema.new({ type = "list", list_member = M.EdgeModel })
@@ -210,7 +214,11 @@ M.ClusterEventSummaries = schema.new({ type = "list", list_member = M.ClusterEve
 
 M.ExtensionSummaries = schema.new({ type = "list", list_member = M.ExtensionSummary })
 
+M.ExtensionVersionSummaries = schema.new({ type = "list", list_member = M.ExtensionVersionSummary })
+
 M.ClusterNodeSummaries = schema.new({ type = "list", list_member = M.ClusterNodeSummary })
+
+M.ClusterOperationSummaries = schema.new({ type = "list", list_member = M.ClusterOperationSummary })
 
 M.ClusterSummaries = schema.new({ type = "list", list_member = M.ClusterSummary })
 
@@ -378,8 +386,6 @@ M.TrainingPlanExtensionOfferings = schema.new({ type = "list", list_member = M.T
 
 M.OutputParameterList = schema.new({ type = "list", list_member = M.OutputParameter })
 
-M.DeepHealthCheckConfigurations = schema.new({ type = "list", list_member = M.InstanceGroupHealthCheckConfiguration })
-
 M.ModelVariantActionMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.ListLineageEntityParameterKey = schema.new({ type = "list", list_member = prelude.String })
@@ -542,6 +548,8 @@ M.AutoMLContainerDefinitions = schema.new({ type = "list", list_member = M.AutoM
 
 M.AutoMLInferenceContainerDefinitions = schema.new({ type = "map", map_key = prelude.String, map_value = M.AutoMLContainerDefinitions })
 
+M.ExtensionHealthIssues = schema.new({ type = "list", list_member = M.ExtensionHealthIssue })
+
 M.ClusterInstanceStorageConfigs = schema.new({ type = "list", list_member = M.ClusterInstanceStorageConfig })
 
 M.PendingProductionVariantSummaryList = schema.new({ type = "list", list_member = M.PendingProductionVariantSummary })
@@ -676,6 +684,10 @@ M.ClusterKubernetesLabels = schema.new({ type = "map", map_key = prelude.String,
 
 M.ClusterKubernetesTaints = schema.new({ type = "list", list_member = M.ClusterKubernetesTaint })
 
+M.InstanceIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeepHealthChecks = schema.new({ type = "list", list_member = prelude.String })
+
 M.DeployedImages = schema.new({ type = "list", list_member = M.DeployedImage })
 
 M.InstancePoolSummaryList = schema.new({ type = "list", list_member = M.InstancePoolSummary })
@@ -689,10 +701,6 @@ M.EdgeModelSummaries = schema.new({ type = "list", list_member = M.EdgeModelSumm
 M.OptimizationTypes = schema.new({ type = "list", list_member = prelude.String })
 
 M.ReservedCapacityOfferings = schema.new({ type = "list", list_member = M.ReservedCapacityOffering })
-
-M.InstanceIds = schema.new({ type = "list", list_member = prelude.String })
-
-M.DeepHealthChecks = schema.new({ type = "list", list_member = prelude.String })
 
 M.CompressionTypes = schema.new({ type = "list", list_member = prelude.String })
 
@@ -8149,6 +8157,25 @@ M.DeploymentConfiguration = schema.new({
     },
 })
 
+M.ClusterDrainPolicy = schema.new({
+    id = id.from(_N, "ClusterDrainPolicy"),
+    type = "structure",
+    members = {
+        DrainTimeoutInSeconds = schema.new({
+            id = id.from(_N, "ClusterDrainPolicy", "DrainTimeoutInSeconds"),
+            type = "integer",
+            name = "DrainTimeoutInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        OnDrainTimeout = schema.new({
+            id = id.from(_N, "ClusterDrainPolicy", "OnDrainTimeout"),
+            type = "string",
+            name = "OnDrainTimeout",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ClusterPatchSchedule = schema.new({
     id = id.from(_N, "ClusterPatchSchedule"),
     type = "structure",
@@ -8188,6 +8215,19 @@ M.ClusterAutoPatchConfig = schema.new({
             name = "DeploymentConfig",
             target_id = id.from(_N, "DeploymentConfiguration"),
             target = M.DeploymentConfiguration,
+        }),
+        IdleWaitWindowInSeconds = schema.new({
+            id = id.from(_N, "ClusterAutoPatchConfig", "IdleWaitWindowInSeconds"),
+            type = "integer",
+            name = "IdleWaitWindowInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        DrainPolicy = schema.new({
+            id = id.from(_N, "ClusterAutoPatchConfig", "DrainPolicy"),
+            type = "structure",
+            name = "DrainPolicy",
+            target_id = id.from(_N, "ClusterDrainPolicy"),
+            target = M.ClusterDrainPolicy,
         }),
     },
 })
@@ -8235,6 +8275,19 @@ M.ClusterAutoPatchConfigDetails = schema.new({
             name = "DeploymentConfig",
             target_id = id.from(_N, "DeploymentConfiguration"),
             target = M.DeploymentConfiguration,
+        }),
+        IdleWaitWindowInSeconds = schema.new({
+            id = id.from(_N, "ClusterAutoPatchConfigDetails", "IdleWaitWindowInSeconds"),
+            type = "integer",
+            name = "IdleWaitWindowInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        DrainPolicy = schema.new({
+            id = id.from(_N, "ClusterAutoPatchConfigDetails", "DrainPolicy"),
+            type = "structure",
+            name = "DrainPolicy",
+            target_id = id.from(_N, "ClusterDrainPolicy"),
+            target = M.ClusterDrainPolicy,
         }),
     },
 })
@@ -8727,6 +8780,12 @@ M.ClusterEventDetail = schema.new({
             name = "EventLevel",
             target_id = prelude.String.id,
         }),
+        OperationId = schema.new({
+            id = id.from(_N, "ClusterEventDetail", "OperationId"),
+            type = "string",
+            name = "OperationId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -8801,6 +8860,12 @@ M.ClusterEventSummary = schema.new({
             id = id.from(_N, "ClusterEventSummary", "EventLevel"),
             type = "string",
             name = "EventLevel",
+            target_id = prelude.String.id,
+        }),
+        OperationId = schema.new({
+            id = id.from(_N, "ClusterEventSummary", "OperationId"),
+            type = "string",
+            name = "OperationId",
             target_id = prelude.String.id,
         }),
     },
@@ -9857,6 +9922,101 @@ M.ClusterNodeSummary = schema.new({
             type = "string",
             name = "ImageVersionStatus",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ClusterOperationScalingConfiguration = schema.new({
+    id = id.from(_N, "ClusterOperationScalingConfiguration"),
+    type = "structure",
+    members = {
+        CurrentCount = schema.new({
+            id = id.from(_N, "ClusterOperationScalingConfiguration", "CurrentCount"),
+            type = "integer",
+            name = "CurrentCount",
+            target_id = prelude.Integer.id,
+        }),
+        TargetCount = schema.new({
+            id = id.from(_N, "ClusterOperationScalingConfiguration", "TargetCount"),
+            type = "integer",
+            name = "TargetCount",
+            target_id = prelude.Integer.id,
+        }),
+        MinCount = schema.new({
+            id = id.from(_N, "ClusterOperationScalingConfiguration", "MinCount"),
+            type = "integer",
+            name = "MinCount",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ClusterOperationScalingDetails = schema.new({
+    id = id.from(_N, "ClusterOperationScalingDetails"),
+    type = "structure",
+    members = {
+        InstanceGroupName = schema.new({
+            id = id.from(_N, "ClusterOperationScalingDetails", "InstanceGroupName"),
+            type = "string",
+            name = "InstanceGroupName",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ClusterOperationScalingDetails", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        Original = schema.new({
+            id = id.from(_N, "ClusterOperationScalingDetails", "Original"),
+            type = "structure",
+            name = "Original",
+            target_id = id.from(_N, "ClusterOperationScalingConfiguration"),
+            target = M.ClusterOperationScalingConfiguration,
+        }),
+        Desired = schema.new({
+            id = id.from(_N, "ClusterOperationScalingDetails", "Desired"),
+            type = "structure",
+            name = "Desired",
+            target_id = id.from(_N, "ClusterOperationScalingConfiguration"),
+            target = M.ClusterOperationScalingConfiguration,
+        }),
+    },
+})
+
+M.ClusterOperationSummary = schema.new({
+    id = id.from(_N, "ClusterOperationSummary"),
+    type = "structure",
+    members = {
+        OperationId = schema.new({
+            id = id.from(_N, "ClusterOperationSummary", "OperationId"),
+            type = "string",
+            name = "OperationId",
+            target_id = prelude.String.id,
+        }),
+        ClusterArn = schema.new({
+            id = id.from(_N, "ClusterOperationSummary", "ClusterArn"),
+            type = "string",
+            name = "ClusterArn",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "ClusterOperationSummary", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ClusterOperationSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "ClusterOperationSummary", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
         }),
     },
 })
@@ -28378,6 +28538,57 @@ M.ExtensionDetails = schema.new({
     },
 })
 
+M.ExtensionHealthIssue = schema.new({
+    id = id.from(_N, "ExtensionHealthIssue"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "ExtensionHealthIssue", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ExtensionHealthIssue", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NodeCount = schema.new({
+            id = id.from(_N, "ExtensionHealthIssue", "NodeCount"),
+            type = "integer",
+            name = "NodeCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExtensionHealth = schema.new({
+    id = id.from(_N, "ExtensionHealth"),
+    type = "structure",
+    members = {
+        Issues = schema.new({
+            id = id.from(_N, "ExtensionHealth", "Issues"),
+            type = "list",
+            name = "Issues",
+            target_id = prelude.Document.id,
+            list_member = M.ExtensionHealthIssue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ExtensionNodeSummary = schema.new({
     id = id.from(_N, "ExtensionNodeSummary"),
     type = "structure",
@@ -28424,6 +28635,13 @@ M.DescribeClusterExtensionOutput = schema.new({
             target_id = id.from(_N, "ExtensionNodeSummary"),
             target = M.ExtensionNodeSummary,
         }),
+        Health = schema.new({
+            id = id.from(_N, "DescribeClusterExtensionOutput", "Health"),
+            type = "structure",
+            name = "Health",
+            target_id = id.from(_N, "ExtensionHealth"),
+            target = M.ExtensionHealth,
+        }),
     },
 })
 
@@ -28468,6 +28686,82 @@ M.DescribeClusterNodeOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.DescribeClusterOperationInput = schema.new({
+    id = id.from(_N, "DescribeClusterOperationRequest"),
+    type = "structure",
+    members = {
+        ClusterName = schema.new({
+            id = id.from(_N, "DescribeClusterOperationInput", "ClusterName"),
+            type = "string",
+            name = "ClusterName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OperationId = schema.new({
+            id = id.from(_N, "DescribeClusterOperationInput", "OperationId"),
+            type = "string",
+            name = "OperationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeClusterOperationOutput = schema.new({
+    id = id.from(_N, "DescribeClusterOperationResponse"),
+    type = "structure",
+    members = {
+        OperationId = schema.new({
+            id = id.from(_N, "DescribeClusterOperationOutput", "OperationId"),
+            type = "string",
+            name = "OperationId",
+            target_id = prelude.String.id,
+        }),
+        ClusterArn = schema.new({
+            id = id.from(_N, "DescribeClusterOperationOutput", "ClusterArn"),
+            type = "string",
+            name = "ClusterArn",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "DescribeClusterOperationOutput", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DescribeClusterOperationOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "DescribeClusterOperationOutput", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        ScalingDetails = schema.new({
+            id = id.from(_N, "DescribeClusterOperationOutput", "ScalingDetails"),
+            type = "list",
+            name = "ScalingDetails",
+            target_id = prelude.Document.id,
+            list_member = M.ClusterOperationScalingDetails,
+        }),
+        DeepHealthCheckDetails = schema.new({
+            id = id.from(_N, "DescribeClusterOperationOutput", "DeepHealthCheckDetails"),
+            type = "list",
+            name = "DeepHealthCheckDetails",
+            target_id = prelude.Document.id,
+            list_member = M.InstanceGroupHealthCheckConfiguration,
         }),
     },
 })
@@ -40455,6 +40749,22 @@ M.ExtensionSummary = schema.new({
     },
 })
 
+M.ExtensionVersionSummary = schema.new({
+    id = id.from(_N, "ExtensionVersionSummary"),
+    type = "structure",
+    members = {
+        ExtensionVersion = schema.new({
+            id = id.from(_N, "ExtensionVersionSummary", "ExtensionVersion"),
+            type = "string",
+            name = "ExtensionVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.FailStepMetadata = schema.new({
     id = id.from(_N, "FailStepMetadata"),
     type = "structure",
@@ -43949,6 +44259,12 @@ M.ListClusterEventsInput = schema.new({
             name = "ResourceType",
             target_id = prelude.String.id,
         }),
+        OperationId = schema.new({
+            id = id.from(_N, "ListClusterEventsInput", "OperationId"),
+            type = "string",
+            name = "OperationId",
+            target_id = prelude.String.id,
+        }),
         MaxResults = schema.new({
             id = id.from(_N, "ListClusterEventsInput", "MaxResults"),
             type = "integer",
@@ -44047,6 +44363,57 @@ M.ListClusterExtensionsOutput = schema.new({
     },
 })
 
+M.ListClusterExtensionVersionsInput = schema.new({
+    id = id.from(_N, "ListClusterExtensionVersionsRequest"),
+    type = "structure",
+    members = {
+        ExtensionName = schema.new({
+            id = id.from(_N, "ListClusterExtensionVersionsInput", "ExtensionName"),
+            type = "string",
+            name = "ExtensionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListClusterExtensionVersionsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListClusterExtensionVersionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListClusterExtensionVersionsOutput = schema.new({
+    id = id.from(_N, "ListClusterExtensionVersionsResponse"),
+    type = "structure",
+    members = {
+        ExtensionVersions = schema.new({
+            id = id.from(_N, "ListClusterExtensionVersionsOutput", "ExtensionVersions"),
+            type = "list",
+            name = "ExtensionVersions",
+            target_id = prelude.Document.id,
+            list_member = M.ExtensionVersionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListClusterExtensionVersionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListClusterNodesInput = schema.new({
     id = id.from(_N, "ListClusterNodesRequest"),
     type = "structure",
@@ -44130,6 +44497,90 @@ M.ListClusterNodesOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.ListClusterOperationsInput = schema.new({
+    id = id.from(_N, "ListClusterOperationsRequest"),
+    type = "structure",
+    members = {
+        ClusterName = schema.new({
+            id = id.from(_N, "ListClusterOperationsInput", "ClusterName"),
+            type = "string",
+            name = "ClusterName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ListClusterOperationsInput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "ListClusterOperationsInput", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        CreationTimeAfter = schema.new({
+            id = id.from(_N, "ListClusterOperationsInput", "CreationTimeAfter"),
+            type = "timestamp",
+            name = "CreationTimeAfter",
+            target_id = prelude.Timestamp.id,
+        }),
+        CreationTimeBefore = schema.new({
+            id = id.from(_N, "ListClusterOperationsInput", "CreationTimeBefore"),
+            type = "timestamp",
+            name = "CreationTimeBefore",
+            target_id = prelude.Timestamp.id,
+        }),
+        SortBy = schema.new({
+            id = id.from(_N, "ListClusterOperationsInput", "SortBy"),
+            type = "string",
+            name = "SortBy",
+            target_id = prelude.String.id,
+        }),
+        SortOrder = schema.new({
+            id = id.from(_N, "ListClusterOperationsInput", "SortOrder"),
+            type = "string",
+            name = "SortOrder",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListClusterOperationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListClusterOperationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListClusterOperationsOutput = schema.new({
+    id = id.from(_N, "ListClusterOperationsResponse"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListClusterOperationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        ClusterOperationSummaries = schema.new({
+            id = id.from(_N, "ListClusterOperationsOutput", "ClusterOperationSummaries"),
+            type = "list",
+            name = "ClusterOperationSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.ClusterOperationSummary,
         }),
     },
 })
@@ -61236,6 +61687,17 @@ M.DescribeClusterNode = schema.operation({
     },
 })
 
+M.DescribeClusterOperation = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeClusterOperation"),
+    input = M.DescribeClusterOperationInput,
+    output = M.DescribeClusterOperationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeClusterSchedulerConfig = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "DescribeClusterSchedulerConfig"),
     input = M.DescribeClusterSchedulerConfigInput,
@@ -62226,10 +62688,32 @@ M.ListClusterExtensions = schema.operation({
     },
 })
 
+M.ListClusterExtensionVersions = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListClusterExtensionVersions"),
+    input = M.ListClusterExtensionVersionsInput,
+    output = M.ListClusterExtensionVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListClusterNodes = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "ListClusterNodes"),
     input = M.ListClusterNodesInput,
     output = M.ListClusterNodesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListClusterOperations = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListClusterOperations"),
+    input = M.ListClusterOperationsInput,
+    output = M.ListClusterOperationsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

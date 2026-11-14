@@ -4457,6 +4457,12 @@ M.ResourceServerType = schema.new({
             target_id = prelude.Document.id,
             list_member = M.ResourceServerScopeType,
         }),
+        ManagedBy = schema.new({
+            id = id.from(_N, "ResourceServerType", "ManagedBy"),
+            type = "string",
+            name = "ManagedBy",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -4807,6 +4813,49 @@ M.CreateUserImportJobOutput = schema.new({
             name = "UserImportJob",
             target_id = id.from(_N, "UserImportJobType"),
             target = M.UserImportJobType,
+        }),
+    },
+})
+
+M.DcrConfigurationType = schema.new({
+    id = id.from(_N, "DcrConfigurationType"),
+    type = "structure",
+    members = {
+        EnableStatus = schema.new({
+            id = id.from(_N, "DcrConfigurationType", "EnableStatus"),
+            type = "string",
+            name = "EnableStatus",
+            target_id = prelude.String.id,
+        }),
+        OpenDcrEnabled = schema.new({
+            id = id.from(_N, "DcrConfigurationType", "OpenDcrEnabled"),
+            type = "boolean",
+            name = "OpenDcrEnabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        AuthenticatedGrantTypes = schema.new({
+            id = id.from(_N, "DcrConfigurationType", "AuthenticatedGrantTypes"),
+            type = "list",
+            name = "AuthenticatedGrantTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        OpenDcrGrantTypes = schema.new({
+            id = id.from(_N, "DcrConfigurationType", "OpenDcrGrantTypes"),
+            type = "list",
+            name = "OpenDcrGrantTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AllowedScopes = schema.new({
+            id = id.from(_N, "DcrConfigurationType", "AllowedScopes"),
+            type = "list",
+            name = "AllowedScopes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })
@@ -5536,6 +5585,13 @@ M.CreateUserPoolInput = schema.new({
             target_id = id.from(_N, "UserPoolAddOnsType"),
             target = M.UserPoolAddOnsType,
         }),
+        DcrConfiguration = schema.new({
+            id = id.from(_N, "CreateUserPoolInput", "DcrConfiguration"),
+            type = "structure",
+            name = "DcrConfiguration",
+            target_id = id.from(_N, "DcrConfigurationType"),
+            target = M.DcrConfigurationType,
+        }),
         UsernameConfiguration = schema.new({
             id = id.from(_N, "CreateUserPoolInput", "UsernameConfiguration"),
             type = "structure",
@@ -5782,6 +5838,13 @@ M.UserPoolType = schema.new({
             name = "UserPoolAddOns",
             target_id = id.from(_N, "UserPoolAddOnsType"),
             target = M.UserPoolAddOnsType,
+        }),
+        DcrConfiguration = schema.new({
+            id = id.from(_N, "UserPoolType", "DcrConfiguration"),
+            type = "structure",
+            name = "DcrConfiguration",
+            target_id = id.from(_N, "DcrConfigurationType"),
+            target = M.DcrConfigurationType,
         }),
         UsernameConfiguration = schema.new({
             id = id.from(_N, "UserPoolType", "UsernameConfiguration"),
@@ -6280,6 +6343,12 @@ M.UserPoolClientType = schema.new({
             name = "RefreshTokenRotation",
             target_id = id.from(_N, "RefreshTokenRotationType"),
             target = M.RefreshTokenRotationType,
+        }),
+        ClientType = schema.new({
+            id = id.from(_N, "UserPoolClientType", "ClientType"),
+            type = "string",
+            name = "ClientType",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -9313,6 +9382,12 @@ M.ListUserPoolClientsInput = schema.new({
             name = "NextToken",
             target_id = prelude.String.id,
         }),
+        ClientType = schema.new({
+            id = id.from(_N, "ListUserPoolClientsInput", "ClientType"),
+            type = "string",
+            name = "ClientType",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -11476,6 +11551,13 @@ M.UpdateUserPoolInput = schema.new({
             name = "UserPoolAddOns",
             target_id = id.from(_N, "UserPoolAddOnsType"),
             target = M.UserPoolAddOnsType,
+        }),
+        DcrConfiguration = schema.new({
+            id = id.from(_N, "UpdateUserPoolInput", "DcrConfiguration"),
+            type = "structure",
+            name = "DcrConfiguration",
+            target_id = id.from(_N, "DcrConfigurationType"),
+            target = M.DcrConfigurationType,
         }),
         AccountRecoverySetting = schema.new({
             id = id.from(_N, "UpdateUserPoolInput", "AccountRecoverySetting"),

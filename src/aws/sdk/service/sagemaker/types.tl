@@ -4239,9 +4239,23 @@ local record M
         AutoRollbackConfiguration: {AlarmDetails}
     end
 
+    enum ClusterOnDrainTimeout
+        "Force"
+        "Skip"
+    end
+
+    -- Specifies how pods are evicted from an instance before it is patched with the DrainFirst strategy. By default, evictions respect Kubernetes Pod Disruption Budgets.
+    record ClusterDrainPolicy
+        -- The maximum time, in seconds, to wait for the pods on an instance to drain. Valid values are from 0 to 5400 (90 minutes). The default is 3600 (1 hour).
+        DrainTimeoutInSeconds: number
+        -- The action to take if the pods on an instance don't drain within DrainTimeoutInSeconds. The default is Skip. Skip: Doesn't patch the instance. The instance is uncordoned and remains on the previous AMI version. This can leave the instance group partially patched. You can then use UpdateClusterSoftware with the desired ImageReleaseVersion to manually update the remaining instances. Force: Deletes the remaining pods without respecting Pod Disruption Budgets, and then patches the instance.
+        OnDrainTimeout: string
+    end
+
     enum ClusterPatchingStrategy
         "WhenIdle"
         "WhenAllIdle"
+        "DrainFirst"
     end
 
     -- The schedule configuration for automatic patching.
@@ -4252,12 +4266,16 @@ local record M
 
     -- The configuration for automatic patching of the instance group. When configured, the system automatically applies security patch AMI updates to the instance group.
     record ClusterAutoPatchConfig
-        -- The strategy for applying patches to instances in the group. WhenIdle: Cordons all instances and patches each instance as it becomes idle (no running jobs). Each instance is uncordoned immediately after patching and becomes available for new jobs. If instances do not become idle, they remain on the previous AMI version. You can then use UpdateClusterSoftware with the desired ImageReleaseVersion to manually update the remaining instances. WhenAllIdle: Cordons all instances and waits for all to become idle before patching. All instances are uncordoned after patching completes. If not all instances become idle, no patching occurs and all instances remain on the previous AMI version.
+        -- The strategy for applying patches to instances in the group. WhenIdle: Cordons all instances and patches each instance as it becomes idle (no running jobs). Each instance is uncordoned immediately after patching and becomes available for new jobs. If instances do not become idle, they remain on the previous AMI version. You can then use UpdateClusterSoftware with the desired ImageReleaseVersion to manually update the remaining instances. WhenAllIdle: Cordons all instances and waits for all to become idle before patching. All instances are uncordoned after patching completes. If not all instances become idle, no patching occurs and all instances remain on the previous AMI version. DrainFirst: Designed for workloads that never become idle, such as inference. Cordons instances, evicts the running pods, and then patches each instance in batches. Each instance is uncordoned after patching. Use DrainPolicy to control how long to wait for pods to drain and what happens if the drain times out. Requires MaximumBatchSize in DeploymentConfig. Available only for clusters that use Amazon EKS as the orchestrator.
         PatchingStrategy: string
         -- The schedule for automatic patching, including the next patch date.
         PatchSchedule: ClusterPatchSchedule
         -- The deployment configuration for rolling patch updates, including rollback settings and batch sizes. Only applicable when using a rolling patching strategy.
         DeploymentConfig: DeploymentConfiguration
+        -- The maximum time, in seconds, that automatic patching waits for instances to become idle after a scheduled patch starts. Automatic patching uncordons instances that don't become idle within this window, and they remain on the previous AMI version. Valid values are from 3600 (1 hour) to 2160000 (25 days). The default is 86400 (24 hours). This setting applies only to the WhenIdle and WhenAllIdle strategies.
+        IdleWaitWindowInSeconds: number
+        -- The policy that controls how pods are evicted from an instance before it is patched. Valid only when PatchingStrategy is DrainFirst.
+        DrainPolicy: ClusterDrainPolicy
     end
 
     -- The schedule details for automatic patching, including the next scheduled patch date.
@@ -4268,7 +4286,7 @@ local record M
 
     -- The auto-patching configuration details for the instance group, including the patching strategy and schedule.
     record ClusterAutoPatchConfigDetails
-        -- The strategy used for applying patches to instances in the group. WhenIdle: Cordons all instances and patches each instance as it becomes idle (no running jobs). Each instance is uncordoned immediately after patching and becomes available for new jobs. If instances do not become idle, they remain on the previous AMI version. You can then use UpdateClusterSoftware with the desired ImageReleaseVersion to manually update the remaining instances. WhenAllIdle: Cordons all instances and waits for all to become idle before patching. All instances are uncordoned after patching completes. If not all instances become idle, no patching occurs and all instances remain on the previous AMI version.
+        -- The strategy used for applying patches to instances in the group. WhenIdle: Cordons all instances and patches each instance as it becomes idle (no running jobs). Each instance is uncordoned immediately after patching and becomes available for new jobs. If instances do not become idle, they remain on the previous AMI version. You can then use UpdateClusterSoftware with the desired ImageReleaseVersion to manually update the remaining instances. WhenAllIdle: Cordons all instances and waits for all to become idle before patching. All instances are uncordoned after patching completes. If not all instances become idle, no patching occurs and all instances remain on the previous AMI version. DrainFirst: Designed for workloads that never become idle, such as inference. Cordons instances, evicts the running pods, and then patches each instance in batches. Each instance is uncordoned after patching. Use DrainPolicy to control how long to wait for pods to drain and what happens if the drain times out. Requires MaximumBatchSize in DeploymentConfig. Available only for clusters that use Amazon EKS as the orchestrator.
         PatchingStrategy: string
         -- The currently active patch schedule that the system will execute.
         CurrentPatchSchedule: ClusterPatchScheduleDetails
@@ -4276,6 +4294,10 @@ local record M
         DesiredPatchSchedule: ClusterPatchScheduleDetails
         -- The deployment configuration for rolling patch updates.
         DeploymentConfig: DeploymentConfiguration
+        -- The maximum time, in seconds, that automatic patching waits for instances to become idle after a scheduled patch starts. Automatic patching uncordons instances that don't become idle within this window, and they remain on the previous AMI version. The default is 86400 (24 hours).
+        IdleWaitWindowInSeconds: number
+        -- The policy that controls how pods are evicted from an instance before it is patched. Applies only when PatchingStrategy is DrainFirst.
+        DrainPolicy: ClusterDrainPolicy
     end
 
     enum ClusterAutoScalerType
@@ -4511,6 +4533,8 @@ local record M
         Description: string
         -- The severity level of the event. Valid values are Info, Warn, and Error.
         EventLevel: string
+        -- The unique identifier (UUID) of the cluster operation that the event is associated with, such as a scaling operation. This field is not returned when the event is not associated with an operation.
+        OperationId: string
     end
 
     -- A summary of an event in a HyperPod cluster.
@@ -4533,6 +4557,8 @@ local record M
         Description: string
         -- The severity level of the event. Valid values are Info, Warn, and Error.
         EventLevel: string
+        -- The unique identifier (UUID) of the cluster operation that the event is associated with, such as a scaling operation. This field is not returned when the event is not associated with an operation.
+        OperationId: string
     end
 
     -- Defines the configuration for attaching an Amazon FSx for Lustre file system to instances in a SageMaker HyperPod cluster instance group.
@@ -4947,6 +4973,57 @@ local record M
         CurrentImageReleaseVersion: string
         -- The status of the image version for the cluster node.
         ImageVersionStatus: string
+    end
+
+    -- A point-in-time snapshot of an instance group's scaling configuration. This structure represents both the original configuration before the operation and the desired configuration requested by the operation.
+    record ClusterOperationScalingConfiguration
+        -- The number of instances that were in the instance group at the time of the operation.
+        CurrentCount: number
+        -- The target number of instances for the instance group.
+        TargetCount: number
+        -- The minimum number of instances that must be available in the instance group of a HyperPod cluster before it transitions to InService status.
+        MinCount: number
+    end
+
+    enum ClusterOperationStatus
+        "InProgress"
+        "Superseded"
+        "Done"
+    end
+
+    -- The scaling details for a single instance group that is affected by a cluster operation.
+    record ClusterOperationScalingDetails
+        -- The name of the instance group being scaled.
+        InstanceGroupName: string
+        -- The status of the scaling operation for this instance group. Valid values are InProgress, Superseded, or Done.
+        Status: string
+        -- The scaling configuration of the instance group before the scaling operation was applied, including its current, target, and minimum instance counts.
+        Original: ClusterOperationScalingConfiguration
+        -- The desired scaling configuration of the instance group for the scaling operation, including its target and minimum instance counts.
+        Desired: ClusterOperationScalingConfiguration
+    end
+
+    enum ClusterOperationSortBy
+        "CreationTime"
+    end
+
+    enum ClusterOperationType
+        "Scaling"
+        "DeepHealthCheck"
+    end
+
+    -- A summary of an operation performed on a HyperPod cluster.
+    record ClusterOperationSummary
+        -- The unique identifier (UUID) of the operation.
+        OperationId: string
+        -- The Amazon Resource Name (ARN) of the HyperPod cluster associated with the operation.
+        ClusterArn: string
+        -- The type of the operation. Valid values are Scaling or DeepHealthCheck.
+        Type: string
+        -- The current status of the operation. Valid values are InProgress, Superseded, or Done.
+        Status: string
+        -- The timestamp when the operation was created.
+        CreationTime: number
     end
 
     -- The configuration settings for the Amazon EKS cluster used as the orchestrator for the SageMaker HyperPod cluster.
@@ -12015,11 +12092,38 @@ local record M
         LastModifiedTime: number
     end
 
+    enum ExtensionHealthIssueCode
+        "InvalidConfiguration"
+        "ConfigurationConflict"
+        "AccessDenied"
+        "ResourceNotFound"
+        "DependencyUnreachable"
+        "ExtensionUnhealthy"
+        "InternalFailure"
+        "Other"
+    end
+
+    -- Information about a problem that affects an extension on one or more nodes of a SageMaker HyperPod cluster, including the number of nodes that it affects.
+    record ExtensionHealthIssue
+        -- A code that describes the type of issue.
+        Code: string
+        -- A description of the problem, for example the setting or component to check. Every node with the same problem has the same message.
+        Message: string
+        -- The number of nodes that have this problem.
+        NodeCount: number
+    end
+
+    -- Contains information about the problems that affect an extension on the nodes of a SageMaker HyperPod cluster, including how many nodes each problem affects. DescribeClusterExtension returns ExtensionHealth only when at least one node has a problem.
+    record ExtensionHealth
+        -- The problems that affect the extension, grouped by cause, from the problem that affects the most nodes to the one that affects the fewest. SageMaker HyperPod counts each node in at most one issue. The list contains at most 20 issues. If more than 20 different problems exist, the list shows the 19 that affect the most nodes, and the 20th issue has the code Other and counts the nodes that the remaining problems affect.
+        Issues: {ExtensionHealthIssue}
+    end
+
     -- A summary of an extension's installation across the nodes of a SageMaker HyperPod cluster.
     record ExtensionNodeSummary
         -- The number of nodes in your cluster that the extension targets. SageMaker HyperPod targets every running node in your cluster, including nodes that you add after you create the extension.
         TotalCount: number
-        -- The number of nodes that are running the extension's current version and configuration. While SageMaker HyperPod creates or updates the extension, ActiveCount is lower than TotalCount.
+        -- The number of nodes that are running the extension's current version and configuration. Nodes that report the extension as unhealthy aren't counted. While SageMaker HyperPod creates or updates the extension, ActiveCount is lower than TotalCount. To see why nodes aren't counted, see Health in DescribeClusterExtension.
         ActiveCount: number
     end
 
@@ -12028,6 +12132,8 @@ local record M
         ExtensionDetails: ExtensionDetails
         -- A summary of how many nodes in your cluster the extension targets, and how many of them run the extension's current version and configuration.
         NodeSummary: ExtensionNodeSummary
+        -- The problems that affect the extension on the cluster's nodes, grouped by cause, with the number of nodes that each problem affects. Use it to find out why ActiveCount is lower than TotalCount, or why the status is Degraded, CreateFailed, or UpdateFailed. SageMaker HyperPod omits Health when no node has a problem. Nodes where SageMaker HyperPod hasn't finished installing or updating the extension aren't counted in any issue, unless an earlier attempt failed on them.
+        Health: ExtensionHealth
     end
 
     record DescribeClusterNodeInput
@@ -12042,6 +12148,30 @@ local record M
     record DescribeClusterNodeOutput
         -- The details of the SageMaker HyperPod cluster node.
         NodeDetails: ClusterNodeDetails
+    end
+
+    record DescribeClusterOperationInput
+        -- The name or Amazon Resource Name (ARN) of the HyperPod cluster associated with the operation.
+        ClusterName: string
+        -- The unique identifier (UUID) of the operation to describe. This ID can be obtained from the ListClusterOperations operation.
+        OperationId: string
+    end
+
+    record DescribeClusterOperationOutput
+        -- The unique identifier (UUID) of the operation.
+        OperationId: string
+        -- The Amazon Resource Name (ARN) of the HyperPod cluster associated with the operation.
+        ClusterArn: string
+        -- The type of the operation. Valid values are Scaling or DeepHealthCheck.
+        Type: string
+        -- The current status of the operation. Valid values are InProgress, Superseded, or Done.
+        Status: string
+        -- The timestamp when the operation was created.
+        CreationTime: number
+        -- The per-instance-group scaling details for the operation. This field is populated when the operation Type is Scaling.
+        ScalingDetails: {ClusterOperationScalingDetails}
+        -- The deep health check details for the operation. This field is populated when the operation Type is DeepHealthCheck.
+        DeepHealthCheckDetails: {InstanceGroupHealthCheckConfiguration}
     end
 
     record DescribeClusterSchedulerConfigInput
@@ -16192,6 +16322,12 @@ local record M
         CreationTime: number
     end
 
+    -- A version of an extension that you can install on a SageMaker HyperPod cluster.
+    record ExtensionVersionSummary
+        -- The version of the extension, in MAJOR.MINOR.PATCH format, for example 1.0.0.
+        ExtensionVersion: string
+    end
+
     -- The container for the metadata for Fail step.
     record FailStepMetadata
         -- A message that you define and then is processed and rendered by the Fail step when the error occurs.
@@ -17454,6 +17590,8 @@ local record M
         SortOrder: string
         -- The type of resource for which to filter events. Valid values are Cluster, InstanceGroup, or Instance.
         ResourceType: string
+        -- The unique identifier (UUID) of a cluster operation for which to filter events. If specified, only events associated with this operation are returned. This ID can be obtained from the ListClusterOperations operation.
+        OperationId: string
         -- The maximum number of events to return in the response. Valid range is 1 to 100.
         MaxResults: number
         -- A token to retrieve the next set of results. This token is obtained from the output of a previous ListClusterEvents call.
@@ -17487,6 +17625,22 @@ local record M
         NextToken: string
     end
 
+    record ListClusterExtensionVersionsInput
+        -- The name of the extension whose versions you want to list, for example sagemaker-observability.
+        ExtensionName: string
+        -- The maximum number of versions to return in the response. If you don't specify a value, SageMaker HyperPod returns up to 100 versions.
+        MaxResults: number
+        -- If the result of the previous ListClusterExtensionVersions request was truncated, the response includes a NextToken. To retrieve the next set of versions, use the token in the next request.
+        NextToken: string
+    end
+
+    record ListClusterExtensionVersionsOutput
+        -- The versions of the extension that you can install, from the highest version to the lowest.
+        ExtensionVersions: {ExtensionVersionSummary}
+        -- If the response is truncated, a token that you can use in the next request to retrieve the next set of versions.
+        NextToken: string
+    end
+
     record ListClusterNodesInput
         -- The string name or the Amazon Resource Name (ARN) of the SageMaker HyperPod cluster in which you want to retrieve the list of nodes.
         ClusterName: string
@@ -17513,6 +17667,34 @@ local record M
         NextToken: string
         -- The summaries of listed instances in a SageMaker HyperPod cluster
         ClusterNodeSummaries: {ClusterNodeSummary}
+    end
+
+    record ListClusterOperationsInput
+        -- The name or Amazon Resource Name (ARN) of the HyperPod cluster for which to list operations.
+        ClusterName: string
+        -- The operation status to filter by. If specified, only operations with this status are returned. Valid values are InProgress, Superseded, or Done.
+        Status: string
+        -- The operation type to filter by. If specified, only operations of this type are returned. Valid values are Scaling or DeepHealthCheck.
+        Type: string
+        -- The start of the time range for filtering operations. Only operations created after this time are included in the results.
+        CreationTimeAfter: number
+        -- The end of the time range for filtering operations. Only operations created before this time are included in the results.
+        CreationTimeBefore: number
+        -- The field to use for sorting the operation list. Currently, the only supported value is CreationTime.
+        SortBy: string
+        -- The order in which to sort the results. Valid values are Ascending or Descending (the default is Descending).
+        SortOrder: string
+        -- The maximum number of operations to return in the response. Valid range is 1 to 100.
+        MaxResults: number
+        -- A token to retrieve the next set of results. This token is obtained from the output of a previous ListClusterOperations call.
+        NextToken: string
+    end
+
+    record ListClusterOperationsOutput
+        -- A token to retrieve the next set of results. Include this token in subsequent ListClusterOperations calls to fetch more operations.
+        NextToken: string
+        -- A list of operation summaries matching the specified criteria.
+        ClusterOperationSummaries: {ClusterOperationSummary}
     end
 
     record ListClustersInput

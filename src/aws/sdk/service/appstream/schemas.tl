@@ -92,6 +92,8 @@ M.ApplicationAttributes = schema.new({ type = "list", list_member = prelude.Stri
 
 M.FleetAttributes = schema.new({ type = "list", list_member = prelude.String })
 
+M.ImageBuilderAttributes = schema.new({ type = "list", list_member = prelude.String })
+
 M.StackAttributes = schema.new({ type = "list", list_member = prelude.String })
 
 M.ThemeAttributes = schema.new({ type = "list", list_member = prelude.String })
@@ -263,6 +265,18 @@ M.AgentAccessConfig = schema.new({
             name = "ScreenshotsUploadEnabled",
             target_id = prelude.Boolean.id,
         }),
+        ReplaySessionEnabled = schema.new({
+            id = id.from(_N, "AgentAccessConfig", "ReplaySessionEnabled"),
+            type = "boolean",
+            name = "ReplaySessionEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "AgentAccessConfig", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+        }),
         ScreenResolution = schema.new({
             id = id.from(_N, "AgentAccessConfig", "ScreenResolution"),
             type = "string",
@@ -312,6 +326,18 @@ M.AgentAccessConfigForUpdate = schema.new({
             type = "boolean",
             name = "ScreenshotsUploadEnabled",
             target_id = prelude.Boolean.id,
+        }),
+        ReplaySessionEnabled = schema.new({
+            id = id.from(_N, "AgentAccessConfigForUpdate", "ReplaySessionEnabled"),
+            type = "boolean",
+            name = "ReplaySessionEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "AgentAccessConfigForUpdate", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
         }),
         ScreenResolution = schema.new({
             id = id.from(_N, "AgentAccessConfigForUpdate", "ScreenResolution"),
@@ -2828,6 +2854,59 @@ M.CreateFleetOutput = schema.new({
     },
 })
 
+M.ImageBuilderAgentAccessConfig = schema.new({
+    id = id.from(_N, "ImageBuilderAgentAccessConfig"),
+    type = "structure",
+    members = {
+        Settings = schema.new({
+            id = id.from(_N, "ImageBuilderAgentAccessConfig", "Settings"),
+            type = "list",
+            name = "Settings",
+            target_id = prelude.Document.id,
+            list_member = M.AgentAccessSetting,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        S3BucketArn = schema.new({
+            id = id.from(_N, "ImageBuilderAgentAccessConfig", "S3BucketArn"),
+            type = "string",
+            name = "S3BucketArn",
+            target_id = prelude.String.id,
+        }),
+        ScreenshotsUploadEnabled = schema.new({
+            id = id.from(_N, "ImageBuilderAgentAccessConfig", "ScreenshotsUploadEnabled"),
+            type = "boolean",
+            name = "ScreenshotsUploadEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        ScreenResolution = schema.new({
+            id = id.from(_N, "ImageBuilderAgentAccessConfig", "ScreenResolution"),
+            type = "string",
+            name = "ScreenResolution",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ScreenImageFormat = schema.new({
+            id = id.from(_N, "ImageBuilderAgentAccessConfig", "ScreenImageFormat"),
+            type = "string",
+            name = "ScreenImageFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UserControlMode = schema.new({
+            id = id.from(_N, "ImageBuilderAgentAccessConfig", "UserControlMode"),
+            type = "string",
+            name = "UserControlMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CreateImageBuilderInput = schema.new({
     id = id.from(_N, "CreateImageBuilderRequest"),
     type = "structure",
@@ -2947,6 +3026,13 @@ M.CreateImageBuilderInput = schema.new({
             type = "boolean",
             name = "DisableIMDSV1",
             target_id = prelude.Boolean.id,
+        }),
+        AgentAccessConfig = schema.new({
+            id = id.from(_N, "CreateImageBuilderInput", "AgentAccessConfig"),
+            type = "structure",
+            name = "AgentAccessConfig",
+            target_id = id.from(_N, "ImageBuilderAgentAccessConfig"),
+            target = M.ImageBuilderAgentAccessConfig,
         }),
     },
 })
@@ -3135,6 +3221,13 @@ M.ImageBuilder = schema.new({
             type = "boolean",
             name = "DisableIMDSV1",
             target_id = prelude.Boolean.id,
+        }),
+        AgentAccessConfig = schema.new({
+            id = id.from(_N, "ImageBuilder", "AgentAccessConfig"),
+            type = "structure",
+            name = "AgentAccessConfig",
+            target_id = id.from(_N, "ImageBuilderAgentAccessConfig"),
+            target = M.ImageBuilderAgentAccessConfig,
         }),
     },
 })
@@ -6083,6 +6176,50 @@ M.GetExportImageTaskOutput = schema.new({
     },
 })
 
+M.ImageBuilderAgentAccessConfigForUpdate = schema.new({
+    id = id.from(_N, "ImageBuilderAgentAccessConfigForUpdate"),
+    type = "structure",
+    members = {
+        Settings = schema.new({
+            id = id.from(_N, "ImageBuilderAgentAccessConfigForUpdate", "Settings"),
+            type = "list",
+            name = "Settings",
+            target_id = prelude.Document.id,
+            list_member = M.AgentAccessSetting,
+        }),
+        S3BucketArn = schema.new({
+            id = id.from(_N, "ImageBuilderAgentAccessConfigForUpdate", "S3BucketArn"),
+            type = "string",
+            name = "S3BucketArn",
+            target_id = prelude.String.id,
+        }),
+        ScreenshotsUploadEnabled = schema.new({
+            id = id.from(_N, "ImageBuilderAgentAccessConfigForUpdate", "ScreenshotsUploadEnabled"),
+            type = "boolean",
+            name = "ScreenshotsUploadEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        ScreenResolution = schema.new({
+            id = id.from(_N, "ImageBuilderAgentAccessConfigForUpdate", "ScreenResolution"),
+            type = "string",
+            name = "ScreenResolution",
+            target_id = prelude.String.id,
+        }),
+        ScreenImageFormat = schema.new({
+            id = id.from(_N, "ImageBuilderAgentAccessConfigForUpdate", "ScreenImageFormat"),
+            type = "string",
+            name = "ScreenImageFormat",
+            target_id = prelude.String.id,
+        }),
+        UserControlMode = schema.new({
+            id = id.from(_N, "ImageBuilderAgentAccessConfigForUpdate", "UserControlMode"),
+            type = "string",
+            name = "UserControlMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListAssociatedFleetsInput = schema.new({
     id = id.from(_N, "ListAssociatedFleetsRequest"),
     type = "structure",
@@ -7009,6 +7146,62 @@ M.UpdateFleetOutput = schema.new({
             name = "Fleet",
             target_id = id.from(_N, "Fleet"),
             target = M.Fleet,
+        }),
+    },
+})
+
+M.UpdateImageBuilderInput = schema.new({
+    id = id.from(_N, "UpdateImageBuilderRequest"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "UpdateImageBuilderInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateImageBuilderInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        DisplayName = schema.new({
+            id = id.from(_N, "UpdateImageBuilderInput", "DisplayName"),
+            type = "string",
+            name = "DisplayName",
+            target_id = prelude.String.id,
+        }),
+        AgentAccessConfig = schema.new({
+            id = id.from(_N, "UpdateImageBuilderInput", "AgentAccessConfig"),
+            type = "structure",
+            name = "AgentAccessConfig",
+            target_id = id.from(_N, "ImageBuilderAgentAccessConfigForUpdate"),
+            target = M.ImageBuilderAgentAccessConfigForUpdate,
+        }),
+        AttributesToDelete = schema.new({
+            id = id.from(_N, "UpdateImageBuilderInput", "AttributesToDelete"),
+            type = "list",
+            name = "AttributesToDelete",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.UpdateImageBuilderOutput = schema.new({
+    id = id.from(_N, "UpdateImageBuilderResult"),
+    type = "structure",
+    members = {
+        ImageBuilder = schema.new({
+            id = id.from(_N, "UpdateImageBuilderOutput", "ImageBuilder"),
+            type = "structure",
+            name = "ImageBuilder",
+            target_id = id.from(_N, "ImageBuilder"),
+            target = M.ImageBuilder,
         }),
     },
 })
@@ -8222,6 +8415,17 @@ M.UpdateFleet = schema.operation({
     id = id.from("com.amazonaws.appstream", "UpdateFleet"),
     input = M.UpdateFleetInput,
     output = M.UpdateFleetOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateImageBuilder = schema.operation({
+    id = id.from("com.amazonaws.appstream", "UpdateImageBuilder"),
+    input = M.UpdateImageBuilderInput,
+    output = M.UpdateImageBuilderOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

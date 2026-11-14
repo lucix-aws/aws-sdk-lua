@@ -128,6 +128,8 @@ M.SelfServiceConversationHistoryList = schema.new({ type = "list", list_member =
 
 M.CustomAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.CaseAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.GroupingValues = schema.new({ type = "list", list_member = prelude.String })
 
 M.MessageTemplateAttributeTypeList = schema.new({ type = "list", list_member = prelude.String })
@@ -155,6 +157,10 @@ M.JSONDocumentList = schema.new({ type = "list", list_member = prelude.Document 
 M.EmailHeaders = schema.new({ type = "list", list_member = M.EmailHeader })
 
 M.WhatsAppMessageTemplateComponents = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProfileRecommendations = schema.new({ type = "list", list_member = M.ProfileRecommendation })
+
+M.CalculatedAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.UrlFilterList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -193,6 +199,8 @@ M.DataSummaryList = schema.new({ type = "list", list_member = M.DataSummary })
 M.ToolExampleList = schema.new({ type = "list", list_member = prelude.String })
 
 M.GuardrailPolicyResultList = schema.new({ type = "list", list_member = M.GuardrailPolicyResult })
+
+M.ProfileCatalogItemAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.MultiAgentExampleList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -10126,6 +10134,116 @@ M.MessageTemplateContentProvider = schema.new({
     },
 })
 
+M.ProfileCatalogItem = schema.new({
+    id = id.from(_N, "ProfileCatalogItem"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "ProfileCatalogItem", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "ProfileCatalogItem", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        code = schema.new({
+            id = id.from(_N, "ProfileCatalogItem", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+        }),
+        type = schema.new({
+            id = id.from(_N, "ProfileCatalogItem", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        category = schema.new({
+            id = id.from(_N, "ProfileCatalogItem", "category"),
+            type = "string",
+            name = "category",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "ProfileCatalogItem", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        additionalInformation = schema.new({
+            id = id.from(_N, "ProfileCatalogItem", "additionalInformation"),
+            type = "string",
+            name = "additionalInformation",
+            target_id = prelude.String.id,
+        }),
+        imageLink = schema.new({
+            id = id.from(_N, "ProfileCatalogItem", "imageLink"),
+            type = "string",
+            name = "imageLink",
+            target_id = prelude.String.id,
+        }),
+        link = schema.new({
+            id = id.from(_N, "ProfileCatalogItem", "link"),
+            type = "string",
+            name = "link",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "ProfileCatalogItem", "createdAt"),
+            type = "string",
+            name = "createdAt",
+            target_id = prelude.String.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "ProfileCatalogItem", "updatedAt"),
+            type = "string",
+            name = "updatedAt",
+            target_id = prelude.String.id,
+        }),
+        price = schema.new({
+            id = id.from(_N, "ProfileCatalogItem", "price"),
+            type = "string",
+            name = "price",
+            target_id = prelude.String.id,
+        }),
+        attributes = schema.new({
+            id = id.from(_N, "ProfileCatalogItem", "attributes"),
+            type = "map",
+            name = "attributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ProfileRecommendation = schema.new({
+    id = id.from(_N, "ProfileRecommendation"),
+    type = "structure",
+    members = {
+        score = schema.new({
+            id = id.from(_N, "ProfileRecommendation", "score"),
+            type = "double",
+            name = "score",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        catalogItem = schema.new({
+            id = id.from(_N, "ProfileRecommendation", "catalogItem"),
+            type = "structure",
+            name = "catalogItem",
+            target_id = id.from(_N, "ProfileCatalogItem"),
+            target = M.ProfileCatalogItem,
+        }),
+    },
+})
+
 M.CustomerProfileAttributes = schema.new({
     id = id.from(_N, "CustomerProfileAttributes"),
     type = "structure",
@@ -10480,6 +10598,21 @@ M.CustomerProfileAttributes = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        recommendations = schema.new({
+            id = id.from(_N, "CustomerProfileAttributes", "recommendations"),
+            type = "list",
+            name = "recommendations",
+            target_id = prelude.Document.id,
+            list_member = M.ProfileRecommendation,
+        }),
+        calculatedAttributes = schema.new({
+            id = id.from(_N, "CustomerProfileAttributes", "calculatedAttributes"),
+            type = "map",
+            name = "calculatedAttributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
     },
 })
 
@@ -10552,6 +10685,14 @@ M.MessageTemplateAttributes = schema.new({
             id = id.from(_N, "MessageTemplateAttributes", "customAttributes"),
             type = "map",
             name = "customAttributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        caseAttributes = schema.new({
+            id = id.from(_N, "MessageTemplateAttributes", "caseAttributes"),
+            type = "map",
+            name = "caseAttributes",
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,

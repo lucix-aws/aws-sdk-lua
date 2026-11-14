@@ -6922,6 +6922,12 @@ M.UpdateResourceGatewayInput = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        resourceConfigDnsResolution = schema.new({
+            id = id.from(_N, "UpdateResourceGatewayInput", "resourceConfigDnsResolution"),
+            type = "string",
+            name = "resourceConfigDnsResolution",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -6977,6 +6983,12 @@ M.UpdateResourceGatewayOutput = schema.new({
             id = id.from(_N, "UpdateResourceGatewayOutput", "ipAddressType"),
             type = "string",
             name = "ipAddressType",
+            target_id = prelude.String.id,
+        }),
+        resourceConfigDnsResolution = schema.new({
+            id = id.from(_N, "UpdateResourceGatewayOutput", "resourceConfigDnsResolution"),
+            type = "string",
+            name = "resourceConfigDnsResolution",
             target_id = prelude.String.id,
         }),
     },

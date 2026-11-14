@@ -1705,6 +1705,15 @@ M.Campaign = schema.new({
             target_id = id.from(_N, "CommunicationLimitsConfig"),
             target = M.CommunicationLimitsConfig,
         }),
+        lastModifiedTime = schema.new({
+            id = id.from(_N, "Campaign", "lastModifiedTime"),
+            type = "timestamp",
+            name = "lastModifiedTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
         tags = schema.new({
             id = id.from(_N, "Campaign", "tags"),
             type = "map",
@@ -2178,6 +2187,15 @@ M.CampaignSummary = schema.new({
             type = "string",
             name = "connectCampaignFlowArn",
             target_id = prelude.String.id,
+        }),
+        lastModifiedTime = schema.new({
+            id = id.from(_N, "CampaignSummary", "lastModifiedTime"),
+            type = "timestamp",
+            name = "lastModifiedTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
         }),
     },
 })

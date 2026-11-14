@@ -40,4 +40,58 @@ function M.items_list_network_connectors(client, input)
     })
 end
 
+--- Returns a page iterator for listRuntimeAliases.
+function M.pages_list_runtime_aliases(client, input)
+    return paginator.pages(client, "listRuntimeAliases", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listRuntimeAliases.
+function M.items_list_runtime_aliases(client, input)
+    return paginator.items(client, "listRuntimeAliases", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listRuntimeVersions.
+function M.pages_list_runtime_versions(client, input)
+    return paginator.pages(client, "listRuntimeVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listRuntimeVersions.
+function M.items_list_runtime_versions(client, input)
+    return paginator.items(client, "listRuntimeVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listRuntimes.
+function M.pages_list_runtimes(client, input)
+    return paginator.pages(client, "listRuntimes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listRuntimes.
+function M.items_list_runtimes(client, input)
+    return paginator.items(client, "listRuntimes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
 return M

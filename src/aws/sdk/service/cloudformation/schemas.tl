@@ -4956,6 +4956,12 @@ M.Stack = schema.new({
             target_id = prelude.Document.id,
             list_member = M.OperationEntry,
         }),
+        AliasName = schema.new({
+            id = id.from(_N, "Stack", "AliasName"),
+            type = "string",
+            name = "AliasName",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -8994,6 +9000,24 @@ M.RegisterTypeOutput = schema.new({
     },
 })
 
+M.RemoveAliasInput = schema.new({
+    id = id.from(_N, "RemoveAliasInput"),
+    type = "structure",
+    members = {
+        AliasName = schema.new({
+            id = id.from(_N, "RemoveAliasInput", "AliasName"),
+            type = "string",
+            name = "AliasName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RemoveAliasOutput = prelude.Unit
+
 M.RollbackStackInput = schema.new({
     id = id.from(_N, "RollbackStackInput"),
     type = "structure",
@@ -9053,6 +9077,33 @@ M.RollbackStackOutput = schema.new({
         }),
     },
 })
+
+M.SetAliasInput = schema.new({
+    id = id.from(_N, "SetAliasInput"),
+    type = "structure",
+    members = {
+        StackName = schema.new({
+            id = id.from(_N, "SetAliasInput", "StackName"),
+            type = "string",
+            name = "StackName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AliasName = schema.new({
+            id = id.from(_N, "SetAliasInput", "AliasName"),
+            type = "string",
+            name = "AliasName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SetAliasOutput = prelude.Unit
 
 M.SetStackPolicyInput = schema.new({
     id = id.from(_N, "SetStackPolicyInput"),
@@ -10792,10 +10843,32 @@ M.RegisterType = schema.operation({
     },
 })
 
+M.RemoveAlias = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "RemoveAlias"),
+    input = M.RemoveAliasInput,
+    output = M.RemoveAliasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.RollbackStack = schema.operation({
     id = id.from("com.amazonaws.cloudformation", "RollbackStack"),
     input = M.RollbackStackInput,
     output = M.RollbackStackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetAlias = schema.operation({
+    id = id.from("com.amazonaws.cloudformation", "SetAlias"),
+    input = M.SetAliasInput,
+    output = M.SetAliasOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

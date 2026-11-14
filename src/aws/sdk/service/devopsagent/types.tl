@@ -416,6 +416,14 @@ local record M
     record MCPServerSplunkConfiguration
     end
 
+    -- Configuration for bidirectional communication with a Microsoft Teams channel. When enabled, the agent receives and responds to mentions in the configured channel in addition to sending notifications.
+    record MSTeamsBidirectionalConfiguration
+        -- The Amazon Resource Name (ARN) of the IAM role that the agent assumes to exchange messages with the Microsoft Teams team for this association.
+        roleArn: string
+        -- Specifies whether bidirectional communication is enabled for this association. If you set this value to true, you can mention the agent in the configured Microsoft Teams channel and it responds in that channel. If you omit this parameter or set it to false, the agent only sends one-way notifications.
+        enabled: boolean
+    end
+
     -- Represents a channel in a Microsoft Teams team that the DevOps Agent service can send notifications to.
     record MSTeamsChannel
         -- The name of the Microsoft Teams channel.
@@ -440,6 +448,8 @@ local record M
         teamName: string
         -- The Microsoft Teams channels that receive agent notifications.
         transmissionTarget: MSTeamsTransmissionTarget
+        -- The bidirectional communication configuration for the Microsoft Teams integration. Provide this configuration with enabled set to true to allow users to interact with the agent directly from Microsoft Teams.
+        bidirectional: MSTeamsBidirectionalConfiguration
     end
 
     -- Configuration for Pagerduty integration.

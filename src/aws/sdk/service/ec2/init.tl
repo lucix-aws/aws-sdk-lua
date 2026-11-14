@@ -46,6 +46,7 @@ local record Client
     associateIpamByoasn: function(Client, types.AssociateIpamByoasnInput, ? base_client.InvokeOptions): async.Operation<types.AssociateIpamByoasnOutput>
     associateIpamResourceDiscovery: function(Client, types.AssociateIpamResourceDiscoveryInput, ? base_client.InvokeOptions): async.Operation<types.AssociateIpamResourceDiscoveryOutput>
     associateNatGatewayAddress: function(Client, types.AssociateNatGatewayAddressInput, ? base_client.InvokeOptions): async.Operation<types.AssociateNatGatewayAddressOutput>
+    associateNetworkingFlexCostAllocationPolicy: function(Client, types.AssociateNetworkingFlexCostAllocationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.AssociateNetworkingFlexCostAllocationPolicyOutput>
     associateRouteServer: function(Client, types.AssociateRouteServerInput, ? base_client.InvokeOptions): async.Operation<types.AssociateRouteServerOutput>
     associateRouteTable: function(Client, types.AssociateRouteTableInput, ? base_client.InvokeOptions): async.Operation<types.AssociateRouteTableOutput>
     associateSecurityGroupVpc: function(Client, types.AssociateSecurityGroupVpcInput, ? base_client.InvokeOptions): async.Operation<types.AssociateSecurityGroupVpcOutput>
@@ -136,6 +137,7 @@ local record Client
     createNatGateway: function(Client, types.CreateNatGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateNatGatewayOutput>
     createNetworkAcl: function(Client, types.CreateNetworkAclInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkAclOutput>
     createNetworkAclEntry: function(Client, types.CreateNetworkAclEntryInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkAclEntryOutput>
+    createNetworkingFlexCostAllocationPolicy: function(Client, types.CreateNetworkingFlexCostAllocationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkingFlexCostAllocationPolicyOutput>
     createNetworkInsightsAccessScope: function(Client, types.CreateNetworkInsightsAccessScopeInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkInsightsAccessScopeOutput>
     createNetworkInsightsPath: function(Client, types.CreateNetworkInsightsPathInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkInsightsPathOutput>
     createNetworkInterface: function(Client, types.CreateNetworkInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateNetworkInterfaceOutput>
@@ -236,6 +238,7 @@ local record Client
     deleteNatGateway: function(Client, types.DeleteNatGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNatGatewayOutput>
     deleteNetworkAcl: function(Client, types.DeleteNetworkAclInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkAclOutput>
     deleteNetworkAclEntry: function(Client, types.DeleteNetworkAclEntryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkAclEntryOutput>
+    deleteNetworkingFlexCostAllocationPolicies: function(Client, types.DeleteNetworkingFlexCostAllocationPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkingFlexCostAllocationPoliciesOutput>
     deleteNetworkInsightsAccessScope: function(Client, types.DeleteNetworkInsightsAccessScopeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkInsightsAccessScopeOutput>
     deleteNetworkInsightsAccessScopeAnalysis: function(Client, types.DeleteNetworkInsightsAccessScopeAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkInsightsAccessScopeAnalysisOutput>
     deleteNetworkInsightsAnalysis: function(Client, types.DeleteNetworkInsightsAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkInsightsAnalysisOutput>
@@ -407,6 +410,8 @@ local record Client
     describeMovingAddresses: function(Client, types.DescribeMovingAddressesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMovingAddressesOutput>
     describeNatGateways: function(Client, types.DescribeNatGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNatGatewaysOutput>
     describeNetworkAcls: function(Client, types.DescribeNetworkAclsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNetworkAclsOutput>
+    describeNetworkingFlexCostAllocationPolicies: function(Client, types.DescribeNetworkingFlexCostAllocationPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNetworkingFlexCostAllocationPoliciesOutput>
+    describeNetworkingFlexCostAllocationPolicyAssociations: function(Client, types.DescribeNetworkingFlexCostAllocationPolicyAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNetworkingFlexCostAllocationPolicyAssociationsOutput>
     describeNetworkInsightsAccessScopeAnalyses: function(Client, types.DescribeNetworkInsightsAccessScopeAnalysesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNetworkInsightsAccessScopeAnalysesOutput>
     describeNetworkInsightsAccessScopes: function(Client, types.DescribeNetworkInsightsAccessScopesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNetworkInsightsAccessScopesOutput>
     describeNetworkInsightsAnalyses: function(Client, types.DescribeNetworkInsightsAnalysesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNetworkInsightsAnalysesOutput>
@@ -534,6 +539,7 @@ local record Client
     disassociateIpamByoasn: function(Client, types.DisassociateIpamByoasnInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateIpamByoasnOutput>
     disassociateIpamResourceDiscovery: function(Client, types.DisassociateIpamResourceDiscoveryInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateIpamResourceDiscoveryOutput>
     disassociateNatGatewayAddress: function(Client, types.DisassociateNatGatewayAddressInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateNatGatewayAddressOutput>
+    disassociateNetworkingFlexCostAllocationPolicy: function(Client, types.DisassociateNetworkingFlexCostAllocationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateNetworkingFlexCostAllocationPolicyOutput>
     disassociateRouteServer: function(Client, types.DisassociateRouteServerInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateRouteServerOutput>
     disassociateRouteTable: function(Client, types.DisassociateRouteTableInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateRouteTableOutput>
     disassociateSecurityGroupVpc: function(Client, types.DisassociateSecurityGroupVpcInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateSecurityGroupVpcOutput>
@@ -626,6 +632,7 @@ local record Client
     getManagedPrefixListAssociations: function(Client, types.GetManagedPrefixListAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedPrefixListAssociationsOutput>
     getManagedPrefixListEntries: function(Client, types.GetManagedPrefixListEntriesInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedPrefixListEntriesOutput>
     getManagedResourceVisibility: function(Client, types.GetManagedResourceVisibilityInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedResourceVisibilityOutput>
+    getNetworkingFlexCostAllocationPolicyVersions: function(Client, types.GetNetworkingFlexCostAllocationPolicyVersionsInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkingFlexCostAllocationPolicyVersionsOutput>
     getNetworkInsightsAccessScopeAnalysisFindings: function(Client, types.GetNetworkInsightsAccessScopeAnalysisFindingsInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkInsightsAccessScopeAnalysisFindingsOutput>
     getNetworkInsightsAccessScopeContent: function(Client, types.GetNetworkInsightsAccessScopeContentInput, ? base_client.InvokeOptions): async.Operation<types.GetNetworkInsightsAccessScopeContentOutput>
     getPasswordData: function(Client, types.GetPasswordDataInput, ? base_client.InvokeOptions): async.Operation<types.GetPasswordDataOutput>
@@ -707,6 +714,7 @@ local record Client
     modifyManagedPrefixList: function(Client, types.ModifyManagedPrefixListInput, ? base_client.InvokeOptions): async.Operation<types.ModifyManagedPrefixListOutput>
     modifyManagedResourceVisibility: function(Client, types.ModifyManagedResourceVisibilityInput, ? base_client.InvokeOptions): async.Operation<types.ModifyManagedResourceVisibilityOutput>
     modifyMetricCategory: function(Client, types.ModifyMetricCategoryInput, ? base_client.InvokeOptions): async.Operation<types.ModifyMetricCategoryOutput>
+    modifyNetworkingFlexCostAllocationPolicy: function(Client, types.ModifyNetworkingFlexCostAllocationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.ModifyNetworkingFlexCostAllocationPolicyOutput>
     modifyNetworkInterfaceAttribute: function(Client, types.ModifyNetworkInterfaceAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ModifyNetworkInterfaceAttributeOutput>
     modifyPrivateDnsNameOptions: function(Client, types.ModifyPrivateDnsNameOptionsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyPrivateDnsNameOptionsOutput>
     modifyPublicIpDnsNameOptions: function(Client, types.ModifyPublicIpDnsNameOptionsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyPublicIpDnsNameOptionsOutput>
@@ -987,6 +995,10 @@ end
 
 function C:associateNatGatewayAddress(input: types.AssociateNatGatewayAddressInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateNatGatewayAddressOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateNatGatewayAddress as schema.OperationSchema, input, options) as async.Operation<types.AssociateNatGatewayAddressOutput>
+end
+
+function C:associateNetworkingFlexCostAllocationPolicy(input: types.AssociateNetworkingFlexCostAllocationPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateNetworkingFlexCostAllocationPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateNetworkingFlexCostAllocationPolicy as schema.OperationSchema, input, options) as async.Operation<types.AssociateNetworkingFlexCostAllocationPolicyOutput>
 end
 
 function C:associateRouteServer(input: types.AssociateRouteServerInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateRouteServerOutput>
@@ -1347,6 +1359,10 @@ end
 
 function C:createNetworkAclEntry(input: types.CreateNetworkAclEntryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNetworkAclEntryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNetworkAclEntry as schema.OperationSchema, input, options) as async.Operation<types.CreateNetworkAclEntryOutput>
+end
+
+function C:createNetworkingFlexCostAllocationPolicy(input: types.CreateNetworkingFlexCostAllocationPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNetworkingFlexCostAllocationPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNetworkingFlexCostAllocationPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateNetworkingFlexCostAllocationPolicyOutput>
 end
 
 function C:createNetworkInsightsAccessScope(input: types.CreateNetworkInsightsAccessScopeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNetworkInsightsAccessScopeOutput>
@@ -1747,6 +1763,10 @@ end
 
 function C:deleteNetworkAclEntry(input: types.DeleteNetworkAclEntryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkAclEntryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNetworkAclEntry as schema.OperationSchema, input, options) as async.Operation<types.DeleteNetworkAclEntryOutput>
+end
+
+function C:deleteNetworkingFlexCostAllocationPolicies(input: types.DeleteNetworkingFlexCostAllocationPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkingFlexCostAllocationPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNetworkingFlexCostAllocationPolicies as schema.OperationSchema, input, options) as async.Operation<types.DeleteNetworkingFlexCostAllocationPoliciesOutput>
 end
 
 function C:deleteNetworkInsightsAccessScope(input: types.DeleteNetworkInsightsAccessScopeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNetworkInsightsAccessScopeOutput>
@@ -2433,6 +2453,14 @@ function C:describeNetworkAcls(input: types.DescribeNetworkAclsInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNetworkAcls as schema.OperationSchema, input, options) as async.Operation<types.DescribeNetworkAclsOutput>
 end
 
+function C:describeNetworkingFlexCostAllocationPolicies(input: types.DescribeNetworkingFlexCostAllocationPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNetworkingFlexCostAllocationPoliciesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNetworkingFlexCostAllocationPolicies as schema.OperationSchema, input, options) as async.Operation<types.DescribeNetworkingFlexCostAllocationPoliciesOutput>
+end
+
+function C:describeNetworkingFlexCostAllocationPolicyAssociations(input: types.DescribeNetworkingFlexCostAllocationPolicyAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNetworkingFlexCostAllocationPolicyAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNetworkingFlexCostAllocationPolicyAssociations as schema.OperationSchema, input, options) as async.Operation<types.DescribeNetworkingFlexCostAllocationPolicyAssociationsOutput>
+end
+
 function C:describeNetworkInsightsAccessScopeAnalyses(input: types.DescribeNetworkInsightsAccessScopeAnalysesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNetworkInsightsAccessScopeAnalysesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNetworkInsightsAccessScopeAnalyses as schema.OperationSchema, input, options) as async.Operation<types.DescribeNetworkInsightsAccessScopeAnalysesOutput>
 end
@@ -2941,6 +2969,10 @@ function C:disassociateNatGatewayAddress(input: types.DisassociateNatGatewayAddr
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateNatGatewayAddress as schema.OperationSchema, input, options) as async.Operation<types.DisassociateNatGatewayAddressOutput>
 end
 
+function C:disassociateNetworkingFlexCostAllocationPolicy(input: types.DisassociateNetworkingFlexCostAllocationPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateNetworkingFlexCostAllocationPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateNetworkingFlexCostAllocationPolicy as schema.OperationSchema, input, options) as async.Operation<types.DisassociateNetworkingFlexCostAllocationPolicyOutput>
+end
+
 function C:disassociateRouteServer(input: types.DisassociateRouteServerInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateRouteServerOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateRouteServer as schema.OperationSchema, input, options) as async.Operation<types.DisassociateRouteServerOutput>
 end
@@ -3309,6 +3341,10 @@ function C:getManagedResourceVisibility(input: types.GetManagedResourceVisibilit
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetManagedResourceVisibility as schema.OperationSchema, input, options) as async.Operation<types.GetManagedResourceVisibilityOutput>
 end
 
+function C:getNetworkingFlexCostAllocationPolicyVersions(input: types.GetNetworkingFlexCostAllocationPolicyVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetNetworkingFlexCostAllocationPolicyVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNetworkingFlexCostAllocationPolicyVersions as schema.OperationSchema, input, options) as async.Operation<types.GetNetworkingFlexCostAllocationPolicyVersionsOutput>
+end
+
 function C:getNetworkInsightsAccessScopeAnalysisFindings(input: types.GetNetworkInsightsAccessScopeAnalysisFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetNetworkInsightsAccessScopeAnalysisFindingsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNetworkInsightsAccessScopeAnalysisFindings as schema.OperationSchema, input, options) as async.Operation<types.GetNetworkInsightsAccessScopeAnalysisFindingsOutput>
 end
@@ -3631,6 +3667,10 @@ end
 
 function C:modifyMetricCategory(input: types.ModifyMetricCategoryInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyMetricCategoryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyMetricCategory as schema.OperationSchema, input, options) as async.Operation<types.ModifyMetricCategoryOutput>
+end
+
+function C:modifyNetworkingFlexCostAllocationPolicy(input: types.ModifyNetworkingFlexCostAllocationPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyNetworkingFlexCostAllocationPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyNetworkingFlexCostAllocationPolicy as schema.OperationSchema, input, options) as async.Operation<types.ModifyNetworkingFlexCostAllocationPolicyOutput>
 end
 
 function C:modifyNetworkInterfaceAttribute(input: types.ModifyNetworkInterfaceAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyNetworkInterfaceAttributeOutput>

@@ -264,6 +264,19 @@ local record M
         UpdateToken: string
     end
 
+    -- A NAT gateway that Network Firewall creates for a proxy mode firewall in one Availability Zone. You use this in CreateFirewall and AssociateSubnets.
+    -- To create a public NAT gateway, specify AllocationIds, and one PrivateIps address for each Elastic IP address. To create a private NAT gateway, specify only PrivateIps. You must specify at least one of them. Each Elastic IP address and private IP address can appear only once in a request.
+    -- The NAT gateway is a resource in your account. To change its IP addresses, use Amazon EC2 NAT gateway actions.
+    record NatGatewayCreateMapping
+        -- The ID of the subnet where Network Firewall creates the NAT gateway. The subnet must be in the firewall's VPC and can't be one of the firewall endpoint subnets. Each mapping must be in a different Availability Zone.
+        SubnetId: string
+        -- The allocation IDs of the Elastic IP addresses for a public NAT gateway, from 1 to 8. For each allocation ID, specify one address in PrivateIps. If you don't specify this, Network Firewall creates a private NAT gateway.
+        AllocationIds: {string}
+        -- The private IPv4 addresses of the NAT gateway. The addresses must be in the subnet that you specify and can't be the subnet's reserved addresses.
+        -- For a public NAT gateway, you must specify exactly one address for each Elastic IP address in AllocationIds, even if you specify only one. For a private NAT gateway, specify from 1 to 8 addresses. The first address is the primary address.
+        PrivateIps: {string}
+    end
+
     enum IPAddressType
         "DUALSTACK"
         "IPV4"
@@ -294,6 +307,9 @@ local record M
         FirewallName: string
         -- The IDs of the subnets that you want to associate with the firewall.
         SubnetMappings: {SubnetMapping}
+        -- The NAT gateways that Network Firewall creates for the Availability Zones that you add to a proxy mode firewall. For a proxy mode firewall, you must specify one mapping for each Availability Zone in SubnetMappings, and no other Availability Zones. Each NAT gateway subnet must be in the firewall's VPC and can't be one of the firewall endpoint subnets.
+        -- You can't specify this for a firewall that isn't a proxy mode firewall.
+        NatGatewayCreateMappings: {NatGatewayCreateMapping}
     end
 
     record AssociateSubnetsOutput
@@ -338,110 +354,15 @@ local record M
         -- A FAILED status indicates a non-recoverable state, and a ERROR status indicates an issue that you can fix.
         -- Depending on the error, it can take as many as 15 minutes to populate this field. For more information about the causes for failiure or errors and solutions available for this field, see Troubleshooting firewall endpoint failures in the Network Firewall Developer Guide.
         StatusMessage: string
-        -- The DNS name that resolves to the firewall endpoint in the subnet. This is populated for proxy mode firewalls, where clients direct traffic to the firewall's proxy using this name.
+        -- The proxy DNS name of a proxy mode firewall. Your clients send proxy requests to the firewall at this name. It's your ProxySettings
+        -- DomainName if you specified one, or a name that Network Firewall generates in the format proxy-id.nfw.region.amazonaws.com.
+        -- The firewall has one proxy DNS name for every Availability Zone and VPC that it serves. In each Availability Zone, the name resolves to the firewall endpoint in that Availability Zone, so traffic stays in your client's Availability Zone. Your clients must use the VPC's Route 53 Resolver.
         DnsName: string
     end
 
     -- The status of the firewall endpoint defined by a VpcEndpointAssociation.
     record AZSyncState
         Attachment: Attachment
-    end
-
-    -- The proxy rule group(s) to attach to the proxy configuration
-    record ProxyRuleGroupAttachment
-        -- The descriptive name of the proxy rule group. You can't change the name of a proxy rule group after you create it.
-        ProxyRuleGroupName: string
-        -- Where to insert a proxy rule group in a proxy configuration.
-        InsertPosition: number
-    end
-
-    record AttachRuleGroupsToProxyConfigurationInput
-        -- The descriptive name of the proxy configuration. You can't change the name of a proxy configuration after you create it.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyConfigurationName: string
-        -- The Amazon Resource Name (ARN) of a proxy configuration.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyConfigurationArn: string
-        -- The proxy rule group(s) to attach to the proxy configuration
-        RuleGroups: {ProxyRuleGroupAttachment}
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy configuration. The token marks the state of the proxy configuration resource at the time of the request.
-        -- To make changes to the proxy configuration, you provide the token in your request. Network Firewall uses the token to ensure that the proxy configuration hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy configuration again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
-    end
-
-    enum ProxyRulePhaseAction
-        "ALLOW"
-        "DENY"
-        "ALERT"
-    end
-
-    -- Evaluation points in the traffic flow where rules are applied. There are three phases in a traffic where the rule match is applied.
-    -- This data type is used specifically for the CreateProxyConfiguration and
-    -- UpdateProxyConfiguration APIs.
-    record ProxyConfigDefaultRulePhaseActionsRequest
-        -- Before domain resolution.
-        PreDNS: string
-        -- After DNS, before request.
-        PreREQUEST: string
-        -- After receiving response.
-        PostRESPONSE: string
-    end
-
-    -- Proxy rule group contained within a proxy configuration.
-    record ProxyConfigRuleGroup
-        -- The descriptive name of the proxy rule group. You can't change the name of a proxy rule group after you create it.
-        ProxyRuleGroupName: string
-        -- The Amazon Resource Name (ARN) of a proxy rule group.
-        ProxyRuleGroupArn: string
-        -- Proxy rule group type.
-        Type: string
-        -- Priority of the proxy rule group in the proxy configuration.
-        Priority: number
-    end
-
-    -- A key:value pair associated with an Amazon Web Services resource. The key:value pair can be anything you
-    -- define. Typically, the tag key represents a category (such as "environment") and the tag
-    -- value represents a specific value within that category (such as "test," "development," or
-    -- "production"). You can add up to 50 tags to each Amazon Web Services resource.
-    record Tag
-        -- The part of the key:value pair that defines a tag. You can use a tag key to describe a
-        -- category of information, such as "customer." Tag keys are case-sensitive.
-        Key: string
-        -- The part of the key:value pair that defines a tag. You can use a tag value to describe a
-        -- specific value within a category, such as "companyA" or "companyB." Tag values are
-        -- case-sensitive.
-        Value: string
-    end
-
-    -- A Proxy Configuration defines the monitoring and protection behavior for a Proxy. The details of the behavior are defined in the rule groups that you add to your configuration.
-    record ProxyConfiguration
-        -- The descriptive name of the proxy configuration. You can't change the name of a proxy configuration after you create it.
-        ProxyConfigurationName: string
-        -- The Amazon Resource Name (ARN) of a proxy configuration.
-        ProxyConfigurationArn: string
-        -- A description of the proxy configuration.
-        Description: string
-        -- Time the Proxy Configuration was created.
-        CreateTime: number
-        -- Time the Proxy Configuration was deleted.
-        DeleteTime: number
-        -- Proxy rule groups within the proxy configuration.
-        RuleGroups: {ProxyConfigRuleGroup}
-        -- Evaluation points in the traffic flow where rules are applied. There are three phases in a traffic where the rule match is applied.
-        -- Pre-DNS - before domain resolution.
-        -- Pre-Request - after DNS, before request.
-        -- Post-Response - after receiving response.
-        DefaultRulePhaseActions: ProxyConfigDefaultRulePhaseActionsRequest
-        -- The key:value pairs to associate with the resource.
-        Tags: {Tag}
-    end
-
-    record AttachRuleGroupsToProxyConfigurationOutput
-        -- The updated proxy configuration resource that reflects the updates from the request.
-        ProxyConfiguration: ProxyConfiguration
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy configuration. The token marks the state of the proxy configuration resource at the time of the request.
-        -- To make changes to the proxy configuration, you provide the token in your request. Network Firewall uses the token to ensure that the proxy configuration hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy configuration again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
     end
 
     -- High-level information about an Availability Zone where the firewall has an endpoint defined.
@@ -579,6 +500,20 @@ local record M
         "EKS"
     end
 
+    -- A key:value pair associated with an Amazon Web Services resource. The key:value pair can be anything you
+    -- define. Typically, the tag key represents a category (such as "environment") and the tag
+    -- value represents a specific value within that category (such as "test," "development," or
+    -- "production"). You can add up to 50 tags to each Amazon Web Services resource.
+    record Tag
+        -- The part of the key:value pair that defines a tag. You can use a tag key to describe a
+        -- category of information, such as "customer." Tag keys are case-sensitive.
+        Key: string
+        -- The part of the key:value pair that defines a tag. You can use a tag value to describe a
+        -- specific value within a category, such as "companyA" or "companyB." Tag values are
+        -- case-sensitive.
+        Value: string
+    end
+
     record CreateContainerAssociationInput
         -- The descriptive name of the container association. You can't change the name of a container association after you create it.
         ContainerAssociationName: string
@@ -639,12 +574,6 @@ local record M
         Type: string
     end
 
-    -- A NAT gateway that a proxy mode firewall uses to proxy traffic. This is used in CreateFirewall when NoSourcePreservation is TRUE.
-    record NatGatewayMapping
-        -- A unique identifier for the NAT gateway to use with proxy resources.
-        NatGatewayId: string
-    end
-
     enum ListenerPropertyType
         "HTTP"
         "HTTPS"
@@ -658,18 +587,32 @@ local record M
         Type: string
     end
 
-    -- The listener configuration for a proxy mode firewall. This specifies the ports and protocols on which the firewall's proxy listens for traffic.
+    -- The proxy settings of a proxy mode firewall: the ports and protocols on which the firewall's proxy listens for traffic, and optionally your own domain name and certificate.
     record ProxySettings
-        -- Listener properties for HTTP and HTTPS traffic.
+        -- The listeners of the firewall's proxy. Specify at least one listener, and at most one HTTP listener and one HTTPS listener. Each listener needs a port from 1 to 65535, and the two listeners must use different ports.
+        -- If you don't specify listeners when you create the firewall, the firewall listens for HTTP on port 3128 and HTTPS on port 8443.
         ListenerProperties: {ListenerProperty}
+        -- The Amazon Resource Name (ARN) of the certificate that the firewall's HTTPS proxy listener presents to clients. The certificate must be an Certificate Manager (ACM) certificate in the same account and Region as the firewall. Its subject alternative names must cover DomainName, either exactly or with a wildcard that matches exactly one label. For example, *.example.com covers proxy.example.com. If you don't specify this, Network Firewall uses a certificate that it manages for a domain name that it generates.
+        -- You manage and renew the certificate in ACM, and Network Firewall uses renewed certificates automatically. While the firewall uses the certificate, you can't delete it from ACM. Your clients must trust the certificate's certificate authority.
+        -- If you specify CertificateArn, you must also specify DomainName. You can set them only when you create the firewall. When you call UpdateProxySettings, specify the same values.
+        CertificateArn: string
+        -- The domain name that your clients use to reach the firewall's proxy. The name must have at least two labels and at most 253 characters. It can't contain a wildcard or use the proxy-id.nfw.region.amazonaws.com format, and the certificate in CertificateArn must cover it. If you don't specify this, Network Firewall generates a domain name.
+        -- Network Firewall creates the Route 53 private hosted zones that resolve this name to the firewall endpoints, so you don't need to configure DNS. A VPC can have only one private hosted zone with a given name. If a VPC that the firewall serves already has one with this name, Network Firewall can't set up the Availability Zones in that VPC.
+        -- If you specify DomainName, you must also specify CertificateArn. You can set them only when you create the firewall. When you call UpdateProxySettings, specify the same values.
+        DomainName: string
     end
 
-    -- Contains the VPC and subnets for a proxy mode firewall endpoint. You use it in CreateFirewall when NoSourcePreservation is TRUE, to specify where Network Firewall creates the firewall endpoint.
-    -- This differs from VpcEndpointAssociation, which defines additional secondary endpoints for a firewall in other VPCs.
+    enum TransparentFilteringNatScope
+        "NAT_ALL"
+        "NAT_NONE"
+    end
+
+    -- The VPC and subnets for the endpoints of a proxy mode firewall. You use this in CreateFirewall. Network Firewall creates the firewall endpoints and the firewall's NAT gateways in this VPC.
+    -- This differs from VpcEndpointAssociation, which defines additional endpoints for a firewall in other VPCs.
     record VpcEndpoint
-        -- The unique identifier of the VPC where Network Firewall creates the proxy mode firewall endpoint.
+        -- The ID of the VPC where Network Firewall creates the endpoints and NAT gateways of a proxy mode firewall.
         VpcId: string
-        -- The subnets in which Network Firewall creates the firewall endpoint for a proxy mode firewall. Each subnet must belong to a different Availability Zone in the VPC.
+        -- The subnets where Network Firewall creates the firewall endpoints of a proxy mode firewall. Specify one subnet for each Availability Zone, and a NAT gateway mapping in each of those Availability Zones.
         SubnetMappings: {SubnetMapping}
     end
 
@@ -716,18 +659,22 @@ local record M
         -- Optional. A setting indicating whether the firewall is protected against changes to its Availability Zone configuration. When set to TRUE, you cannot add or remove Availability Zones without first disabling this protection using UpdateAvailabilityZoneChangeProtection.
         -- Default value: FALSE
         AvailabilityZoneChangeProtection: boolean
-        -- The NAT gateways that the firewall uses to proxy traffic when NoSourcePreservation is TRUE. Network Firewall attaches the firewall to each NAT gateway that you specify, so that egress traffic is proxied through the NAT gateway.
-        NatGatewayMappings: {NatGatewayMapping}
-        -- The listener configuration for a proxy mode firewall, used when NoSourcePreservation is TRUE. This specifies the ports and protocols on which the firewall's proxy listens for traffic.
+        -- The NAT gateways that Network Firewall creates for a proxy mode firewall, one for each Availability Zone. When you specify this, you create a proxy mode firewall. Destinations see the IP address of the NAT gateway in the client's Availability Zone as the source of the traffic.
+        -- Specify one mapping for each Availability Zone in VpcEndpoint, and no other Availability Zones. Each NAT gateway subnet must be in the VpcEndpoint VPC and can't be one of the firewall endpoint subnets.
+        -- You need permission to call the Amazon EC2 CreateNatGateway action.
+        -- If Network Firewall can't set up an Availability Zone, for example because Amazon EC2 rejects the NAT gateway, it removes the Availability Zone from the firewall. It also deletes the NAT gateway that it created there. The Availability Zone's Attachment status is FAILED, and its status message explains why. You can add the Availability Zone again with AssociateSubnets. If no Availability Zone can be set up, the firewall status is FAILED.
+        NatGatewayCreateMappings: {NatGatewayCreateMapping}
+        -- The proxy settings for a proxy mode firewall: the ports and protocols on which the firewall's proxy listens for traffic, and optionally your own domain name and certificate. If you don't specify listeners, the firewall listens for HTTP on port 3128 and HTTPS on port 8443.
+        -- To change the listeners later, use UpdateProxySettings.
         ProxySettings: ProxySettings
-        -- Optional. Indicates whether the firewall operates in proxy mode, in which the source IP address of the traffic is not preserved. When set to TRUE, the firewall proxies traffic through a NAT gateway and the traffic reaching the destination uses the NAT gateway's IP address as the source.
-        -- When you set this to TRUE, you must specify NatGatewayMappings and VpcEndpoint instead of a top-level VpcId and SubnetMappings.
-        -- You can't change this setting after you create the firewall.
-        -- Default value: FALSE
-        NoSourcePreservation: boolean
-        -- The VPC and subnets for the firewall endpoint, used when NoSourcePreservation is TRUE. Network Firewall creates the firewall endpoint in the subnets that you specify here.
-        -- For proxy mode firewalls, provide the firewall's VPC and endpoint subnets through this parameter instead of the top-level VpcId and SubnetMappings.
+        -- The VPC and subnets for the endpoints of a proxy mode firewall. Network Firewall creates a firewall endpoint in each subnet that you specify. It also creates the firewall's NAT gateways in this VPC, in the subnets that you specify in NatGatewayCreateMappings.
+        -- To create a proxy mode firewall, you must specify VpcEndpoint and NatGatewayCreateMappings, and you must not specify the top-level VpcId and SubnetMappings. Specify one subnet for each Availability Zone where you want to use the firewall.
         VpcEndpoint: VpcEndpoint
+        -- How a proxy mode firewall handles traffic that isn't sent to its proxy listener. If you don't specify a value, the firewall uses NAT_ALL. You can choose from the following values:
+        -- NAT_ALL - After inspection, the firewall sends this traffic out through its NAT gateway, which translates the source address.
+        -- NAT_NONE - After inspection, the firewall returns this traffic to the firewall endpoint without address translation.
+        -- You can specify this only for a proxy mode firewall, and you can't change it after you create the firewall.
+        TransparentFilteringNatScope: string
     end
 
     -- A firewall defines the behavior of a firewall, the main VPC where the firewall is used, the Availability Zones where the firewall can be used, and one subnet to use for a firewall endpoint within each of the Availability Zones. The Availability Zones are defined implicitly in the subnet specifications.
@@ -782,14 +729,14 @@ local record M
         AvailabilityZoneMappings: {AvailabilityZoneMapping}
         -- A setting indicating whether the firewall is protected against changes to its Availability Zone configuration. When set to TRUE, you must first disable this protection before adding or removing Availability Zones.
         AvailabilityZoneChangeProtection: boolean
-        -- The NAT gateways that the firewall uses to proxy traffic. This is set for proxy mode firewalls, where NoSourcePreservation is TRUE.
-        NatGatewayMappings: {NatGatewayMapping}
-        -- The listener configuration for the firewall's proxy. This is set for proxy mode firewalls, where NoSourcePreservation is TRUE.
+        -- The NAT gateways that you specified for Network Firewall to create for a proxy mode firewall. To get the IDs and status of the NAT gateways that are attached to the firewall, see NatGatewayAttachments in the firewall's SyncStates.
+        NatGatewayCreateMappings: {NatGatewayCreateMapping}
+        -- The proxy settings of a proxy mode firewall: its listeners and, if you specified them, your own CertificateArn and DomainName.
         ProxySettings: ProxySettings
-        -- Indicates whether the firewall operates in proxy mode, in which the source IP address of the traffic is not preserved. When this value is TRUE, the firewall proxies traffic through a NAT gateway and uses the NAT gateway's IP address as the source for traffic reaching the destination.
-        NoSourcePreservation: boolean
-        -- The VPC and subnets for the firewall endpoint. This is set for proxy mode firewalls, where NoSourcePreservation is TRUE.
+        -- The VPC and subnets for the endpoints of a proxy mode firewall.
         VpcEndpoint: VpcEndpoint
+        -- How a proxy mode firewall handles traffic that isn't sent to its proxy listener. NAT_ALL sends this traffic out through the firewall's NAT gateway after inspection. NAT_NONE returns it to the firewall endpoint without address translation.
+        TransparentFilteringNatScope: string
     end
 
     enum FirewallStatusValue
@@ -826,16 +773,15 @@ local record M
         "DELETING"
     end
 
-    -- The definition and status of the attachment between a proxy mode firewall and a NAT gateway that proxies its traffic.
+    -- The NAT gateway that's attached to a proxy mode firewall in an Availability Zone, and the status of the attachment. Traffic that the firewall allows in the Availability Zone leaves through this NAT gateway.
     record NatGatewayAttachment
-        -- A unique identifier for the NAT gateway to use with proxy resources.
+        -- The ID of the NAT gateway.
         NatGatewayId: string
-        -- The current status of the NAT gateway attachment.
-        -- When this value is READY, the attachment is available to proxy traffic. Otherwise, this value reflects its state, for example CREATING or DELETING.
+        -- The status of the NAT gateway attachment. READY means that the NAT gateway is attached and the firewall can send traffic through it. Other values are CREATING, UPDATING, DELETING, and FAILED.
         Status: string
-        -- If Network Firewall encounters an issue with the NAT gateway attachment, it populates this with an explanation of the problem.
+        -- The reason that Network Firewall couldn't create or attach the NAT gateway, if it couldn't.
         StatusMessage: string
-        -- The DNS name that resolves to the firewall's proxy for traffic sent through this NAT gateway attachment.
+        -- The proxy DNS name of the firewall in this Availability Zone. This is the same as the DnsName of the firewall's Attachment.
         DnsName: string
     end
 
@@ -859,7 +805,8 @@ local record M
         -- you add a subnet or modify the associated firewall policy, Network Firewall synchronizes the
         -- rules in the endpoint, so it can properly filter network traffic.
         Config: {string : PerObjectStatus}
-        -- The status of the NAT gateway attachments for a proxy mode firewall in the Availability Zone. This reflects the attachment of the firewall to each NAT gateway that proxies its traffic.
+        -- The NAT gateway that's attached to a proxy mode firewall in the Availability Zone, and the status of the attachment. To get NAT gateway details, such as IP addresses, use the Amazon EC2 DescribeNatGateways action.
+        -- A proxy mode firewall is READY when at least one Availability Zone's firewall endpoint and NAT gateway attachment are READY.
         NatGatewayAttachments: {NatGatewayAttachment}
     end
 
@@ -1662,9 +1609,9 @@ local record M
         -- AWS_ROUTE_53_RESOLVED_DOMAIN – Match the domain against the domain that the Amazon Route 53 Resolver resolved the connection's destination IP address for.
         -- HTTP_HOST – Match the domain against the Host header of HTTP traffic.
         -- TLS_SNI – Match the domain against the Server Name Indication (SNI) of HTTPS traffic.
-        -- AWS_ROUTE_53_RESOLVED_DOMAIN matches on how the destination IP address was resolved, rather than on the domain that the client asserts in its TLS SNI or HTTP Host header. This target type takes effect when you configure resolved IP validation on the firewall policy. For more information, see Route53ResolvedIPValidation.
+        -- AWS_ROUTE_53_RESOLVED_DOMAIN matches on how the destination IP address was resolved, rather than on the domain that the client asserts in its TLS SNI or HTTP Host header. This target type takes effect when you configure resolved IP validation on the firewall policy. For more information, see the Route53ResolvedIPValidation firewall policy setting.
         -- Whether you include AWS_ROUTE_53_RESOLVED_DOMAIN changes what the generated rules match, together with GeneratedRulesType:
-        -- Combining AWS_ROUTE_53_RESOLVED_DOMAIN with TLS_SNI or HTTP_HOST in an ALLOWLIST requires both conditions to match. The SNI or Host header must match the domain, and the Route 53 Resolver must have resolved the destination IP address for that domain. Network Firewall allows traffic only in that case. Traffic that matches one condition, such as a spoofed Host header sent to an unresolved IP address, is not allowed.
+        -- In an ALLOWLIST, combining AWS_ROUTE_53_RESOLVED_DOMAIN with TLS_SNI or HTTP_HOST requires both conditions to match: the SNI or Host header matches the domain, and the Route 53 Resolver resolved the destination IP address for that domain. Network Firewall allows the traffic only when both conditions match, so it blocks traffic that matches just one—for example, a spoofed Host header sent to an unresolved IP address.
         -- In a DENYLIST, or when AWS_ROUTE_53_RESOLVED_DOMAIN is the only target type, Network Firewall evaluates each condition independently: a match on either the domain (SNI or Host) or the resolved destination IP address triggers the rule.
         -- When you don't include AWS_ROUTE_53_RESOLVED_DOMAIN, the generated rules match only on the SNI or Host header, without checking how the destination IP address was resolved.
         -- An ALLOWLIST whose only target type is AWS_ROUTE_53_RESOLVED_DOMAIN is additive: it allows matching traffic but doesn't generate a default rule that drops non-matching traffic. Only the TLS_SNI and HTTP_HOST target types generate that default drop. To allow only the resolved domains and drop all other traffic, include a protocol target type as well.
@@ -1861,261 +1808,6 @@ local record M
         UpdateToken: string
         -- The high-level properties of the Next Generation policy. This, along with the FirewallPolicyV2, define the policy. You can retrieve all objects for a Next Generation policy by calling DescribeFirewallPolicyV2.
         FirewallPolicyV2Response: FirewallPolicyV2Response
-    end
-
-    -- This data type is used specifically for the CreateProxy and
-    -- UpdateProxy APIs.
-    -- Open port for taking HTTP or HTTPS traffic.
-    record ListenerPropertyRequest
-        -- Port for processing traffic.
-        Port: number
-        -- Selection of HTTP or HTTPS traffic.
-        Type: string
-    end
-
-    enum TlsInterceptMode
-        "ENABLED"
-        "DISABLED"
-    end
-
-    -- This data type is used specifically for the CreateProxy and
-    -- UpdateProxy APIs.
-    -- TLS decryption on traffic to filter on attributes in the HTTP header.
-    record TlsInterceptPropertiesRequest
-        -- Private Certificate Authority (PCA) used to issue private TLS certificates so that the proxy can present PCA-signed certificates which applications trust through the same root, establishing a secure and consistent trust model for encrypted communication.
-        PcaArn: string
-        -- Specifies whether to enable or disable TLS Intercept Mode.
-        TlsInterceptMode: string
-    end
-
-    record CreateProxyInput
-        -- The descriptive name of the proxy. You can't change the name of a proxy after you create it.
-        ProxyName: string
-        -- A unique identifier for the NAT gateway to use with proxy resources.
-        NatGatewayId: string
-        -- The descriptive name of the proxy configuration. You can't change the name of a proxy configuration after you create it.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyConfigurationName: string
-        -- The Amazon Resource Name (ARN) of a proxy configuration.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyConfigurationArn: string
-        -- Listener properties for HTTP and HTTPS traffic.
-        ListenerProperties: {ListenerPropertyRequest}
-        -- TLS decryption on traffic to filter on attributes in the HTTP header.
-        TlsInterceptProperties: TlsInterceptPropertiesRequest
-        -- The key:value pairs to associate with the resource.
-        Tags: {Tag}
-    end
-
-    enum ProxyModifyState
-        "MODIFYING"
-        "COMPLETED"
-        "FAILED"
-    end
-
-    enum ProxyState
-        "ATTACHING"
-        "ATTACHED"
-        "DETACHING"
-        "DETACHED"
-        "ATTACH_FAILED"
-        "DETACH_FAILED"
-    end
-
-    -- TLS decryption on traffic to filter on attributes in the HTTP header.
-    record TlsInterceptProperties
-        -- Private Certificate Authority (PCA) used to issue private TLS certificates so that the proxy can present PCA-signed certificates which applications trust through the same root, establishing a secure and consistent trust model for encrypted communication.
-        PcaArn: string
-        -- Specifies whether to enable or disable TLS Intercept Mode.
-        TlsInterceptMode: string
-    end
-
-    -- Proxy attached to a NAT gateway.
-    record Proxy
-        -- Time the Proxy was created.
-        CreateTime: number
-        -- Time the Proxy was deleted.
-        DeleteTime: number
-        -- Time the Proxy was updated.
-        UpdateTime: number
-        -- Failure code for cases when the Proxy fails to attach or update.
-        FailureCode: string
-        -- Failure message for cases when the Proxy fails to attach or update.
-        FailureMessage: string
-        -- Current attachment/detachment status of the Proxy.
-        ProxyState: string
-        -- Current modification status of the Proxy.
-        ProxyModifyState: string
-        -- The NAT Gateway for the proxy.
-        NatGatewayId: string
-        -- The descriptive name of the proxy configuration. You can't change the name of a proxy configuration after you create it.
-        ProxyConfigurationName: string
-        -- The Amazon Resource Name (ARN) of a proxy configuration.
-        ProxyConfigurationArn: string
-        -- The descriptive name of the proxy. You can't change the name of a proxy after you create it.
-        ProxyName: string
-        -- The Amazon Resource Name (ARN) of a proxy.
-        ProxyArn: string
-        -- Listener properties for HTTP and HTTPS traffic.
-        ListenerProperties: {ListenerProperty}
-        -- TLS decryption on traffic to filter on attributes in the HTTP header.
-        TlsInterceptProperties: TlsInterceptProperties
-        -- The key:value pairs to associate with the resource.
-        Tags: {Tag}
-    end
-
-    record CreateProxyOutput
-        -- Proxy attached to a NAT gateway.
-        Proxy: Proxy
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy. The token marks the state of the proxy resource at the time of the request.
-        -- To make changes to the proxy, you provide the token in your request. Network Firewall uses the token to ensure that the proxy hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
-    end
-
-    -- The operation you requested isn't supported by Network Firewall.
-    record UnsupportedOperationException
-        Message: string
-    end
-
-    record CreateProxyConfigurationInput
-        -- The descriptive name of the proxy configuration. You can't change the name of a proxy configuration after you create it.
-        ProxyConfigurationName: string
-        -- A description of the proxy configuration.
-        Description: string
-        -- The proxy rule group name(s) to attach to the proxy configuration.
-        -- You must specify the ARNs or the names, and you can specify both.
-        RuleGroupNames: {string}
-        -- The proxy rule group arn(s) to attach to the proxy configuration.
-        -- You must specify the ARNs or the names, and you can specify both.
-        RuleGroupArns: {string}
-        -- Evaluation points in the traffic flow where rules are applied. There are three phases in a traffic where the rule match is applied.
-        DefaultRulePhaseActions: ProxyConfigDefaultRulePhaseActionsRequest
-        -- The key:value pairs to associate with the resource.
-        Tags: {Tag}
-    end
-
-    record CreateProxyConfigurationOutput
-        -- The properties that define the proxy configuration.
-        ProxyConfiguration: ProxyConfiguration
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy configuration. The token marks the state of the proxy configuration resource at the time of the request.
-        -- To make changes to the proxy configuration, you provide the token in your request. Network Firewall uses the token to ensure that the proxy configuration hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy configuration again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
-    end
-
-    -- Match criteria that specify what traffic attributes to examine.
-    record ProxyRuleCondition
-        -- Defines how to perform a match.
-        ConditionOperator: string
-        -- Defines what is to be matched.
-        ConditionKey: string
-        -- Specifes the exact value that needs to be matched against.
-        ConditionValues: {string}
-    end
-
-    -- Individual rules that define match conditions and actions for application-layer traffic. Rules specify what to inspect (domains, headers, methods) and what action to take (allow, deny, alert).
-    record CreateProxyRule
-        -- The descriptive name of the proxy rule. You can't change the name of a proxy rule after you create it.
-        ProxyRuleName: string
-        -- A description of the proxy rule.
-        Description: string
-        -- Action to take.
-        Action: string
-        -- Match criteria that specify what traffic attributes to examine. Conditions include operators (StringEquals, StringLike) and values to match against.
-        Conditions: {ProxyRuleCondition}
-        -- Where to insert a proxy rule in a proxy rule group.
-        InsertPosition: number
-    end
-
-    -- Individual rules that define match conditions and actions for application-layer traffic. Rules specify what to inspect (domains, headers, methods) and what action to take (allow, deny, alert).
-    record ProxyRule
-        -- The descriptive name of the proxy rule. You can't change the name of a proxy rule after you create it.
-        ProxyRuleName: string
-        -- A description of the proxy rule.
-        Description: string
-        -- Action to take.
-        Action: string
-        -- Match criteria that specify what traffic attributes to examine. Conditions include operators (StringEquals, StringLike) and values to match against.
-        Conditions: {ProxyRuleCondition}
-    end
-
-    -- Evaluation points in the traffic flow where rules are applied. There are three phases in a traffic where the rule match is applied.
-    record ProxyRulesByRequestPhase
-        -- Before domain resolution.
-        PreDNS: {ProxyRule}
-        -- After DNS, before request.
-        PreREQUEST: {ProxyRule}
-        -- After receiving response.
-        PostRESPONSE: {ProxyRule}
-    end
-
-    record CreateProxyRuleGroupInput
-        -- The descriptive name of the proxy rule group. You can't change the name of a proxy rule group after you create it.
-        ProxyRuleGroupName: string
-        -- A description of the proxy rule group.
-        Description: string
-        -- Individual rules that define match conditions and actions for application-layer traffic. Rules specify what to inspect (domains, headers, methods) and what action to take (allow, deny, alert).
-        Rules: ProxyRulesByRequestPhase
-        -- The key:value pairs to associate with the resource.
-        Tags: {Tag}
-    end
-
-    -- Collections of related proxy filtering rules. Rule groups help you manage and reuse sets of rules across multiple proxy configurations.
-    record ProxyRuleGroup
-        -- The descriptive name of the proxy rule group. You can't change the name of a proxy rule group after you create it.
-        ProxyRuleGroupName: string
-        -- The Amazon Resource Name (ARN) of a proxy rule group.
-        ProxyRuleGroupArn: string
-        -- Time the Proxy Rule Group was created.
-        CreateTime: number
-        -- Time the Proxy Rule Group was deleted.
-        DeleteTime: number
-        -- Individual rules that define match conditions and actions for application-layer traffic. Rules specify what to inspect (domains, headers, methods) and what action to take (allow, deny, alert).
-        Rules: ProxyRulesByRequestPhase
-        -- A description of the proxy rule group.
-        Description: string
-        -- The key:value pairs to associate with the resource.
-        Tags: {Tag}
-    end
-
-    record CreateProxyRuleGroupOutput
-        -- The properties that define the proxy rule group.
-        ProxyRuleGroup: ProxyRuleGroup
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy rule group. The token marks the state of the proxy rule group resource at the time of the request.
-        -- To make changes to the proxy rule group, you provide the token in your request. Network Firewall uses the token to ensure that the proxy rule group hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy rule group again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
-    end
-
-    -- Evaluation points in the traffic flow where rules are applied. There are three phases in a traffic where the rule match is applied.
-    -- This data type is used specifically for the CreateProxyRules API.
-    -- Pre-DNS - before domain resolution.
-    -- Pre-Request - after DNS, before request.
-    -- Post-Response - after receiving response.
-    record CreateProxyRulesByRequestPhase
-        -- Before domain resolution.
-        PreDNS: {CreateProxyRule}
-        -- After DNS, before request.
-        PreREQUEST: {CreateProxyRule}
-        -- After receiving response.
-        PostRESPONSE: {CreateProxyRule}
-    end
-
-    record CreateProxyRulesInput
-        -- The Amazon Resource Name (ARN) of a proxy rule group.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyRuleGroupArn: string
-        -- The descriptive name of the proxy rule group. You can't change the name of a proxy rule group after you create it.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyRuleGroupName: string
-        -- Individual rules that define match conditions and actions for application-layer traffic. Rules specify what to inspect (domains, headers, methods) and what action to take (allow, deny, alert).
-        Rules: CreateProxyRulesByRequestPhase
-    end
-
-    record CreateProxyRulesOutput
-        -- The properties that define the proxy rule group with the newly created proxy rule(s).
-        ProxyRuleGroup: ProxyRuleGroup
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy rule. The token marks the state of the proxy rule resource at the time of the request.
-        -- To make changes to the proxy rule, you provide the token in your request. Network Firewall uses the token to ensure that the proxy rule hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy rule again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
     end
 
     enum StatefulAction
@@ -2564,6 +2256,23 @@ local record M
         RuleGroupResponse: RuleGroupResponse
     end
 
+    enum DecryptionAction
+        "DECRYPT"
+        "BYPASS"
+    end
+
+    enum TLSInspectionScopeDeploymentMode
+        "TRANSPARENT_FIREWALL_ONLY"
+        "EXPLICIT_PROXY_ONLY"
+        "ALL"
+    end
+
+    -- The domains that a ServerCertificateScope matches for SSL/TLS inspection on a proxy mode firewall.
+    record DomainMatch
+        -- The domains to match. You can specify an exact domain, such as example.com, or a domain with a single leading wildcard label, such as *.example.com. You can specify from 1 to 50 domains, and each domain can be up to 255 characters long.
+        Domains: {string}
+    end
+
     -- Settings that define the Secure Sockets Layer/Transport Layer Security (SSL/TLS) traffic that Network Firewall should decrypt for inspection by the stateful rule engine.
     record ServerCertificateScope
         -- The source IP addresses and address ranges to decrypt for inspection, in CIDR notation. If not specified, this
@@ -2582,6 +2291,17 @@ local record M
         -- for each protocol. If not specified, this matches with any protocol.
         -- Network Firewall currently supports only TCP.
         Protocols: {number}
+        -- The domains that this scope matches, based on the host name in the client's HTTP CONNECT request. Domain matching applies only to proxy mode firewalls. If you specify DomainMatch, you must set DeploymentMode to EXPLICIT_PROXY_ONLY. If you don't specify DomainMatch, the scope matches traffic by its source, destination, ports, and protocols only.
+        DomainMatch: DomainMatch
+        -- Whether the firewall decrypts traffic that matches this scope. You can choose from the following values:
+        -- DECRYPT - The firewall decrypts the traffic for inspection.
+        -- BYPASS - The firewall doesn't decrypt the traffic.
+        DecryptionAction: string
+        -- The type of firewall that this scope applies to. If you don't specify a value, the scope applies to both types, the same as ALL. You can choose from the following values:
+        -- ALL - The scope applies to both transparent firewalls and proxy mode firewalls.
+        -- TRANSPARENT_FIREWALL_ONLY - The scope applies only to transparent firewalls.
+        -- EXPLICIT_PROXY_ONLY - The scope applies only to proxy mode firewalls. A scope that specifies DomainMatch must use this value.
+        DeploymentMode: string
     end
 
     -- Any Certificate Manager (ACM) Secure Sockets Layer/Transport Layer Security (SSL/TLS) server certificate that's associated with a ServerCertificateConfiguration. Used in a TLSInspectionConfiguration for inspection of inbound traffic to your firewall. You must request or import a SSL/TLS certificate into ACM for each domain Network Firewall needs to decrypt and inspect. Network Firewall uses the SSL/TLS certificates to decrypt specified inbound SSL/TLS traffic going to your firewall. For information about working with certificates in Certificate Manager, see Request a public certificate or Importing certificates in the Certificate Manager User Guide.
@@ -2606,6 +2326,10 @@ local record M
         CertificateAuthorityArn: string
         -- When enabled, Network Firewall checks if the server certificate presented by the server in the SSL/TLS connection has a revoked or unkown status. If the certificate has an unknown or revoked status, you must specify the actions that Network Firewall takes on outbound traffic. To check the certificate revocation status, you must also specify a CertificateAuthorityArn in ServerCertificateConfiguration.
         CheckCertificateRevocationStatus: CheckCertificateRevocationStatusActions
+        -- What the firewall does with SSL/TLS traffic that doesn't match any scope in this server certificate configuration. This setting applies only to proxy mode firewalls. If you don't specify a value, the firewall uses BYPASS. You can choose from the following values:
+        -- BYPASS - The firewall doesn't decrypt the traffic.
+        -- DECRYPT - The firewall decrypts the traffic for inspection. You can use DECRYPT only if every scope in the configuration sets DeploymentMode to EXPLICIT_PROXY_ONLY.
+        DefaultDecryptionBehavior: string
     end
 
     -- The object that defines a TLS inspection configuration. This, along with TLSInspectionConfigurationResponse, define the TLS inspection configuration. You can retrieve all objects for a TLS inspection configuration by calling DescribeTLSInspectionConfiguration.
@@ -2754,11 +2478,21 @@ local record M
         -- The Amazon Resource Name (ARN) of the firewall.
         -- You must specify the ARN or the name, and you can specify both.
         FirewallArn: string
+        -- Specifies whether to delete the NAT gateways that Network Firewall created for a proxy mode firewall when you delete the firewall. You can choose from the following values:
+        -- FALSE - Network Firewall detaches the NAT gateways from the firewall and keeps them. This is the default.
+        -- TRUE - Network Firewall also deletes the NAT gateways. The firewall status stays DELETING until they're deleted. You need permission to call the Amazon EC2 DeleteNatGateway action.
+        -- You can't specify TRUE for a firewall that isn't a proxy mode firewall.
+        DeleteAssociatedNatGateways: boolean
     end
 
     record DeleteFirewallOutput
         Firewall: Firewall
         FirewallStatus: FirewallStatus
+    end
+
+    -- The operation you requested isn't supported by Network Firewall.
+    record UnsupportedOperationException
+        Message: string
     end
 
     record DeleteFirewallPolicyInput
@@ -2830,54 +2564,6 @@ local record M
         ProxyName: string
         -- The Amazon Resource Name (ARN) of a proxy.
         ProxyArn: string
-    end
-
-    record DeleteProxyConfigurationInput
-        -- The descriptive name of the proxy configuration. You can't change the name of a proxy configuration after you create it.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyConfigurationName: string
-        -- The Amazon Resource Name (ARN) of a proxy configuration.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyConfigurationArn: string
-    end
-
-    record DeleteProxyConfigurationOutput
-        -- The descriptive name of the proxy configuration. You can't change the name of a proxy configuration after you create it.
-        ProxyConfigurationName: string
-        -- The Amazon Resource Name (ARN) of a proxy configuration.
-        ProxyConfigurationArn: string
-    end
-
-    record DeleteProxyRuleGroupInput
-        -- The descriptive name of the proxy rule group. You can't change the name of a proxy rule group after you create it.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyRuleGroupName: string
-        -- The Amazon Resource Name (ARN) of a proxy rule group.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyRuleGroupArn: string
-    end
-
-    record DeleteProxyRuleGroupOutput
-        -- The descriptive name of the proxy rule group. You can't change the name of a proxy rule group after you create it.
-        ProxyRuleGroupName: string
-        -- The Amazon Resource Name (ARN) of a proxy rule group.
-        ProxyRuleGroupArn: string
-    end
-
-    record DeleteProxyRulesInput
-        -- The Amazon Resource Name (ARN) of a proxy rule group.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyRuleGroupArn: string
-        -- The descriptive name of the proxy rule group. You can't change the name of a proxy rule group after you create it.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyRuleGroupName: string
-        -- The proxy rule(s) to remove from the existing proxy rule group.
-        Rules: {string}
-    end
-
-    record DeleteProxyRulesOutput
-        -- The properties that define the proxy rule group with the newly created proxy rule(s).
-        ProxyRuleGroup: ProxyRuleGroup
     end
 
     record DeleteResourcePolicyInput
@@ -3237,6 +2923,34 @@ local record M
         ProxyArn: string
     end
 
+    enum ProxyModifyState
+        "MODIFYING"
+        "COMPLETED"
+        "FAILED"
+    end
+
+    enum ProxyState
+        "ATTACHING"
+        "ATTACHED"
+        "DETACHING"
+        "DETACHED"
+        "ATTACH_FAILED"
+        "DETACH_FAILED"
+    end
+
+    enum TlsInterceptMode
+        "ENABLED"
+        "DISABLED"
+    end
+
+    -- TLS decryption on traffic to filter on attributes in the HTTP header.
+    record TlsInterceptProperties
+        -- Private Certificate Authority (PCA) used to issue private TLS certificates so that the proxy can present PCA-signed certificates which applications trust through the same root, establishing a secure and consistent trust model for encrypted communication.
+        PcaArn: string
+        -- Specifies whether to enable or disable TLS Intercept Mode.
+        TlsInterceptMode: string
+    end
+
     -- Proxy attached to a NAT gateway.
     record DescribeProxyResource
         -- The descriptive name of the proxy. You can't change the name of a proxy after you create it.
@@ -3280,59 +2994,6 @@ local record M
         Proxy: DescribeProxyResource
         -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy. The token marks the state of the proxy resource at the time of the request.
         -- To make changes to the proxy, you provide the token in your request. Network Firewall uses the token to ensure that the proxy hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
-    end
-
-    record DescribeProxyConfigurationInput
-        -- The descriptive name of the proxy configuration. You can't change the name of a proxy configuration after you create it.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyConfigurationName: string
-        -- The Amazon Resource Name (ARN) of a proxy configuration.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyConfigurationArn: string
-    end
-
-    record DescribeProxyConfigurationOutput
-        -- The configuration for the specified proxy configuration.
-        ProxyConfiguration: ProxyConfiguration
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy configuration. The token marks the state of the proxy configuration resource at the time of the request.
-        -- To make changes to the proxy configuration, you provide the token in your request. Network Firewall uses the token to ensure that the proxy configuration hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy configuration again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
-    end
-
-    record DescribeProxyRuleInput
-        -- The descriptive name of the proxy rule. You can't change the name of a proxy rule after you create it.
-        ProxyRuleName: string
-        -- The descriptive name of the proxy rule group. You can't change the name of a proxy rule group after you create it.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyRuleGroupName: string
-        -- The Amazon Resource Name (ARN) of a proxy rule group.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyRuleGroupArn: string
-    end
-
-    record DescribeProxyRuleOutput
-        -- The configuration for the specified proxy rule.
-        ProxyRule: ProxyRule
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy rule. The token marks the state of the proxy rule resource at the time of the request.
-        -- To make changes to the proxy rule, you provide the token in your request. Network Firewall uses the token to ensure that the proxy rule hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy rule again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
-    end
-
-    record DescribeProxyRuleGroupInput
-        -- The descriptive name of the proxy rule group. You can't change the name of a proxy rule group after you create it.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyRuleGroupName: string
-        -- The Amazon Resource Name (ARN) of a proxy rule group.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyRuleGroupArn: string
-    end
-
-    record DescribeProxyRuleGroupOutput
-        -- The configuration for the specified proxy rule group.
-        ProxyRuleGroup: ProxyRuleGroup
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy rule group. The token marks the state of the proxy rule group resource at the time of the request.
-        -- To make changes to the proxy rule group, you provide the token in your request. Network Firewall uses the token to ensure that the proxy rule group hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy rule group again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
         UpdateToken: string
     end
 
@@ -3517,30 +3178,6 @@ local record M
         -- Detailed information about the current status of a VpcEndpointAssociation. You can retrieve this
         -- by calling DescribeVpcEndpointAssociation and providing the VPC endpoint association ARN.
         VpcEndpointAssociationStatus: VpcEndpointAssociationStatus
-    end
-
-    record DetachRuleGroupsFromProxyConfigurationInput
-        -- The descriptive name of the proxy configuration. You can't change the name of a proxy configuration after you create it.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyConfigurationName: string
-        -- The Amazon Resource Name (ARN) of a proxy configuration.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyConfigurationArn: string
-        -- The proxy rule group names to detach from the proxy configuration
-        RuleGroupNames: {string}
-        -- The proxy rule group arns to detach from the proxy configuration
-        RuleGroupArns: {string}
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy configuration. The token marks the state of the proxy configuration resource at the time of the request.
-        -- To make changes to the proxy configuration, you provide the token in your request. Network Firewall uses the token to ensure that the proxy configuration hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy configuration again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
-    end
-
-    record DetachRuleGroupsFromProxyConfigurationOutput
-        -- The updated proxy configuration resource that reflects the updates from the request.
-        ProxyConfiguration: ProxyConfiguration
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy configuration. The token marks the state of the proxy configuration resource at the time of the request.
-        -- To make changes to the proxy configuration, you provide the token in your request. Network Firewall uses the token to ensure that the proxy configuration hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy configuration again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
     end
 
     record DisassociateAvailabilityZonesInput
@@ -3902,99 +3539,6 @@ local record M
         -- A flow is network traffic that is monitored by a firewall, either by stateful or stateless rules.
         -- For traffic to be considered part of a flow, it must share Destination, DestinationPort, Direction, Protocol, Source, and SourcePort.
         FlowOperations: {FlowOperationMetadata}
-        -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available
-        -- for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken
-        -- value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.
-        NextToken: string
-    end
-
-    record ListProxiesInput
-        -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available
-        -- for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken
-        -- value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.
-        NextToken: string
-        -- The maximum number of objects that you want Network Firewall to return for this request. If more
-        -- objects are available, in the response, Network Firewall provides a
-        -- NextToken value that you can use in a subsequent call to get the next batch of objects.
-        MaxResults: number
-    end
-
-    -- High-level information about a proxy, returned by operations like create and
-    -- describe. You can use the information provided in the metadata to retrieve and manage a
-    -- proxy. You can retrieve all objects for a proxy by calling DescribeProxy.
-    record ProxyMetadata
-        -- The descriptive name of the proxy. You can't change the name of a proxy after you create it.
-        Name: string
-        -- The Amazon Resource Name (ARN) of a proxy.
-        Arn: string
-    end
-
-    record ListProxiesOutput
-        -- The metadata for the proxies. Depending on your setting for max results and
-        -- the number of proxies that you have, this might not be the full list.
-        Proxies: {ProxyMetadata}
-        -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available
-        -- for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken
-        -- value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.
-        NextToken: string
-    end
-
-    record ListProxyConfigurationsInput
-        -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available
-        -- for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken
-        -- value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.
-        NextToken: string
-        -- The maximum number of objects that you want Network Firewall to return for this request. If more
-        -- objects are available, in the response, Network Firewall provides a
-        -- NextToken value that you can use in a subsequent call to get the next batch of objects.
-        MaxResults: number
-    end
-
-    -- High-level information about a proxy configuration, returned by operations like create and
-    -- describe. You can use the information provided in the metadata to retrieve and manage a
-    -- proxy configuration. You can retrieve all objects for a proxy configuration by calling DescribeProxyConfiguration.
-    record ProxyConfigurationMetadata
-        -- The descriptive name of the proxy configuration. You can't change the name of a proxy configuration after you create it.
-        Name: string
-        -- The Amazon Resource Name (ARN) of a proxy configuration.
-        Arn: string
-    end
-
-    record ListProxyConfigurationsOutput
-        -- The metadata for the proxy configurations. Depending on your setting for max results and
-        -- the number of proxy configurations that you have, this might not be the full list.
-        ProxyConfigurations: {ProxyConfigurationMetadata}
-        -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available
-        -- for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken
-        -- value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.
-        NextToken: string
-    end
-
-    record ListProxyRuleGroupsInput
-        -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available
-        -- for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken
-        -- value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.
-        NextToken: string
-        -- The maximum number of objects that you want Network Firewall to return for this request. If more
-        -- objects are available, in the response, Network Firewall provides a
-        -- NextToken value that you can use in a subsequent call to get the next batch of objects.
-        MaxResults: number
-    end
-
-    -- High-level information about a proxy rule group, returned by operations like create and
-    -- describe. You can use the information provided in the metadata to retrieve and manage a
-    -- proxy rule group. You can retrieve all objects for a proxy rule group by calling DescribeProxyRuleGroup.
-    record ProxyRuleGroupMetadata
-        -- The descriptive name of the proxy rule group. You can't change the name of a proxy rule group after you create it.
-        Name: string
-        -- The Amazon Resource Name (ARN) of a proxy rule group.
-        Arn: string
-    end
-
-    record ListProxyRuleGroupsOutput
-        -- The metadata for the proxy rule groups. Depending on your setting for max results and
-        -- the number of proxy rule groups that you have, this might not be the full list.
-        ProxyRuleGroups: {ProxyRuleGroupMetadata}
         -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available
         -- for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken
         -- value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.
@@ -4623,170 +4167,6 @@ local record M
         EnableMonitoringDashboard: boolean
     end
 
-    record UpdateProxyInput
-        -- The NAT Gateway the proxy is attached to.
-        NatGatewayId: string
-        -- The descriptive name of the proxy. You can't change the name of a proxy after you create it.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyName: string
-        -- The Amazon Resource Name (ARN) of a proxy.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyArn: string
-        -- Listener properties for HTTP and HTTPS traffic to add.
-        ListenerPropertiesToAdd: {ListenerPropertyRequest}
-        -- Listener properties for HTTP and HTTPS traffic to remove.
-        ListenerPropertiesToRemove: {ListenerPropertyRequest}
-        -- TLS decryption on traffic to filter on attributes in the HTTP header.
-        TlsInterceptProperties: TlsInterceptPropertiesRequest
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy. The token marks the state of the proxy resource at the time of the request.
-        -- To make changes to the proxy, you provide the token in your request. Network Firewall uses the token to ensure that the proxy hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
-    end
-
-    record UpdateProxyOutput
-        -- The updated proxy resource that reflects the updates from the request.
-        Proxy: Proxy
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy. The token marks the state of the proxy resource at the time of the request.
-        -- To make changes to the proxy, you provide the token in your request. Network Firewall uses the token to ensure that the proxy hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
-    end
-
-    record UpdateProxyConfigurationInput
-        -- The descriptive name of the proxy configuration. You can't change the name of a proxy configuration after you create it.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyConfigurationName: string
-        -- The Amazon Resource Name (ARN) of a proxy configuration.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyConfigurationArn: string
-        -- Evaluation points in the traffic flow where rules are applied. There are three phases in a traffic where the rule match is applied.
-        DefaultRulePhaseActions: ProxyConfigDefaultRulePhaseActionsRequest
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy configuration. The token marks the state of the proxy configuration resource at the time of the request.
-        -- To make changes to the proxy configuration, you provide the token in your request. Network Firewall uses the token to ensure that the proxy configuration hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy configuration again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
-    end
-
-    record UpdateProxyConfigurationOutput
-        -- The updated proxy configuration resource that reflects the updates from the request.
-        ProxyConfiguration: ProxyConfiguration
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy configuration. The token marks the state of the proxy configuration resource at the time of the request.
-        -- To make changes to the proxy configuration, you provide the token in your request. Network Firewall uses the token to ensure that the proxy configuration hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy configuration again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
-    end
-
-    record UpdateProxyRuleInput
-        -- The descriptive name of the proxy rule group. You can't change the name of a proxy rule group after you create it.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyRuleGroupName: string
-        -- The Amazon Resource Name (ARN) of a proxy rule group.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyRuleGroupArn: string
-        -- The descriptive name of the proxy rule. You can't change the name of a proxy rule after you create it.
-        ProxyRuleName: string
-        -- A description of the proxy rule.
-        Description: string
-        -- Depending on the match action, the proxy either stops the evaluation (if the action is terminal - allow or deny), or continues it (if the action is alert) until it matches a rule with a terminal action.
-        Action: string
-        -- Proxy rule conditions to add. Match criteria that specify what traffic attributes to examine. Conditions include operators (StringEquals, StringLike) and values to match against.
-        AddConditions: {ProxyRuleCondition}
-        -- Proxy rule conditions to remove. Match criteria that specify what traffic attributes to examine. Conditions include operators (StringEquals, StringLike) and values to match against.
-        RemoveConditions: {ProxyRuleCondition}
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy rule. The token marks the state of the proxy rule resource at the time of the request.
-        -- To make changes to the proxy rule, you provide the token in your request. Network Firewall uses the token to ensure that the proxy rule hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy rule again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
-    end
-
-    record UpdateProxyRuleOutput
-        -- The updated proxy rule resource that reflects the updates from the request.
-        ProxyRule: ProxyRule
-        -- Proxy rule conditions removed from the rule.
-        RemovedConditions: {ProxyRuleCondition}
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy rule. The token marks the state of the proxy rule resource at the time of the request.
-        -- To make changes to the proxy rule, you provide the token in your request. Network Firewall uses the token to ensure that the proxy rule hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy rule again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
-    end
-
-    -- Proxy rule group name and new desired position.
-    record ProxyRuleGroupPriority
-        -- The descriptive name of the proxy rule group. You can't change the name of a proxy rule group after you create it.
-        ProxyRuleGroupName: string
-        -- Where to move a proxy rule group in a proxy configuration.
-        NewPosition: number
-    end
-
-    record UpdateProxyRuleGroupPrioritiesInput
-        -- The descriptive name of the proxy configuration. You can't change the name of a proxy configuration after you create it.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyConfigurationName: string
-        -- The Amazon Resource Name (ARN) of a proxy configuration.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyConfigurationArn: string
-        -- proxy rule group resources to update to new positions.
-        RuleGroups: {ProxyRuleGroupPriority}
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy configuration. The token marks the state of the proxy configuration resource at the time of the request.
-        -- To make changes to the proxy configuration, you provide the token in your request. Network Firewall uses the token to ensure that the proxy configuration hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy configuration again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
-    end
-
-    -- Proxy rule group along with its priority.
-    record ProxyRuleGroupPriorityResult
-        -- The descriptive name of the proxy rule group. You can't change the name of a proxy rule group after you create it.
-        ProxyRuleGroupName: string
-        -- Priority of the proxy rule group in the proxy configuration.
-        Priority: number
-    end
-
-    record UpdateProxyRuleGroupPrioritiesOutput
-        -- The updated proxy rule group hierarchy that reflects the updates from the request.
-        ProxyRuleGroups: {ProxyRuleGroupPriorityResult}
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy configuration. The token marks the state of the proxy configuration resource at the time of the request.
-        -- To make changes to the proxy configuration, you provide the token in your request. Network Firewall uses the token to ensure that the proxy configuration hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy configuration again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
-    end
-
-    enum RuleGroupRequestPhase
-        "PRE_DNS"
-        "PRE_REQ"
-        "POST_RES"
-    end
-
-    -- Proxy rule name and new desired position.
-    record ProxyRulePriority
-        -- The descriptive name of the proxy rule. You can't change the name of a proxy rule after you create it.
-        ProxyRuleName: string
-        -- Where to move a proxy rule in a proxy rule group.
-        NewPosition: number
-    end
-
-    record UpdateProxyRulePrioritiesInput
-        -- The descriptive name of the proxy rule group. You can't change the name of a proxy rule group after you create it.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyRuleGroupName: string
-        -- The Amazon Resource Name (ARN) of a proxy rule group.
-        -- You must specify the ARN or the name, and you can specify both.
-        ProxyRuleGroupArn: string
-        -- Evaluation points in the traffic flow where rules are applied. There are three phases in a traffic where the rule match is applied.
-        RuleGroupRequestPhase: string
-        -- proxy rule resources to update to new positions.
-        Rules: {ProxyRulePriority}
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy rule group. The token marks the state of the proxy rule group resource at the time of the request.
-        -- To make changes to the proxy rule group, you provide the token in your request. Network Firewall uses the token to ensure that the proxy rule group hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy rule group again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
-    end
-
-    record UpdateProxyRulePrioritiesOutput
-        -- The descriptive name of the proxy rule group. You can't change the name of a proxy rule group after you create it.
-        ProxyRuleGroupName: string
-        -- The Amazon Resource Name (ARN) of a proxy rule group.
-        ProxyRuleGroupArn: string
-        -- Evaluation points in the traffic flow where rules are applied. There are three phases in a traffic where the rule match is applied.
-        RuleGroupRequestPhase: string
-        -- The updated proxy rule hierarchy that reflects the updates from the request.
-        Rules: {ProxyRulePriority}
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy rule group. The token marks the state of the proxy rule group resource at the time of the request.
-        -- To make changes to the proxy rule group, you provide the token in your request. Network Firewall uses the token to ensure that the proxy rule group hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy rule group again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
-        UpdateToken: string
-    end
-
     record UpdateProxySettingsInput
         -- The Amazon Resource Name (ARN) of the firewall.
         -- You must specify the ARN or the name, and you can specify both.
@@ -4798,7 +4178,7 @@ local record M
         -- To make an unconditional change to the firewall, omit the token in your update request. Without the token, Network Firewall performs your updates regardless of whether the firewall has changed since you last retrieved it.
         -- To make a conditional change to the firewall, provide the token in your update request. Network Firewall uses the token to ensure that the firewall hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the firewall again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token.
         UpdateToken: string
-        -- The proxy listener configuration to set on the firewall. This specifies the ports and protocols on which the firewall's proxy listens for traffic.
+        -- The proxy settings to set on the firewall. These replace the current proxy settings. Specify at least one listener, and at most one HTTP listener and one HTTPS listener, on different ports. If the firewall uses your own CertificateArn and DomainName, specify the same values that you used to create the firewall.
         ProxySettings: ProxySettings
     end
 
@@ -4811,7 +4191,7 @@ local record M
         -- To make an unconditional change to the firewall, omit the token in your update request. Without the token, Network Firewall performs your updates regardless of whether the firewall has changed since you last retrieved it.
         -- To make a conditional change to the firewall, provide the token in your update request. Network Firewall uses the token to ensure that the firewall hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the firewall again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token.
         UpdateToken: string
-        -- The updated proxy listener configuration on the firewall.
+        -- The updated proxy settings for the firewall.
         ProxySettings: ProxySettings
     end
 

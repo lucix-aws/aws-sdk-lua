@@ -1375,7 +1375,7 @@ local record M
         ConsumerGroupId: string
         -- Specific configuration settings for a Kafka schema registry.
         SchemaRegistryConfig: KafkaSchemaRegistryConfig
-        -- The mode that Lambda uses to consume records from your self-managed Apache Kafka topic. The default is Stream. Stream – Lambda consumes records using a Kafka consumer group and preserves the order of records within each partition. This is the default when you omit ConsumptionMode. Queue – Lambda consumes records using a Kafka share group. Multiple consumers can process records from the same partitions concurrently. Queue mode does not preserve per-partition order. Queue mode requires an Apache Kafka cluster running version 4.2 or later with share groups enabled. You cannot change ConsumptionMode after you create the event source mapping. To use a different consumption mode, create a new event source mapping. When ConsumptionMode is Queue, the StartingPosition, StartingPositionTimestamp, and MaximumBatchingWindowInSeconds parameters are not supported.
+        -- The mode that Lambda uses to consume records from your self-managed Apache Kafka topic. Valid values are the following: Stream (default) – Lambda consumes records using a Kafka consumer group and preserves the order of records within each partition. Queue – Lambda consumes records using a Kafka share group. Multiple consumers can process records from the same partition concurrently, so Lambda doesn't preserve per-partition order. To use Queue mode, your cluster must run Apache Kafka version 4.2 or later with share groups enabled. If you omit this parameter, Lambda uses Stream. You cannot change ConsumptionMode after you create the event source mapping. To use a different consumption mode, create a new event source mapping. When ConsumptionMode is Queue, the StartingPosition, StartingPositionTimestamp, and MaximumBatchingWindowInSeconds parameters are not supported.
         ConsumptionMode: string
     end
 
@@ -1444,7 +1444,7 @@ local record M
         MaximumRecordAgeInSeconds: number
         -- (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) If the function returns an error, split the batch in two and retry.
         BisectBatchOnFunctionError: boolean
-        -- (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires. For Kafka Stream consumption mode, the default is -1 (infinite retries; capped at 10 when an on-failure destination is configured). For Kafka Queue consumption mode, the default is 0, and if no on-failure destination is configured the Kafka broker performs retries.
+        -- (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires. For Kafka event source mappings with ConsumptionMode set to Queue, the value -1 (infinite retries) is not supported and the default is 0 (no retries). Lambda releases failed records back to the broker, which redelivers them up to the share group's group.share.delivery.count.limit.
         MaximumRetryAttempts: number
         -- A list of tags to apply to the event source mapping.
         Tags: {string : string}
@@ -1820,7 +1820,7 @@ local record M
         MaximumRecordAgeInSeconds: number
         -- (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) If the function returns an error, split the batch in two and retry.
         BisectBatchOnFunctionError: boolean
-        -- (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires. For Kafka Stream consumption mode, the default is -1 (infinite retries; capped at 10 when an on-failure destination is configured). For Kafka Queue consumption mode, the default is 0, and if no on-failure destination is configured the Kafka broker performs retries.
+        -- (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires. For Kafka event source mappings with ConsumptionMode set to Queue, the value -1 (infinite retries) is not supported and the default is 0 (no retries). Lambda releases failed records back to the broker, which redelivers them up to the share group's group.share.delivery.count.limit.
         MaximumRetryAttempts: number
         -- (Kinesis and DynamoDB Streams only) The duration in seconds of a processing window for DynamoDB and Kinesis Streams event sources. A value of 0 seconds indicates no tumbling window.
         TumblingWindowInSeconds: number
@@ -2092,6 +2092,15 @@ local record M
         "java8.al2023"
         "java11.al2023"
         "java17.al2023"
+        "custom"
+    end
+
+    -- The customer-managed runtime configuration for your function. Specifies the customer-managed runtime and the runtime alias that your function uses.
+    record FunctionRuntimeConfig
+        -- The Amazon Resource Name (ARN) of the customer-managed runtime that your function uses.
+        RuntimeArn: string
+        -- The name of the customer-managed runtime alias that your function uses. A runtime alias is a name that points to a runtime version.
+        RuntimeAlias: string
     end
 
     enum SnapStartApplyOn
@@ -2193,6 +2202,8 @@ local record M
         CapacityProviderConfig: CapacityProviderConfig
         -- Configuration settings for durable functions. Enables creating functions with durability that can remember their state and continue execution even after interruptions.
         DurableConfig: DurableConfig
+        -- The customer-managed runtime configuration for your function. Specifies the customer-managed runtime and the runtime alias that your function uses.
+        RuntimeConfig: FunctionRuntimeConfig
     end
 
     -- Error messages for environment variables that couldn't be applied.
@@ -2456,6 +2467,8 @@ local record M
         ConfigSha256: string
         -- The function's durable execution configuration settings, if the function is configured for durability.
         DurableConfig: DurableConfig
+        -- The customer-managed runtime configuration for your function. Specifies the customer-managed runtime and the runtime alias that your function uses.
+        RuntimeConfig: FunctionRuntimeConfig
     end
 
     -- The maximum number of function versions that can be associated with a single capacity provider has been exceeded. For more information, see Lambda quotas.
@@ -2676,6 +2689,8 @@ local record M
         ConfigSha256: string
         -- The function's durable execution configuration settings, if the function is configured for durability.
         DurableConfig: DurableConfig
+        -- The customer-managed runtime configuration for your function. Specifies the customer-managed runtime and the runtime alias that your function uses.
+        RuntimeConfig: FunctionRuntimeConfig
     end
 
     -- An object that contains details about an error related to retrieving tags.
@@ -2810,6 +2825,8 @@ local record M
         ConfigSha256: string
         -- The function's durable execution configuration settings, if the function is configured for durability.
         DurableConfig: DurableConfig
+        -- The customer-managed runtime configuration for your function. Specifies the customer-managed runtime and the runtime alias that your function uses.
+        RuntimeConfig: FunctionRuntimeConfig
     end
 
     record GetFunctionRecursionConfigInput
@@ -3110,6 +3127,20 @@ local record M
         -- The exception type.
         Type: string
         -- The exception message.
+        message: string
+    end
+
+    -- The runtime alias for your function is no longer available. Update your function to use an available runtime alias.
+    record RuntimeAliasDeletedException
+        -- Indicates the exception type for a deleted runtime alias.
+        Type: string
+        message: string
+    end
+
+    -- The runtime version used by your function is no longer available. Update your function to use an available runtime version or runtime alias.
+    record RuntimeVersionDeletedException
+        -- Indicates the exception type for a deleted runtime version.
+        Type: string
         message: string
     end
 
@@ -3587,6 +3618,8 @@ local record M
         ConfigSha256: string
         -- The function's durable execution configuration settings, if the function is configured for durability.
         DurableConfig: DurableConfig
+        -- The customer-managed runtime configuration for your function. Specifies the customer-managed runtime and the runtime alias that your function uses.
+        RuntimeConfig: FunctionRuntimeConfig
     end
 
     record UpdateFunctionConfigurationInput
@@ -3632,6 +3665,8 @@ local record M
         CapacityProviderConfig: CapacityProviderConfig
         -- Configuration settings for durable functions, including execution timeout, retention period for execution history, and an optional ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.
         DurableConfig: DurableConfig
+        -- The customer-managed runtime configuration for your function. Specifies the customer-managed runtime and the runtime alias that your function uses.
+        RuntimeConfig: FunctionRuntimeConfig
     end
 
     -- Details about a function's configuration.
@@ -3716,6 +3751,8 @@ local record M
         ConfigSha256: string
         -- The function's durable execution configuration settings, if the function is configured for durability.
         DurableConfig: DurableConfig
+        -- The customer-managed runtime configuration for your function. Specifies the customer-managed runtime and the runtime alias that your function uses.
+        RuntimeConfig: FunctionRuntimeConfig
     end
 
     record UpdateFunctionUrlConfigInput
@@ -3970,6 +4007,8 @@ local record M
         ConfigSha256: string
         -- The function's durable execution configuration settings, if the function is configured for durability.
         DurableConfig: DurableConfig
+        -- The customer-managed runtime configuration for your function. Specifies the customer-managed runtime and the runtime alias that your function uses.
+        RuntimeConfig: FunctionRuntimeConfig
     end
 
     record GetAccountSettingsInput

@@ -94,7 +94,9 @@ local record Client
     recordHandlerProgress: function(Client, types.RecordHandlerProgressInput, ? base_client.InvokeOptions): async.Operation<types.RecordHandlerProgressOutput>
     registerPublisher: function(Client, types.RegisterPublisherInput, ? base_client.InvokeOptions): async.Operation<types.RegisterPublisherOutput>
     registerType: function(Client, types.RegisterTypeInput, ? base_client.InvokeOptions): async.Operation<types.RegisterTypeOutput>
+    removeAlias: function(Client, types.RemoveAliasInput, ? base_client.InvokeOptions): async.Operation<types.RemoveAliasOutput>
     rollbackStack: function(Client, types.RollbackStackInput, ? base_client.InvokeOptions): async.Operation<types.RollbackStackOutput>
+    setAlias: function(Client, types.SetAliasInput, ? base_client.InvokeOptions): async.Operation<types.SetAliasOutput>
     setStackPolicy: function(Client, types.SetStackPolicyInput, ? base_client.InvokeOptions): async.Operation<types.SetStackPolicyOutput>
     setTypeConfiguration: function(Client, types.SetTypeConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.SetTypeConfigurationOutput>
     setTypeDefaultVersion: function(Client, types.SetTypeDefaultVersionInput, ? base_client.InvokeOptions): async.Operation<types.SetTypeDefaultVersionOutput>
@@ -456,8 +458,16 @@ function C:registerType(input: types.RegisterTypeInput, options?: base_client.In
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RegisterType as schema.OperationSchema, input, options) as async.Operation<types.RegisterTypeOutput>
 end
 
+function C:removeAlias(input: types.RemoveAliasInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveAlias as schema.OperationSchema, input, options) as async.Operation<types.RemoveAliasOutput>
+end
+
 function C:rollbackStack(input: types.RollbackStackInput, options?: base_client.InvokeOptions): async.Operation<types.RollbackStackOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RollbackStack as schema.OperationSchema, input, options) as async.Operation<types.RollbackStackOutput>
+end
+
+function C:setAlias(input: types.SetAliasInput, options?: base_client.InvokeOptions): async.Operation<types.SetAliasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetAlias as schema.OperationSchema, input, options) as async.Operation<types.SetAliasOutput>
 end
 
 function C:setStackPolicy(input: types.SetStackPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.SetStackPolicyOutput>

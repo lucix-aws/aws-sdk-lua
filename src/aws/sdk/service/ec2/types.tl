@@ -97,6 +97,7 @@ local record M
         "elastic-gpu"
         "export-image-task"
         "export-instance-task"
+        "fca-policy"
         "fleet"
         "fpga-image"
         "host-reservation"
@@ -2443,6 +2444,102 @@ local record M
         NatGatewayAddresses: {NatGatewayAddress}
     end
 
+    enum FlexCostAllocationNetworkResourceScopeType
+        "account"
+        "vpc"
+        "subnet"
+    end
+
+    -- Specifies a scope of network resources for a scope-based policy association.
+    record FlexCostAllocationNetworkResourceScope
+        -- The type of scope. This parameter is required. Valid values are account,
+        -- vpc, and subnet.
+        ResourceType: string
+        -- The IDs of the resources owned by you that define the scope. You can specify from 1 to 20 IDs. This parameter
+        -- is required.
+        ResourceIds: {string}
+    end
+
+    record AssociateNetworkingFlexCostAllocationPolicyInput
+        -- The ID of the flex cost allocation policy to associate. This parameter is required.
+        FcaPolicyId: string
+        -- The IDs of the network resources to associate with the policy. You can specify from 1 to 20
+        -- resource IDs.
+        -- You must specify NetworkResourceIds, NetworkResourceScope, or both. A
+        -- request can include at most 20 distinct resources in total.
+        NetworkResourceIds: {string}
+        -- The scope of network resources to associate with the policy. Use a scope to associate the policy
+        -- with the resources in an account, Amazon VPC, or subnet.
+        -- You must specify NetworkResourceScope, NetworkResourceIds, or both.
+        NetworkResourceScope: FlexCostAllocationNetworkResourceScope
+        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the
+        -- request. For more information, see Ensuring idempotency.
+        ClientToken: string
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    -- Describes a policy, association, or network resource that a Networking Flexible Cost Allocation operation failed to process.
+    record FlexCostAllocationOperationFailure
+        -- The ID of the resource that could not be processed.
+        ResourceId: string
+        -- The code that identifies the type of failure. Possible values are:
+        -- ResourceNotFound - (DeleteNetworkingFlexCostAllocationPolicies) The
+        -- policy doesn't exist or isn't owned by your account.
+        -- InvalidResourceState - (DeleteNetworkingFlexCostAllocationPolicies) The
+        -- policy has active associations.
+        -- InvalidResource - (AssociateNetworkingFlexCostAllocationPolicy) The
+        -- resource ID is malformed, the resource type doesn't match the policy, or the scope is an account
+        -- other than yours. (DisassociateNetworkingFlexCostAllocationPolicy) The association
+        -- doesn't exist or was already removed.
+        -- ResourceAlreadyAssociated - (AssociateNetworkingFlexCostAllocationPolicy)
+        -- The resource already has an active association.
+        -- InternalError - An internal error occurred. Retry the request.
+        FailureCode: string
+        -- The reason for the failure.
+        FailureReason: string
+    end
+
+    enum FlexCostAllocationAssociationMode
+        "direct"
+        "scope"
+    end
+
+    -- Describes an association between a flex cost allocation policy and a network resource.
+    record FlexCostAllocationPolicyAssociationDescription
+        -- The ID of the policy association.
+        FcaPolicyAssociationId: string
+        -- The ID of the policy.
+        FcaPolicyId: string
+        -- The ID of the associated network resource.
+        NetworkResourceId: string
+        -- The ID of the account that owns the association.
+        OwnerAccount: string
+        -- The date and time when the association was created.
+        AssociatedAt: number
+        -- The date and time when the association is expected to apply to network traffic.
+        ExpectedEffectiveAt: number
+        -- The mode of the association. Valid values:
+        -- direct - The policy is associated with specific resources by resource ID.
+        -- scope - The policy is associated with a scope of resources in an account,
+        -- Amazon VPC, or subnet.
+        AssociationMode: string
+        -- The entity that manages the association. Valid values are:
+        -- account - The account that owns the association created it.
+        -- declarative-policy - An Amazon Web Services Organizations declarative policy
+        -- created the association. You can't remove the association.
+        ManagedBy: string
+    end
+
+    record AssociateNetworkingFlexCostAllocationPolicyOutput
+        -- Information about the policy associations that were created.
+        FcaPolicyAssociations: {FlexCostAllocationPolicyAssociationDescription}
+        -- Information about the network resources that could not be associated with the policy.
+        FcaPolicyAssociationFailures: {FlexCostAllocationOperationFailure}
+    end
+
     record AssociateRouteServerInput
         -- The unique identifier for the route server to be associated.
         RouteServerId: string
@@ -4080,13 +4177,7 @@ local record M
         -- Copy snapshots from an Amazon Web Services Region to an Outpost in the
         -- Amazon EBS User Guide.
         DestinationOutpostArn: string
-        -- The destination Region to use in the PresignedUrl parameter of a snapshot
-        -- copy operation. This parameter is only valid for specifying the destination Region in a
-        -- PresignedUrl parameter, where it is required.
-        -- The snapshot copy is sent to the regional endpoint that you sent the HTTP
-        -- request to (for example, ec2.us-east-1.amazonaws.com). With the CLI, this is
-        -- specified using the --region parameter or the default Region in your Amazon Web Services
-        -- configuration file.
+        -- Deprecated.
         DestinationRegion: string
         -- To encrypt a copy of an unencrypted snapshot if encryption by default is not enabled,
         -- enable encryption using this parameter. Otherwise, omit this parameter. Copies of encrypted
@@ -4105,19 +4196,7 @@ local record M
         -- Amazon Web Services authenticates the KMS key asynchronously. Therefore, if you specify an ID, alias, or ARN that is not valid,
         -- the action can appear to complete, but eventually fails.
         KmsKeyId: string
-        -- When you copy an encrypted source snapshot using the Amazon EC2 Query API, you must supply a
-        -- pre-signed URL. This parameter is optional for unencrypted snapshots. For more information,
-        -- see Query
-        -- requests.
-        -- The PresignedUrl should use the snapshot source endpoint, the
-        -- CopySnapshot action, and include the SourceRegion,
-        -- SourceSnapshotId, and DestinationRegion parameters. The
-        -- PresignedUrl must be signed using Amazon Web Services Signature Version 4. Because EBS
-        -- snapshots are stored in Amazon S3, the signing algorithm for this parameter uses the same logic
-        -- that is described in
-        -- Authenticating Requests: Using Query Parameters (Amazon Web Services Signature Version 4) in the Amazon S3 API Reference. An
-        -- invalid or improperly signed PresignedUrl will cause the copy operation to fail
-        -- asynchronously, and the snapshot will move to an error state.
+        -- Deprecated.
         PresignedUrl: string
         -- The ID of the Region that contains the snapshot to be copied.
         SourceRegion: string
@@ -9503,8 +9582,8 @@ local record M
         -- The type of resource to monitor.
         ResourceType: string
         -- The type of traffic to monitor (accepted traffic, rejected traffic, or all traffic).
-        -- This parameter is not supported for transit gateway resource types. It is required for
-        -- the other resource types.
+        -- This parameter is not supported for transit gateway or Cloud WAN resource types. It is
+        -- required for the other resource types.
         TrafficType: string
         -- The type of destination for the flow log data.
         -- Default: cloud-watch-logs
@@ -9523,15 +9602,17 @@ local record M
         -- they should appear. If you omit this parameter, the flow log is created using the
         -- default format. If you specify this parameter, you must include at least one
         -- field. For more information about the available fields, see Flow log records
-        -- in the Amazon VPC User Guide or Transit Gateway Flow Log
-        -- records in the Amazon Web Services Transit Gateway Guide.
+        -- in the Amazon VPC User Guide, Transit Gateway Flow Log
+        -- records in the Amazon Web Services Transit Gateway Guide,
+        -- or Cloud WAN Flow Log
+        -- records in the Amazon Web Services Cloud WAN User Guide.
         -- Specify the fields using the ${field-id} format, separated by spaces.
         LogFormat: string
         -- The tags to apply to the flow logs.
         TagSpecifications: {TagSpecification}
         -- The maximum interval of time during which a flow of packets is captured and aggregated into a flow log record.
         -- The possible values are 60 seconds (1 minute) or 600 seconds (10 minutes).
-        -- This parameter must be 60 seconds for transit gateway resource types.
+        -- This parameter must be 60 seconds for transit gateway and Cloud WAN resource types.
         -- When a network interface is attached to a Nitro-based
         -- instance, the aggregation interval is always 60 seconds or less, regardless
         -- of the value that you specify.
@@ -10380,11 +10461,12 @@ local record M
         DryRun: boolean
         -- The ID of the IPAM to associate with the internet registry.
         IpamId: string
-        -- The Regional Internet Registry to associate with. Possible values:
+        -- The internet registry to associate with. Possible values:
         -- ripe - RIPE NCC (Europe, the Middle East, and Central Asia).
         -- apnic - APNIC (Asia Pacific).
         -- arin - ARIN (North America).
         -- lacnic - LACNIC (Latin America and the Caribbean).
+        -- nicbr - NIC.br (Brazil).
         Rir: string
         -- The organization handle at the internet registry (for example, a RIPE NCC organization ID or ARIN Org ID).
         OrganizationHandle: string
@@ -10423,17 +10505,18 @@ local record M
         IpamId: string
         -- The Amazon Web Services Region of the IPAM.
         IpamRegion: string
-        -- The Regional Internet Registry. Possible values:
+        -- The internet registry. Possible values:
         -- ripe - RIPE NCC (Europe, the Middle East, and Central Asia).
         -- apnic - APNIC (Asia Pacific).
         -- arin - ARIN (North America).
         -- lacnic - LACNIC (Latin America and the Caribbean).
+        -- nicbr - NIC.br (Brazil).
         Rir: string
         -- The organization handle at the internet registry.
         OrganizationHandle: string
         -- The description of the internet registry association.
         Description: string
-        -- The state of the internet registry association. Valid values: pending-activation | pending-enable | create-in-progress | create-failed | enable-in-progress | enable-complete | enable-failed | delete-in-progress | delete-complete | delete-failed.
+        -- The state of the internet registry association. Valid values: pending-enable | create-in-progress | create-failed | enable-in-progress | enable-complete | enable-failed | disable-in-progress | disable-complete | disable-failed | delete-in-progress | delete-complete | delete-failed.
         State: string
         -- A message describing the current state of the internet registry association, including additional details such as the reason for a failure.
         StateMessage: string
@@ -13516,6 +13599,134 @@ local record M
     end
 
     record CreateNetworkAclEntryOutput
+    end
+
+    -- Maps a CIDR range to a label for cost allocation reporting.
+    record FlexCostAllocationCidrMapping
+        -- The CIDR range. This parameter is required.
+        CidrRange: string
+        -- The label to assign to the CIDR range. The label can be up to 64 characters long. It can
+        -- contain letters, numbers, hyphens (-), and underscores (_), and must
+        -- start with a letter or a number. This parameter is required.
+        CidrLabel: string
+    end
+
+    -- Specifies the CIDR ranges and labels to use for cost allocation when the reporting granularity is
+    -- cidr.
+    record FlexCostAllocationCidrRangeSpecifications
+        -- The type of prefixes to use. This parameter is required. Valid values are
+        -- source-prefixes and destination-prefixes.
+        PrefixesType: string
+        -- The CIDR range to label mappings. You can specify from 1 to 100 mappings. This parameter is required.
+        Prefixes: {FlexCostAllocationCidrMapping}
+    end
+
+    enum FlexCostAllocationCostDimension
+        "data-transfer"
+        "data-processing"
+    end
+
+    enum FlexCostAllocationReportingGranularity
+        "eni"
+        "ec2"
+        "subnet"
+        "vpc"
+        "account"
+        "peering-id"
+        "cidr"
+    end
+
+    -- Describes the cost allocation policy document for EC2 instances.
+    record InstanceFlexCostAllocationPolicyDocument
+        -- The resource granularity level at which networking costs are allocated. This parameter is required. Specify exactly
+        -- one value. Valid values are eni, ec2, subnet, vpc,
+        -- account, and cidr.
+        ReportingGranularity: {string}
+        -- The cost dimensions to report. This parameter is required. The only valid value is
+        -- data-transfer.
+        Dimensions: {string}
+        -- The CIDR range mappings to use for cost allocation. Specify this value when
+        -- ReportingGranularity is cidr, and omit it otherwise.
+        CidrRangeSpecifications: FlexCostAllocationCidrRangeSpecifications
+    end
+
+    -- Describes the cost allocation policy document for NAT gateways.
+    record NatFlexCostAllocationPolicyDocument
+        -- The resource granularity level at which networking costs are allocated. This parameter is required. Specify exactly
+        -- one value. Valid values are eni, ec2, subnet, vpc,
+        -- account, and cidr.
+        ReportingGranularity: {string}
+        -- The cost dimensions to report. This parameter is required. Valid values are data-transfer
+        -- and data-processing.
+        Dimensions: {string}
+        -- The CIDR range mappings to use for cost allocation. Specify this value when
+        -- ReportingGranularity is cidr, and omit it otherwise.
+        CidrRangeSpecifications: FlexCostAllocationCidrRangeSpecifications
+    end
+
+    enum FlexCostAllocationNetworkResourceType
+        "natgw"
+        "pcx"
+        "ec2"
+    end
+
+    -- Describes the cost allocation policy document for Amazon VPC peering connections.
+    record PcxFlexCostAllocationPolicyDocument
+        -- The resource granularity level at which networking costs are allocated. This parameter is required. Specify exactly
+        -- one value. Valid values are eni, ec2, subnet, vpc,
+        -- account, peering-id, and cidr.
+        ReportingGranularity: {string}
+        -- The cost dimensions to report. This parameter is required. The only valid value is
+        -- data-transfer.
+        Dimensions: {string}
+        -- The CIDR range mappings to use for cost allocation. Specify this value when
+        -- ReportingGranularity is cidr, and omit it otherwise.
+        CidrRangeSpecifications: FlexCostAllocationCidrRangeSpecifications
+    end
+
+    record CreateNetworkingFlexCostAllocationPolicyInput
+        -- The type of network resource that the policy applies to. This parameter is required. Valid
+        -- values are natgw (NAT gateway), pcx (Amazon VPC peering connection),
+        -- and ec2 (EC2 instance).
+        -- Specify the policy document that matches the resource type: NatFcaPolicyDocument
+        -- for natgw, InstanceFcaPolicyDocument for ec2, or
+        -- PcxFcaPolicyDocument for pcx. Don't specify a policy document for a different
+        -- resource type.
+        NetworkResourceType: string
+        -- The policy document that defines cost allocation for NAT gateways. Provide this document when
+        -- NetworkResourceType is natgw.
+        NatFcaPolicyDocument: NatFlexCostAllocationPolicyDocument
+        -- The policy document that defines cost allocation for EC2 instances. Provide this document when
+        -- NetworkResourceType is ec2.
+        InstanceFcaPolicyDocument: InstanceFlexCostAllocationPolicyDocument
+        -- The policy document that defines cost allocation for Amazon VPC peering connections. Provide this
+        -- document when NetworkResourceType is pcx.
+        PcxFcaPolicyDocument: PcxFlexCostAllocationPolicyDocument
+        -- Specifies whether showback reporting is enabled for the policy.
+        -- Default: true
+        ShowBackEnabled: boolean
+        -- A description for the policy. The description can be up to 1024 characters long.
+        Description: string
+        -- The tags to assign to the policy.
+        TagSpecifications: {TagSpecification}
+        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the
+        -- request. For more information, see Ensuring idempotency.
+        ClientToken: string
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record CreateNetworkingFlexCostAllocationPolicyOutput
+        -- The ID of the flex cost allocation policy.
+        FcaPolicyId: string
+        -- The Amazon Resource Name (ARN) of the flex cost allocation policy.
+        FcaPolicyArn: string
+        -- The date and time when the policy was created.
+        CreatedAt: number
+        -- The date and time when the policy is expected to apply to network traffic.
+        ExpectedEffectiveAt: number
     end
 
     record CreateNetworkInsightsAccessScopeInput
@@ -19122,6 +19333,22 @@ local record M
     end
 
     record DeleteNetworkAclEntryOutput
+    end
+
+    record DeleteNetworkingFlexCostAllocationPoliciesInput
+        -- The IDs of the flex cost allocation policies to delete. You can specify up to 50 policy IDs. This parameter is required.
+        FcaPolicyIds: {string}
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record DeleteNetworkingFlexCostAllocationPoliciesOutput
+        -- The IDs of the policies that were successfully deleted.
+        Successful: {string}
+        -- Information about the policies that could not be deleted.
+        Failed: {FlexCostAllocationOperationFailure}
     end
 
     record DeleteNetworkInsightsAccessScopeInput
@@ -28377,6 +28604,103 @@ local record M
         NextToken: string
     end
 
+    record DescribeNetworkingFlexCostAllocationPoliciesInput
+        -- The IDs of the flex cost allocation policies to describe.
+        FcaPolicyIds: {string}
+        -- The maximum number of results to return in a single call. The range is 5 to 1000. To retrieve
+        -- the remaining results, make another call with the returned nextToken value.
+        -- Default: 100
+        MaxResults: number
+        -- The filters.
+        -- fca-policy-id - The ID of the policy.
+        -- managed-by - The entity that manages the policy (account |
+        -- declarative-policy).
+        -- network-resource-type - The type of network resource that the policy applies to
+        -- (natgw | ec2 | pcx).
+        -- showback-enabled - Indicates whether showback reporting is enabled for the
+        -- policy (true | false).
+        Filters: {Filter}
+        -- The token for the next page of results.
+        NextToken: string
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    -- Describes a flex cost allocation policy.
+    record FlexCostAllocationPolicyDescription
+        -- The ID of the policy.
+        FcaPolicyId: string
+        -- The Amazon Resource Name (ARN) of the policy.
+        FcaPolicyArn: string
+        -- The type of network resource that the policy applies to.
+        NetworkResourceType: string
+        -- The policy document that defines cost allocation for NAT gateways.
+        NatFcaPolicyDocument: NatFlexCostAllocationPolicyDocument
+        -- The policy document that defines cost allocation for EC2 instances.
+        InstanceFcaPolicyDocument: InstanceFlexCostAllocationPolicyDocument
+        -- The policy document that defines cost allocation for Amazon VPC peering connections.
+        PcxFcaPolicyDocument: PcxFlexCostAllocationPolicyDocument
+        -- Indicates whether showback reporting is enabled for the policy.
+        ShowBackEnabled: boolean
+        -- The ID of the account that owns the policy.
+        OwnerAccount: string
+        -- The description of the policy.
+        Description: string
+        -- The number of the latest version of the policy.
+        LatestVersion: number
+        -- The date and time when the latest version of the policy is expected to apply to network traffic.
+        -- The policy configuration in this response is from the latest version.
+        VersionExpectedEffectiveAt: number
+        -- The date and time when the policy was created.
+        PolicyCreatedAt: number
+        -- The date and time when the policy was last updated.
+        UpdatedAt: number
+        -- The entity that manages the policy. Valid values are:
+        -- account - The account that owns the policy created it.
+        -- declarative-policy - An Amazon Web Services Organizations declarative policy
+        -- created the policy. You can't modify or delete the policy.
+        ManagedBy: string
+        -- The tags assigned to the policy.
+        Tags: {Tag}
+    end
+
+    record DescribeNetworkingFlexCostAllocationPoliciesOutput
+        -- Information about the flex cost allocation policies.
+        FlexCostAllocationPolicies: {FlexCostAllocationPolicyDescription}
+        -- The token to use to retrieve the next page of results. This value is null when there are no more results to return.
+        NextToken: string
+    end
+
+    record DescribeNetworkingFlexCostAllocationPolicyAssociationsInput
+        -- The IDs of the policy associations to describe.
+        FcaPolicyAssociationIds: {string}
+        -- The maximum number of results to return in a single call. The range is 5 to 1000. To retrieve
+        -- the remaining results, make another call with the returned nextToken value.
+        -- Default: 100
+        MaxResults: number
+        -- The filters.
+        -- fca-policy-id - The ID of the policy.
+        -- managed-by - The entity that manages the association (account |
+        -- declarative-policy).
+        -- resource-id - The ID of the associated network resource.
+        Filters: {Filter}
+        -- The token for the next page of results.
+        NextToken: string
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record DescribeNetworkingFlexCostAllocationPolicyAssociationsOutput
+        -- Information about the policy associations.
+        FcaPolicyAssociations: {FlexCostAllocationPolicyAssociationDescription}
+        -- The token to use to retrieve the next page of results. This value is null when there are no more results to return.
+        NextToken: string
+    end
+
     record DescribeNetworkInsightsAccessScopeAnalysesInput
         -- The IDs of the Network Access Scope analyses.
         NetworkInsightsAccessScopeAnalysisIds: {string}
@@ -32604,6 +32928,10 @@ local record M
         -- enable-volume-io).
         -- action.description - A description of the action.
         -- action.event-id - The event ID associated with the action.
+        -- attachment-status.instance-id - The ID of the instance that the
+        -- volume is attached to.
+        -- attachment-status.io-performance - The I/O performance status of the
+        -- volume's attachment to the instance.
         -- availability-zone - The Availability Zone of the instance.
         -- event.description - A description of the event.
         -- event.event-id - The event ID.
@@ -34329,6 +34657,23 @@ local record M
         NatGatewayId: string
         -- Information about the NAT gateway IP addresses.
         NatGatewayAddresses: {NatGatewayAddress}
+    end
+
+    record DisassociateNetworkingFlexCostAllocationPolicyInput
+        -- The IDs of the policy associations to remove. You can specify up to 100 association IDs. This
+        -- parameter is required.
+        FcaPolicyAssociationIds: {string}
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record DisassociateNetworkingFlexCostAllocationPolicyOutput
+        -- The IDs of the policy associations that were removed.
+        FcaPolicyDisassociations: {string}
+        -- Information about the policy associations that could not be removed.
+        FcaPolicyDisassociationFailures: {FlexCostAllocationOperationFailure}
     end
 
     record DisassociateRouteServerInput
@@ -37648,7 +37993,7 @@ local record M
         Description: string
         -- The ID of the most recent delta that modified this registration.
         LatestDeltaId: string
-        -- The state of the routing policy registration. Valid values: pending-activate | activate-failed | create-in-progress | create-complete | update-in-progress | update-complete | delete-in-progress | delete-complete.
+        -- The state of the routing policy registration. Valid values: pending-activate | activate-failed | create-in-progress | create-complete | update-in-progress | update-complete | delete-in-progress | delete-complete | disable-complete.
         State: string
     end
 
@@ -37758,6 +38103,46 @@ local record M
     record GetManagedResourceVisibilityOutput
         -- The managed resource visibility settings for the account.
         Visibility: ManagedResourceVisibilitySettings
+    end
+
+    record GetNetworkingFlexCostAllocationPolicyVersionsInput
+        -- The ID of the flex cost allocation policy. This parameter is required.
+        FcaPolicyId: string
+        -- The policy versions to include in the results.
+        VersionsToInclude: {number}
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    -- Describes a version of a flex cost allocation policy.
+    record FlexCostAllocationPolicyVersion
+        -- The ID of the policy.
+        FcaPolicyId: string
+        -- The version number.
+        Version: number
+        -- The type of network resource that the policy applies to.
+        NetworkResourceType: string
+        -- The policy document that defines cost allocation for NAT gateways.
+        NatFcaPolicyDocument: NatFlexCostAllocationPolicyDocument
+        -- The policy document that defines cost allocation for EC2 instances.
+        InstanceFcaPolicyDocument: InstanceFlexCostAllocationPolicyDocument
+        -- The policy document that defines cost allocation for Amazon VPC peering connections.
+        PcxFcaPolicyDocument: PcxFlexCostAllocationPolicyDocument
+        -- Indicates whether showback reporting is enabled for this version of the policy.
+        ShowBackEnabled: boolean
+        -- The description of this version of the policy.
+        Description: string
+        -- The date and time when this version of the policy is expected to apply to network traffic.
+        ExpectedEffectiveAt: number
+        -- The date and time when this version of the policy was created.
+        CreatedAt: number
+    end
+
+    record GetNetworkingFlexCostAllocationPolicyVersionsOutput
+        -- Information about the policy versions.
+        FcaPolicyVersions: {FlexCostAllocationPolicyVersion}
     end
 
     record GetNetworkInsightsAccessScopeAnalysisFindingsInput
@@ -40859,6 +41244,40 @@ local record M
     record ModifyMetricCategoryOutput
         -- Information about the metric category.
         MetricCategory: MetricCategory
+    end
+
+    record ModifyNetworkingFlexCostAllocationPolicyInput
+        -- The ID of the flex cost allocation policy to modify. This parameter is required.
+        FcaPolicyId: string
+        -- The updated policy document that defines cost allocation for NAT gateways.
+        NatFcaPolicyDocument: NatFlexCostAllocationPolicyDocument
+        -- The updated policy document that defines cost allocation for EC2 instances.
+        InstanceFcaPolicyDocument: InstanceFlexCostAllocationPolicyDocument
+        -- The updated policy document that defines cost allocation for Amazon VPC peering connections.
+        PcxFcaPolicyDocument: PcxFlexCostAllocationPolicyDocument
+        -- Specifies whether showback reporting is enabled for the policy. If you omit this parameter, the
+        -- current setting is unchanged.
+        ShowBackEnabled: boolean
+        -- A description for the policy. The description can be up to 1024 characters long.
+        Description: string
+        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the
+        -- request. For more information, see Ensuring idempotency.
+        ClientToken: string
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record ModifyNetworkingFlexCostAllocationPolicyOutput
+        -- The ID of the flex cost allocation policy.
+        FcaPolicyId: string
+        -- The date and time when the policy was updated.
+        UpdatedAt: number
+        -- The version number of the policy that this modification created.
+        Version: number
+        -- The date and time when the new version of the policy is expected to apply to network traffic.
+        VersionExpectedEffectiveAt: number
     end
 
     -- Describes an attachment change.

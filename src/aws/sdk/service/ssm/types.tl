@@ -402,6 +402,13 @@ local record M
     -- To target all instances in the Amazon Web Services Region:
     -- Key=AWS::EC2::Instance,Values=*
     -- Key=InstanceIds,Values=*
+    -- Automation only, to target Microsoft Azure or Google Cloud Platform (GCP) resources:
+    -- Key=CloudConnector,Values=cloud-connector-id
+    -- Key=CloudConnector,Values={"CloudConnectorId":"cloud-connector-id","SsmManagedNodeFilter":"MANAGED","CloudProviderRegions":["eastus"]}
+    -- Supported JSON keys: CloudConnectorId (required),
+    -- SsmManagedNodeFilter, CloudProviderRegions, and, for GCP,
+    -- IncludesLabels, ExcludesLabels,
+    -- OsPolicyComplianceFilter, and OsPolicyOrchestratorId.
     -- For Run Command and Maintenance Windows:
     -- Key=InstanceIds,Values=instance-id-1,instance-id-2,instance-id-3
     -- Key=tag:tag-key,Values=tag-value-1,tag-value-2
@@ -413,6 +420,12 @@ local record M
     -- Key=tag:tag-key,Values=tag-value-1,tag-value-2
     -- To target all instances in the Amazon Web Services Region:
     -- Key=InstanceIds,Values=*
+    -- For associations that run an Automation runbook, to target Microsoft Azure or Google
+    -- Cloud Platform (GCP) resources:
+    -- Key=CloudConnector,Values=cloud-connector-id
+    -- Key=CloudConnector,Values={"CloudConnectorId":"cloud-connector-id","SsmManagedNodeFilter":"UNMANAGED"}
+    -- Supported JSON keys: CloudConnectorId (required),
+    -- SsmManagedNodeFilter, and CloudProviderRegions.
     -- For more information about how to send commands that target managed nodes using
     -- Key,Value parameters, see Targeting multiple managed nodes in the Amazon Web Services Systems Manager User Guide.
     record Target
@@ -971,11 +984,43 @@ local record M
         Targets: ConfigurationTargets
     end
 
+    -- Information about a GCP project targeted by the cloud connector.
+    record GcpProject
+        -- The ID of the GCP project.
+        ProjectId: string
+        -- The display name of the GCP project.
+        ProjectDisplayName: string
+    end
+
+    -- The target resources in the GCP environment.
+    record GcpConfigurationTargets
+        -- A list of GCP projects to target.
+        Projects: {GcpProject}
+    end
+
+    -- The access details and targets for connecting to a Google Cloud Platform (GCP)
+    -- environment, including the workload identity pool provider and service account used for
+    -- authentication and the projects to target.
+    record GcpConfiguration
+        -- The ID of the GCP organization.
+        OrganizationId: string
+        -- The full resource name of the GCP workload identity pool provider used for
+        -- authentication.
+        WorkloadIdentityPoolProvider: string
+        -- The email address of the GCP service account used for authentication.
+        ServiceAccountEmail: string
+        -- The target GCP projects for the cloud connector.
+        Targets: GcpConfigurationTargets
+    end
+
     -- The configuration that provides access details and targets for connecting to a third-party
     -- cloud environment.
     record CloudConnectorConfiguration
         -- The access details and targets for connecting to a Microsoft Azure environment.
         AzureConfiguration: AzureConfiguration
+        -- The access details and targets for connecting to a Google Cloud Platform (GCP)
+        -- environment.
+        GcpConfiguration: GcpConfiguration
     end
 
     record CreateCloudConnectorInput
@@ -988,7 +1033,8 @@ local record M
         Description: string
         -- The configuration details for connecting to the third-party cloud environment.
         Configuration: CloudConnectorConfiguration
-        -- The ARN of the Amazon Web Services Config connector associated with this cloud connector.
+        -- The ARN of the Amazon Web Services Config connector to associate with this cloud connector. If you omit
+        -- it, the cloud connector is created without Amazon Web Services Config integration.
         ConfigConnectorArn: string
         -- Optional metadata that you assign to a resource. Tags enable you to categorize a resource
         -- in different ways, such as by purpose, owner, or environment.
@@ -3248,7 +3294,8 @@ local record M
         -- Valid values for the ResourceType filter key: EC2Instance |
         -- ManagedInstance
         -- Valid values for the SourceType filter key: AWS::EC2::Instance |
-        -- AWS::SSM::ManagedInstance | AWS::IoT::Thing | Microsoft.Compute/virtualMachines
+        -- AWS::SSM::ManagedInstance | AWS::IoT::Thing | Microsoft.Compute/virtualMachines |
+        -- compute.googleapis.com/Instance
         -- Valid tag examples: Key=tag-key,Values=Purpose |
         -- Key=tag:Purpose,Values=Test.
         Key: string
@@ -3322,6 +3369,7 @@ local record M
         "AWS::IoT::Thing"
         "AWS::SSM::ManagedInstance"
         "Microsoft.Compute/virtualMachines"
+        "compute.googleapis.com/Instance"
     end
 
     -- Describes a filter for a specific list of managed nodes.
@@ -3390,7 +3438,8 @@ local record M
         SourceId: string
         -- The type of the source resource. For IoT Greengrass devices, SourceType
         -- is AWS::IoT::Thing. For Azure Virtual Machines, SourceType is
-        -- Microsoft.Compute/virtualMachines.
+        -- Microsoft.Compute/virtualMachines. For Google Cloud Platform (GCP) Compute Engine
+        -- Virtual Machines, SourceType is compute.googleapis.com/Instance.
         SourceType: string
         -- The location of the source resource in the third-party cloud environment.
         SourceLocation: string
@@ -3779,7 +3828,8 @@ local record M
         SourceId: string
         -- The type of the source resource. Valid values: AWS::EC2::Instance |
         -- AWS::SSM::ManagedInstance | AWS::IoT::Thing |
-        -- Microsoft.Compute/virtualMachines.
+        -- Microsoft.Compute/virtualMachines |
+        -- compute.googleapis.com/Instance.
         SourceType: string
         -- The location of the source resource in the third-party cloud environment.
         SourceLocation: string
@@ -4631,8 +4681,9 @@ local record M
         Tier: string
         -- A list of policies associated with a parameter.
         Policies: {ParameterInlinePolicy}
-        -- The data type of the parameter, such as text or aws:ec2:image. The
-        -- default is text.
+        -- The data type of the parameter, such as text, aws:ec2:image, or
+        -- json. The default is text. For the list of data types, see the
+        -- DataType parameter of PutParameter.
         DataType: string
     end
 
@@ -5016,6 +5067,21 @@ local record M
         TimedOutSteps: number
     end
 
+    -- The number of targets in a rate control execution, and the status of the child
+    -- executions that it started for those targets.
+    record TargetsSummary
+        -- The total number of targets in the rate control execution.
+        TotalCount: number
+        -- The number of child executions that started.
+        StartedCount: number
+        -- The number of child executions that finished, whether they succeeded or failed.
+        CompletedCount: number
+        -- The number of child executions that succeeded.
+        SuccessfulCount: number
+        -- The number of child executions that failed, timed out, or were canceled.
+        FailedCount: number
+    end
+
     -- Detailed information about the current state of an individual Automation execution.
     record AutomationExecution
         -- The execution ID.
@@ -5100,6 +5166,9 @@ local record M
         ChangeRequestName: string
         -- Variables defined for the automation.
         Variables: {string : {string}}
+        -- A summary of the child executions that a rate control execution started for its
+        -- targets. This field is returned only for rate control executions.
+        TargetsSummary: TargetsSummary
     end
 
     record GetAutomationExecutionOutput
@@ -5164,7 +5233,8 @@ local record M
         RoleArn: string
         -- The configuration details for the third-party cloud environment connection.
         Configuration: CloudConnectorConfiguration
-        -- The ARN of the Amazon Web Services Config connector associated with this cloud connector.
+        -- The ARN of the Amazon Web Services Config connector associated with this cloud connector. This value is
+        -- returned only if the cloud connector was created with an Amazon Web Services Config connector.
         ConfigConnectorArn: string
         -- The date and time the cloud connector was created.
         CreatedAt: number
@@ -6334,8 +6404,9 @@ local record M
         LastModifiedDate: number
         -- The Amazon Resource Name (ARN) of the parameter.
         ARN: string
-        -- The data type of the parameter, such as text or aws:ec2:image. The
-        -- default is text.
+        -- The data type of the parameter, such as text, aws:ec2:image, or
+        -- json. The default is text. For the list of data types, see the
+        -- DataType parameter of PutParameter.
         DataType: string
     end
 
@@ -6400,8 +6471,9 @@ local record M
         -- Assigning parameter
         -- policies in the Amazon Web Services Systems Manager User Guide.
         Policies: {ParameterInlinePolicy}
-        -- The data type of the parameter, such as text or aws:ec2:image. The
-        -- default is text.
+        -- The data type of the parameter, such as text, aws:ec2:image, or
+        -- json. The default is text. For the list of data types, see the
+        -- DataType parameter of PutParameter.
         DataType: string
     end
 
@@ -6863,6 +6935,8 @@ local record M
     enum CloudConnectorFilterKey
         "SubscriptionId"
         "TenantId"
+        "ProjectId"
+        "OrganizationId"
     end
 
     -- A filter for listing cloud connectors.
@@ -6876,6 +6950,15 @@ local record M
         -- TenantId
         -- The Azure tenant ID to filter by. Filters the results to connectors
         -- that target the specified tenant.
+        -- ProjectId
+        -- The Google Cloud Platform (GCP) project ID to filter by. Filters the results
+        -- to connectors that target the specified project.
+        -- OrganizationId
+        -- The GCP organization ID to filter by. Filters the results to connectors that
+        -- target the entire specified organization.
+        -- You can't combine Azure filter keys (SubscriptionId and
+        -- TenantId) with GCP filter keys (ProjectId and
+        -- OrganizationId) in the same request.
         FilterValues: {string}
     end
 
@@ -6887,6 +6970,11 @@ local record M
         NextToken: string
         -- One or more filters to limit the cloud connectors returned in the response.
         Filters: {CloudConnectorFilter}
+    end
+
+    enum Provider
+        "Azure"
+        "GCP"
     end
 
     -- Summary information about a cloud connector.
@@ -6903,6 +6991,12 @@ local record M
         CreatedAt: number
         -- The date and time the cloud connector was last updated.
         UpdatedAt: number
+        -- The third-party cloud provider that the cloud connector connects to. Valid values:
+        -- Azure | GCP.
+        Provider: string
+        -- The ARN of the Amazon Web Services Config connector associated with this cloud connector. This value is
+        -- returned only if the cloud connector was created with an Amazon Web Services Config connector.
+        ConfigConnectorArn: string
     end
 
     record ListCloudConnectorsOutput
@@ -7874,7 +7968,10 @@ local record M
         -- fleet.
         ResourceType: string
         -- The type of the source resource. For IoT Greengrass devices,
-        -- SourceType is AWS::IoT::Thing.
+        -- SourceType is AWS::IoT::Thing. For Azure Virtual Machines,
+        -- SourceType is Microsoft.Compute/virtualMachines. For Google Cloud
+        -- Platform (GCP) Compute Engine Virtual Machines, SourceType is
+        -- compute.googleapis.com/Instance.
         SourceType: string
         -- The ID of the source resource. For IoT Greengrass devices, SourceId is
         -- the Thing name.
@@ -8651,6 +8748,8 @@ local record M
         -- Options that require an advanced parameter include the following:
         -- The content size of the parameter is more than 4 KB.
         -- The parameter uses a parameter policy.
+        -- The parameter uses the url, json, or jsonc data
+        -- type.
         -- More than 10,000 parameters already exist in your Amazon Web Services account in the current
         -- Amazon Web Services Region.
         -- For more information about configuring the default tier option, see Specifying a default parameter tier in the
@@ -8672,12 +8771,34 @@ local record M
         -- information about parameter policies, see Assigning parameter
         -- policies.
         Policies: string
-        -- The data type for a String parameter. Supported data types include plain text
-        -- and Amazon Machine Image (AMI) IDs.
+        -- The data type of the parameter value. Parameter Store validates the value against the data
+        -- type when you create or update the parameter. The default is text, which performs
+        -- no validation.
         -- The following data type values are supported.
         -- text
         -- aws:ec2:image
         -- aws:ssm:integration
+        -- aws:region
+        -- aws:account:id
+        -- boolean
+        -- integer
+        -- float
+        -- binary
+        -- hostname
+        -- email
+        -- ipv4-address
+        -- ipv6-address
+        -- url
+        -- json
+        -- jsonc
+        -- For more information about the supported data types, see Working with parameter
+        -- data types in Parameter Store.
+        -- Regardless of a parameter's data type, the Parameter Store API operations that retrieve
+        -- parameters, such as GetParameter, GetParameters, and
+        -- GetParametersByPath, return the parameter value as a string. For example, if a
+        -- parameter has the data type integer and the value 443,
+        -- GetParameter returns the value as the string "443". Convert the value
+        -- to the type your application needs after you retrieve it.
         -- When you create a String parameter and specify aws:ec2:image,
         -- Amazon Web Services Systems Manager validates the parameter value is in the required format, such as
         -- ami-12345abcdeEXAMPLE, and that the specified AMI is available in your
@@ -10364,6 +10485,8 @@ local record M
     enum ValidationFindingCode
         "TargetInaccessible"
         "TargetUnusable"
+        "TargetMissingPermissions"
+        "TargetApiDisabled"
         "TargetStateWarning"
         "AwsRoleAssumptionFailed"
         "WebIdentityTokenFailed"
@@ -10376,6 +10499,8 @@ local record M
     enum ValidationFindingScopeType
         "azure:tenant"
         "azure:subscription"
+        "gcp:organization"
+        "gcp:project"
     end
 
     -- Identifies the specific resource scope of a validation finding.

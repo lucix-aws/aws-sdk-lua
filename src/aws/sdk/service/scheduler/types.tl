@@ -45,7 +45,7 @@ local record M
         Message: string
     end
 
-    -- The input fails to satisfy the constraints specified by an AWS service.
+    -- The input fails to satisfy the constraints specified by an Amazon Web Services service.
     record ValidationException
         Message: string
     end
@@ -83,11 +83,9 @@ local record M
     record CapacityProviderStrategyItem
         -- The short name of the capacity provider.
         capacityProvider: string
-        -- The weight value designates the relative percentage of the total number of tasks launched that should use the specified capacity provider. The weight value is taken into consideration after the
-        -- base value, if defined, is satisfied.
+        -- The weight value designates the relative percentage of the total number of tasks launched that should use the specified capacity provider. The weight value is taken into consideration after the base value, if defined, is satisfied.
         weight: number
-        -- The base value designates how many tasks, at a minimum, to run on the specified capacity provider. Only one capacity provider in a capacity provider strategy can have a base defined.
-        -- If no value is specified, the default value of 0 is used.
+        -- The base value designates how many tasks, at a minimum, to run on the specified capacity provider. Only one capacity provider in a capacity provider strategy can have a base defined. If no value is specified, the default value of 0 is used.
         base: number
     end
 
@@ -101,8 +99,7 @@ local record M
     record AwsVpcConfiguration
         -- Specifies the subnets associated with the task. These subnets must all be in the same VPC. You can specify as many as 16 subnets.
         Subnets: {string}
-        -- Specifies the security groups associated with the task. These security groups must all be in the same VPC. You can specify as many as five security groups.
-        -- If you do not specify a security group, the default security group for the VPC is used.
+        -- Specifies the security groups associated with the task. These security groups must all be in the same VPC. You can specify as many as five security groups. If you do not specify a security group, the default security group for the VPC is used.
         SecurityGroups: {string}
         -- Specifies whether the task's elastic network interface receives a public IP address. You can specify ENABLED only when LaunchType in EcsParameters is set to FARGATE.
         AssignPublicIp: string
@@ -121,8 +118,7 @@ local record M
 
     -- An object representing a constraint on task placement.
     record PlacementConstraint
-        -- A cluster query language expression to apply to the constraint. You cannot specify an expression if the constraint type is distinctInstance.
-        -- For more information, see Cluster query language in the Amazon ECS Developer Guide.
+        -- A cluster query language expression to apply to the constraint. You cannot specify an expression if the constraint type is distinctInstance. For more information, see Cluster query language in the Amazon ECS Developer Guide.
         expression: string
     end
 
@@ -134,9 +130,7 @@ local record M
 
     -- The task placement strategy for a task or service.
     record PlacementStrategy
-        -- The field to apply the placement strategy against. For the spread placement strategy, valid values are instanceId (or instanceId, which has the same effect),
-        -- or any platform or custom attribute that is applied to a container instance, such as attribute:ecs.availability-zone. For the binpack placement strategy, valid values are
-        -- cpu and memory. For the random placement strategy, this field is not used.
+        -- The field to apply the placement strategy against. For the spread placement strategy, valid values are instanceId (or instanceId, which has the same effect), or any platform or custom attribute that is applied to a container instance, such as attribute:ecs.availability-zone. For the binpack placement strategy, valid values are cpu and memory. For the random placement strategy, this field is not used.
         field: string
     end
 
@@ -144,17 +138,13 @@ local record M
         "TASK_DEFINITION"
     end
 
-    -- The templated target type for the Amazon ECS
-    -- RunTask
-    -- API operation.
+    -- The templated target type for the Amazon ECS RunTask API operation.
     record EcsParameters
         -- The Amazon Resource Name (ARN) of the task definition to use if the event target is an Amazon ECS task.
         TaskDefinitionArn: string
         -- The number of tasks to create based on TaskDefinition. The default is 1.
         TaskCount: number
-        -- Specifies the launch type on which your task is running. The launch type that you specify here must match one of the launch type (compatibilities) of the target task.
-        -- The FARGATE value is supported only in the Regions where Fargate with Amazon ECS is supported.
-        -- For more information, see AWS Fargate on Amazon ECS in the Amazon ECS Developer Guide.
+        -- Specifies the launch type on which your task is running. The launch type that you specify here must match one of the launch type (compatibilities) of the target task. The FARGATE value is supported only in the Regions where Fargate with Amazon ECS is supported. For more information, see Amazon Web Services Fargate on Amazon ECS in the Amazon ECS Developer Guide.
         LaunchType: string
         -- This structure specifies the network configuration for an ECS task.
         NetworkConfiguration: NetworkConfiguration
@@ -164,8 +154,7 @@ local record M
         Group: string
         -- The capacity provider strategy to use for the task.
         CapacityProviderStrategy: {CapacityProviderStrategyItem}
-        -- Specifies whether to enable Amazon ECS managed tags for the task. For more information, see Tagging Your Amazon ECS Resources
-        -- in the Amazon ECS Developer Guide.
+        -- Specifies whether to enable Amazon ECS managed tags for the task. For more information, see Tagging Your Amazon ECS Resources in the Amazon ECS Developer Guide.
         EnableECSManagedTags: boolean
         -- Whether or not to enable the execute command functionality for the containers in this task. If true, this enables execute command functionality on all containers in the task.
         EnableExecuteCommand: boolean
@@ -173,23 +162,15 @@ local record M
         PlacementConstraints: {PlacementConstraint}
         -- The task placement strategy for a task or service.
         PlacementStrategy: {PlacementStrategy}
-        -- Specifies whether to propagate the tags from the task definition to the task. If no value is specified, the tags are not propagated.
-        -- Tags can only be propagated to the task during task creation. To add tags to a task after task creation, use Amazon ECS's
-        -- TagResource
-        -- API action.
+        -- Specifies whether to propagate the tags from the task definition to the task. If no value is specified, the tags are not propagated. Tags can only be propagated to the task during task creation. To add tags to a task after task creation, use Amazon ECS's TagResource API action.
         PropagateTags: string
         -- The reference ID to use for the task.
         ReferenceId: string
-        -- The metadata that you apply to the task to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.
-        -- For more information, see
-        -- RunTask
-        -- in the Amazon ECS API Reference.
+        -- The metadata that you apply to the task to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. For more information, see RunTask in the Amazon ECS API Reference.
         Tags: {{string : string}}
     end
 
-    -- The templated target type for the EventBridge
-    -- PutEvents
-    -- API operation.
+    -- The templated target type for the EventBridge PutEvents API operation.
     record EventBridgeParameters
         -- A free-form string, with a maximum of 128 characters, used to decide what fields to expect in the event detail.
         DetailType: string
@@ -197,12 +178,23 @@ local record M
         Source: string
     end
 
-    -- The templated target type for the Amazon Kinesis
-    -- PutRecord
-    -- API operation.
+    -- The templated target type for the EventBridge event bus v2 PutEvents API operation.
+    record EventBridgePutEventsV2Parameters
+        -- A free-form string, with a maximum of 128 characters, used to decide what fields to expect in the event detail.
+        DetailType: string
+        -- The source of the event. The source can't start with the aws. prefix.
+        Source: string
+    end
+
+    -- The templated target type for the EventBridge event bus v2 PutRawEvents API operation.
+    record EventBridgePutRawEventsParameters
+        -- Optional metadata key-value pairs you define. Keys must be 1-128 characters and must not contain "/".
+        Metadata: {string : string}
+    end
+
+    -- The templated target type for the Amazon Kinesis PutRecord API operation.
     record KinesisParameters
-        -- Specifies the shard to which EventBridge Scheduler sends the event. For more information, see Amazon Kinesis Data Streams terminology and concepts in the
-        -- Amazon Kinesis Streams Developer Guide.
+        -- Specifies the shard to which EventBridge Scheduler sends the event. For more information, see Amazon Kinesis Data Streams terminology and concepts in the Amazon Kinesis Streams Developer Guide.
         PartitionKey: string
     end
 
@@ -210,8 +202,7 @@ local record M
     record RetryPolicy
         -- The maximum amount of time, in seconds, to continue to make retry attempts.
         MaximumEventAgeInSeconds: number
-        -- The maximum number of retry attempts to make before the request fails. Retry attempts with exponential backoff continue until either the maximum number of attempts is made or
-        -- until the duration of the MaximumEventAgeInSeconds is reached.
+        -- The maximum number of retry attempts to make before the request fails. Retry attempts with exponential backoff continue until either the maximum number of attempts is made or until the duration of the MaximumEventAgeInSeconds is reached.
         MaximumRetryAttempts: number
     end
 
@@ -223,27 +214,19 @@ local record M
         Value: string
     end
 
-    -- The templated target type for the Amazon SageMaker
-    -- StartPipelineExecution
-    -- API operation.
+    -- The templated target type for the Amazon SageMaker StartPipelineExecution API operation.
     record SageMakerPipelineParameters
         -- List of parameter names and values to use when executing the SageMaker Model Building Pipeline.
         PipelineParameterList: {SageMakerPipelineParameter}
     end
 
-    -- The templated target type for the Amazon SQS
-    -- SendMessage
-    -- API operation.
-    -- Contains the message group ID to use when the target is a FIFO queue. If you specify an Amazon SQS FIFO queue as a target, the queue must have content-based deduplication enabled.
-    -- For more information, see Using the Amazon SQS message deduplication ID in the
-    -- Amazon SQS Developer Guide.
+    -- The templated target type for the Amazon SQS SendMessage API operation. Contains the message group ID to use when the target is a FIFO queue. If you specify an Amazon SQS FIFO queue as a target, the queue must have content-based deduplication enabled. For more information, see Using the Amazon SQS message deduplication ID in the Amazon SQS Developer Guide.
     record SqsParameters
         -- The FIFO message group ID to use as the target.
         MessageGroupId: string
     end
 
-    -- The schedule's target. EventBridge Scheduler supports templated target that invoke common API operations, as well as universal targets that you can customize to
-    -- invoke over 6,000 API operations across more than 270 services. You can only specify one templated or universal target for a schedule.
+    -- The schedule's target. EventBridge Scheduler supports templated target that invoke common API operations, as well as universal targets that you can customize to invoke over 6,000 API operations across more than 270 services. You can only specify one templated or universal target for a schedule.
     record Target
         -- The Amazon Resource Name (ARN) of the target.
         Arn: string
@@ -253,32 +236,21 @@ local record M
         DeadLetterConfig: DeadLetterConfig
         -- A RetryPolicy object that includes information about the retry policy settings, including the maximum age of an event, and the maximum number of times EventBridge Scheduler will try to deliver the event to a target.
         RetryPolicy: RetryPolicy
-        -- The text, or well-formed JSON, passed to the target. If you are configuring a templated Lambda, AWS Step Functions, or Amazon EventBridge target,
-        -- the input must be a well-formed JSON. For all other target types, a JSON is not required. If you do not specify anything for this field, EventBridge Scheduler
-        -- delivers a default notification to the target.
+        -- The text, or well-formed JSON, passed to the target. If you are configuring a templated Lambda, Amazon Web Services Step Functions, or Amazon EventBridge target, the input must be a well-formed JSON. For all other target types, a JSON is not required. If you do not specify anything for this field, EventBridge Scheduler delivers a default notification to the target. The maximum size of the Input field is 256 KB.
         Input: string
-        -- The templated target type for the Amazon ECS
-        -- RunTask
-        -- API operation.
+        -- The templated target type for the Amazon ECS RunTask API operation.
         EcsParameters: EcsParameters
-        -- The templated target type for the EventBridge
-        -- PutEvents
-        -- API operation.
+        -- The templated target type for the EventBridge PutEvents API operation.
         EventBridgeParameters: EventBridgeParameters
-        -- The templated target type for the Amazon Kinesis
-        -- PutRecord
-        -- API operation.
+        -- The templated target type for the EventBridge event bus v2 PutEvents API operation.
+        EventBridgePutEventsV2Parameters: EventBridgePutEventsV2Parameters
+        -- The templated target type for the EventBridge event bus v2 PutRawEvents API operation.
+        EventBridgePutRawEventsParameters: EventBridgePutRawEventsParameters
+        -- The templated target type for the Amazon Kinesis PutRecord API operation.
         KinesisParameters: KinesisParameters
-        -- The templated target type for the Amazon SageMaker
-        -- StartPipelineExecution
-        -- API operation.
+        -- The templated target type for the Amazon SageMaker StartPipelineExecution API operation.
         SageMakerPipelineParameters: SageMakerPipelineParameters
-        -- The templated target type for the Amazon SQS
-        -- SendMessage
-        -- API operation.
-        -- Contains the message group ID to use when the target is a FIFO queue. If you specify an Amazon SQS FIFO queue as a target, the queue must have content-based deduplication enabled.
-        -- For more information, see Using the Amazon SQS message deduplication ID in the
-        -- Amazon SQS Developer Guide.
+        -- The templated target type for the Amazon SQS SendMessage API operation. Contains the message group ID to use when the target is a FIFO queue. If you specify an Amazon SQS FIFO queue as a target, the queue must have content-based deduplication enabled. For more information, see Using the Amazon SQS message deduplication ID in the Amazon SQS Developer Guide.
         SqsParameters: SqsParameters
     end
 
@@ -287,24 +259,11 @@ local record M
         Name: string
         -- The name of the schedule group to associate with this schedule. If you omit this, the default schedule group is used.
         GroupName: string
-        -- The expression that defines when the schedule runs. The following formats are supported.
-        -- at expression - at(yyyy-mm-ddThh:mm:ss)
-        -- rate expression - rate(value unit)
-        -- cron expression - cron(fields)
-        -- You can use at expressions to create one-time schedules that invoke a target once, at the time and in the time zone, that you specify.
-        -- You can use rate and cron expressions to create recurring schedules. Rate-based schedules are useful when you want to invoke a target
-        -- at regular intervals, such as every 15 minutes or every five days. Cron-based schedules are useful when you want to invoke a target periodically at a specific time,
-        -- such as at 8:00 am (UTC+0) every 1st day of the month.
-        -- A cron expression consists of six fields separated by white spaces: (minutes hours day_of_month month day_of_week year).
-        -- A rate expression consists of a value as a positive integer, and a unit with the following options:
-        -- minute | minutes | hour | hours | day | days
-        -- For more information and examples, see Schedule types on EventBridge Scheduler in the EventBridge Scheduler User Guide.
+        -- The expression that defines when the schedule runs. The following formats are supported. at expression - at(yyyy-mm-ddThh:mm:ss) rate expression - rate(value unit) cron expression - cron(fields) You can use at expressions to create one-time schedules that invoke a target once, at the time and in the time zone, that you specify. You can use rate and cron expressions to create recurring schedules. Rate-based schedules are useful when you want to invoke a target at regular intervals, such as every 15 minutes or every five days. Cron-based schedules are useful when you want to invoke a target periodically at a specific time, such as at 8:00 am (UTC+0) every 1st day of the month. A cron expression consists of six fields separated by white spaces: (minutes hours day_of_month month day_of_week year). A rate expression consists of a value as a positive integer, and a unit with the following options: minute | minutes | hour | hours | day | days For more information and examples, see Schedule types on EventBridge Scheduler in the EventBridge Scheduler User Guide.
         ScheduleExpression: string
-        -- The date, in UTC, after which the schedule can begin invoking its target. Depending on the schedule's recurrence expression, invocations might occur on, or after, the StartDate you specify.
-        -- EventBridge Scheduler ignores StartDate for one-time schedules.
+        -- The date, in UTC, after which the schedule can begin invoking its target. Depending on the schedule's recurrence expression, invocations might occur on, or after, the StartDate you specify. EventBridge Scheduler ignores StartDate for one-time schedules.
         StartDate: number
-        -- The date, in UTC, before which the schedule can invoke its target. Depending on the schedule's recurrence expression, invocations might stop on, or before, the EndDate you specify.
-        -- EventBridge Scheduler ignores EndDate for one-time schedules.
+        -- The date, in UTC, before which the schedule can invoke its target. Depending on the schedule's recurrence expression, invocations might stop on, or before, the EndDate you specify. EventBridge Scheduler ignores EndDate for one-time schedules.
         EndDate: number
         -- The description you specify for the schedule.
         Description: string
@@ -318,8 +277,7 @@ local record M
         Target: Target
         -- Allows you to configure a time window during which EventBridge Scheduler invokes the schedule.
         FlexibleTimeWindow: FlexibleTimeWindow
-        -- Unique, case-sensitive identifier you provide to ensure the idempotency of the request. If you do not specify a client token,
-        -- EventBridge Scheduler uses a randomly generated token for the request to ensure idempotency.
+        -- Unique, case-sensitive identifier you provide to ensure the idempotency of the request. If you do not specify a client token, EventBridge Scheduler uses a randomly generated token for the request to ensure idempotency.
         ClientToken: string
         -- Specifies the action that EventBridge Scheduler applies to the schedule after the schedule completes invoking the target.
         ActionAfterCompletion: string
@@ -340,8 +298,7 @@ local record M
         Name: string
         -- The name of the schedule group associated with this schedule. If you omit this, the default schedule group is used.
         GroupName: string
-        -- Unique, case-sensitive identifier you provide to ensure the idempotency of the request. If you do not specify a client token,
-        -- EventBridge Scheduler uses a randomly generated token for the request to ensure idempotency.
+        -- Unique, case-sensitive identifier you provide to ensure the idempotency of the request. If you do not specify a client token, EventBridge Scheduler uses a randomly generated token for the request to ensure idempotency.
         ClientToken: string
     end
 
@@ -362,24 +319,11 @@ local record M
         GroupName: string
         -- The name of the schedule.
         Name: string
-        -- The expression that defines when the schedule runs. The following formats are supported.
-        -- at expression - at(yyyy-mm-ddThh:mm:ss)
-        -- rate expression - rate(value unit)
-        -- cron expression - cron(fields)
-        -- You can use at expressions to create one-time schedules that invoke a target once, at the time and in the time zone, that you specify.
-        -- You can use rate and cron expressions to create recurring schedules. Rate-based schedules are useful when you want to invoke a target
-        -- at regular intervals, such as every 15 minutes or every five days. Cron-based schedules are useful when you want to invoke a target periodically at a specific time,
-        -- such as at 8:00 am (UTC+0) every 1st day of the month.
-        -- A cron expression consists of six fields separated by white spaces: (minutes hours day_of_month month day_of_week year).
-        -- A rate expression consists of a value as a positive integer, and a unit with the following options:
-        -- minute | minutes | hour | hours | day | days
-        -- For more information and examples, see Schedule types on EventBridge Scheduler in the EventBridge Scheduler User Guide.
+        -- The expression that defines when the schedule runs. The following formats are supported. at expression - at(yyyy-mm-ddThh:mm:ss) rate expression - rate(value unit) cron expression - cron(fields) You can use at expressions to create one-time schedules that invoke a target once, at the time and in the time zone, that you specify. You can use rate and cron expressions to create recurring schedules. Rate-based schedules are useful when you want to invoke a target at regular intervals, such as every 15 minutes or every five days. Cron-based schedules are useful when you want to invoke a target periodically at a specific time, such as at 8:00 am (UTC+0) every 1st day of the month. A cron expression consists of six fields separated by white spaces: (minutes hours day_of_month month day_of_week year). A rate expression consists of a value as a positive integer, and a unit with the following options: minute | minutes | hour | hours | day | days For more information and examples, see Schedule types on EventBridge Scheduler in the EventBridge Scheduler User Guide.
         ScheduleExpression: string
-        -- The date, in UTC, after which the schedule can begin invoking its target. Depending on the schedule's recurrence expression, invocations might occur on, or after, the StartDate you specify.
-        -- EventBridge Scheduler ignores StartDate for one-time schedules.
+        -- The date, in UTC, after which the schedule can begin invoking its target. Depending on the schedule's recurrence expression, invocations might occur on, or after, the StartDate you specify. EventBridge Scheduler ignores StartDate for one-time schedules.
         StartDate: number
-        -- The date, in UTC, before which the schedule can invoke its target. Depending on the schedule's recurrence expression, invocations might stop on, or before, the EndDate you specify.
-        -- EventBridge Scheduler ignores EndDate for one-time schedules.
+        -- The date, in UTC, before which the schedule can invoke its target. Depending on the schedule's recurrence expression, invocations might stop on, or before, the EndDate you specify. EventBridge Scheduler ignores EndDate for one-time schedules.
         EndDate: number
         -- The description of the schedule.
         Description: string
@@ -448,27 +392,13 @@ local record M
     record UpdateScheduleInput
         -- The name of the schedule that you are updating.
         Name: string
-        -- The name of the schedule group with which the schedule is associated. You must provide this value in order for EventBridge Scheduler to find the schedule you want to update.
-        -- If you omit this value, EventBridge Scheduler assumes the group is associated to the default group.
+        -- The name of the schedule group with which the schedule is associated. You must provide this value in order for EventBridge Scheduler to find the schedule you want to update. If you omit this value, EventBridge Scheduler assumes the group is associated to the default group.
         GroupName: string
-        -- The expression that defines when the schedule runs. The following formats are supported.
-        -- at expression - at(yyyy-mm-ddThh:mm:ss)
-        -- rate expression - rate(value unit)
-        -- cron expression - cron(fields)
-        -- You can use at expressions to create one-time schedules that invoke a target once, at the time and in the time zone, that you specify.
-        -- You can use rate and cron expressions to create recurring schedules. Rate-based schedules are useful when you want to invoke a target
-        -- at regular intervals, such as every 15 minutes or every five days. Cron-based schedules are useful when you want to invoke a target periodically at a specific time,
-        -- such as at 8:00 am (UTC+0) every 1st day of the month.
-        -- A cron expression consists of six fields separated by white spaces: (minutes hours day_of_month month day_of_week year).
-        -- A rate expression consists of a value as a positive integer, and a unit with the following options:
-        -- minute | minutes | hour | hours | day | days
-        -- For more information and examples, see Schedule types on EventBridge Scheduler in the EventBridge Scheduler User Guide.
+        -- The expression that defines when the schedule runs. The following formats are supported. at expression - at(yyyy-mm-ddThh:mm:ss) rate expression - rate(value unit) cron expression - cron(fields) You can use at expressions to create one-time schedules that invoke a target once, at the time and in the time zone, that you specify. You can use rate and cron expressions to create recurring schedules. Rate-based schedules are useful when you want to invoke a target at regular intervals, such as every 15 minutes or every five days. Cron-based schedules are useful when you want to invoke a target periodically at a specific time, such as at 8:00 am (UTC+0) every 1st day of the month. A cron expression consists of six fields separated by white spaces: (minutes hours day_of_month month day_of_week year). A rate expression consists of a value as a positive integer, and a unit with the following options: minute | minutes | hour | hours | day | days For more information and examples, see Schedule types on EventBridge Scheduler in the EventBridge Scheduler User Guide.
         ScheduleExpression: string
-        -- The date, in UTC, after which the schedule can begin invoking its target. Depending on the schedule's recurrence expression, invocations might occur on, or after, the StartDate you specify.
-        -- EventBridge Scheduler ignores StartDate for one-time schedules.
+        -- The date, in UTC, after which the schedule can begin invoking its target. Depending on the schedule's recurrence expression, invocations might occur on, or after, the StartDate you specify. EventBridge Scheduler ignores StartDate for one-time schedules.
         StartDate: number
-        -- The date, in UTC, before which the schedule can invoke its target. Depending on the schedule's recurrence expression, invocations might stop on, or before, the EndDate you specify.
-        -- EventBridge Scheduler ignores EndDate for one-time schedules.
+        -- The date, in UTC, before which the schedule can invoke its target. Depending on the schedule's recurrence expression, invocations might stop on, or before, the EndDate you specify. EventBridge Scheduler ignores EndDate for one-time schedules.
         EndDate: number
         -- The description you specify for the schedule.
         Description: string
@@ -482,8 +412,7 @@ local record M
         Target: Target
         -- Allows you to configure a time window during which EventBridge Scheduler invokes the schedule.
         FlexibleTimeWindow: FlexibleTimeWindow
-        -- Unique, case-sensitive identifier you provide to ensure the idempotency of the request. If you do not specify a client token,
-        -- EventBridge Scheduler uses a randomly generated token for the request to ensure idempotency.
+        -- Unique, case-sensitive identifier you provide to ensure the idempotency of the request. If you do not specify a client token, EventBridge Scheduler uses a randomly generated token for the request to ensure idempotency.
         ClientToken: string
         -- Specifies the action that EventBridge Scheduler applies to the schedule after the schedule completes invoking the target.
         ActionAfterCompletion: string
@@ -499,8 +428,7 @@ local record M
         Name: string
         -- The list of tags to associate with the schedule group.
         Tags: {Tag}
-        -- Unique, case-sensitive identifier you provide to ensure the idempotency of the request. If you do not specify a client token,
-        -- EventBridge Scheduler uses a randomly generated token for the request to ensure idempotency.
+        -- Unique, case-sensitive identifier you provide to ensure the idempotency of the request. If you do not specify a client token, EventBridge Scheduler uses a randomly generated token for the request to ensure idempotency.
         ClientToken: string
     end
 
@@ -512,8 +440,7 @@ local record M
     record DeleteScheduleGroupInput
         -- The name of the schedule group to delete.
         Name: string
-        -- Unique, case-sensitive identifier you provide to ensure the idempotency of the request. If you do not specify a client token,
-        -- EventBridge Scheduler uses a randomly generated token for the request to ensure idempotency.
+        -- Unique, case-sensitive identifier you provide to ensure the idempotency of the request. If you do not specify a client token, EventBridge Scheduler uses a randomly generated token for the request to ensure idempotency.
         ClientToken: string
     end
 

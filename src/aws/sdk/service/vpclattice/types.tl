@@ -264,7 +264,7 @@ local record M
     record PathMatch
         -- The type of path match.
         match: PathMatchType
-        -- Indicates whether the match is case sensitive.
+        -- Specifies whether the match is case sensitive. Defaults to true (case-sensitive matching). Set to false to match the path case-insensitively.
         caseSensitive: boolean
     end
 
@@ -544,7 +544,7 @@ local record M
         ipAddressType: string
         -- The number of IPv4 addresses in each ENI for the resource gateway.
         ipv4AddressesPerEni: number
-        -- Indicates how DNS is resolved for resource configurations associated with this resource gateway. This value is set when you create the resource gateway and can't be changed afterward. The default is PUBLIC. IN_VPC - DNS resolution occurs privately within the resource gateway's VPC. DNS queries for resources behind this resource gateway resolve using the DNS resolvers defined in the VPC's DHCP option sets. Use this when your resource domain names are hosted in private Route 53 hosted zones or on-premises DNS servers reachable from the VPC. A CIDR resource configuration requires a resource gateway that uses IN_VPC, and an IN_VPC resource gateway can't be used for ARN resource configurations, so a single resource gateway can't serve both ARN and CIDR resource configurations. PUBLIC - DNS resolution occurs against public DNS resolvers. DNS queries for resources behind this resource gateway resolve using standard public DNS. Use this when your resource domain names are publicly resolvable.
+        -- Indicates how DNS is resolved for resource configurations associated with this resource gateway. The default is PUBLIC. To change the value after you create the resource gateway, use UpdateResourceGateway. IN_VPC - DNS resolution occurs privately within the resource gateway's VPC. DNS queries for resources behind this resource gateway resolve using the DNS resolvers defined in the VPC's DHCP option sets. Use this when your resource domain names are hosted in private Route 53 hosted zones or on-premises DNS servers reachable from the VPC. A CIDR resource configuration requires a resource gateway that uses IN_VPC, and an IN_VPC resource gateway can't be used for ARN resource configurations, so a single resource gateway can't serve both ARN and CIDR resource configurations. DNS queries for an IN_VPC resource gateway use UDP only, with no TCP fallback. If responses exceed 8.4 KB, DNS resolution fails. The DNS resolver must be recursive. For more information, see Resource Config DNS Resolution in the Amazon VPC Lattice User Guide. PUBLIC - DNS resolution occurs against public DNS resolvers. DNS queries for resources behind this resource gateway resolve using standard public DNS. Use this when your resource domain names are publicly resolvable.
         resourceConfigDnsResolution: string
         -- The tags for the resource gateway.
         tags: {string : string}
@@ -2279,6 +2279,8 @@ local record M
         resourceGatewayIdentifier: string
         -- The IDs of the security groups associated with the resource gateway.
         securityGroupIds: {string}
+        -- Indicates how DNS is resolved for resource configurations associated with this resource gateway. IN_VPC - DNS resolution occurs privately within the resource gateway's VPC. Use this when your resource domain names are hosted in private Route 53 hosted zones or on-premises DNS servers reachable from the VPC. PUBLIC - DNS resolution occurs against public DNS resolvers. Use this when your resource domain names are publicly resolvable.
+        resourceConfigDnsResolution: string
     end
 
     record UpdateResourceGatewayOutput
@@ -2298,6 +2300,8 @@ local record M
         securityGroupIds: {string}
         -- The type of IP address used by the resource gateway.
         ipAddressType: string
+        -- The DNS resolution type for resource configurations that are associated with this resource gateway.
+        resourceConfigDnsResolution: string
     end
 
     record UpdateRuleInput

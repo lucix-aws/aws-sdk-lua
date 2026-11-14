@@ -26,6 +26,8 @@ M.PlacementStrategies = schema.new({ type = "list", list_member = M.PlacementStr
 
 M.Tags = schema.new({ type = "list", list_member = M.TagMap })
 
+M.EventBridgeMetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.SageMakerPipelineParameterList = schema.new({ type = "list", list_member = M.SageMakerPipelineParameter })
 
 M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
@@ -460,6 +462,46 @@ M.EventBridgeParameters = schema.new({
     },
 })
 
+M.EventBridgePutEventsV2Parameters = schema.new({
+    id = id.from(_N, "EventBridgePutEventsV2Parameters"),
+    type = "structure",
+    members = {
+        DetailType = schema.new({
+            id = id.from(_N, "EventBridgePutEventsV2Parameters", "DetailType"),
+            type = "string",
+            name = "DetailType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Source = schema.new({
+            id = id.from(_N, "EventBridgePutEventsV2Parameters", "Source"),
+            type = "string",
+            name = "Source",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EventBridgePutRawEventsParameters = schema.new({
+    id = id.from(_N, "EventBridgePutRawEventsParameters"),
+    type = "structure",
+    members = {
+        Metadata = schema.new({
+            id = id.from(_N, "EventBridgePutRawEventsParameters", "Metadata"),
+            type = "map",
+            name = "Metadata",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
 M.KinesisParameters = schema.new({
     id = id.from(_N, "KinesisParameters"),
     type = "structure",
@@ -602,6 +644,20 @@ M.Target = schema.new({
             name = "EventBridgeParameters",
             target_id = id.from(_N, "EventBridgeParameters"),
             target = M.EventBridgeParameters,
+        }),
+        EventBridgePutEventsV2Parameters = schema.new({
+            id = id.from(_N, "Target", "EventBridgePutEventsV2Parameters"),
+            type = "structure",
+            name = "EventBridgePutEventsV2Parameters",
+            target_id = id.from(_N, "EventBridgePutEventsV2Parameters"),
+            target = M.EventBridgePutEventsV2Parameters,
+        }),
+        EventBridgePutRawEventsParameters = schema.new({
+            id = id.from(_N, "Target", "EventBridgePutRawEventsParameters"),
+            type = "structure",
+            name = "EventBridgePutRawEventsParameters",
+            target_id = id.from(_N, "EventBridgePutRawEventsParameters"),
+            target = M.EventBridgePutRawEventsParameters,
         }),
         KinesisParameters = schema.new({
             id = id.from(_N, "Target", "KinesisParameters"),

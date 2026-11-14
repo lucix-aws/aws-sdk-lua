@@ -3461,6 +3461,42 @@ local record M
         push: PushMessageTemplateContent
     end
 
+    -- Contains information about a catalog item, including its identifier, name, price, and other attributes that are used in recommendations.
+    record ProfileCatalogItem
+        -- The unique identifier of the catalog item.
+        id: string
+        -- The name of the catalog item.
+        name: string
+        -- The code of the catalog item.
+        code: string
+        -- The category of the catalog item.
+        category: string
+        -- The description of the catalog item.
+        description: string
+        -- Additional information about the catalog item.
+        additionalInformation: string
+        -- The URL of the image of the catalog item.
+        imageLink: string
+        -- The URL of the catalog item.
+        link: string
+        -- The timestamp when the catalog item was created.
+        createdAt: string
+        -- The timestamp when the catalog item was last updated.
+        updatedAt: string
+        -- The price of the catalog item.
+        price: string
+        -- The custom attributes of the catalog item.
+        attributes: {string : string}
+    end
+
+    -- Contains information about a recommendation that is associated with a customer profile, including the relevance score and the associated catalog item.
+    record ProfileRecommendation
+        -- The relevance score of the recommendation.
+        score: number
+        -- The catalog item that is associated with the recommendation.
+        catalogItem: ProfileCatalogItem
+    end
+
     -- The customer profile attributes that are used with the message template.
     record CustomerProfileAttributes
         -- The unique identifier of a customer profile.
@@ -3579,6 +3615,10 @@ local record M
         billingState: string
         -- The custom attributes in customer profile attributes.
         custom: {string : string}
+        -- The recommendations that are associated with the customer profile.
+        recommendations: {ProfileRecommendation}
+        -- The calculated attributes from the customer profile that are used with the message template.
+        calculatedAttributes: {string : string}
     end
 
     -- The system endpoint attributes that are used with the message template.
@@ -3607,6 +3647,8 @@ local record M
         customerProfileAttributes: CustomerProfileAttributes
         -- The custom attributes that are used with the message template.
         customAttributes: {string : string}
+        -- The case attributes that are used with the message template.
+        caseAttributes: {string : string}
     end
 
     -- The configuration information of the grouping of Amazon Q in Connect users.
@@ -3662,6 +3704,7 @@ local record M
         "AGENT"
         "CUSTOMER_PROFILE"
         "CUSTOM"
+        "CASE"
     end
 
     enum WhatsAppSourceConfigurationStatus

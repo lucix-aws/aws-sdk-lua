@@ -998,6 +998,7 @@ local record M
         "CHATBOT_POLICY"
         "DECLARATIVE_POLICY_EC2"
         "SECURITYHUB_POLICY"
+        "SECURITYHUB_CSPM_POLICY"
         "INSPECTOR_POLICY"
         "UPGRADE_ROLLOUT_POLICY"
         "BEDROCK_POLICY"
@@ -1148,6 +1149,7 @@ local record M
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
         -- GUARDDUTY_POLICY
+        -- SECURITYHUB_CSPM_POLICY
         Type: string
         -- A list of tags that you want to attach to the newly created policy. For each tag in
         -- the list, you must specify both a tag key and a value. You can set the value to an empty
@@ -1354,6 +1356,7 @@ local record M
         "CHATBOT_POLICY"
         "DECLARATIVE_POLICY_EC2"
         "SECURITYHUB_POLICY"
+        "SECURITYHUB_CSPM_POLICY"
         "INSPECTOR_POLICY"
         "UPGRADE_ROLLOUT_POLICY"
         "BEDROCK_POLICY"
@@ -1377,6 +1380,7 @@ local record M
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
         -- GUARDDUTY_POLICY
+        -- SECURITYHUB_CSPM_POLICY
         PolicyType: string
         -- When you're signed in as the management account, specify the ID of the account that
         -- you want details about. Specifying an organization root or organizational unit (OU) as
@@ -1609,6 +1613,7 @@ local record M
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
         -- GUARDDUTY_POLICY
+        -- SECURITYHUB_CSPM_POLICY
         PolicyType: string
     end
 
@@ -1684,6 +1689,7 @@ local record M
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
         -- GUARDDUTY_POLICY
+        -- SECURITYHUB_CSPM_POLICY
         PolicyType: string
     end
 
@@ -1851,6 +1857,7 @@ local record M
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
         -- GUARDDUTY_POLICY
+        -- SECURITYHUB_CSPM_POLICY
         PolicyType: string
         -- The parameter for receiving additional results if you receive a
         -- NextToken response in a previous request. A NextToken response
@@ -1879,6 +1886,7 @@ local record M
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
         -- GUARDDUTY_POLICY
+        -- SECURITYHUB_CSPM_POLICY
         PolicyType: string
         -- If present, indicates that more output is available than is
         -- included in the current response. Use this value in the NextToken request parameter
@@ -2106,6 +2114,7 @@ local record M
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
         -- GUARDDUTY_POLICY
+        -- SECURITYHUB_CSPM_POLICY
         PolicyType: string
         -- The parameter for receiving additional results if you receive a
         -- NextToken response in a previous request. A NextToken response
@@ -2150,6 +2159,7 @@ local record M
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
         -- GUARDDUTY_POLICY
+        -- SECURITYHUB_CSPM_POLICY
         PolicyType: string
         -- The path in the organization where the specified account exists.
         Path: string
@@ -2364,6 +2374,7 @@ local record M
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
         -- GUARDDUTY_POLICY
+        -- SECURITYHUB_CSPM_POLICY
         Filter: string
         -- The parameter for receiving additional results if you receive a
         -- NextToken response in a previous request. A NextToken response
@@ -2414,6 +2425,7 @@ local record M
         -- S3_POLICY
         -- NETWORK_SECURITY_DIRECTOR_POLICY
         -- GUARDDUTY_POLICY
+        -- SECURITYHUB_CSPM_POLICY
         Filter: string
         -- The parameter for receiving additional results if you receive a
         -- NextToken response in a previous request. A NextToken response

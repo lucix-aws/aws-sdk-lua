@@ -9655,15 +9655,17 @@ local record M
         -- The type of upgrade analysis. For auto-upgrade jobs, this value is
         -- AUTO_UPGRADE.
         analysisType: string
-        -- The Amazon S3 URI of the terminal-state evaluation summary, available
-        -- once the analysis reaches a terminal status (SUCCEEDED or
-        -- FAILED).
+        -- A presigned URL for downloading the auto upgrade evaluation summary for the
+        -- analysis. Available once the analysis reaches a terminal status
+        -- (SUCCEEDED or FAILED). The URL expires after 1 hour. Calling
+        -- GetJobUpgradeAnalysis again returns a new URL.
         autoUpgradeEvaluationSummary: string
         -- The reason the analysis did not complete.
         errorMessage: string
-        -- The Amazon S3 URI of the consent report summarizing upgrade assessment
-        -- findings. Populated when the analysis reaches WAITING_FOR_CONSENT and
-        -- remains available in all subsequent states.
+        -- A presigned URL for downloading the auto upgrade eligibility summary, which lists
+        -- the compatibility results for the job. Available once the analysis reaches
+        -- WAITING_FOR_CONSENT and in all subsequent states. The URL expires after
+        -- 1 hour. Calling GetJobUpgradeAnalysis again returns a new URL.
         autoUpgradeEligibilitySummary: string
     end
 
@@ -15108,7 +15110,10 @@ local record M
         -- For more information about the available Glue versions and corresponding
         -- Spark and Python versions, see Glue version in the developer
         -- guide.
-        -- Jobs that are created without specifying a Glue version default to Glue 5.1.
+        -- Jobs that are created without specifying a Glue version default to Glue 6.0.
+        -- Set GlueVersion to auto to turn on automatic version upgrades
+        -- for the job. For more information, see Automatic version upgrades for Glue jobs in the developer guide. For the job requirements, see Before
+        -- you start.
         GlueVersion: string
         -- The number of workers of a defined workerType that are allocated when a job runs.
         NumberOfWorkers: number
@@ -15261,7 +15266,10 @@ local record M
         -- For more information about the available Glue versions and corresponding
         -- Spark and Python versions, see Glue version in the developer
         -- guide.
-        -- Jobs that are created without specifying a Glue version default to Glue 5.1.
+        -- Jobs that are created without specifying a Glue version default to Glue 6.0.
+        -- Set GlueVersion to auto to turn on automatic version upgrades
+        -- for the job. For more information, see Automatic version upgrades for Glue jobs in the developer guide. For the job requirements, see Before
+        -- you start.
         GlueVersion: string
         -- The representation of a directed acyclic graph on which both the Glue Studio visual component and Glue Studio code generation is based.
         CodeGenConfigurationNodes: {string : CodeGenConfigurationNode}
@@ -15378,6 +15386,9 @@ local record M
         -- Spark and Python versions, see Glue version in the developer
         -- guide.
         -- If not provided in the update request, the Glue version retains the value from the existing job definition.
+        -- Set GlueVersion to auto to turn on automatic version upgrades
+        -- for the job. For more information, see Automatic version upgrades for Glue jobs in the developer guide. For the job requirements, see Before
+        -- you start.
         GlueVersion: string
         -- The representation of a directed acyclic graph on which both the Glue Studio visual component and Glue Studio code generation is based.
         CodeGenConfigurationNodes: {string : CodeGenConfigurationNode}

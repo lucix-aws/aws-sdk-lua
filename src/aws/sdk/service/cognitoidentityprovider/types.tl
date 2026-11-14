@@ -3345,6 +3345,10 @@ local record M
         Scopes: {ResourceServerScopeType}
     end
 
+    enum ResourceServerManagedByType
+        "COGNITO"
+    end
+
     -- The details of a resource server configuration and associated custom scopes in a user
     -- pool.
     record ResourceServerType
@@ -3361,6 +3365,9 @@ local record M
         Name: string
         -- A list of scopes that are defined for the resource server.
         Scopes: {ResourceServerScopeType}
+        -- This value is reserved for resource servers that Amazon Cognito manages. Resource servers that
+        -- you create don't have this value.
+        ManagedBy: string
     end
 
     record CreateResourceServerOutput
@@ -3532,6 +3539,78 @@ local record M
         -- The details of the user import job. Includes logging destination, status, and the Amazon S3
         -- pre-signed URL for CSV upload.
         UserImportJob: UserImportJobType
+    end
+
+    enum OAuthFlowType
+        "code"
+        "implicit"
+        "client_credentials"
+    end
+
+    enum StatusType
+        "Enabled"
+        "Disabled"
+    end
+
+    -- The dynamic client registration configuration for a user pool. Dynamic client
+    -- registration lets applications register their own app clients at runtime through the
+    -- registration endpoint of your user pool domain. To activate this setting, your user pool must be in the
+    -- Essentials tier or higher.
+    -- Applications register app clients at the /oauth2/register endpoint of your
+    -- user pool domain. In authenticated registration, the application sends an access token
+    -- from your user pool that has the aws.cognito/dcr/register scope. In open
+    -- registration, the application doesn't send a token.
+    -- When you include this configuration in an UpdateUserPool request, Amazon Cognito
+    -- replaces the existing configuration with the one that you provide.
+    record DcrConfigurationType
+        -- Specifies whether dynamic client registration is turned on for the user pool. If you
+        -- provide a dynamic client registration configuration without this value, Amazon Cognito turns
+        -- dynamic client registration on.
+        EnableStatus: string
+        -- Specifies whether open registration is turned on. When open registration is on,
+        -- applications can register app clients without an initial access token. The default value
+        -- is false.
+        OpenDcrEnabled: boolean
+        -- The OAuth grant types that an app client created through authenticated registration can
+        -- request. If you don't set this value, authenticated registration permits the
+        -- code and client_credentials grant types. If you set an
+        -- empty list, Amazon Cognito rejects authenticated registration requests. Dynamic client
+        -- registration supports the following values. Amazon Cognito accepts implicit in this
+        -- list but ignores it.
+        -- code
+        -- Use a code grant flow, which provides an authorization code as the
+        -- response. This code can be exchanged for access tokens with the
+        -- /oauth2/token endpoint.
+        -- client_credentials
+        -- Issue the access token from the /oauth2/token endpoint
+        -- directly to a non-person user using a combination of the client ID and
+        -- client secret.
+        AuthenticatedGrantTypes: {string}
+        -- The OAuth grant types that an app client created through open registration can request.
+        -- If you don't set this value, open registration permits only the code
+        -- grant type. If you set an empty list, Amazon Cognito rejects open registration requests. If you add
+        -- client_credentials, anyone can register an app client that requests
+        -- machine-to-machine (M2M) access tokens, and you pay for the M2M token requests that those
+        -- app clients make. Dynamic client registration supports the following values. Amazon Cognito
+        -- accepts implicit in this list but ignores it.
+        -- code
+        -- Use a code grant flow, which provides an authorization code as the
+        -- response. This code can be exchanged for access tokens with the
+        -- /oauth2/token endpoint.
+        -- client_credentials
+        -- Issue the access token from the /oauth2/token endpoint
+        -- directly to a non-person user using a combination of the client ID and
+        -- client secret.
+        OpenDcrGrantTypes: {string}
+        -- The scopes that an app client created through dynamic client registration can request,
+        -- in addition to the standard OpenID Connect (OIDC) scopes. You can include custom scopes
+        -- from your resource servers and aws.cognito.signin.user.admin. Registered app
+        -- clients can request the OIDC scopes openid, email,
+        -- phone, and profile without listing them here. If you
+        -- don't set this value, registered app clients can request only the OIDC scopes. A
+        -- registered app client can't request the aws.cognito/dcr/register scope,
+        -- even if you include it in this list.
+        AllowedScopes: {string}
     end
 
     enum DeletionProtectionType
@@ -4151,6 +4230,11 @@ local record M
         -- For more information, see Adding advanced security to a user pool. To activate this setting, your user pool must be on the
         -- Plus tier.
         UserPoolAddOns: UserPoolAddOnsType
+        -- The dynamic client registration configuration for the user pool. With dynamic client
+        -- registration, applications can register their own app clients at runtime through the
+        -- registration endpoint of your user pool domain. To activate this setting, your user pool must be in the
+        -- Essentials tier or higher.
+        DcrConfiguration: DcrConfigurationType
         -- Sets the case sensitivity option for sign-in usernames. When
         -- CaseSensitive is false (case insensitive), users can sign
         -- in with any combination of capital and lowercase letters. For example,
@@ -4201,11 +4285,6 @@ local record M
         -- To activate this setting, your user pool must be in the
         -- Essentials tier or higher.
         AcrConfiguration: {string : AcrLevelConfigType}
-    end
-
-    enum StatusType
-        "Enabled"
-        "Disabled"
     end
 
     -- The configuration of a user pool.
@@ -4331,6 +4410,11 @@ local record M
         -- For more information, see Adding advanced security to a user pool. To activate this setting, your user pool must be on the
         -- Plus tier.
         UserPoolAddOns: UserPoolAddOnsType
+        -- The dynamic client registration configuration for the user pool. With dynamic client
+        -- registration, applications can register their own app clients at runtime through the
+        -- registration endpoint of your user pool domain. To activate this setting, your user pool must be in the
+        -- Essentials tier or higher.
+        DcrConfiguration: DcrConfigurationType
         -- Case sensitivity of the username input for the selected sign-in option. When case
         -- sensitivity is set to False (case insensitive), users can sign in with any
         -- combination of capital and lowercase letters. For example, username,
@@ -4382,12 +4466,6 @@ local record M
     -- This exception is thrown when a user pool tag can't be set or updated.
     record UserPoolTaggingException
         message: string
-    end
-
-    enum OAuthFlowType
-        "code"
-        "implicit"
-        "client_credentials"
     end
 
     enum ExplicitAuthFlowsType
@@ -4690,6 +4768,11 @@ local record M
         RefreshTokenRotation: RefreshTokenRotationType
     end
 
+    enum ClientTypeType
+        "REGULAR"
+        "DCR"
+    end
+
     -- The configuration of a user pool client.
     record UserPoolClientType
         -- The ID of the user pool associated with the app client.
@@ -4929,6 +5012,16 @@ local record M
         -- with refresh tokens. When disabled, token refresh issues only ID and access
         -- tokens.
         RefreshTokenRotation: RefreshTokenRotationType
+        -- How the app client was created.
+        -- REGULAR
+        -- The app client wasn't created through dynamic client registration.
+        -- For example, you created it with CreateUserPoolClient.
+        -- DCR
+        -- An application registered the app client through dynamic client
+        -- registration. These app clients don't support client secret operations
+        -- such as AddUserPoolClientSecret, and they can't hold the
+        -- aws.cognito/dcr/register scope.
+        ClientType: string
     end
 
     -- Represents the response from the server to create a user pool client.
@@ -6656,6 +6749,20 @@ local record M
         -- Subsequent requests return a new pagination token. By use of this token, you can paginate
         -- through the full list of items.
         NextToken: string
+        -- Returns only app clients of this type. For dynamic client registration
+        -- (DCR) and other app clients, the following values are valid.
+        -- REGULAR
+        -- An app client not created through dynamic client registration.
+        -- DCR
+        -- An app client created through dynamic client registration.
+        -- If you omit ClientType, the response includes app clients of all types.
+        -- When you set this filter, a page of results can contain fewer app clients than
+        -- MaxResults, or none, while the response still includes a
+        -- NextToken. Continue to request pages until the response has no
+        -- NextToken. The app clients in the response don't include their
+        -- type. To get the type of an app client, call
+        -- DescribeUserPoolClient.
+        ClientType: string
     end
 
     -- A short description of a user pool app client.
@@ -8134,6 +8241,17 @@ local record M
         -- For more information, see Adding advanced security to a user pool. To activate this setting, your user pool must be on the
         -- Plus tier.
         UserPoolAddOns: UserPoolAddOnsType
+        -- The dynamic client registration configuration for the user pool. With dynamic client
+        -- registration, applications can register their own app clients at runtime through the
+        -- registration endpoint of your user pool domain. To activate this setting, your user pool must be in the
+        -- Essentials tier or higher.
+        -- If you omit this parameter, Amazon Cognito keeps the existing configuration. If you include it,
+        -- Amazon Cognito replaces the existing configuration with the one that you provide. Members that you
+        -- omit revert to their default values, and an omitted EnableStatus turns
+        -- dynamic client registration on.
+        -- To change the feature plan of the user pool to Lite, you must also set
+        -- EnableStatus to Disabled.
+        DcrConfiguration: DcrConfigurationType
         -- The available verified method a user can use to recover their password when they call
         -- ForgotPassword. You can use this setting to define a preferred method
         -- when a user has more than one method available. With this setting, SMS doesn't qualify
