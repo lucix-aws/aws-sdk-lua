@@ -969,9 +969,7 @@ local record M
         -- Pays Buckets in the Amazon Simple Storage Service Developer
         -- Guide.
         RequesterPaysEnabled: boolean
-        -- The engine version that all queries running on the workgroup use. Queries on the
-        -- AmazonAthenaPreviewFunctionality workgroup run on the preview engine
-        -- regardless of this setting.
+        -- The engine version that all queries running on the workgroup use.
         EngineVersion: EngineVersion
         -- Specifies a user defined JSON string that is passed to the notebook engine.
         AdditionalConfiguration: string
@@ -1893,6 +1891,10 @@ local record M
         CapacityReservations: {CapacityReservation}
     end
 
+    enum DatabaseAttributes
+        "NAME"
+    end
+
     record ListDatabasesInput
         -- The name of the data catalog that contains the databases to return.
         CatalogName: string
@@ -1905,6 +1907,16 @@ local record M
         -- The name of the workgroup for which the metadata is being fetched. Required if
         -- requesting an IAM Identity Center enabled Glue Data Catalog.
         WorkGroup: string
+        -- Specifies the database properties returned by the ListDatabases
+        -- call. The only valid value is NAME, which returns only the name of
+        -- each database and omits the remaining properties. If you omit this parameter or
+        -- specify an empty list, all database properties are returned.
+        -- Requesting only names can reduce response time for catalogs that contain many
+        -- databases, especially resource links to databases shared from other
+        -- accounts.
+        -- This parameter applies only to the Glue Data Catalog. For other data
+        -- catalog types, it is ignored.
+        AttributesToGet: {string}
     end
 
     record ListDatabasesOutput
@@ -2256,6 +2268,11 @@ local record M
         NextToken: string
     end
 
+    enum TableAttributes
+        "NAME"
+        "TABLE_TYPE"
+    end
+
     record ListTableMetadataInput
         -- The name of the data catalog for which table metadata should be returned.
         CatalogName: string
@@ -2273,6 +2290,17 @@ local record M
         -- The name of the workgroup for which the metadata is being fetched. Required if
         -- requesting an IAM Identity Center enabled Glue Data Catalog.
         WorkGroup: string
+        -- Specifies the table properties returned by the ListTableMetadata
+        -- call. This parameter doesn't accept an empty list, and the request must include
+        -- NAME. The valid combinations of values are NAME, which
+        -- returns the name of each table, and NAME and TABLE_TYPE,
+        -- which return the name and table type of each table. The remaining properties are
+        -- omitted. If you omit this parameter, all table properties are returned.
+        -- Requesting only the properties you need can reduce response time for databases
+        -- that contain many tables.
+        -- This parameter applies only to the Glue Data Catalog. For other data
+        -- catalog types, it is ignored.
+        AttributesToGet: {string}
     end
 
     record ListTableMetadataOutput
@@ -2323,9 +2351,7 @@ local record M
         Description: string
         -- The workgroup creation date and time.
         CreationTime: number
-        -- The engine version setting for all queries on the workgroup. Queries on the
-        -- AmazonAthenaPreviewFunctionality workgroup run on the preview engine
-        -- regardless of this setting.
+        -- The engine version setting for all queries on the workgroup.
         EngineVersion: EngineVersion
         -- The ARN of the IAM Identity Center enabled application associated with the
         -- workgroup.
@@ -2811,8 +2837,7 @@ local record M
         RequesterPaysEnabled: boolean
         -- The engine version requested when a workgroup is updated. After the update, all
         -- queries on the workgroup run on the requested engine version. If no value was previously
-        -- set, the default is Auto. Queries on the AmazonAthenaPreviewFunctionality
-        -- workgroup run on the preview engine regardless of this setting.
+        -- set, the default is Auto.
         EngineVersion: EngineVersion
         -- Removes content encryption configuration from an Apache Spark-enabled Athena workgroup.
         RemoveCustomerContentEncryptionConfiguration: boolean

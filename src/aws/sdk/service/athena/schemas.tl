@@ -38,6 +38,8 @@ M.CalculationsList = schema.new({ type = "list", list_member = M.CalculationSumm
 
 M.CapacityReservationsList = schema.new({ type = "list", list_member = M.CapacityReservation })
 
+M.DatabaseAttributesList = schema.new({ type = "list", list_member = prelude.String })
+
 M.DatabaseList = schema.new({ type = "list", list_member = M.Database })
 
 M.DataCatalogSummaryList = schema.new({ type = "list", list_member = M.DataCatalogSummary })
@@ -55,6 +57,8 @@ M.PreparedStatementsList = schema.new({ type = "list", list_member = M.PreparedS
 M.SessionsList = schema.new({ type = "list", list_member = M.SessionSummary })
 
 M.SystemTableStatusList = schema.new({ type = "list", list_member = M.SystemTableStatus })
+
+M.TableAttributesList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TableMetadataList = schema.new({ type = "list", list_member = M.TableMetadata })
 
@@ -3868,6 +3872,13 @@ M.ListDatabasesInput = schema.new({
             name = "WorkGroup",
             target_id = prelude.String.id,
         }),
+        AttributesToGet = schema.new({
+            id = id.from(_N, "ListDatabasesInput", "AttributesToGet"),
+            type = "list",
+            name = "AttributesToGet",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
     },
 })
 
@@ -4596,6 +4607,13 @@ M.ListTableMetadataInput = schema.new({
             type = "string",
             name = "WorkGroup",
             target_id = prelude.String.id,
+        }),
+        AttributesToGet = schema.new({
+            id = id.from(_N, "ListTableMetadataInput", "AttributesToGet"),
+            type = "list",
+            name = "AttributesToGet",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })

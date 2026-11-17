@@ -93,6 +93,30 @@ local record M
         accessRoleArn: string
     end
 
+    -- An individual account entry in the organizational monitoring boundary, with its associated regions.
+    record OrganizationalAccountEntry
+        -- The Amazon Web Services account ID to include in the monitoring boundary.
+        accountId: string
+        -- The list of regions to monitor for this account.
+        regions: {string}
+    end
+
+    -- An organizational unit or root entry in the organizational monitoring boundary, with its associated regions.
+    record OrganizationalUnitEntry
+        -- The AWS Organizations organizational unit ID or root ID. Must match the pattern r-[a-z0-9]{4,32} for roots or ou-[a-z0-9]{4,32}-[a-z0-9]{8,32} for OUs.
+        organizationalUnitId: string
+        -- The list of regions to monitor for this organizational unit or root.
+        regions: {string}
+    end
+
+    -- The organizational monitoring boundary configuration. Contains organizational unit entries and individual account entries, each with their own region selections, that define the scope for organizational profile analysis.
+    record OrganizationalAggregationConfiguration
+        -- A list of organizational unit or root entries that define the organizational scope. Each entry specifies an OU or root ID and the regions to monitor within it.
+        organizationalUnits: {OrganizationalUnitEntry}
+        -- A list of individual account entries that define additional accounts to include. Each entry specifies an account ID and the regions to monitor within it.
+        accounts: {OrganizationalAccountEntry}
+    end
+
     enum Pillar
         "COST_OPTIMIZATION"
         "SECURITY"
@@ -101,12 +125,10 @@ local record M
         "OPERATIONAL_EXCELLENCE"
     end
 
-    -- A key-value pair associated with a resource for cost allocation and access control.
-    record Tag
-        -- The key of the tag.
-        key: string
-        -- The value of the tag.
-        value: string
+    enum ProfileType
+        "STANDARD"
+        "BASIC"
+        "ORGANIZATIONAL"
     end
 
     -- Summary of an optimization profile, including its configuration, metadata, and audit information.
@@ -119,13 +141,15 @@ local record M
         description: string
         -- The business overview for this profile.
         businessOverview: string
-        -- The Well-Architected Tool Framework pillars associated with this profile.
+        -- The Amazon Web Services Well-Architected Framework pillars associated with this profile. Not present for basic profiles.
         pillars: {string}
         -- Indicates whether deletion protection is enabled for the profile.
         deletionProtection: boolean
-        -- The ARN of the IAM execution role used for recommendation actions.
+        -- The type of the profile.
+        profileType: string
+        -- The ARN of the IAM execution role used for recommendation actions. Not present for basic profiles.
         executionRoleArn: string
-        -- The aggregation configuration that defines which Amazon Web Services accounts and Regions to analyze.
+        -- The aggregation configuration that defines which Amazon Web Services accounts and Regions to analyze. Not present for basic profiles.
         aggregationConfiguration: {AggregationConfiguration}
         -- The Amazon Resource Name (ARN) of the optimization profile.
         arn: string
@@ -135,8 +159,6 @@ local record M
         eligibleForArchitectureGeneration: boolean
         -- A map of field paths to error messages for invalid or missing input fields.
         fieldErrors: {string : string}
-        -- The tags associated with the profile.
-        tags: {Tag}
         -- The identifier of the user or system that created this profile.
         createdBy: string
         -- The timestamp when the profile was created.
@@ -145,6 +167,28 @@ local record M
         lastModifiedBy: string
         -- The timestamp when the profile was last modified.
         lastModifiedAt: number
+        -- The organizational monitoring boundary. Present only for organizational profiles.
+        organizationalAggregationConfiguration: OrganizationalAggregationConfiguration
+    end
+
+    -- Details about an error that occurred during recommendation generation.
+    record ErrorDetails
+        -- The status code identifying the type of error.
+        code: string
+        -- A human-readable description of the error.
+        message: string
+    end
+
+    enum RecommendationType
+        "RESOURCE"
+        "ARCHITECTURE"
+        "APPLICATION"
+    end
+
+    enum GenerationType
+        "ONDEMAND"
+        "SCHEDULED"
+        "BASIC"
     end
 
     enum GenerationStatus
@@ -174,6 +218,24 @@ local record M
         lastModifiedBy: string
         -- The timestamp when the generation was last modified.
         lastModifiedAt: number
+        -- How the generation was started.
+        generationType: string
+        -- The recommendation types the generation covers.
+        generationRecommendationTypes: {string}
+        -- The timestamp when the recommendation generation process started.
+        startedAt: number
+        -- The timestamp when the recommendation generation process completed.
+        endedAt: number
+        -- Details about the error if the generation status is ERROR.
+        errorDetails: ErrorDetails
+    end
+
+    -- The per-resource auto-remediation for a single affected resource. Represents one AWS Systems Manager (SSM) runbook execution that targets the resource. Present only when the resource's check is backed by an SSM automation runbook.
+    record AutoRemediation
+        -- A deep link to the SSM runbook execution page in the AWS Management Console for this resource, with the execution parameters prefilled.
+        deepLink: string
+        -- The AWS CLI command that triggers the same SSM runbook execution for this resource. You can copy and run this command as-is.
+        cliCommand: string
     end
 
     enum RecommendationItemType
@@ -197,6 +259,8 @@ local record M
         lastModifiedBy: string
         -- The timestamp when the recommendation item was last modified.
         lastModifiedAt: number
+        -- The optional per-resource auto-remediation for this affected resource, representing an SSM runbook execution. Present only when the item's check is backed by an SSM automation runbook.
+        autoRemediation: AutoRemediation
     end
 
     -- An external reference associated with remediation steps.
@@ -279,25 +343,19 @@ local record M
         "COMPLETED"
     end
 
-    enum RecommendationType
-        "RESOURCE"
-        "ARCHITECTURE"
-        "APPLICATION"
-    end
-
     -- Summary of an agent optimization recommendation returned by list operations.
     record AgentRecommendationSummary
         -- The Amazon Resource Name (ARN) of the recommendation.
         recommendationArn: string
         -- The Amazon Resource Name (ARN) of the associated profile.
         profileArn: string
-        -- The identifier of the generation process that produced this recommendation.
+        -- The identifier of the generation that produced this recommendation.
         generationId: string
         -- The title of the recommendation.
         title: string
         -- A description of the recommendation.
         description: string
-        -- The Well-Architected Tool Framework pillar that the recommendation addresses.
+        -- The Amazon Web Services Well-Architected Framework pillar that the recommendation addresses.
         pillar: string
         -- The priority of the recommendation.
         priority: string
@@ -675,6 +733,8 @@ local record M
         resourceTypes: {string}
         -- Resource tags used to scope this application context.
         resourceTags: {ContextResourceTag}
+        -- The AWS Organizations organizational unit (OU) IDs associated with this application context. Valid only for organizational profiles; rejected for standard profiles.
+        organizationalUnitIds: {string}
         -- A free-form overview of the application.
         applicationOverview: string
         -- The industry vertical for this application.
@@ -719,6 +779,97 @@ local record M
         lastModifiedAt: number
     end
 
+    -- An account that was in scope for an Organizational Report but could not be processed, along with the reason for the failure.
+    record FailedAccount
+        -- The AWS account ID that failed.
+        accountId: string
+        -- A human-readable explanation of why the account could not be processed.
+        reason: string
+    end
+
+    -- An organizational unit that was requested in an Organizational Report's filters but could not be expanded into its member accounts. A failed OU means the report is missing the accounts it contained.
+    record FailedOrganizationalUnit
+        -- The AWS Organizations OU ID that could not be expanded.
+        organizationalUnitId: string
+        -- A human-readable explanation of why the organizational unit could not be expanded.
+        reason: string
+    end
+
+    -- Pair of a Well-Architected pillar and the number of recommendations attributed to it in a CoverageSummary.
+    record PillarCount
+        -- Well-Architected pillar this count is attributed to.
+        pillar: string
+        -- Non-negative count of recommendations in the report that are attributed to this pillar.
+        count: number
+    end
+
+    -- Pair of a recommendation Priority and the number of recommendations attributed to it in a CoverageSummary.
+    record PriorityCount
+        -- Priority this count is attributed to.
+        priority: string
+        -- Non-negative count of recommendations in the report that are attributed to this priority.
+        count: number
+    end
+
+    -- Counts describing the coverage of a completed Organizational Report. Includes the number of accounts in scope, how many had a profile, how many failed, and aggregated recommendation counts by pillar and priority. Returned only by GetAgentOrganizationalReport after the report reaches COMPLETED status. Not returned on the list response.
+    record CoverageSummary
+        -- Total number of accounts that were in scope for the report after applying all filters and AWS Organizations membership validation.
+        totalAccountsInScope: number
+        -- Number of in-scope accounts that had an Agent Profile and were successfully processed.
+        accountsWithProfile: number
+        -- Number of in-scope accounts that had no Agent Profile at the time of the snapshot.
+        accountsWithoutProfile: number
+        -- Number of in-scope accounts that errored during processing. Equal to the length of failedAccounts.
+        failedAccountCount: number
+        -- Total number of Agent Profiles contributing to the report.
+        totalProfiles: number
+        -- Total number of recommendations included in the report across all profiles and all pillars.
+        totalRecommendations: number
+        -- Recommendation count grouped by Well-Architected pillar. Each entry pairs a Pillar enum value with a non-negative long. The counts sum to totalRecommendations.
+        recommendationCountByPillar: {PillarCount}
+        -- Recommendation count grouped by Priority. Each entry pairs a Priority enum value with a non-negative long. The counts sum to totalRecommendations.
+        recommendationCountByPriority: {PriorityCount}
+        -- Accounts that errored during processing and the reason they failed.
+        failedAccounts: {FailedAccount}
+        -- Organizational units named in the report's filters that could not be expanded into their member accounts, along with the reason each failed. A failed OU means the report is missing whatever accounts it contained. Absent or empty when every requested OU expanded successfully.
+        failedOrganizationalUnits: {FailedOrganizationalUnit}
+    end
+
+    -- A key-value pair associated with a resource for cost allocation and access control.
+    record Tag
+        -- The key of the tag.
+        key: string
+        -- The value of the tag.
+        value: string
+    end
+
+    record CreateAgentBasicProfileInput
+        -- Tags to apply to the Basic profile at creation time.
+        tags: {Tag}
+    end
+
+    record CreateAgentBasicProfileOutput
+        -- The identifier of the user or system that created this resource.
+        createdBy: string
+        -- The timestamp when the resource was created.
+        createdAt: number
+        -- The identifier of the user or system that last modified this resource.
+        lastModifiedBy: string
+        -- The timestamp when the resource was last modified.
+        lastModifiedAt: number
+        -- The Amazon Resource Name (ARN) of the created Basic profile.
+        arn: string
+    end
+
+    -- The user has reached their resource quota.
+    record ServiceQuotaExceededException
+        Message: string
+        ResourceId: string
+        ResourceType: string
+        QuotaCode: string
+        ServiceCode: string
+    end
+
     record CreateAgentContextInput
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
         clientToken: string
@@ -737,21 +888,12 @@ local record M
         context: ContextSummary
     end
 
-    -- The user has reached their resource quota.
-    record ServiceQuotaExceededException
-        Message: string
-        ResourceId: string
-        ResourceType: string
-        QuotaCode: string
-        ServiceCode: string
-    end
-
     record CreateAgentGoalInput
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
         clientToken: string
         -- The Amazon Resource Name (ARN) of the profile to associate the goal with.
         profileArn: string
-        -- The Well-Architected Tool Framework pillars to associate with this goal.
+        -- The Amazon Web Services Well-Architected Framework pillars to associate with this goal.
         pillars: {string}
         -- The title of the goal.
         title: string
@@ -765,7 +907,7 @@ local record M
         id: string
         -- The Amazon Resource Name (ARN) of the associated profile.
         profileArn: string
-        -- The Well-Architected Tool Framework pillars associated with this goal.
+        -- The Amazon Web Services Well-Architected Framework pillars associated with this goal.
         pillars: {string}
         -- The title of the goal.
         title: string
@@ -786,6 +928,118 @@ local record M
         goal: GoalSummary
     end
 
+    record CreateAgentOrganizationalProfileInput
+        -- The system name of the organizational profile.
+        name: string
+        -- The display name of the organizational profile shown to users.
+        displayName: string
+        -- A description of the organizational profile.
+        description: string
+        -- The business overview for this organizational profile.
+        businessOverview: string
+        -- The Amazon Web Services Well-Architected Framework pillars to associate with this organizational profile.
+        pillars: {string}
+        -- Indicates whether deletion protection is enabled for the organizational profile.
+        deletionProtection: boolean
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        clientToken: string
+        -- The organizational monitoring boundary. Contains organizational unit or root entries and individual account entries that define the scope for the profile.
+        organizationalAggregationConfiguration: OrganizationalAggregationConfiguration
+        -- The tags to associate with the organizational profile.
+        tags: {Tag}
+    end
+
+    record CreateAgentOrganizationalProfileOutput
+        -- The system name of the created organizational profile.
+        name: string
+        -- The display name of the created organizational profile.
+        displayName: string
+        -- A description of the created organizational profile.
+        description: string
+        -- The business overview of the created organizational profile.
+        businessOverview: string
+        -- The Amazon Web Services Well-Architected Framework pillars associated with the created organizational profile.
+        pillars: {string}
+        -- Indicates whether deletion protection is enabled.
+        deletionProtection: boolean
+        -- The identifier of the Amazon Web Services Organization this profile belongs to.
+        organizationId: string
+        -- The organizational monitoring boundary for the created profile. Present only for organizational profiles.
+        organizationalAggregationConfiguration: OrganizationalAggregationConfiguration
+        -- The Amazon Resource Name (ARN) of the created organizational profile.
+        arn: string
+        -- Indicates whether the profile is valid for scheduled recommendation generation.
+        eligibleForScheduledGeneration: boolean
+        -- Indicates whether the profile is valid for manual architecture generation.
+        eligibleForArchitectureGeneration: boolean
+        -- A map of field paths to error messages for invalid or missing input fields.
+        fieldErrors: {string : string}
+        -- The tags associated with the created organizational profile.
+        tags: {Tag}
+        -- The identifier of the user or system that created this organizational profile.
+        createdBy: string
+        -- The timestamp when the organizational profile was created.
+        createdAt: number
+        -- The identifier of the user or system that last modified this organizational profile.
+        lastModifiedBy: string
+        -- The timestamp when the organizational profile was last modified.
+        lastModifiedAt: number
+    end
+
+    -- An inclusive time window used by Organizational Report filters. Both bounds are optional, but at least one of from or to must be set when the structure is present.
+    record TimeWindow
+        -- Lower bound of the window (inclusive). Absent means no lower bound.
+        from: number
+        -- Upper bound of the window (inclusive). Absent means no upper bound.
+        to: number
+    end
+
+    -- Filters narrowing the scope of an Organizational Report. Every member is optional. An absent or empty member places no constraint on that dimension. When the entire structure is absent, the report covers every account and every recommendation in the organization.
+    record OrganizationalReportFilters
+        -- AWS account IDs to include in the report. Absent or empty means all accounts in the organization are in scope. Each supplied account is validated against AWS Organizations membership. Accounts that do not belong to the caller's organization are excluded and recorded on the report's coverage summary.
+        accountIds: {string}
+        -- AWS Organizational Unit IDs whose member accounts are included in the report. Absent or empty means no OU-based scoping is applied. Account and OU filters combine as a union.
+        organizationalUnitIds: {string}
+        -- Well-Architected pillars to include. Absent or empty means all pillars.
+        pillars: {string}
+        -- Recommendation types (RESOURCE, ARCHITECTURE, APPLICATION) to include. Absent or empty means all types.
+        recommendationTypes: {string}
+        -- Recommendation statuses (ACTIVE, SUPPRESSED, COMPLETED) to include. Absent or empty means all statuses.
+        statuses: {string}
+        -- Recommendation priorities (HIGH, MEDIUM, LOW) to include. Absent or empty means all priorities.
+        priorities: {string}
+        -- Inclusive window on recommendation creation time. Absent means no lower or upper bound on createdAt.
+        createdAtRange: TimeWindow
+        -- Inclusive window on recommendation last-updated time. Absent means no lower or upper bound on updatedAt.
+        updatedAtRange: TimeWindow
+    end
+
+    record CreateAgentOrganizationalReportInput
+        -- A caller-supplied idempotency token. Two create calls sharing the same token within the service's idempotency window return the same reportId.
+        clientToken: string
+        -- Optional human-readable label (1-500 characters) that helps callers distinguish reports created with the same filters. Carried through list and get responses.
+        label: string
+        -- Optional filters narrowing the report's scope. Absent means the report covers the whole organization.
+        filters: OrganizationalReportFilters
+    end
+
+    enum OrganizationalReportState
+        "DISCOVERING"
+        "SNAPSHOTTING"
+        "AGGREGATING"
+        "COMPRESSING"
+        "COMPLETED"
+        "FAILED"
+        "DELETING"
+    end
+
+    record CreateAgentOrganizationalReportOutput
+        -- Unique identifier assigned to the newly-created report.
+        reportId: string
+        -- Lifecycle state of the report at the moment the create call returned. For a freshly-created report this is typically DISCOVERING.
+        state: string
+    end
+
     record CreateAgentProfileInput
         -- The system name of the profile.
         name: string
@@ -795,7 +1049,7 @@ local record M
         description: string
         -- The business overview for this profile.
         businessOverview: string
-        -- The Well-Architected Tool Framework pillars to associate with this profile.
+        -- The Amazon Web Services Well-Architected Framework pillars to associate with this profile.
         pillars: {string}
         -- Indicates whether deletion protection is enabled for the profile.
         deletionProtection: boolean
@@ -818,7 +1072,7 @@ local record M
         description: string
         -- The business overview of the created profile.
         businessOverview: string
-        -- The Well-Architected Tool Framework pillars associated with the created profile.
+        -- The Amazon Web Services Well-Architected Framework pillars associated with the created profile.
         pillars: {string}
         -- Indicates whether deletion protection is enabled.
         deletionProtection: boolean
@@ -1081,12 +1335,36 @@ local record M
     record DeleteAgentGoalOutput
     end
 
+    record DeleteAgentOrganizationalReportInput
+        -- Identifier of the report to delete.
+        reportId: string
+    end
+
+    record DeleteAgentOrganizationalReportOutput
+    end
+
     record DeleteAgentProfileInput
         -- The Amazon Resource Name (ARN) of the profile to delete.
         profileArn: string
     end
 
     record DeleteAgentProfileOutput
+    end
+
+    record DeleteAgentProfilePolicyInput
+        -- The ARN of the Agent Profile whose policy to delete.
+        profileArn: string
+    end
+
+    record DeleteAgentProfilePolicyOutput
+    end
+
+    record DeleteAgentRecommendationPolicyInput
+        -- The ARN of the Agent Recommendation whose policy to delete.
+        recommendationArn: string
+    end
+
+    record DeleteAgentRecommendationPolicyOutput
     end
 
     enum LensStatusType
@@ -1200,14 +1478,6 @@ local record M
         "DISABLED"
     end
 
-    -- Details about an error that occurred during recommendation generation.
-    record ErrorDetails
-        -- The status code identifying the type of error.
-        code: string
-        -- A human-readable description of the error.
-        message: string
-    end
-
     record ExportLensInput
         LensAlias: string
         -- The lens version to be exported.
@@ -1251,6 +1521,78 @@ local record M
         goal: GoalSummary
     end
 
+    record GetAgentOrganizationalReportInput
+        -- Identifier of the report to retrieve.
+        reportId: string
+    end
+
+    record GetAgentOrganizationalReportOutput
+        -- Unique identifier of the Organizational Report assigned by the service at creation time.
+        reportId: string
+        -- AWS account ID of the caller that created the report. Only this account or a delegated administrator of the same organization may retrieve or delete the report.
+        ownerAccountId: string
+        -- Identifier of the AWS Organization the report belongs to. Derived from the caller's authorization context at creation time and not accepted as a client-supplied input.
+        organizationId: string
+        -- Optional human-readable label supplied by the caller at creation time.
+        label: string
+        -- Current lifecycle state of the report.
+        state: string
+        -- Timestamp at which the report was created.
+        createdAt: number
+        -- Filters captured when the report was created. Absent when no filters were supplied (meaning the report covered the whole organization).
+        filters: OrganizationalReportFilters
+        -- Coverage and aggregate counts for the report. Present only after the report reaches COMPLETED.
+        coverageSummary: CoverageSummary
+    end
+
+    enum OrganizationalReportFormat
+        "CSV"
+        "JSON"
+        "PARQUET"
+    end
+
+    record GetAgentOrganizationalReportDataInput
+        -- Identifier of the report whose data is being retrieved.
+        reportId: string
+        -- Format of the returned artifact (CSV, JSON, or PARQUET).
+        format: string
+    end
+
+    record GetAgentOrganizationalReportDataOutput
+        -- Presigned URL that can be used to download the artifact.
+        downloadUrl: string
+        -- Expiration time of downloadUrl.
+        expiresAt: number
+    end
+
+    record GetAgentPreferencesInput
+    end
+
+    enum PreferenceKey
+        "ORG_INTEGRATION"
+    end
+
+    enum PreferenceStatus
+        "ENABLED"
+        "DISABLED"
+        "FAILED"
+    end
+
+    -- A single Well-Architected Agent preference and its current state.
+    record PreferenceEntry
+        -- Which preference this entry describes.
+        key: string
+        -- Current state of the preference. ENABLED and DISABLED reflect the result of the most recent successful change. FAILED reflects a stored failure surfaced on a read and is accompanied by a detail message.
+        status: string
+        -- A human-readable explanation present only when status is FAILED, describing what went wrong and how to recover.
+        detail: string
+    end
+
+    record GetAgentPreferencesOutput
+        -- The caller's complete set of preferences.
+        preferences: {PreferenceEntry}
+    end
+
     record GetAgentProfileInput
         -- The Amazon Resource Name (ARN) of the optimization profile to retrieve.
         profileArn: string
@@ -1265,13 +1607,15 @@ local record M
         description: string
         -- The business overview of the profile.
         businessOverview: string
-        -- The Well-Architected Tool Framework pillars associated with the profile.
+        -- The Amazon Web Services Well-Architected Framework pillars associated with the profile. Not present for basic profiles.
         pillars: {string}
         -- Indicates whether deletion protection is enabled.
         deletionProtection: boolean
-        -- The ARN of the IAM execution role.
+        -- The type of the profile.
+        profileType: string
+        -- The ARN of the IAM execution role. Not present for basic profiles.
         executionRoleArn: string
-        -- The aggregation configuration.
+        -- The aggregation configuration. Not present for basic profiles.
         aggregationConfiguration: {AggregationConfiguration}
         -- The Amazon Resource Name (ARN) of the profile.
         arn: string
@@ -1291,6 +1635,20 @@ local record M
         lastModifiedBy: string
         -- The timestamp when the profile was last modified.
         lastModifiedAt: number
+        -- The organizational monitoring boundary. Present only for organizational profiles.
+        organizationalAggregationConfiguration: OrganizationalAggregationConfiguration
+    end
+
+    record GetAgentProfilePolicyInput
+        -- The ARN of the Agent Profile whose policy to retrieve.
+        profileArn: string
+    end
+
+    record GetAgentProfilePolicyOutput
+        -- The ARN of the Agent Profile.
+        profileArn: string
+        -- The IAM resource-based policy document in JSON format.
+        policy: string
     end
 
     record GetAgentRecommendationInput
@@ -1358,13 +1716,13 @@ local record M
         recommendationArn: string
         -- The Amazon Resource Name (ARN) of the associated profile.
         profileArn: string
-        -- The identifier of the generation process that produced this recommendation.
+        -- The identifier of the generation that produced this recommendation.
         generationId: string
         -- The title of the recommendation.
         title: string
         -- A description of the recommendation.
         description: string
-        -- The Well-Architected Tool Framework pillar that the recommendation addresses.
+        -- The Amazon Web Services Well-Architected Framework pillar that the recommendation addresses.
         pillar: string
         -- The priority of the recommendation.
         priority: string
@@ -1435,7 +1793,7 @@ local record M
         completionPercentage: number
     end
 
-    -- Item configuration for a specific Well-Architected Tool Framework pillar.
+    -- Item configuration for a specific Amazon Web Services Well-Architected Framework pillar.
     record PillarItem
         -- The pillar this item configuration applies to.
         pillar: string
@@ -1445,11 +1803,11 @@ local record M
 
     -- Defines the scope for recommendation generation, specifying which pillars and goals to focus on.
     record Scope
-        -- The Well-Architected Tool Framework pillars to include in the generation scope.
+        -- The Amazon Web Services Well-Architected Framework pillars to include in the generation scope.
         pillars: {string}
-        -- Specific goal IDs to focus on during recommendation generation.
+        -- Specific goal IDs to focus on during recommendation generation. Use ListAgentGoals to retrieve goal IDs.
         goalIds: {string}
-        -- Optional per-pillar item filtering configuration.
+        -- An optional per-pillar filter. When you specify items, only the listed items are processed for each pillar. When you omit items, all items are processed.
         items: {PillarItem}
     end
 
@@ -1472,18 +1830,34 @@ local record M
         lastModifiedBy: string
         -- The timestamp when the generation was last modified.
         lastModifiedAt: number
-        -- Additional context information provided to guide the recommendation generation process.
-        additionalContext: any
-        -- The scope configuration that defines which pillars and goals to focus on during generation.
-        scope: Scope
+        -- How the generation was started.
+        generationType: string
+        -- The recommendation types the generation covers.
+        generationRecommendationTypes: {string}
         -- The timestamp when the recommendation generation process started.
         startedAt: number
         -- The timestamp when the recommendation generation process completed.
         endedAt: number
-        -- Current progress information including steps completed and completion percentage.
-        progress: Progress
         -- Details about the error if the generation status is ERROR.
         errorDetails: ErrorDetails
+        -- The additional context that was provided when the generation was started. For ARCHITECTURE generations, this includes the location of the reviewed IaC template and the lenses used.
+        additionalContext: any
+        -- The scope configuration that defines which pillars and goals to focus on during generation.
+        scope: Scope
+        -- Current progress information including steps completed and completion percentage.
+        progress: Progress
+    end
+
+    record GetAgentRecommendationPolicyInput
+        -- The ARN of the Agent Recommendation whose policy to retrieve.
+        recommendationArn: string
+    end
+
+    record GetAgentRecommendationPolicyOutput
+        -- The ARN of the Agent Recommendation.
+        recommendationArn: string
+        -- The IAM resource-based policy document in JSON format.
+        policy: string
     end
 
     -- Input to get answer.
@@ -2151,13 +2525,16 @@ local record M
     record ListAgentContextsInput
         -- The Amazon Resource Name (ARN) of the profile to list contexts for.
         profileArn: string
+        -- The maximum number of contexts to return in a single call. Default is 100.
         maxResults: number
+        -- A pagination token returned from a previous call to continue retrieving results.
         nextToken: string
     end
 
     record ListAgentContextsOutput
         -- A list of context summaries associated with the profile.
         items: {ContextSummary}
+        -- A pagination token to retrieve the next set of results, if available.
         nextToken: string
     end
 
@@ -2174,6 +2551,38 @@ local record M
         -- A list of goal summaries associated with the profile.
         items: {GoalSummary}
         -- A pagination token to retrieve the next set of results, if available.
+        nextToken: string
+    end
+
+    record ListAgentOrganizationalReportsInput
+        -- Maximum number of items to return in a single page. Defaults to 100.
+        maxResults: number
+        -- Pagination token from a previous ListAgentOrganizationalReports response. Absent on the first page.
+        nextToken: string
+        -- Optional filter restricting the response to reports in a single lifecycle state.
+        state: string
+    end
+
+    -- Summary of an Organizational Report returned in a list response. Includes the core fields of the full report and the optional label, but omits the filters and coverage summary. The filters and coverage summary are available through GetAgentOrganizationalReport. The coverage summary is populated once the report reaches COMPLETED.
+    record OrganizationalReportSummary
+        -- Unique identifier of the Organizational Report assigned by the service at creation time.
+        reportId: string
+        -- AWS account ID of the caller that created the report. Only this account or a delegated administrator of the same organization may retrieve or delete the report.
+        ownerAccountId: string
+        -- Identifier of the AWS Organization the report belongs to. Derived from the caller's authorization context at creation time and not accepted as a client-supplied input.
+        organizationId: string
+        -- Optional human-readable label supplied by the caller at creation time.
+        label: string
+        -- Current lifecycle state of the report.
+        state: string
+        -- Timestamp at which the report was created.
+        createdAt: number
+    end
+
+    record ListAgentOrganizationalReportsOutput
+        -- Page of report summaries, most-recently-created first.
+        items: {OrganizationalReportSummary}
+        -- Pagination token to supply on the next request, or absent when there are no more pages.
         nextToken: string
     end
 
@@ -2742,6 +3151,37 @@ local record M
         NextToken: string
     end
 
+    enum PreferenceState
+        "ENABLED"
+        "DISABLED"
+    end
+
+    -- A caller's requested change to one preference, supplied to PutAgentPreferences.
+    record PreferenceUpdate
+        -- Which preference to update.
+        key: string
+        -- State to set the preference to. FAILED is an observed state only and cannot be requested.
+        state: string
+    end
+
+    record PutAgentPreferencesInput
+        -- Preference updates to apply. A given preference key may appear at most once.
+        preferences: {PreferenceUpdate}
+    end
+
+    record PutAgentPreferencesOutput
+    end
+
+    record PutAgentProfilePolicyInput
+        -- The ARN of the Agent Profile to attach the policy to.
+        profileArn: string
+        -- The IAM resource-based policy document in JSON format. Maximum size 50KB.
+        policy: string
+    end
+
+    record PutAgentProfilePolicyOutput
+    end
+
     enum RecommendationFeedbackType
         "USEFUL"
         "NOT_USEFUL"
@@ -2757,6 +3197,32 @@ local record M
     end
 
     record PutAgentRecommendationFeedbackOutput
+    end
+
+    record PutAgentRecommendationPolicyInput
+        -- The ARN of the Agent Recommendation to attach the policy to.
+        recommendationArn: string
+        -- The IAM resource-based policy document in JSON format. Maximum size 50KB.
+        policy: string
+    end
+
+    record PutAgentRecommendationPolicyOutput
+    end
+
+    record SendAgentOrganizationalReportDataToS3Input
+        -- Identifier of the report whose data is being delivered.
+        reportId: string
+        -- Format of the delivered artifact (CSV, JSON, or PARQUET).
+        format: string
+        -- ARN of the caller-owned S3 bucket that will receive the artifact.
+        bucketArn: string
+        -- S3 object key under bucketArn where the artifact will be written.
+        objectKey: string
+    end
+
+    record SendAgentOrganizationalReportDataToS3Output
+        -- S3 URI (format s3://bucket/key) where the artifact was written.
+        deliveredTo: string
     end
 
     -- The share invitation.
@@ -2783,13 +3249,13 @@ local record M
     record StartAgentRecommendationGenerationInput
         -- The Amazon Resource Name (ARN) of the optimization profile to use for generating recommendations.
         profileArn: string
-        -- The types of recommendations to generate.
+        -- The types of recommendations to generate. You can specify up to two types in a single request. Currently, only ARCHITECTURE is supported for this operation.
         types: {string}
-        -- An optional name for this generation process to help identify it in lists and logs.
+        -- An optional name for this generation that identifies the architecture review in the console and in ListAgentRecommendationGenerations results. Applies to ARCHITECTURE type only. Must be absent for other types.
         name: string
-        -- Optional additional context to guide the recommendation generation, such as specific business requirements or constraints.
+        -- The location of the infrastructure as code (IaC) template to review, and the lenses to review it against. Required for the ARCHITECTURE type. Must be absent for other types. Specify a JSON object with the following members: s3Uri: The Amazon S3 URI of the IaC template, .zip archive, or folder to review. s3VersionId: The version ID of the Amazon S3 object. If you omit this member, the current version is used. lensArns: The ARNs of the lenses to review against. Only arn:aws:wellarchitected::aws:lens/wellarchitected is supported.
         additionalContext: any
-        -- Scope configuration to focus the generation on specific pillars or goals.
+        -- Defines which pillars, goals, and items the review covers. Required for the ARCHITECTURE type. Must be absent for other types.
         scope: Scope
     end
 
@@ -2870,22 +3336,76 @@ local record M
         goal: GoalSummary
     end
 
+    record UpdateAgentOrganizationalProfileInput
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        clientToken: string
+        -- The Amazon Resource Name (ARN) of the organizational profile to update.
+        profileArn: string
+        -- The updated display name of the organizational profile. Omit this field to keep the current display name. A display name is required, so it cannot be cleared.
+        displayName: string
+        -- The updated description of the organizational profile. Omit this field to keep the current description, or supply an empty string to clear it; a cleared description is read back as absent rather than as an empty string.
+        description: string
+        -- The updated business overview for the organizational profile. Omit this field to keep the current business overview, or supply an empty string to clear it; a cleared business overview is read back as absent rather than as an empty string.
+        businessOverview: string
+        -- The updated Amazon Web Services Well-Architected Framework pillars for the organizational profile. Omit this field to keep the current pillars. A profile must target at least one pillar, so an empty list is rejected.
+        pillars: {string}
+        -- Indicates whether deletion protection is enabled for the organizational profile.
+        deletionProtection: boolean
+        -- The organizational monitoring boundary. Contains organizational unit or root entries and individual account entries that define the scope for the profile. Omit this field to keep the current boundary, or supply this structure with both its organizationalUnits and accounts lists empty to remove every monitored organizational unit and account. The field remains set either way — an emptied boundary is read back as a structure with two empty lists, not as an absent field.
+        organizationalAggregationConfiguration: OrganizationalAggregationConfiguration
+    end
+
+    record UpdateAgentOrganizationalProfileOutput
+        -- The system name of the updated organizational profile.
+        name: string
+        -- The display name of the updated organizational profile.
+        displayName: string
+        -- A description of the updated organizational profile.
+        description: string
+        -- The business overview of the updated organizational profile.
+        businessOverview: string
+        -- The Amazon Web Services Well-Architected Framework pillars associated with the updated organizational profile.
+        pillars: {string}
+        -- Indicates whether deletion protection is enabled.
+        deletionProtection: boolean
+        -- The identifier of the Amazon Web Services Organization this profile belongs to.
+        organizationId: string
+        -- The organizational monitoring boundary for the updated profile.
+        organizationalAggregationConfiguration: OrganizationalAggregationConfiguration
+        -- The Amazon Resource Name (ARN) of the updated organizational profile.
+        arn: string
+        -- Indicates whether the profile is valid for scheduled recommendation generation.
+        eligibleForScheduledGeneration: boolean
+        -- Indicates whether the profile is valid for manual architecture generation.
+        eligibleForArchitectureGeneration: boolean
+        -- A map of field paths to error messages for invalid or missing input fields.
+        fieldErrors: {string : string}
+        -- The identifier of the user or system that created this organizational profile.
+        createdBy: string
+        -- The timestamp when the organizational profile was created.
+        createdAt: number
+        -- The identifier of the user or system that last modified this organizational profile.
+        lastModifiedBy: string
+        -- The timestamp when the organizational profile was last modified.
+        lastModifiedAt: number
+    end
+
     record UpdateAgentProfileInput
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
         clientToken: string
         -- The Amazon Resource Name (ARN) of the profile to update.
         profileArn: string
-        -- The updated display name of the profile.
+        -- The updated display name of the profile. Omit this field to keep the current display name. A display name is required, so it cannot be cleared.
         displayName: string
-        -- The updated description of the profile.
+        -- The updated description of the profile. Omit this field to keep the current description, or supply an empty string to clear it; a cleared description is read back as absent rather than as an empty string.
         description: string
-        -- The updated ARN of the IAM execution role.
+        -- The updated ARN of the IAM execution role. Omit this field to keep the current execution role.
         executionRoleArn: string
-        -- The updated aggregation configuration.
+        -- The updated aggregation configuration, as a list of per-account entries. Omit this field to keep the current entries, or supply an empty list to remove them all. The field remains set either way — an emptied configuration is read back as an empty list, not as an absent field.
         aggregationConfiguration: {AggregationConfiguration}
-        -- The updated business overview for the profile.
+        -- The updated business overview for the profile. Omit this field to keep the current business overview, or supply an empty string to clear it; a cleared business overview is read back as absent rather than as an empty string.
         businessOverview: string
-        -- The updated Well-Architected Tool Framework pillars for the profile.
+        -- The updated Amazon Web Services Well-Architected Framework pillars for the profile. Omit this field to keep the current pillars. A profile must target at least one pillar, so an empty list is rejected.
         pillars: {string}
         -- Indicates whether deletion protection is enabled for the profile.
         deletionProtection: boolean
@@ -2900,7 +3420,7 @@ local record M
         description: string
         -- The business overview of the updated profile.
         businessOverview: string
-        -- The Well-Architected Tool Framework pillars associated with the updated profile.
+        -- The Amazon Web Services Well-Architected Framework pillars associated with the updated profile.
         pillars: {string}
         -- Indicates whether deletion protection is enabled.
         deletionProtection: boolean
@@ -2916,8 +3436,6 @@ local record M
         eligibleForArchitectureGeneration: boolean
         -- A map of field paths to error messages for invalid or missing input fields.
         fieldErrors: {string : string}
-        -- The tags associated with the updated profile.
-        tags: {Tag}
         -- The identifier of the user or system that created this profile.
         createdBy: string
         -- The timestamp when the profile was created.

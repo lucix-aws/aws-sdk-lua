@@ -271,6 +271,41 @@ local record M
         ServiceCode: string
     end
 
+    record AssociateContextStoreInput
+        -- The ID of the context store.
+        ContextStoreId: string
+        -- The Amazon Resource Name (ARN) of the transit gateway to associate with the context store.
+        TransitGatewayArn: string
+    end
+
+    enum ContextStoreAssociationState
+        "ASSOCIATING"
+        "ASSOCIATED"
+        "DISASSOCIATING"
+        "FAILED"
+    end
+
+    -- Describes the association between a context store and a transit gateway.
+    record ContextStoreAssociation
+        -- The ID of the context store.
+        ContextStoreId: string
+        -- The Amazon Resource Name (ARN) of the transit gateway.
+        TransitGatewayArn: string
+        -- The date and time that the association was created.
+        CreatedAt: number
+        -- The state of the association. The possible values are the following:
+        -- ASSOCIATING: The transit gateway is being associated with the context store.
+        -- ASSOCIATED: The transit gateway is associated with the context store.
+        -- DISASSOCIATING: The transit gateway is being disassociated from the context store.
+        -- FAILED: The association failed. To remove it, disassociate the transit gateway.
+        State: string
+    end
+
+    record AssociateContextStoreOutput
+        -- Information about the context store association.
+        ContextStoreAssociation: ContextStoreAssociation
+    end
+
     record AssociateCustomerGatewayInput
         -- The Amazon Resource Name (ARN) of the customer gateway.
         CustomerGatewayArn: string
@@ -669,6 +704,70 @@ local record M
         Tags: {Tag}
         -- The subnet ARN for the Connect peer summary.
         SubnetArn: string
+    end
+
+    enum ContextChangeType
+        "ADDED"
+        "REMOVED"
+    end
+
+    -- Describes a context entry in a context store. A context entry describes a resource, such as a security group, subnet, or attachment.
+    record ContextEntry
+        -- The ID of the context entry.
+        ContextId: string
+        -- The type of the context entry, for example SegmentId, Subnet, or Attachment.
+        ContextType: string
+        -- The type of the segment, for example SecurityGroup. Network Manager returns this value only when the context type is SegmentId.
+        SegmentType: string
+        -- The ID of the resource, for example a security group ID, subnet ID, or transit gateway attachment ID.
+        PublicId: string
+        -- The Amazon Web Services Region of the resource.
+        Region: string
+        -- The ID of the Availability Zone of the resource, for example use1-az2. Network Manager returns this value only when the context type is Subnet.
+        AvailabilityZone: string
+        -- The type of the attachment, for example VPC. Network Manager returns this value only when the context type is Attachment.
+        AttachmentType: string
+    end
+
+    -- Describes a context entry that was added to or removed from a context store.
+    record ContextChange
+        -- The type of change. The possible values are the following:
+        -- ADDED: The context entry was added to the context store.
+        -- REMOVED: The context entry was removed from the context store.
+        ChangeType: string
+        -- The context entry that was added or removed.
+        Context: ContextEntry
+    end
+
+    enum ContextStoreState
+        "PENDING"
+        "AVAILABLE"
+        "UPDATING"
+        "DELETING"
+        "DELETED"
+    end
+
+    -- Describes a context store.
+    record ContextStore
+        -- The ID of the global network that the context store belongs to.
+        GlobalNetworkId: string
+        -- The ID of the context store.
+        ContextStoreId: string
+        -- The Amazon Resource Name (ARN) of the context store.
+        ContextStoreArn: string
+        -- The description of the context store.
+        Description: string
+        -- The date and time that the context store was created.
+        CreatedAt: number
+        -- The state of the context store. The possible values are the following:
+        -- PENDING: The context store is being created.
+        -- AVAILABLE: The context store is ready to use.
+        -- UPDATING: The context store is being updated.
+        -- DELETING: The context store is being deleted.
+        -- DELETED: The context store is deleted.
+        State: string
+        -- The tags associated with the context store.
+        Tags: {Tag}
     end
 
     -- Describes a core network edge.
@@ -1115,6 +1214,23 @@ local record M
     record CreateConnectPeerOutput
         -- The response to the request.
         ConnectPeer: ConnectPeer
+    end
+
+    record CreateContextStoreInput
+        -- The ID of the global network to create the context store in.
+        GlobalNetworkId: string
+        -- A description of the context store.
+        -- Constraints: Maximum length of 256 characters. Only printable ASCII characters are allowed.
+        Description: string
+        -- The tags to apply to the context store during creation.
+        Tags: {Tag}
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        ClientToken: string
+    end
+
+    record CreateContextStoreOutput
+        -- Information about the context store.
+        ContextStore: ContextStore
     end
 
     record CreateCoreNetworkInput
@@ -1645,6 +1761,16 @@ local record M
         ConnectPeer: ConnectPeer
     end
 
+    record DeleteContextStoreInput
+        -- The ID of the context store to delete.
+        ContextStoreId: string
+    end
+
+    record DeleteContextStoreOutput
+        -- Information about the context store.
+        ContextStore: ContextStore
+    end
+
     record DeleteCoreNetworkInput
         -- The network ID of the deleted core network.
         CoreNetworkId: string
@@ -1811,6 +1937,18 @@ local record M
         ConnectPeerAssociation: ConnectPeerAssociation
     end
 
+    record DisassociateContextStoreInput
+        -- The ID of the context store.
+        ContextStoreId: string
+        -- The Amazon Resource Name (ARN) of the transit gateway to disassociate from the context store.
+        TransitGatewayArn: string
+    end
+
+    record DisassociateContextStoreOutput
+        -- Information about the context store association.
+        ContextStoreAssociation: ContextStoreAssociation
+    end
+
     record DisassociateCustomerGatewayInput
         -- The ID of the global network.
         GlobalNetworkId: string
@@ -1915,6 +2053,38 @@ local record M
         ConnectPeerAssociations: {ConnectPeerAssociation}
         -- The token for the next page of results.
         NextToken: string
+    end
+
+    record GetContextStoreInput
+        -- The ID of the context store.
+        ContextStoreId: string
+    end
+
+    record GetContextStoreOutput
+        -- Information about the context store.
+        ContextStore: ContextStore
+    end
+
+    record GetContextStoreAssociationInput
+        -- The ID of the context store.
+        ContextStoreId: string
+        -- The Amazon Resource Name (ARN) of the transit gateway.
+        TransitGatewayArn: string
+    end
+
+    record GetContextStoreAssociationOutput
+        -- Information about the context store association.
+        ContextStoreAssociation: ContextStoreAssociation
+    end
+
+    record GetContextVersionInput
+        -- The ID of the context store.
+        ContextStoreId: string
+    end
+
+    record GetContextVersionOutput
+        -- The current version of the context entries.
+        VersionId: string
     end
 
     record GetCoreNetworkInput
@@ -2738,6 +2908,78 @@ local record M
         NextToken: string
     end
 
+    record ListContextChangesInput
+        -- The ID of the context store.
+        ContextStoreId: string
+        -- The version to return changes from. Specify a version returned by ListContexts, GetContextVersion, or the ToVersionId of a previous ListContextChanges request. If the version is no longer available, the request fails, and you must call ListContexts to get the current context entries.
+        FromVersionId: string
+        -- The maximum number of results to return.
+        MaxResults: number
+        -- The token for the next page of results.
+        NextToken: string
+    end
+
+    record ListContextChangesOutput
+        -- The context entries that were added or removed.
+        ContextChanges: {ContextChange}
+        -- The version that the changes start from.
+        FromVersionId: string
+        -- The version that the changes bring the context entries up to. To get later changes, specify this value as FromVersionId in your next request. All pages of the same request return the same version.
+        ToVersionId: string
+        -- The token for the next page of results.
+        NextToken: string
+    end
+
+    record ListContextsInput
+        -- The ID of the context store.
+        ContextStoreId: string
+        -- The maximum number of results to return.
+        MaxResults: number
+        -- The token for the next page of results.
+        NextToken: string
+    end
+
+    record ListContextsOutput
+        -- The context entries.
+        Contexts: {ContextEntry}
+        -- The token for the next page of results.
+        NextToken: string
+        -- The version of the returned context entries. All pages of the same request return the same version.
+        VersionId: string
+    end
+
+    record ListContextStoreAssociationsInput
+        -- The ID of the context store.
+        ContextStoreId: string
+        -- The maximum number of results to return.
+        MaxResults: number
+        -- The token for the next page of results.
+        NextToken: string
+    end
+
+    record ListContextStoreAssociationsOutput
+        -- The context store associations.
+        ContextStoreAssociations: {ContextStoreAssociation}
+        -- The token for the next page of results.
+        NextToken: string
+    end
+
+    record ListContextStoresInput
+        -- The ID of a global network. If you specify this parameter, only the context stores in the global network are returned.
+        GlobalNetworkId: string
+        -- The maximum number of results to return.
+        MaxResults: number
+        -- The token for the next page of results.
+        NextToken: string
+    end
+
+    record ListContextStoresOutput
+        -- The context stores.
+        ContextStores: {ContextStore}
+        -- The token for the next page of results.
+        NextToken: string
+    end
+
     record ListCoreNetworkPolicyVersionsInput
         -- The ID of a core network.
         CoreNetworkId: string
@@ -3095,6 +3337,19 @@ local record M
     record UpdateConnectionOutput
         -- Information about the connection.
         Connection: Connection
+    end
+
+    record UpdateContextStoreInput
+        -- The ID of the context store.
+        ContextStoreId: string
+        -- The new description of the context store.
+        -- Constraints: Maximum length of 256 characters. Only printable ASCII characters are allowed.
+        Description: string
+    end
+
+    record UpdateContextStoreOutput
+        -- Information about the context store.
+        ContextStore: ContextStore
     end
 
     record UpdateCoreNetworkInput

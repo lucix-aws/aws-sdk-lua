@@ -12093,6 +12093,45 @@ M.DeactivateEvaluationFormOutput = schema.new({
     },
 })
 
+M.DeleteAllEntitySessionsInput = schema.new({
+    id = id.from(_N, "DeleteAllEntitySessionsRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "DeleteAllEntitySessionsInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EntityId = schema.new({
+            id = id.from(_N, "DeleteAllEntitySessionsInput", "EntityId"),
+            type = "string",
+            name = "EntityId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EntityType = schema.new({
+            id = id.from(_N, "DeleteAllEntitySessionsInput", "EntityType"),
+            type = "string",
+            name = "EntityType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAllEntitySessionsOutput = schema.new({
+    id = id.from(_N, "DeleteAllEntitySessionsResponse"),
+    type = "structure",
+})
+
 M.DeleteAttachedFileInput = schema.new({
     id = id.from(_N, "DeleteAttachedFileRequest"),
     type = "structure",
@@ -46691,6 +46730,18 @@ M.DeactivateEvaluationForm = schema.operation({
     output = M.DeactivateEvaluationFormOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}/deactivate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAllEntitySessions = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteAllEntitySessions"),
+    input = M.DeleteAllEntitySessionsInput,
+    output = M.DeleteAllEntitySessionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/auth/sessions/delete-all-entity-sessions" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

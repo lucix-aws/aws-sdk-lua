@@ -4478,6 +4478,8 @@ local record M
         "ALLOW_USER_SRP_AUTH"
         "ALLOW_REFRESH_TOKEN_AUTH"
         "ALLOW_USER_AUTH"
+        "ALLOW_TOKEN_EXCHANGE_DELEGATION"
+        "ALLOW_TOKEN_EXCHANGE_IMPERSONATION"
     end
 
     enum PreventUserExistenceErrorTypes
@@ -4644,6 +4646,13 @@ local record M
         -- ALLOW_USER_SRP_AUTH: Enable SRP-based authentication.
         -- ALLOW_REFRESH_TOKEN_AUTH: Enable authflow to refresh
         -- tokens.
+        -- ALLOW_TOKEN_EXCHANGE_IMPERSONATION – Use this flow to request
+        -- GetDerivedToken token exchanges without an ActorToken.
+        -- The issued token represents the subject user directly.
+        -- ALLOW_TOKEN_EXCHANGE_DELEGATION – Use this flow to request
+        -- GetDerivedToken token exchanges that include an
+        -- ActorToken. The issued token carries an act claim that
+        -- identifies the intermediary acting on the behalf of the subject.
         -- In some environments, you will see the values ADMIN_NO_SRP_AUTH, CUSTOM_AUTH_FLOW_ONLY, or USER_PASSWORD_AUTH.
         -- You can't assign these legacy ExplicitAuthFlows values to user pool clients at the same time as values that begin with ALLOW_,
         -- like ALLOW_USER_SRP_AUTH.
@@ -4889,6 +4898,13 @@ local record M
         -- ALLOW_USER_SRP_AUTH: Enable SRP-based authentication.
         -- ALLOW_REFRESH_TOKEN_AUTH: Enable authflow to refresh
         -- tokens.
+        -- ALLOW_TOKEN_EXCHANGE_IMPERSONATION – Use this flow to request
+        -- GetDerivedToken token exchanges without an ActorToken.
+        -- The issued token represents the subject user directly.
+        -- ALLOW_TOKEN_EXCHANGE_DELEGATION – Use this flow to request
+        -- GetDerivedToken token exchanges that include an
+        -- ActorToken. The issued token carries an act claim that
+        -- identifies the intermediary acting on the behalf of the subject.
         -- In some environments, you will see the values ADMIN_NO_SRP_AUTH, CUSTOM_AUTH_FLOW_ONLY, or USER_PASSWORD_AUTH.
         -- You can't assign these legacy ExplicitAuthFlows values to user pool clients at the same time as values that begin with ALLOW_,
         -- like ALLOW_USER_SRP_AUTH.
@@ -5759,6 +5775,98 @@ local record M
         -- .csv file and populate it with the attributes of the users that you
         -- want to import.
         CSVHeader: {string}
+    end
+
+    enum TokenTypeIdentifierType
+        "ACCESS_TOKEN"
+        "ID_TOKEN"
+        "SAML2"
+    end
+
+    enum IssuedTokenTypeIdentifierType
+        "ACCESS_TOKEN"
+        "ID_TOKEN"
+    end
+
+    -- Represents the request to exchange a subject token for a new token.
+    record GetDerivedTokenInput
+        -- The ID of the app client that requests the token exchange.
+        ClientId: string
+        -- The client secret of the requested app client, if the client has a secret.
+        ClientSecret: string
+        -- The token that you want to exchange for a new token. This is the credential that
+        -- represents the identity of the party on behalf of whom the request is being
+        -- made.
+        SubjectToken: string
+        -- The type of the SubjectToken that you want to exchange. Valid
+        -- values:
+        -- ACCESS_TOKEN – The subject token is an access token.
+        -- ID_TOKEN – The subject token is an ID token.
+        -- SAML2 – The subject token is a SAML 2.0 assertion.
+        SubjectTokenType: string
+        -- The name of the third-party identity provider that issued the
+        -- SubjectToken, if the subject token isn't a Amazon Cognito token. Provide this
+        -- value when your SubjectToken came from a SAML or OIDC provider that you
+        -- registered with your user pool, so that Amazon Cognito can validate it against that provider's
+        -- configuration. Omit this parameter for a Amazon Cognito ID or access token.
+        SubjectTokenProviderName: string
+        -- A token that identifies the intermediary service that is exchanging the token on
+        -- behalf of the user. When you provide an ActorToken, the token that
+        -- Amazon Cognito issues carries an act claim that identifies the intermediary,
+        -- so that downstream services can distinguish a user acting directly from an
+        -- intermediary acting on the user's behalf.
+        ActorToken: string
+        -- The type of the ActorToken that you provide. Required when you
+        -- provide an ActorToken. Valid values:
+        -- ACCESS_TOKEN – The actor token is an access token.
+        -- ID_TOKEN – The actor token is an ID token.
+        -- SAML2 – The actor token is a SAML 2.0 assertion.
+        ActorTokenType: string
+        -- The name of the third-party identity provider that issued the
+        -- ActorToken, if the actor token isn't a Amazon Cognito token.
+        ActorTokenProviderName: string
+        -- The scopes that you want the new token to have. Amazon Cognito issues a token with the
+        -- intersection of these requested scopes, the scopes of your
+        -- SubjectToken, and the scopes that are allowed for the requesting app
+        -- client. If you don't specify any scopes, Amazon Cognito issues a token with the same scopes as
+        -- your SubjectToken.
+        Scopes: {string}
+        -- The logical name of the target service where you intend to use the issued token.
+        -- You can't request both Audiences and Resources in the same
+        -- request.
+        Audiences: {string}
+        -- The identifier of a resource server in your user pool where you intend to use the
+        -- issued token. You can't request both Resources and
+        -- Audiences in the same request.
+        Resources: {string}
+        -- The type of token that you want Amazon Cognito to issue. Valid values:
+        -- ACCESS_TOKEN – Issues an access token.
+        -- ID_TOKEN – Issues an ID token.
+        -- Amazon Cognito can't issue a SAML assertion, so SAML2 isn't a valid value for
+        -- this parameter.
+        RequestedTokenType: string
+    end
+
+    enum OAuthTokenTypeType
+        "Bearer"
+        "N_A"
+    end
+
+    -- Represents the response to a token exchange request.
+    record GetDerivedTokenOutput
+        -- The token that Amazon Cognito issued in response to the token exchange request.
+        IssuedToken: string
+        -- The type of the token in the IssuedToken parameter. Valid
+        -- values:
+        -- ACCESS_TOKEN – The issued token is an access token.
+        -- ID_TOKEN – The issued token is an ID token.
+        IssuedTokenType: string
+        -- The type of the issued token. For example, Bearer.
+        TokenType: string
+        -- The number of seconds until the issued token expires.
+        ExpiresIn: number
+        -- The scopes that Amazon Cognito granted in the issued token.
+        Scopes: {string}
     end
 
     -- Represents the request to get the device.
@@ -8393,6 +8501,13 @@ local record M
         -- ALLOW_USER_SRP_AUTH: Enable SRP-based authentication.
         -- ALLOW_REFRESH_TOKEN_AUTH: Enable authflow to refresh
         -- tokens.
+        -- ALLOW_TOKEN_EXCHANGE_IMPERSONATION – Use this flow to request
+        -- GetDerivedToken token exchanges without an ActorToken.
+        -- The issued token represents the subject user directly.
+        -- ALLOW_TOKEN_EXCHANGE_DELEGATION – Use this flow to request
+        -- GetDerivedToken token exchanges that include an
+        -- ActorToken. The issued token carries an act claim that
+        -- identifies the intermediary acting on the behalf of the subject.
         -- In some environments, you will see the values ADMIN_NO_SRP_AUTH, CUSTOM_AUTH_FLOW_ONLY, or USER_PASSWORD_AUTH.
         -- You can't assign these legacy ExplicitAuthFlows values to user pool clients at the same time as values that begin with ALLOW_,
         -- like ALLOW_USER_SRP_AUTH.

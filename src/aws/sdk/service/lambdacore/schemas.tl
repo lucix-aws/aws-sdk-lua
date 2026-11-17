@@ -63,6 +63,22 @@ M.Compatibility = schema.new({
     },
 })
 
+M.ElasticIpConfiguration = schema.new({
+    id = id.from(_N, "ElasticIpConfiguration"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "ElasticIpConfiguration", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.NetworkConnectorVpcEgressConfiguration = schema.new({
     id = id.from(_N, "NetworkConnectorVpcEgressConfiguration"),
     type = "structure",
@@ -93,6 +109,13 @@ M.NetworkConnectorVpcEgressConfiguration = schema.new({
             name = "AssociatedComputeResourceTypes",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        ElasticIpConfiguration = schema.new({
+            id = id.from(_N, "NetworkConnectorVpcEgressConfiguration", "ElasticIpConfiguration"),
+            type = "structure",
+            name = "ElasticIpConfiguration",
+            target_id = id.from(_N, "ElasticIpConfiguration"),
+            target = M.ElasticIpConfiguration,
         }),
     },
 })

@@ -10231,6 +10231,19 @@ M.DeploymentController = schema.new({
     },
 })
 
+M.GatewayConnectorDeregistrationDelay = schema.new({
+    id = id.from(_N, "GatewayConnectorDeregistrationDelay"),
+    type = "structure",
+    members = {
+        timeoutSeconds = schema.new({
+            id = id.from(_N, "GatewayConnectorDeregistrationDelay", "timeoutSeconds"),
+            type = "integer",
+            name = "timeoutSeconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.GatewayConnectorFilters = schema.new({
     id = id.from(_N, "GatewayConnectorFilters"),
     type = "structure",
@@ -10346,6 +10359,13 @@ M.GatewayConnector = schema.new({
             name = "filters",
             target_id = id.from(_N, "GatewayConnectorFilters"),
             target = M.GatewayConnectorFilters,
+        }),
+        deregistrationDelay = schema.new({
+            id = id.from(_N, "GatewayConnector", "deregistrationDelay"),
+            type = "structure",
+            name = "deregistrationDelay",
+            target_id = id.from(_N, "GatewayConnectorDeregistrationDelay"),
+            target = M.GatewayConnectorDeregistrationDelay,
         }),
     },
 })

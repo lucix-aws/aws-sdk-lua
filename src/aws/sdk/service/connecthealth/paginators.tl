@@ -4,6 +4,24 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for listDatasets.
+function M.pages_list_datasets(client, input)
+    return paginator.pages(client, "listDatasets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listDatasets.
+function M.items_list_datasets(client, input)
+    return paginator.items(client, "listDatasets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
 --- Returns a page iterator for listDomains.
 function M.pages_list_domains(client, input)
     return paginator.pages(client, "listDomains", input, {

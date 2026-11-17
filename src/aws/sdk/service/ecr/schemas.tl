@@ -3290,6 +3290,23 @@ M.DescribeRegistryInput = schema.new({
     type = "structure",
 })
 
+M.DeleteReplication = schema.new({
+    id = id.from(_N, "DeleteReplication"),
+    type = "structure",
+    members = {
+        enabled = schema.new({
+            id = id.from(_N, "DeleteReplication", "enabled"),
+            type = "boolean",
+            name = "enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
 M.ReplicationDestination = schema.new({
     id = id.from(_N, "ReplicationDestination"),
     type = "structure",
@@ -3360,6 +3377,13 @@ M.ReplicationRule = schema.new({
             name = "repositoryFilters",
             target_id = prelude.Document.id,
             list_member = M.RepositoryFilter,
+        }),
+        deleteReplication = schema.new({
+            id = id.from(_N, "ReplicationRule", "deleteReplication"),
+            type = "structure",
+            name = "deleteReplication",
+            target_id = id.from(_N, "DeleteReplication"),
+            target = M.DeleteReplication,
         }),
     },
 })

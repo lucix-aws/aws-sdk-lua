@@ -7166,6 +7166,14 @@ local record M
         EndpointArn: string
     end
 
+    -- The cross-Region traffic cap for an endpoint. The cap limits the requests per second that the endpoint accepts from inference routers in other Amazon Web Services Regions. The cap is MaxCrossRegionPercentPerEndpoint percent of MaxInvocationsPerSecondPerInstance multiplied by the number of InService instances, rounded up. All production variants and inference components of the endpoint share it. Requests that you send to the endpoint directly aren't counted. A request over the cap fails with a ThrottlingException.
+    record CrossRegionTrafficConfig
+        -- The number of invocations per second that you expect one InService instance to serve. One value applies to every production variant, whatever its instance type.
+        MaxInvocationsPerSecondPerInstance: number
+        -- The percentage of the endpoint's capacity that requests from inference routers in other Amazon Web Services Regions can use.
+        MaxCrossRegionPercentPerEndpoint: number
+    end
+
     -- Configuration to control how SageMaker AI captures inference data.
     record DataCaptureConfig
         -- Whether data capture should be enabled or disabled (defaults to enabled).
@@ -7285,11 +7293,12 @@ local record M
         "LEAST_OUTSTANDING_REQUESTS"
         "RANDOM"
         "PREFIX_AWARE"
+        "KV_AWARE"
     end
 
     -- Settings that control how the endpoint routes incoming traffic to the instances that the endpoint hosts.
     record ProductionVariantRoutingConfig
-        -- Sets how the endpoint routes incoming traffic: LEAST_OUTSTANDING_REQUESTS: The endpoint routes requests to the specific instances that have more capacity to process them. RANDOM: The endpoint routes each request to a randomly chosen instance. PREFIX_AWARE: The endpoint routes requests that share the same prompt prefix to the same instance and, when that instance hosts more than one copy of the invoked inference component, to the same copy. When the number of in-flight requests on the selected instance or copy reaches the ConcurrencyThreshold value, the endpoint routes the request to another copy on that instance or to another instance. The endpoint applies prefix-aware routing only when two or more instances can serve the request.
+        -- Sets how the endpoint routes incoming traffic: LEAST_OUTSTANDING_REQUESTS: The endpoint routes requests to the specific instances that have more capacity to process them. RANDOM: The endpoint routes each request to a randomly chosen instance. PREFIX_AWARE: The endpoint routes requests that share the same prompt prefix to the same instance and, when that instance hosts more than one copy of the invoked inference component, to the same copy. When the number of in-flight requests on the selected instance or copy reaches the ConcurrencyThreshold value, the endpoint routes the request to another copy on that instance or to another instance. The endpoint applies prefix-aware routing only when two or more instances can serve the request. KV_AWARE: The endpoint routes each request to an instance that already holds the start of the request's prompt in its key-value (KV) cache, and weighs the length of that match against how busy each instance is. On an endpoint with inference components, the endpoint chooses among the copies of the invoked inference component in the same way. When the endpoint can't find an instance or copy that holds the start of the prompt and isn't too busy, it chooses an instance as it does with LEAST_OUTSTANDING_REQUESTS. KV_AWARE works only with supported containers, such as the SageMaker AI vLLM Deep Learning Container.
         RoutingStrategy: string
         -- The configuration for prefix-aware routing. Specify this parameter only when you set RoutingStrategy to PREFIX_AWARE.
         PrefixAwareRoutingConfig: PrefixAwareRoutingConfig
@@ -7370,6 +7379,8 @@ local record M
         EnableNetworkIsolation: boolean
         -- The configuration parameters for utilization metrics.
         MetricsConfig: MetricsConfig
+        -- The cross-Region traffic cap for the endpoint. The cap limits the requests per second that the endpoint accepts from inference routers in other Amazon Web Services Regions. If you don't specify it, these requests aren't limited. You can't specify it with serverless variants or with AsyncInferenceConfig. For information about the cross-Region traffic cap, see Limit requests from other Regions.
+        CrossRegionTrafficConfig: CrossRegionTrafficConfig
     end
 
     record CreateEndpointConfigOutput
@@ -8409,9 +8420,98 @@ local record M
         JobArn: string
     end
 
+    -- How the inference router submits asynchronous requests to the destinations of a routing target.
+    record RoutingTargetAsyncInferenceClientConfig
+        -- The maximum time, in seconds, that a request can wait at a destination before the inference router moves it to another destination. The default is 900 seconds.
+        MaxTimeInBacklogSeconds: number
+    end
+
+    -- The Amazon SNS topics that the inference router publishes to. The router publishes one notification for each request. The notification contains the location of the result, not the result itself. The destination endpoints also send their own notifications, if they're configured to.
+    record RoutingTargetAsyncInferenceNotificationConfig
+        -- The ARN of the Amazon SNS topic to publish to when a request completes. The topic must be a standard topic, and can be in any Amazon Web Services Region.
+        SuccessTopic: string
+        -- The ARN of the Amazon SNS topic to publish to when a request fails, or when the router can't place it on any destination. The topic must be a standard topic, and can be in any Amazon Web Services Region.
+        ErrorTopic: string
+    end
+
+    -- The output settings for the asynchronous requests of a routing target. Every destination writes to the same locations. CreateInferenceRouter and UpdateInferenceRouter don't check who owns the buckets. If another account owns the output bucket, requests fail.
+    record RoutingTargetAsyncInferenceOutputConfig
+        -- The Amazon S3 location for the results of successful requests. The bucket must be in the inference router's Amazon Web Services Region and owned by the router's account.
+        S3OutputPath: string
+        -- The Amazon S3 location for the failure details of failed requests. The bucket must be in the inference router's Amazon Web Services Region and owned by the router's account.
+        S3FailurePath: string
+        -- The KMS key that encrypts the results in Amazon S3. You can specify a key ID, key ARN, alias name, or alias ARN. If any destination is in a different account or Amazon Web Services Region from the inference router, specify a key ARN or an alias ARN.
+        KmsKeyId: string
+        -- The Amazon SNS topics that the inference router publishes to when a request completes or fails.
+        NotificationConfig: RoutingTargetAsyncInferenceNotificationConfig
+    end
+
+    -- The asynchronous inference settings of a routing target.
+    record RoutingTargetAsyncInferenceConfig
+        -- The Amazon S3 locations for the results of asynchronous requests, and the notification settings.
+        OutputConfig: RoutingTargetAsyncInferenceOutputConfig
+        -- How the inference router submits requests to destinations.
+        ClientConfig: RoutingTargetAsyncInferenceClientConfig
+    end
+
+    enum RoutingStatus
+        "Routable"
+        "Unroutable"
+        "Unknown"
+    end
+
+    -- An endpoint or inference component that serves a routing target.
+    record Destination
+        -- The Amazon Resource Name (ARN) of the endpoint or inference component. The destination can be in any account, and in any Amazon Web Services Region in the same partition as the inference router. To use a destination in another account, its owner must allow your account to invoke it through your router, in an endpoint policy.
+        ResourceArn: string
+        -- Whether the inference router can send requests to the destination, as checked when you called DescribeInferenceRouter. This value isn't the destination's own status. SageMaker AI ignores this field in CreateInferenceRouter and UpdateInferenceRouter requests. Routable The destination is serving and the router can send it requests. A routable destination can still be overloaded. Unroutable The destination can't serve requests. For example, it's being created or has failed, or it has no capacity and no way to get any. A destination in your account that doesn't exist is also Unroutable. Unknown SageMaker AI couldn't check the destination, for example because you aren't allowed to describe it or the check timed out. The destination might still be serving.
+        RoutingStatus: string
+    end
+
+    enum InferenceRouterRoutingPreference
+        "LocalRegionFirst"
+        "InstancePoolOrder"
+    end
+
+    -- A model that an inference router serves, and the destinations that can serve it. When you invoke the router, you name the routing target, and the router sends the request to one of its destinations. Every destination in a routing target must serve the same model, with the same request and response format.
+    record RoutingTarget
+        -- The name of the routing target. Callers specify this name in the RoutingTargetName parameter when they invoke the inference router. The name must be unique within the router.
+        Name: string
+        -- The endpoints and inference components that serve the routing target. Each destination can appear only once in a routing target. In an asynchronous routing target, every destination must be an asynchronous inference endpoint. In a real-time routing target, no destination can be one. SageMaker AI checks an endpoint in another account with your credentials, so both your IAM policy and the endpoint policy must allow sagemaker:DescribeEndpoint. If an endpoint can't be checked, for example because it isn't found or can't be read in time, it's accepted, and requests to it fail if it's the wrong mode.
+        Destinations: {Destination}
+        -- The asynchronous inference settings of the routing target. Specify this setting to make the routing target asynchronous. If you omit it, the routing target serves real-time requests. Asynchronous routing targets aren't available in all Amazon Web Services Regions. For information about asynchronous routing targets and Region availability, see Send asynchronous requests through an inference router. Because UpdateInferenceRouter replaces all routing targets, include this setting in every update of an asynchronous routing target. For information about asynchronous routing targets, see Send asynchronous requests through an inference router.
+        AsyncInferenceConfig: RoutingTargetAsyncInferenceConfig
+        -- How the inference router chooses among the routing target's destinations. The default is LocalRegionFirst. LocalRegionFirst The router uses destinations in its own Region first. When the request leaves the Region, the router spreads it across healthy destinations in other Regions. InstancePoolOrder The router prefers destinations by instance type first and by Region second. Every destination must be an endpoint that lists the same two or more instance types, each with a different priority, in the same priority order. This value is supported only for asynchronous routing targets. With either value, the router uses destinations whose health or capacity is reduced after the others, but doesn't exclude them.
+        RoutingPreference: string
+    end
+
+    record CreateInferenceRouterInput
+        -- The name of the inference router. The name must be unique within your account in the current Amazon Web Services Region. The name is case sensitive.
+        InferenceRouterName: string
+        -- The routing targets of the inference router. Each routing target is a model that callers name when they invoke the router, and the destinations that serve it.
+        RoutingTargets: {RoutingTarget}
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you reuse a client token, use the same request parameters. Otherwise, the request fails.
+        ClientToken: string
+        -- A list of key-value pairs to apply to the inference router. For information about tagging, see Tagging Amazon Web Services resources in the Amazon Web Services General Reference.
+        Tags: {Tag}
+    end
+
+    record CreateInferenceRouterOutput
+        -- The Amazon Resource Name (ARN) of the inference router.
+        InferenceRouterArn: string
+    end
+
+    -- The resource that you are trying to create already exists. Use a different resource name, or delete the existing resource before retrying.
+    record ResourceAlreadyExists
+        Message: string
+    end
+
     enum JobCategory
         "AgentRFT"
+        "SyntheticDataGeneration"
+        "DataQualityEvaluation"
         "AgentRFTEvaluation"
+        "DataTransformation"
     end
 
     record CreateJobInput
@@ -11172,6 +11272,14 @@ local record M
     record DeleteEndpointConfigOutput
     end
 
+    record DeleteEndpointPolicyInput
+        -- The name of the endpoint. The endpoint must be in your account and in the current Amazon Web Services Region.
+        EndpointName: string
+    end
+
+    record DeleteEndpointPolicyOutput
+    end
+
     record DeleteExperimentInput
         -- The name of the experiment to delete.
         ExperimentName: string
@@ -11284,6 +11392,14 @@ local record M
     record DeleteInferenceExperimentOutput
         -- The ARN of the deleted inference experiment.
         InferenceExperimentArn: string
+    end
+
+    record DeleteInferenceRouterInput
+        -- The name of the inference router to delete.
+        InferenceRouterName: string
+    end
+
+    record DeleteInferenceRouterOutput
     end
 
     record DeleteJobInput
@@ -12796,6 +12912,8 @@ local record M
         ShadowProductionVariants: {ProductionVariantSummary}
         -- The configuration parameters for utilization metrics.
         MetricsConfig: MetricsConfig
+        -- The cross-Region traffic cap, if the endpoint configuration sets one.
+        CrossRegionTrafficConfig: CrossRegionTrafficConfig
     end
 
     record DescribeEndpointConfigInput
@@ -12828,6 +12946,8 @@ local record M
         EnableNetworkIsolation: boolean
         -- The configuration parameters for utilization metrics.
         MetricsConfig: MetricsConfig
+        -- The cross-Region traffic cap, if the endpoint configuration sets one.
+        CrossRegionTrafficConfig: CrossRegionTrafficConfig
     end
 
     record DescribeExperimentInput
@@ -13745,6 +13865,36 @@ local record M
         EndpointPerformances: {EndpointPerformance}
     end
 
+    record DescribeInferenceRouterInput
+        -- The name of the inference router to describe.
+        InferenceRouterName: string
+    end
+
+    enum InferenceRouterStatus
+        "InService"
+        "Creating"
+        "Updating"
+        "Failed"
+        "Deleting"
+    end
+
+    record DescribeInferenceRouterOutput
+        -- The name of the inference router.
+        InferenceRouterName: string
+        -- The Amazon Resource Name (ARN) of the inference router.
+        InferenceRouterArn: string
+        -- The routing targets of the inference router. Each destination includes its RoutingStatus. You can send these routing targets back in an UpdateInferenceRouter request without changes.
+        RoutingTargets: {RoutingTarget}
+        -- The status of the inference router.
+        Status: string
+        -- If the status is Failed, the reason that the inference router failed.
+        StatusReason: string
+        -- The date and time that the inference router was created.
+        CreationTime: number
+        -- The date and time that the inference router was last updated.
+        LastModifiedTime: number
+    end
+
     record DescribeJobInput
         -- The name of the job to describe.
         JobName: string
@@ -13775,7 +13925,15 @@ local record M
         "Completed"
         "Restarting"
         "Pending"
+        "Generating"
+        "PartialGeneration"
         "Evaluating"
+        "Validating"
+        "Preparing"
+        "Executing"
+        "Publishing"
+        "Finalizing"
+        "Transforming"
         "Deleting"
         "DeleteFailed"
     end
@@ -16506,6 +16664,20 @@ local record M
         ModelStats: {EdgeModelStat}
     end
 
+    record GetEndpointPolicyInput
+        -- The name of the endpoint. The endpoint must be in your account and in the current Amazon Web Services Region.
+        EndpointName: string
+    end
+
+    record GetEndpointPolicyOutput
+        -- The name of the endpoint.
+        EndpointName: string
+        -- The Amazon Resource Name (ARN) of the endpoint.
+        EndpointArn: string
+        -- The endpoint policy, as a JSON policy document.
+        ResourcePolicy: string
+    end
+
     record GetLineageGroupPolicyInput
         -- The name or Amazon Resource Name (ARN) of the lineage group.
         LineageGroupName: string
@@ -17053,6 +17225,18 @@ local record M
         Status: string
         -- The details for a specific benchmark.
         InferenceBenchmark: RecommendationJobInferenceBenchmark
+    end
+
+    -- A summary of an inference router.
+    record InferenceRouterSummary
+        -- The name of the inference router.
+        InferenceRouterName: string
+        -- The Amazon Resource Name (ARN) of the inference router.
+        InferenceRouterArn: string
+        -- The date and time that the inference router was created.
+        CreationTime: number
+        -- The date and time that the inference router was last updated.
+        LastModifiedTime: number
     end
 
     -- The context for an iteration of a ForEach step.
@@ -18534,6 +18718,20 @@ local record M
         -- A list of all subtask details in Inference Recommender.
         Steps: {InferenceRecommendationsJobStep}
         -- A token that you can specify in your next request to return more results from the list.
+        NextToken: string
+    end
+
+    record ListInferenceRoutersInput
+        -- The maximum number of inference routers to return in the response.
+        MaxResults: number
+        -- If the previous response was truncated, you receive this token. To get the next set of inference routers, use it in your next request.
+        NextToken: string
+    end
+
+    record ListInferenceRoutersOutput
+        -- A list of summaries of the inference routers.
+        InferenceRouters: {InferenceRouterSummary}
+        -- If the response is truncated, SageMaker AI returns this token. To get the next set of inference routers, use it in your next request.
         NextToken: string
     end
 
@@ -21244,6 +21442,18 @@ local record M
         LastModifiedBy: UserContext
     end
 
+    record PutEndpointPolicyInput
+        -- The name of the endpoint. The endpoint must be in your account and in the current Amazon Web Services Region.
+        EndpointName: string
+        -- The endpoint policy, as a JSON policy document. The policy can contain only ASCII characters. For information about the policy rules, see Use destinations in other accounts.
+        ResourcePolicy: string
+    end
+
+    record PutEndpointPolicyOutput
+        -- The Amazon Resource Name (ARN) of the endpoint.
+        EndpointArn: string
+    end
+
     record PutModelPackageGroupPolicyInput
         -- The name of the model group to add a resource policy to.
         ModelPackageGroupName: string
@@ -22533,6 +22743,18 @@ local record M
     record UpdateInferenceExperimentOutput
         -- The ARN of the updated inference experiment.
         InferenceExperimentArn: string
+    end
+
+    record UpdateInferenceRouterInput
+        -- The name of the inference router to update.
+        InferenceRouterName: string
+        -- The complete list of routing targets for the inference router. To remove the last routing target, delete the router.
+        RoutingTargets: {RoutingTarget}
+    end
+
+    record UpdateInferenceRouterOutput
+        -- The Amazon Resource Name (ARN) of the inference router.
+        InferenceRouterArn: string
     end
 
     record UpdateMlflowAppInput

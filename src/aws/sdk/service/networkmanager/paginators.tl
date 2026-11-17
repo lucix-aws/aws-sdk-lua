@@ -382,6 +382,78 @@ function M.items_list_connect_peers(client, input)
     })
 end
 
+--- Returns a page iterator for listContextChanges.
+function M.pages_list_context_changes(client, input)
+    return paginator.pages(client, "listContextChanges", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ContextChanges",
+    })
+end
+
+--- Returns an item iterator for listContextChanges.
+function M.items_list_context_changes(client, input)
+    return paginator.items(client, "listContextChanges", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ContextChanges",
+    })
+end
+
+--- Returns a page iterator for listContextStoreAssociations.
+function M.pages_list_context_store_associations(client, input)
+    return paginator.pages(client, "listContextStoreAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ContextStoreAssociations",
+    })
+end
+
+--- Returns an item iterator for listContextStoreAssociations.
+function M.items_list_context_store_associations(client, input)
+    return paginator.items(client, "listContextStoreAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ContextStoreAssociations",
+    })
+end
+
+--- Returns a page iterator for listContextStores.
+function M.pages_list_context_stores(client, input)
+    return paginator.pages(client, "listContextStores", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ContextStores",
+    })
+end
+
+--- Returns an item iterator for listContextStores.
+function M.items_list_context_stores(client, input)
+    return paginator.items(client, "listContextStores", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ContextStores",
+    })
+end
+
+--- Returns a page iterator for listContexts.
+function M.pages_list_contexts(client, input)
+    return paginator.pages(client, "listContexts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Contexts",
+    })
+end
+
+--- Returns an item iterator for listContexts.
+function M.items_list_contexts(client, input)
+    return paginator.items(client, "listContexts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Contexts",
+    })
+end
+
 --- Returns a page iterator for listCoreNetworkPolicyVersions.
 function M.pages_list_core_network_policy_versions(client, input)
     return paginator.pages(client, "listCoreNetworkPolicyVersions", input, {

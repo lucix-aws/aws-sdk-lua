@@ -148,4 +148,40 @@ function M.items_describe_service_lifecycle(client, input)
     })
 end
 
+--- Returns a page iterator for describeTags.
+function M.pages_describe_tags(client, input)
+    return paginator.pages(client, "describeTags", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tags",
+    })
+end
+
+--- Returns an item iterator for describeTags.
+function M.items_describe_tags(client, input)
+    return paginator.items(client, "describeTags", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tags",
+    })
+end
+
+--- Returns a page iterator for describeTagsForOrganization.
+function M.pages_describe_tags_for_organization(client, input)
+    return paginator.pages(client, "describeTagsForOrganization", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tags",
+    })
+end
+
+--- Returns an item iterator for describeTagsForOrganization.
+function M.items_describe_tags_for_organization(client, input)
+    return paginator.items(client, "describeTagsForOrganization", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tags",
+    })
+end
+
 return M

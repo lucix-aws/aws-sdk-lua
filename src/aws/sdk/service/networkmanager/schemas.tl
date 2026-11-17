@@ -92,6 +92,14 @@ M.AttachmentList = schema.new({ type = "list", list_member = M.Attachment })
 
 M.ConnectPeerSummaryList = schema.new({ type = "list", list_member = M.ConnectPeerSummary })
 
+M.ContextChangeList = schema.new({ type = "list", list_member = M.ContextChange })
+
+M.ContextList = schema.new({ type = "list", list_member = M.ContextEntry })
+
+M.ContextStoreAssociationList = schema.new({ type = "list", list_member = M.ContextStoreAssociation })
+
+M.ContextStoreList = schema.new({ type = "list", list_member = M.ContextStore })
+
 M.CoreNetworkPolicyVersionList = schema.new({ type = "list", list_member = M.CoreNetworkPolicyVersion })
 
 M.PrefixListAssociationList = schema.new({ type = "list", list_member = M.PrefixListAssociation })
@@ -781,6 +789,74 @@ M.ServiceQuotaExceededException = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.AssociateContextStoreInput = schema.new({
+    id = id.from(_N, "AssociateContextStoreRequest"),
+    type = "structure",
+    members = {
+        ContextStoreId = schema.new({
+            id = id.from(_N, "AssociateContextStoreInput", "ContextStoreId"),
+            type = "string",
+            name = "ContextStoreId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TransitGatewayArn = schema.new({
+            id = id.from(_N, "AssociateContextStoreInput", "TransitGatewayArn"),
+            type = "string",
+            name = "TransitGatewayArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContextStoreAssociation = schema.new({
+    id = id.from(_N, "ContextStoreAssociation"),
+    type = "structure",
+    members = {
+        ContextStoreId = schema.new({
+            id = id.from(_N, "ContextStoreAssociation", "ContextStoreId"),
+            type = "string",
+            name = "ContextStoreId",
+            target_id = prelude.String.id,
+        }),
+        TransitGatewayArn = schema.new({
+            id = id.from(_N, "ContextStoreAssociation", "TransitGatewayArn"),
+            type = "string",
+            name = "TransitGatewayArn",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "ContextStoreAssociation", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        State = schema.new({
+            id = id.from(_N, "ContextStoreAssociation", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AssociateContextStoreOutput = schema.new({
+    id = id.from(_N, "AssociateContextStoreResponse"),
+    type = "structure",
+    members = {
+        ContextStoreAssociation = schema.new({
+            id = id.from(_N, "AssociateContextStoreOutput", "ContextStoreAssociation"),
+            type = "structure",
+            name = "ContextStoreAssociation",
+            target_id = id.from(_N, "ContextStoreAssociation"),
+            target = M.ContextStoreAssociation,
         }),
     },
 })
@@ -1558,6 +1634,125 @@ M.ConnectPeerSummary = schema.new({
             type = "string",
             name = "SubnetArn",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContextEntry = schema.new({
+    id = id.from(_N, "ContextEntry"),
+    type = "structure",
+    members = {
+        ContextId = schema.new({
+            id = id.from(_N, "ContextEntry", "ContextId"),
+            type = "string",
+            name = "ContextId",
+            target_id = prelude.String.id,
+        }),
+        ContextType = schema.new({
+            id = id.from(_N, "ContextEntry", "ContextType"),
+            type = "string",
+            name = "ContextType",
+            target_id = prelude.String.id,
+        }),
+        SegmentType = schema.new({
+            id = id.from(_N, "ContextEntry", "SegmentType"),
+            type = "string",
+            name = "SegmentType",
+            target_id = prelude.String.id,
+        }),
+        PublicId = schema.new({
+            id = id.from(_N, "ContextEntry", "PublicId"),
+            type = "string",
+            name = "PublicId",
+            target_id = prelude.String.id,
+        }),
+        Region = schema.new({
+            id = id.from(_N, "ContextEntry", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+        }),
+        AvailabilityZone = schema.new({
+            id = id.from(_N, "ContextEntry", "AvailabilityZone"),
+            type = "string",
+            name = "AvailabilityZone",
+            target_id = prelude.String.id,
+        }),
+        AttachmentType = schema.new({
+            id = id.from(_N, "ContextEntry", "AttachmentType"),
+            type = "string",
+            name = "AttachmentType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContextChange = schema.new({
+    id = id.from(_N, "ContextChange"),
+    type = "structure",
+    members = {
+        ChangeType = schema.new({
+            id = id.from(_N, "ContextChange", "ChangeType"),
+            type = "string",
+            name = "ChangeType",
+            target_id = prelude.String.id,
+        }),
+        Context = schema.new({
+            id = id.from(_N, "ContextChange", "Context"),
+            type = "structure",
+            name = "Context",
+            target_id = id.from(_N, "ContextEntry"),
+            target = M.ContextEntry,
+        }),
+    },
+})
+
+M.ContextStore = schema.new({
+    id = id.from(_N, "ContextStore"),
+    type = "structure",
+    members = {
+        GlobalNetworkId = schema.new({
+            id = id.from(_N, "ContextStore", "GlobalNetworkId"),
+            type = "string",
+            name = "GlobalNetworkId",
+            target_id = prelude.String.id,
+        }),
+        ContextStoreId = schema.new({
+            id = id.from(_N, "ContextStore", "ContextStoreId"),
+            type = "string",
+            name = "ContextStoreId",
+            target_id = prelude.String.id,
+        }),
+        ContextStoreArn = schema.new({
+            id = id.from(_N, "ContextStore", "ContextStoreArn"),
+            type = "string",
+            name = "ContextStoreArn",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "ContextStore", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "ContextStore", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        State = schema.new({
+            id = id.from(_N, "ContextStore", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "ContextStore", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
         }),
     },
 })
@@ -2751,6 +2946,59 @@ M.CreateConnectPeerOutput = schema.new({
             name = "ConnectPeer",
             target_id = id.from(_N, "ConnectPeer"),
             target = M.ConnectPeer,
+        }),
+    },
+})
+
+M.CreateContextStoreInput = schema.new({
+    id = id.from(_N, "CreateContextStoreRequest"),
+    type = "structure",
+    members = {
+        GlobalNetworkId = schema.new({
+            id = id.from(_N, "CreateContextStoreInput", "GlobalNetworkId"),
+            type = "string",
+            name = "GlobalNetworkId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateContextStoreInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateContextStoreInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateContextStoreInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateContextStoreOutput = schema.new({
+    id = id.from(_N, "CreateContextStoreResponse"),
+    type = "structure",
+    members = {
+        ContextStore = schema.new({
+            id = id.from(_N, "CreateContextStoreOutput", "ContextStore"),
+            type = "structure",
+            name = "ContextStore",
+            target_id = id.from(_N, "ContextStore"),
+            target = M.ContextStore,
         }),
     },
 })
@@ -4193,6 +4441,37 @@ M.DeleteConnectPeerOutput = schema.new({
     },
 })
 
+M.DeleteContextStoreInput = schema.new({
+    id = id.from(_N, "DeleteContextStoreRequest"),
+    type = "structure",
+    members = {
+        ContextStoreId = schema.new({
+            id = id.from(_N, "DeleteContextStoreInput", "ContextStoreId"),
+            type = "string",
+            name = "ContextStoreId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteContextStoreOutput = schema.new({
+    id = id.from(_N, "DeleteContextStoreResponse"),
+    type = "structure",
+    members = {
+        ContextStore = schema.new({
+            id = id.from(_N, "DeleteContextStoreOutput", "ContextStore"),
+            type = "structure",
+            name = "ContextStore",
+            target_id = id.from(_N, "ContextStore"),
+            target = M.ContextStore,
+        }),
+    },
+})
+
 M.DeleteCoreNetworkInput = schema.new({
     id = id.from(_N, "DeleteCoreNetworkRequest"),
     type = "structure",
@@ -4700,6 +4979,47 @@ M.DisassociateConnectPeerOutput = schema.new({
     },
 })
 
+M.DisassociateContextStoreInput = schema.new({
+    id = id.from(_N, "DisassociateContextStoreRequest"),
+    type = "structure",
+    members = {
+        ContextStoreId = schema.new({
+            id = id.from(_N, "DisassociateContextStoreInput", "ContextStoreId"),
+            type = "string",
+            name = "ContextStoreId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TransitGatewayArn = schema.new({
+            id = id.from(_N, "DisassociateContextStoreInput", "TransitGatewayArn"),
+            type = "string",
+            name = "TransitGatewayArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateContextStoreOutput = schema.new({
+    id = id.from(_N, "DisassociateContextStoreResponse"),
+    type = "structure",
+    members = {
+        ContextStoreAssociation = schema.new({
+            id = id.from(_N, "DisassociateContextStoreOutput", "ContextStoreAssociation"),
+            type = "structure",
+            name = "ContextStoreAssociation",
+            target_id = id.from(_N, "ContextStoreAssociation"),
+            target = M.ContextStoreAssociation,
+        }),
+    },
+})
+
 M.DisassociateCustomerGatewayInput = schema.new({
     id = id.from(_N, "DisassociateCustomerGatewayRequest"),
     type = "structure",
@@ -5061,6 +5381,108 @@ M.GetConnectPeerAssociationsOutput = schema.new({
             id = id.from(_N, "GetConnectPeerAssociationsOutput", "NextToken"),
             type = "string",
             name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetContextStoreInput = schema.new({
+    id = id.from(_N, "GetContextStoreRequest"),
+    type = "structure",
+    members = {
+        ContextStoreId = schema.new({
+            id = id.from(_N, "GetContextStoreInput", "ContextStoreId"),
+            type = "string",
+            name = "ContextStoreId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetContextStoreOutput = schema.new({
+    id = id.from(_N, "GetContextStoreResponse"),
+    type = "structure",
+    members = {
+        ContextStore = schema.new({
+            id = id.from(_N, "GetContextStoreOutput", "ContextStore"),
+            type = "structure",
+            name = "ContextStore",
+            target_id = id.from(_N, "ContextStore"),
+            target = M.ContextStore,
+        }),
+    },
+})
+
+M.GetContextStoreAssociationInput = schema.new({
+    id = id.from(_N, "GetContextStoreAssociationRequest"),
+    type = "structure",
+    members = {
+        ContextStoreId = schema.new({
+            id = id.from(_N, "GetContextStoreAssociationInput", "ContextStoreId"),
+            type = "string",
+            name = "ContextStoreId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TransitGatewayArn = schema.new({
+            id = id.from(_N, "GetContextStoreAssociationInput", "TransitGatewayArn"),
+            type = "string",
+            name = "TransitGatewayArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetContextStoreAssociationOutput = schema.new({
+    id = id.from(_N, "GetContextStoreAssociationResponse"),
+    type = "structure",
+    members = {
+        ContextStoreAssociation = schema.new({
+            id = id.from(_N, "GetContextStoreAssociationOutput", "ContextStoreAssociation"),
+            type = "structure",
+            name = "ContextStoreAssociation",
+            target_id = id.from(_N, "ContextStoreAssociation"),
+            target = M.ContextStoreAssociation,
+        }),
+    },
+})
+
+M.GetContextVersionInput = schema.new({
+    id = id.from(_N, "GetContextVersionRequest"),
+    type = "structure",
+    members = {
+        ContextStoreId = schema.new({
+            id = id.from(_N, "GetContextVersionInput", "ContextStoreId"),
+            type = "string",
+            name = "ContextStoreId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetContextVersionOutput = schema.new({
+    id = id.from(_N, "GetContextVersionResponse"),
+    type = "structure",
+    members = {
+        VersionId = schema.new({
+            id = id.from(_N, "GetContextVersionOutput", "VersionId"),
+            type = "string",
+            name = "VersionId",
             target_id = prelude.String.id,
         }),
     },
@@ -7331,6 +7753,253 @@ M.ListConnectPeersOutput = schema.new({
     },
 })
 
+M.ListContextChangesInput = schema.new({
+    id = id.from(_N, "ListContextChangesRequest"),
+    type = "structure",
+    members = {
+        ContextStoreId = schema.new({
+            id = id.from(_N, "ListContextChangesInput", "ContextStoreId"),
+            type = "string",
+            name = "ContextStoreId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        FromVersionId = schema.new({
+            id = id.from(_N, "ListContextChangesInput", "FromVersionId"),
+            type = "string",
+            name = "FromVersionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "fromVersionId" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListContextChangesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListContextChangesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListContextChangesOutput = schema.new({
+    id = id.from(_N, "ListContextChangesResponse"),
+    type = "structure",
+    members = {
+        ContextChanges = schema.new({
+            id = id.from(_N, "ListContextChangesOutput", "ContextChanges"),
+            type = "list",
+            name = "ContextChanges",
+            target_id = prelude.Document.id,
+            list_member = M.ContextChange,
+        }),
+        FromVersionId = schema.new({
+            id = id.from(_N, "ListContextChangesOutput", "FromVersionId"),
+            type = "string",
+            name = "FromVersionId",
+            target_id = prelude.String.id,
+        }),
+        ToVersionId = schema.new({
+            id = id.from(_N, "ListContextChangesOutput", "ToVersionId"),
+            type = "string",
+            name = "ToVersionId",
+            target_id = prelude.String.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListContextChangesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListContextsInput = schema.new({
+    id = id.from(_N, "ListContextsRequest"),
+    type = "structure",
+    members = {
+        ContextStoreId = schema.new({
+            id = id.from(_N, "ListContextsInput", "ContextStoreId"),
+            type = "string",
+            name = "ContextStoreId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListContextsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListContextsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListContextsOutput = schema.new({
+    id = id.from(_N, "ListContextsResponse"),
+    type = "structure",
+    members = {
+        Contexts = schema.new({
+            id = id.from(_N, "ListContextsOutput", "Contexts"),
+            type = "list",
+            name = "Contexts",
+            target_id = prelude.Document.id,
+            list_member = M.ContextEntry,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListContextsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        VersionId = schema.new({
+            id = id.from(_N, "ListContextsOutput", "VersionId"),
+            type = "string",
+            name = "VersionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListContextStoreAssociationsInput = schema.new({
+    id = id.from(_N, "ListContextStoreAssociationsRequest"),
+    type = "structure",
+    members = {
+        ContextStoreId = schema.new({
+            id = id.from(_N, "ListContextStoreAssociationsInput", "ContextStoreId"),
+            type = "string",
+            name = "ContextStoreId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListContextStoreAssociationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListContextStoreAssociationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListContextStoreAssociationsOutput = schema.new({
+    id = id.from(_N, "ListContextStoreAssociationsResponse"),
+    type = "structure",
+    members = {
+        ContextStoreAssociations = schema.new({
+            id = id.from(_N, "ListContextStoreAssociationsOutput", "ContextStoreAssociations"),
+            type = "list",
+            name = "ContextStoreAssociations",
+            target_id = prelude.Document.id,
+            list_member = M.ContextStoreAssociation,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListContextStoreAssociationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListContextStoresInput = schema.new({
+    id = id.from(_N, "ListContextStoresRequest"),
+    type = "structure",
+    members = {
+        GlobalNetworkId = schema.new({
+            id = id.from(_N, "ListContextStoresInput", "GlobalNetworkId"),
+            type = "string",
+            name = "GlobalNetworkId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "globalNetworkId" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListContextStoresInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListContextStoresInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListContextStoresOutput = schema.new({
+    id = id.from(_N, "ListContextStoresResponse"),
+    type = "structure",
+    members = {
+        ContextStores = schema.new({
+            id = id.from(_N, "ListContextStoresOutput", "ContextStores"),
+            type = "list",
+            name = "ContextStores",
+            target_id = prelude.Document.id,
+            list_member = M.ContextStore,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListContextStoresOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListCoreNetworkPolicyVersionsInput = schema.new({
     id = id.from(_N, "ListCoreNetworkPolicyVersionsRequest"),
     type = "structure",
@@ -8500,6 +9169,43 @@ M.UpdateConnectionOutput = schema.new({
     },
 })
 
+M.UpdateContextStoreInput = schema.new({
+    id = id.from(_N, "UpdateContextStoreRequest"),
+    type = "structure",
+    members = {
+        ContextStoreId = schema.new({
+            id = id.from(_N, "UpdateContextStoreInput", "ContextStoreId"),
+            type = "string",
+            name = "ContextStoreId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateContextStoreInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateContextStoreOutput = schema.new({
+    id = id.from(_N, "UpdateContextStoreResponse"),
+    type = "structure",
+    members = {
+        ContextStore = schema.new({
+            id = id.from(_N, "UpdateContextStoreOutput", "ContextStore"),
+            type = "structure",
+            name = "ContextStore",
+            target_id = id.from(_N, "ContextStore"),
+            target = M.ContextStore,
+        }),
+    },
+})
+
 M.UpdateCoreNetworkInput = schema.new({
     id = id.from(_N, "UpdateCoreNetworkRequest"),
     type = "structure",
@@ -8983,6 +9689,18 @@ M.AssociateConnectPeer = schema.operation({
     },
 })
 
+M.AssociateContextStore = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "AssociateContextStore"),
+    input = M.AssociateContextStoreInput,
+    output = M.AssociateContextStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/context-stores/{ContextStoreId}/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.AssociateCustomerGateway = schema.operation({
     id = id.from("com.amazonaws.networkmanager", "AssociateCustomerGateway"),
     input = M.AssociateCustomerGatewayInput,
@@ -9049,6 +9767,18 @@ M.CreateConnectPeer = schema.operation({
     output = M.CreateConnectPeerOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/connect-peers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateContextStore = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "CreateContextStore"),
+    input = M.CreateContextStoreInput,
+    output = M.CreateContextStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/global-networks/{GlobalNetworkId}/context-stores" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -9223,6 +9953,18 @@ M.DeleteConnectPeer = schema.operation({
     },
 })
 
+M.DeleteContextStore = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DeleteContextStore"),
+    input = M.DeleteContextStoreInput,
+    output = M.DeleteContextStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/context-stores/{ContextStoreId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteCoreNetwork = schema.operation({
     id = id.from("com.amazonaws.networkmanager", "DeleteCoreNetwork"),
     input = M.DeleteCoreNetworkInput,
@@ -9367,6 +10109,18 @@ M.DisassociateConnectPeer = schema.operation({
     },
 })
 
+M.DisassociateContextStore = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "DisassociateContextStore"),
+    input = M.DisassociateContextStoreInput,
+    output = M.DisassociateContextStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/context-stores/{ContextStoreId}/associations/{TransitGatewayArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DisassociateCustomerGateway = schema.operation({
     id = id.from("com.amazonaws.networkmanager", "DisassociateCustomerGateway"),
     input = M.DisassociateCustomerGatewayInput,
@@ -9457,6 +10211,42 @@ M.GetConnectPeerAssociations = schema.operation({
     output = M.GetConnectPeerAssociationsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/global-networks/{GlobalNetworkId}/connect-peer-associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContextStore = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetContextStore"),
+    input = M.GetContextStoreInput,
+    output = M.GetContextStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/context-stores/{ContextStoreId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContextStoreAssociation = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetContextStoreAssociation"),
+    input = M.GetContextStoreAssociationInput,
+    output = M.GetContextStoreAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/context-stores/{ContextStoreId}/associations/{TransitGatewayArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetContextVersion = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "GetContextVersion"),
+    input = M.GetContextVersionInput,
+    output = M.GetContextVersionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/context-stores/{ContextStoreId}/context-version" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -9787,6 +10577,54 @@ M.ListConnectPeers = schema.operation({
     },
 })
 
+M.ListContextChanges = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "ListContextChanges"),
+    input = M.ListContextChangesInput,
+    output = M.ListContextChangesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/context-stores/{ContextStoreId}/context-changes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContexts = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "ListContexts"),
+    input = M.ListContextsInput,
+    output = M.ListContextsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/context-stores/{ContextStoreId}/contexts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContextStoreAssociations = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "ListContextStoreAssociations"),
+    input = M.ListContextStoreAssociationsInput,
+    output = M.ListContextStoreAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/context-stores/{ContextStoreId}/associations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListContextStores = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "ListContextStores"),
+    input = M.ListContextStoresInput,
+    output = M.ListContextStoresOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/context-stores" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListCoreNetworkPolicyVersions = schema.operation({
     id = id.from("com.amazonaws.networkmanager", "ListCoreNetworkPolicyVersions"),
     input = M.ListCoreNetworkPolicyVersionsInput,
@@ -10021,6 +10859,18 @@ M.UpdateConnection = schema.operation({
     output = M.UpdateConnectionOutput,
     traits = {
         [traits.HTTP] = { method = "PATCH", path = "/global-networks/{GlobalNetworkId}/connections/{ConnectionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContextStore = schema.operation({
+    id = id.from("com.amazonaws.networkmanager", "UpdateContextStore"),
+    input = M.UpdateContextStoreInput,
+    output = M.UpdateContextStoreOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/context-stores/{ContextStoreId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

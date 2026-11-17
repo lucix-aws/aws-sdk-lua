@@ -19,29 +19,39 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     createMonitor: function(Client, types.CreateMonitorInput, ? base_client.InvokeOptions): async.Operation<types.CreateMonitorOutput>
+    createPerformanceMonitor: function(Client, types.CreatePerformanceMonitorInput, ? base_client.InvokeOptions): async.Operation<types.CreatePerformanceMonitorOutput>
     createScope: function(Client, types.CreateScopeInput, ? base_client.InvokeOptions): async.Operation<types.CreateScopeOutput>
     deleteMonitor: function(Client, types.DeleteMonitorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMonitorOutput>
+    deletePerformanceMonitor: function(Client, types.DeletePerformanceMonitorInput, ? base_client.InvokeOptions): async.Operation<types.DeletePerformanceMonitorOutput>
     deleteScope: function(Client, types.DeleteScopeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteScopeOutput>
     getMonitor: function(Client, types.GetMonitorInput, ? base_client.InvokeOptions): async.Operation<types.GetMonitorOutput>
+    getMonitorScopeSuggestions: function(Client, types.GetMonitorScopeSuggestionsInput, ? base_client.InvokeOptions): async.Operation<types.GetMonitorScopeSuggestionsOutput>
+    getPerformanceMonitor: function(Client, types.GetPerformanceMonitorInput, ? base_client.InvokeOptions): async.Operation<types.GetPerformanceMonitorOutput>
     getQueryResultsMonitorTopContributors: function(Client, types.GetQueryResultsMonitorTopContributorsInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryResultsMonitorTopContributorsOutput>
+    getQueryResultsPerformanceMonitor: function(Client, types.GetQueryResultsPerformanceMonitorInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryResultsPerformanceMonitorOutput>
     getQueryResultsWorkloadInsightsTopContributors: function(Client, types.GetQueryResultsWorkloadInsightsTopContributorsInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryResultsWorkloadInsightsTopContributorsOutput>
     getQueryResultsWorkloadInsightsTopContributorsData: function(Client, types.GetQueryResultsWorkloadInsightsTopContributorsDataInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryResultsWorkloadInsightsTopContributorsDataOutput>
     getQueryStatusMonitorTopContributors: function(Client, types.GetQueryStatusMonitorTopContributorsInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryStatusMonitorTopContributorsOutput>
+    getQueryStatusPerformanceMonitor: function(Client, types.GetQueryStatusPerformanceMonitorInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryStatusPerformanceMonitorOutput>
     getQueryStatusWorkloadInsightsTopContributors: function(Client, types.GetQueryStatusWorkloadInsightsTopContributorsInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryStatusWorkloadInsightsTopContributorsOutput>
     getQueryStatusWorkloadInsightsTopContributorsData: function(Client, types.GetQueryStatusWorkloadInsightsTopContributorsDataInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryStatusWorkloadInsightsTopContributorsDataOutput>
     getScope: function(Client, types.GetScopeInput, ? base_client.InvokeOptions): async.Operation<types.GetScopeOutput>
     listMonitors: function(Client, types.ListMonitorsInput, ? base_client.InvokeOptions): async.Operation<types.ListMonitorsOutput>
+    listPerformanceMonitors: function(Client, types.ListPerformanceMonitorsInput, ? base_client.InvokeOptions): async.Operation<types.ListPerformanceMonitorsOutput>
     listScopes: function(Client, types.ListScopesInput, ? base_client.InvokeOptions): async.Operation<types.ListScopesOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     startQueryMonitorTopContributors: function(Client, types.StartQueryMonitorTopContributorsInput, ? base_client.InvokeOptions): async.Operation<types.StartQueryMonitorTopContributorsOutput>
+    startQueryPerformanceMonitor: function(Client, types.StartQueryPerformanceMonitorInput, ? base_client.InvokeOptions): async.Operation<types.StartQueryPerformanceMonitorOutput>
     startQueryWorkloadInsightsTopContributors: function(Client, types.StartQueryWorkloadInsightsTopContributorsInput, ? base_client.InvokeOptions): async.Operation<types.StartQueryWorkloadInsightsTopContributorsOutput>
     startQueryWorkloadInsightsTopContributorsData: function(Client, types.StartQueryWorkloadInsightsTopContributorsDataInput, ? base_client.InvokeOptions): async.Operation<types.StartQueryWorkloadInsightsTopContributorsDataOutput>
     stopQueryMonitorTopContributors: function(Client, types.StopQueryMonitorTopContributorsInput, ? base_client.InvokeOptions): async.Operation<types.StopQueryMonitorTopContributorsOutput>
+    stopQueryPerformanceMonitor: function(Client, types.StopQueryPerformanceMonitorInput, ? base_client.InvokeOptions): async.Operation<types.StopQueryPerformanceMonitorOutput>
     stopQueryWorkloadInsightsTopContributors: function(Client, types.StopQueryWorkloadInsightsTopContributorsInput, ? base_client.InvokeOptions): async.Operation<types.StopQueryWorkloadInsightsTopContributorsOutput>
     stopQueryWorkloadInsightsTopContributorsData: function(Client, types.StopQueryWorkloadInsightsTopContributorsDataInput, ? base_client.InvokeOptions): async.Operation<types.StopQueryWorkloadInsightsTopContributorsDataOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateMonitor: function(Client, types.UpdateMonitorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMonitorOutput>
+    updatePerformanceMonitor: function(Client, types.UpdatePerformanceMonitorInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePerformanceMonitorOutput>
     updateScope: function(Client, types.UpdateScopeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateScopeOutput>
 end
 
@@ -91,12 +101,20 @@ function C:createMonitor(input: types.CreateMonitorInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMonitor as schema.OperationSchema, input, options) as async.Operation<types.CreateMonitorOutput>
 end
 
+function C:createPerformanceMonitor(input: types.CreatePerformanceMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePerformanceMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePerformanceMonitor as schema.OperationSchema, input, options) as async.Operation<types.CreatePerformanceMonitorOutput>
+end
+
 function C:createScope(input: types.CreateScopeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateScopeOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateScope as schema.OperationSchema, input, options) as async.Operation<types.CreateScopeOutput>
 end
 
 function C:deleteMonitor(input: types.DeleteMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMonitorOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMonitor as schema.OperationSchema, input, options) as async.Operation<types.DeleteMonitorOutput>
+end
+
+function C:deletePerformanceMonitor(input: types.DeletePerformanceMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePerformanceMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePerformanceMonitor as schema.OperationSchema, input, options) as async.Operation<types.DeletePerformanceMonitorOutput>
 end
 
 function C:deleteScope(input: types.DeleteScopeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteScopeOutput>
@@ -107,8 +125,20 @@ function C:getMonitor(input: types.GetMonitorInput, options?: base_client.Invoke
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMonitor as schema.OperationSchema, input, options) as async.Operation<types.GetMonitorOutput>
 end
 
+function C:getMonitorScopeSuggestions(input: types.GetMonitorScopeSuggestionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetMonitorScopeSuggestionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMonitorScopeSuggestions as schema.OperationSchema, input, options) as async.Operation<types.GetMonitorScopeSuggestionsOutput>
+end
+
+function C:getPerformanceMonitor(input: types.GetPerformanceMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.GetPerformanceMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPerformanceMonitor as schema.OperationSchema, input, options) as async.Operation<types.GetPerformanceMonitorOutput>
+end
+
 function C:getQueryResultsMonitorTopContributors(input: types.GetQueryResultsMonitorTopContributorsInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryResultsMonitorTopContributorsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryResultsMonitorTopContributors as schema.OperationSchema, input, options) as async.Operation<types.GetQueryResultsMonitorTopContributorsOutput>
+end
+
+function C:getQueryResultsPerformanceMonitor(input: types.GetQueryResultsPerformanceMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryResultsPerformanceMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryResultsPerformanceMonitor as schema.OperationSchema, input, options) as async.Operation<types.GetQueryResultsPerformanceMonitorOutput>
 end
 
 function C:getQueryResultsWorkloadInsightsTopContributors(input: types.GetQueryResultsWorkloadInsightsTopContributorsInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryResultsWorkloadInsightsTopContributorsOutput>
@@ -121,6 +151,10 @@ end
 
 function C:getQueryStatusMonitorTopContributors(input: types.GetQueryStatusMonitorTopContributorsInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryStatusMonitorTopContributorsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryStatusMonitorTopContributors as schema.OperationSchema, input, options) as async.Operation<types.GetQueryStatusMonitorTopContributorsOutput>
+end
+
+function C:getQueryStatusPerformanceMonitor(input: types.GetQueryStatusPerformanceMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryStatusPerformanceMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryStatusPerformanceMonitor as schema.OperationSchema, input, options) as async.Operation<types.GetQueryStatusPerformanceMonitorOutput>
 end
 
 function C:getQueryStatusWorkloadInsightsTopContributors(input: types.GetQueryStatusWorkloadInsightsTopContributorsInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryStatusWorkloadInsightsTopContributorsOutput>
@@ -139,6 +173,10 @@ function C:listMonitors(input: types.ListMonitorsInput, options?: base_client.In
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMonitors as schema.OperationSchema, input, options) as async.Operation<types.ListMonitorsOutput>
 end
 
+function C:listPerformanceMonitors(input: types.ListPerformanceMonitorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPerformanceMonitorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPerformanceMonitors as schema.OperationSchema, input, options) as async.Operation<types.ListPerformanceMonitorsOutput>
+end
+
 function C:listScopes(input: types.ListScopesInput, options?: base_client.InvokeOptions): async.Operation<types.ListScopesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListScopes as schema.OperationSchema, input, options) as async.Operation<types.ListScopesOutput>
 end
@@ -151,6 +189,10 @@ function C:startQueryMonitorTopContributors(input: types.StartQueryMonitorTopCon
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartQueryMonitorTopContributors as schema.OperationSchema, input, options) as async.Operation<types.StartQueryMonitorTopContributorsOutput>
 end
 
+function C:startQueryPerformanceMonitor(input: types.StartQueryPerformanceMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.StartQueryPerformanceMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartQueryPerformanceMonitor as schema.OperationSchema, input, options) as async.Operation<types.StartQueryPerformanceMonitorOutput>
+end
+
 function C:startQueryWorkloadInsightsTopContributors(input: types.StartQueryWorkloadInsightsTopContributorsInput, options?: base_client.InvokeOptions): async.Operation<types.StartQueryWorkloadInsightsTopContributorsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartQueryWorkloadInsightsTopContributors as schema.OperationSchema, input, options) as async.Operation<types.StartQueryWorkloadInsightsTopContributorsOutput>
 end
@@ -161,6 +203,10 @@ end
 
 function C:stopQueryMonitorTopContributors(input: types.StopQueryMonitorTopContributorsInput, options?: base_client.InvokeOptions): async.Operation<types.StopQueryMonitorTopContributorsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopQueryMonitorTopContributors as schema.OperationSchema, input, options) as async.Operation<types.StopQueryMonitorTopContributorsOutput>
+end
+
+function C:stopQueryPerformanceMonitor(input: types.StopQueryPerformanceMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.StopQueryPerformanceMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopQueryPerformanceMonitor as schema.OperationSchema, input, options) as async.Operation<types.StopQueryPerformanceMonitorOutput>
 end
 
 function C:stopQueryWorkloadInsightsTopContributors(input: types.StopQueryWorkloadInsightsTopContributorsInput, options?: base_client.InvokeOptions): async.Operation<types.StopQueryWorkloadInsightsTopContributorsOutput>
@@ -181,6 +227,10 @@ end
 
 function C:updateMonitor(input: types.UpdateMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMonitorOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMonitor as schema.OperationSchema, input, options) as async.Operation<types.UpdateMonitorOutput>
+end
+
+function C:updatePerformanceMonitor(input: types.UpdatePerformanceMonitorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePerformanceMonitorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePerformanceMonitor as schema.OperationSchema, input, options) as async.Operation<types.UpdatePerformanceMonitorOutput>
 end
 
 function C:updateScope(input: types.UpdateScopeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateScopeOutput>

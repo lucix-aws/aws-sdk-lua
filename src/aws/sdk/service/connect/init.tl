@@ -93,6 +93,7 @@ local record Client
     createWorkspace: function(Client, types.CreateWorkspaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkspaceOutput>
     createWorkspacePage: function(Client, types.CreateWorkspacePageInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkspacePageOutput>
     deactivateEvaluationForm: function(Client, types.DeactivateEvaluationFormInput, ? base_client.InvokeOptions): async.Operation<types.DeactivateEvaluationFormOutput>
+    deleteAllEntitySessions: function(Client, types.DeleteAllEntitySessionsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAllEntitySessionsOutput>
     deleteAttachedFile: function(Client, types.DeleteAttachedFileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAttachedFileOutput>
     deleteContactData: function(Client, types.DeleteContactDataInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContactDataOutput>
     deleteContactEvaluation: function(Client, types.DeleteContactEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContactEvaluationOutput>
@@ -764,6 +765,10 @@ end
 
 function C:deactivateEvaluationForm(input: types.DeactivateEvaluationFormInput, options?: base_client.InvokeOptions): async.Operation<types.DeactivateEvaluationFormOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeactivateEvaluationForm as schema.OperationSchema, input, options) as async.Operation<types.DeactivateEvaluationFormOutput>
+end
+
+function C:deleteAllEntitySessions(input: types.DeleteAllEntitySessionsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAllEntitySessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAllEntitySessions as schema.OperationSchema, input, options) as async.Operation<types.DeleteAllEntitySessionsOutput>
 end
 
 function C:deleteAttachedFile(input: types.DeleteAttachedFileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAttachedFileOutput>

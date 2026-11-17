@@ -500,6 +500,71 @@ local record M
         "EKS"
     end
 
+    enum ResourceType
+        "SecurityGroup"
+        "VPC"
+        "Subnet"
+        "TGWAttachment"
+    end
+
+    -- Filters for ListResourcesInContextStore. Both filters are optional. If you specify both,
+    -- Network Firewall returns only the resources that match both.
+    record ContextFilters
+        -- The Amazon Web Services Region of the resources to return, for example us-east-1.
+        Region: string
+        -- The type of resource to return. Each resource type corresponds to the ContextType that
+        -- Network Firewall reports for the resource:
+        -- SecurityGroup - Security groups. Reported with the SegmentId context type.
+        -- VPC - VPCs. Reported with the ResourceId context type.
+        -- Subnet - Subnets. Reported with the Subnet context type.
+        -- TGWAttachment - Transit gateway attachments. Reported with the Attachment context type.
+        ResourceType: string
+    end
+
+    -- A list of resource identifiers from the context store that is associated with the firewall. Use a context set to write stateful rules against Amazon Web Services resources instead of IP addresses. This is part of a RuleVariables.
+    record ContextSet
+        -- The list of resource identifiers. Each entry is the ID of a resource that the context store records, for example
+        -- vpc-1234567890abcdef0, subnet-1234567890abcdef0, sg-1234567890abcdef0, or
+        -- tgw-attach-1234567890abcdef0. You can specify 1-1,000 entries.
+        Definition: {string}
+    end
+
+    -- Contains details about a context store, including its unique identifier and the account that owns it.
+    record ContextStore
+        -- The unique identifier of the context store. Use this value in ListResourcesInContextStore to list
+        -- the resources that the context store records.
+        ContextStoreId: string
+        -- The ID of the Amazon Web Services account that owns the context store.
+        ContextStoreOwnerAccountId: string
+    end
+
+    enum ContextStoreSyncStatus
+        "SYNCING"
+        "PARTIALLY_RESOLVED"
+        "FULLY_RESOLVED"
+        "SYNC_FAILED"
+        "UNRESOLVED"
+    end
+
+    -- The synchronization state of a firewall's context sets with its context store. This indicates whether the resource identifiers in the firewall's context sets resolve to resources that the context store records.
+    record ContextStoreSyncState
+        -- The synchronization status of the firewall's context sets. Valid values:
+        -- SYNCING - The firewall is applying the latest context store data.
+        -- FULLY_RESOLVED - All resource identifiers in the firewall's context sets resolve to resources in the context store.
+        -- PARTIALLY_RESOLVED - Some resource identifiers in the firewall's context sets don't resolve to resources in the context store.
+        -- SYNC_FAILED - The firewall couldn't sync with the context store. For details, see StatusMessage.
+        SyncStatus: string
+        -- A message that provides additional information about the synchronization status, particularly when the status is not FULLY_RESOLVED.
+        StatusMessage: string
+    end
+
+    enum ContextType
+        "ResourceId"
+        "SegmentId"
+        "Subnet"
+        "Attachment"
+    end
+
     -- A key:value pair associated with an Amazon Web Services resource. The key:value pair can be anything you
     -- define. Typically, the tag key represents a category (such as "environment") and the tag
     -- value represents a specific value within that category (such as "test," "development," or
@@ -735,6 +800,10 @@ local record M
         ProxySettings: ProxySettings
         -- The VPC and subnets for the endpoints of a proxy mode firewall.
         VpcEndpoint: VpcEndpoint
+        -- The unique identifier of the context store that the firewall uses to resolve context sets in its rule groups. Network Firewall discovers the context store from the transit gateway association in Network Manager. This field is only present for transit gateway-attached firewalls whose transit gateway is associated with a context store.
+        ContextStoreId: string
+        -- The Amazon Web Services account ID that owns the context store. This may be different from the firewall owner's account ID.
+        ContextStoreOwnerAccountId: string
         -- How a proxy mode firewall handles traffic that isn't sent to its proxy listener. NAT_ALL sends this traffic out through the firewall's NAT gateway after inspection. NAT_NONE returns it to the firewall endpoint without address translation.
         TransparentFilteringNatScope: string
     end
@@ -869,6 +938,8 @@ local record M
         CapacityUsageSummary: CapacityUsageSummary
         -- The synchronization state of the transit gateway attachment. This indicates whether the firewall's transit gateway configuration is properly synchronized and operational. Use this to verify that your transit gateway configuration changes have been applied.
         TransitGatewayAttachmentSyncState: TransitGatewayAttachmentSyncState
+        -- The synchronization state of the context sets in the firewall's rule groups with the firewall's context store. This field is only present when the firewall has a context store and its rule groups reference context sets.
+        ContextStoreSyncState: ContextStoreSyncState
     end
 
     record CreateFirewallOutput
@@ -1645,6 +1716,8 @@ local record M
         IPSets: {string : IPSet}
         -- A list of port ranges.
         PortSets: {string : PortSet}
+        -- A list of context sets. Each context set lists resources from the context store that is associated with the firewall.
+        ContextSets: {string : ContextSet}
     end
 
     -- The object that defines a firewall engine rule group, for use in a Next Generation policy. A firewall engine rule group provides access-control rules that the firewall engine evaluates at connection-state hooks. You provide the rules as a Suricata-compatible rule string, as structured firewall rules, or generated from a list of domain names. For more information, see Rule groups for a firewall using a Next Generation policy in the Network Firewall Developer Guide.
@@ -3390,6 +3463,26 @@ local record M
         NextToken: string
     end
 
+    record ListContextStoresInput
+        -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available
+        -- for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken
+        -- value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.
+        NextToken: string
+        -- The maximum number of objects that you want Network Firewall to return for this request. If more
+        -- objects are available, in the response, Network Firewall provides a
+        -- NextToken value that you can use in a subsequent call to get the next batch of objects.
+        MaxResults: number
+    end
+
+    record ListContextStoresOutput
+        -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available
+        -- for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken
+        -- value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.
+        NextToken: string
+        -- The context stores that are associated with your firewalls.
+        ContextStores: {ContextStore}
+    end
+
     record ListFirewallPoliciesInput
         -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available
         -- for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken
@@ -3539,6 +3632,53 @@ local record M
         -- A flow is network traffic that is monitored by a firewall, either by stateful or stateless rules.
         -- For traffic to be considered part of a flow, it must share Destination, DestinationPort, Direction, Protocol, Source, and SourcePort.
         FlowOperations: {FlowOperationMetadata}
+        -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available
+        -- for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken
+        -- value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.
+        NextToken: string
+    end
+
+    record ListResourcesInContextStoreInput
+        -- The unique identifier of the context store. To get the identifiers of the context stores that are associated
+        -- with your firewalls, call ListContextStores.
+        ContextStoreId: string
+        -- Optional filters that limit the results to resources in a specific Region, of a specific resource type, or
+        -- both. If you specify both filters, Network Firewall returns only the resources that match both.
+        Filters: ContextFilters
+        -- The maximum number of objects that you want Network Firewall to return for this request. If more
+        -- objects are available, in the response, Network Firewall provides a
+        -- NextToken value that you can use in a subsequent call to get the next batch of objects.
+        MaxResults: number
+        -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available
+        -- for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken
+        -- value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.
+        -- A token is valid only for the same ContextStoreId and filters as the request that returned it.
+        NextToken: string
+    end
+
+    -- A resource that a context store records, which ListResourcesInContextStore returns.
+    record ResourceContext
+        -- The kind of context that the context store records for the resource. Valid values:
+        -- ResourceId - A VPC.
+        -- SegmentId - A security group.
+        -- Subnet - A subnet.
+        -- Attachment - A transit gateway attachment.
+        ContextType: string
+        -- The Amazon Web Services Region of the resource.
+        Region: string
+        -- The Availability Zone of the resource. Present for subnets.
+        AvailabilityZone: string
+        -- The type of the transit gateway attachment. Present for attachments.
+        AttachmentType: string
+        -- The identifier of the resource, for example vpc-1234567890abcdef0,
+        -- subnet-1234567890abcdef0, sg-1234567890abcdef0, or
+        -- tgw-attach-1234567890abcdef0.
+        PublicId: string
+    end
+
+    record ListResourcesInContextStoreOutput
+        -- The resources that the context store records and that match your filters.
+        ResourceContexts: {ResourceContext}
         -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available
         -- for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken
         -- value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.

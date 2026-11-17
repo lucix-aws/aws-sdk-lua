@@ -38,6 +38,8 @@ M.PolicyNameList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RotationsList = schema.new({ type = "list", list_member = M.RotationsListEntry })
 
+M.ResourceOwnersList = schema.new({ type = "list", list_member = prelude.String })
+
 M.KeyList = schema.new({ type = "list", list_member = M.KeyListEntry })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
@@ -3678,6 +3680,13 @@ M.ListKeysInput = schema.new({
             type = "string",
             name = "Marker",
             target_id = prelude.String.id,
+        }),
+        ResourceOwners = schema.new({
+            id = id.from(_N, "ListKeysInput", "ResourceOwners"),
+            type = "list",
+            name = "ResourceOwners",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })

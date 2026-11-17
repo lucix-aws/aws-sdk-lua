@@ -58,11 +58,13 @@ local record Client
     getAnalysisReportResults: function(Client, types.GetAnalysisReportResultsInput, ? base_client.InvokeOptions): async.Operation<types.GetAnalysisReportResultsOutput>
     listAnalysisReports: function(Client, types.ListAnalysisReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListAnalysisReportsOutput>
     listContainerAssociations: function(Client, types.ListContainerAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListContainerAssociationsOutput>
+    listContextStores: function(Client, types.ListContextStoresInput, ? base_client.InvokeOptions): async.Operation<types.ListContextStoresOutput>
     listFirewallPolicies: function(Client, types.ListFirewallPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallPoliciesOutput>
     listFirewallPoliciesV2: function(Client, types.ListFirewallPoliciesV2Input, ? base_client.InvokeOptions): async.Operation<types.ListFirewallPoliciesV2Output>
     listFirewalls: function(Client, types.ListFirewallsInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallsOutput>
     listFlowOperationResults: function(Client, types.ListFlowOperationResultsInput, ? base_client.InvokeOptions): async.Operation<types.ListFlowOperationResultsOutput>
     listFlowOperations: function(Client, types.ListFlowOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListFlowOperationsOutput>
+    listResourcesInContextStore: function(Client, types.ListResourcesInContextStoreInput, ? base_client.InvokeOptions): async.Operation<types.ListResourcesInContextStoreOutput>
     listRuleGroups: function(Client, types.ListRuleGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListRuleGroupsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     listTLSInspectionConfigurations: function(Client, types.ListTLSInspectionConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListTLSInspectionConfigurationsOutput>
@@ -292,6 +294,10 @@ function C:listContainerAssociations(input: types.ListContainerAssociationsInput
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContainerAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListContainerAssociationsOutput>
 end
 
+function C:listContextStores(input: types.ListContextStoresInput, options?: base_client.InvokeOptions): async.Operation<types.ListContextStoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContextStores as schema.OperationSchema, input, options) as async.Operation<types.ListContextStoresOutput>
+end
+
 function C:listFirewallPolicies(input: types.ListFirewallPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListFirewallPoliciesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFirewallPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListFirewallPoliciesOutput>
 end
@@ -310,6 +316,10 @@ end
 
 function C:listFlowOperations(input: types.ListFlowOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFlowOperationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFlowOperations as schema.OperationSchema, input, options) as async.Operation<types.ListFlowOperationsOutput>
+end
+
+function C:listResourcesInContextStore(input: types.ListResourcesInContextStoreInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourcesInContextStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourcesInContextStore as schema.OperationSchema, input, options) as async.Operation<types.ListResourcesInContextStoreOutput>
 end
 
 function C:listRuleGroups(input: types.ListRuleGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRuleGroupsOutput>

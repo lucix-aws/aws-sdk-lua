@@ -1141,6 +1141,19 @@ M.JobRunExecutionIamPolicy = schema.new({
     },
 })
 
+M.FlexExecution = schema.new({
+    id = id.from(_N, "FlexExecution"),
+    type = "structure",
+    members = {
+        enabled = schema.new({
+            id = id.from(_N, "FlexExecution", "enabled"),
+            type = "boolean",
+            name = "enabled",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
 M.Hive = schema.new({
     id = id.from(_N, "Hive"),
     type = "structure",
@@ -1439,6 +1452,13 @@ M.JobRunAttemptSummary = schema.new({
             name = "attempt",
             target_id = prelude.Integer.id,
         }),
+        flexExecution = schema.new({
+            id = id.from(_N, "JobRunAttemptSummary", "flexExecution"),
+            type = "structure",
+            name = "flexExecution",
+            target_id = id.from(_N, "FlexExecution"),
+            target = M.FlexExecution,
+        }),
     },
 })
 
@@ -1667,6 +1687,13 @@ M.JobRunSummary = schema.new({
             type = "timestamp",
             name = "attemptUpdatedAt",
             target_id = prelude.Timestamp.id,
+        }),
+        flexExecution = schema.new({
+            id = id.from(_N, "JobRunSummary", "flexExecution"),
+            type = "structure",
+            name = "flexExecution",
+            target_id = id.from(_N, "FlexExecution"),
+            target = M.FlexExecution,
         }),
     },
 })
@@ -3020,6 +3047,13 @@ M.JobRun = schema.new({
             map_key = prelude.String,
             map_value = M.WorkerTypeSpecification,
         }),
+        flexExecution = schema.new({
+            id = id.from(_N, "JobRun", "flexExecution"),
+            type = "structure",
+            name = "flexExecution",
+            target_id = id.from(_N, "FlexExecution"),
+            target = M.FlexExecution,
+        }),
     },
 })
 
@@ -3284,6 +3318,13 @@ M.StartJobRunInput = schema.new({
             name = "retryPolicy",
             target_id = id.from(_N, "RetryPolicy"),
             target = M.RetryPolicy,
+        }),
+        flexExecution = schema.new({
+            id = id.from(_N, "StartJobRunInput", "flexExecution"),
+            type = "structure",
+            name = "flexExecution",
+            target_id = id.from(_N, "FlexExecution"),
+            target = M.FlexExecution,
         }),
     },
 })

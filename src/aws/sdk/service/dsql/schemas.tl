@@ -18,6 +18,10 @@ M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ClusterList = schema.new({ type = "list", list_member = M.ClusterSummary })
 
+M.MetricGroupRequestList = schema.new({ type = "list", list_member = M.MetricGroupRequest })
+
+M.MetricGroupResponseList = schema.new({ type = "list", list_member = M.MetricGroupResponse })
+
 M.StreamList = schema.new({ type = "list", list_member = M.StreamSummary })
 
 M.ClusterArnList = schema.new({ type = "list", list_member = prelude.String })
@@ -68,6 +72,22 @@ M.ConflictException = schema.new({
             type = "string",
             name = "resourceType",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MetricGroupRequest = schema.new({
+    id = id.from(_N, "MetricGroupRequest"),
+    type = "structure",
+    members = {
+        metricGroup = schema.new({
+            id = id.from(_N, "MetricGroupRequest", "metricGroup"),
+            type = "string",
+            name = "metricGroup",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -141,6 +161,13 @@ M.CreateClusterInput = schema.new({
             name = "policy",
             target_id = prelude.String.id,
         }),
+        metricGroups = schema.new({
+            id = id.from(_N, "CreateClusterInput", "metricGroups"),
+            type = "list",
+            name = "metricGroups",
+            target_id = prelude.Document.id,
+            list_member = M.MetricGroupRequest,
+        }),
         bypassPolicyLockoutSafetyCheck = schema.new({
             id = id.from(_N, "CreateClusterInput", "bypassPolicyLockoutSafetyCheck"),
             type = "boolean",
@@ -176,6 +203,22 @@ M.EncryptionDetails = schema.new({
             id = id.from(_N, "EncryptionDetails", "encryptionStatus"),
             type = "string",
             name = "encryptionStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MetricGroupResponse = schema.new({
+    id = id.from(_N, "MetricGroupResponse"),
+    type = "structure",
+    members = {
+        metricGroup = schema.new({
+            id = id.from(_N, "MetricGroupResponse", "metricGroup"),
+            type = "string",
+            name = "metricGroup",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
@@ -252,6 +295,13 @@ M.CreateClusterOutput = schema.new({
             type = "string",
             name = "endpoint",
             target_id = prelude.String.id,
+        }),
+        metricGroups = schema.new({
+            id = id.from(_N, "CreateClusterOutput", "metricGroups"),
+            type = "list",
+            name = "metricGroups",
+            target_id = prelude.Document.id,
+            list_member = M.MetricGroupResponse,
         }),
     },
 })
@@ -692,6 +742,13 @@ M.GetClusterOutput = schema.new({
             name = "endpoint",
             target_id = prelude.String.id,
         }),
+        metricGroups = schema.new({
+            id = id.from(_N, "GetClusterOutput", "metricGroups"),
+            type = "list",
+            name = "metricGroups",
+            target_id = prelude.Document.id,
+            list_member = M.MetricGroupResponse,
+        }),
     },
 })
 
@@ -957,6 +1014,13 @@ M.UpdateClusterInput = schema.new({
             name = "multiRegionProperties",
             target_id = id.from(_N, "MultiRegionProperties"),
             target = M.MultiRegionProperties,
+        }),
+        metricGroups = schema.new({
+            id = id.from(_N, "UpdateClusterInput", "metricGroups"),
+            type = "list",
+            name = "metricGroups",
+            target_id = prelude.Document.id,
+            list_member = M.MetricGroupRequest,
         }),
     },
 })

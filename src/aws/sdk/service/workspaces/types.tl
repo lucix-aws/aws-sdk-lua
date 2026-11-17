@@ -2200,6 +2200,13 @@ local record M
         AccessEndpointConfig: AccessEndpointConfig
     end
 
+    enum WorkspaceOSUserMode
+        "LOCAL_USER"
+        "DOMAIN_JOIN"
+        "ENTRA_JOIN"
+        "SELF_MANAGED"
+    end
+
     enum WorkspaceType
         "PERSONAL"
         "POOLS"
@@ -2275,6 +2282,8 @@ local record M
         ActiveDirectoryConfig: ActiveDirectoryConfig
         -- The streaming properties to configure.
         StreamingProperties: StreamingProperties
+        -- Indicates how users are set up on the WorkSpace operating system.
+        WorkspaceOsUserMode: string
         -- The error message returned.
         ErrorMessage: string
     end
@@ -3152,6 +3161,8 @@ local record M
         WorkspaceDirectoryDescription: string
         -- The type of identity management the user is using.
         UserIdentityType: string
+        -- Indicates how users are set up on the WorkSpace operating system. To use local users with an AWS IAM Identity Center directory, specify LOCAL_USER.
+        WorkspaceOsUserMode: string
         -- The Amazon Resource Name (ARN) of the identity center instance.
         IdcInstanceArn: string
         -- The details about Microsoft Entra config.

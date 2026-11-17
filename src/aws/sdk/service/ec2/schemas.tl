@@ -20,6 +20,8 @@ M.ValueStringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.VpcEndpointIdList = schema.new({ type = "list", list_member = prelude.String })
 
+M.TransitGatewayAttachmentIdList = schema.new({ type = "list", list_member = prelude.String })
+
 M.UnsuccessfulItemSet = schema.new({ type = "list", list_member = M.UnsuccessfulItem })
 
 M.AssetIdList = schema.new({ type = "list", list_member = prelude.String })
@@ -150,6 +152,8 @@ M.InstanceIpv6AddressList = schema.new({ type = "list", list_member = M.Instance
 
 M.PriceScheduleSpecificationList = schema.new({ type = "list", list_member = M.PriceScheduleSpecification })
 
+M.AssociatedKmsKeySet = schema.new({ type = "list", list_member = M.AssociatedKmsKey })
+
 M.SnapshotSet = schema.new({ type = "list", list_member = M.SnapshotInfo })
 
 M.S3ObjectTagList = schema.new({ type = "list", list_member = M.S3ObjectTag })
@@ -159,6 +163,10 @@ M.ResourceIdList = schema.new({ type = "list", list_member = prelude.String })
 M.InsideCidrBlocksStringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TransitGatewayAttachmentIdStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkFunctionAttachmentAZNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NetworkFunctionAttachmentAZIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -711,6 +719,10 @@ M.TransitGatewayMeteringPolicyList = schema.new({ type = "list", list_member = M
 M.TransitGatewayMulticastDomainIdStringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TransitGatewayMulticastDomainList = schema.new({ type = "list", list_member = M.TransitGatewayMulticastDomain })
+
+M.TransitGatewayNetworkFunctionAttachmentIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TransitGatewayNetworkFunctionAttachmentList = schema.new({ type = "list", list_member = M.TransitGatewayNetworkFunctionAttachment })
 
 M.TransitGatewayPeeringAttachmentList = schema.new({ type = "list", list_member = M.TransitGatewayPeeringAttachment })
 
@@ -2703,6 +2715,16 @@ M.AcceptVpcEndpointConnectionsInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.XML_NAME] = { name = "VpcEndpointId" },
+            },
+        }),
+        TransitGatewayAttachmentIds = schema.new({
+            id = id.from(_N, "AcceptVpcEndpointConnectionsInput", "TransitGatewayAttachmentIds"),
+            type = "list",
+            name = "TransitGatewayAttachmentIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "TransitGatewayAttachmentId" },
             },
         }),
     },
@@ -5747,6 +5769,16 @@ M.AddedPrincipal = schema.new({
                 [traits.EC2_QUERY_NAME] = { name = "ServiceId" },
             },
         }),
+        PermissionType = schema.new({
+            id = id.from(_N, "AddedPrincipal", "PermissionType"),
+            type = "string",
+            name = "PermissionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "permissionType" },
+                [traits.EC2_QUERY_NAME] = { name = "PermissionType" },
+            },
+        }),
     },
 })
 
@@ -6787,6 +6819,16 @@ M.AllowedPrincipal = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "serviceId" },
                 [traits.EC2_QUERY_NAME] = { name = "ServiceId" },
+            },
+        }),
+        PermissionType = schema.new({
+            id = id.from(_N, "AllowedPrincipal", "PermissionType"),
+            type = "string",
+            name = "PermissionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "permissionType" },
+                [traits.EC2_QUERY_NAME] = { name = "PermissionType" },
             },
         }),
     },
@@ -8446,6 +8488,51 @@ M.AssociateIpamResourceDiscoveryOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "ipamResourceDiscoveryAssociation" },
                 [traits.EC2_QUERY_NAME] = { name = "IpamResourceDiscoveryAssociation" },
+            },
+        }),
+    },
+})
+
+M.AssociateKmsKeyIdInput = schema.new({
+    id = id.from(_N, "AssociateKmsKeyIdRequest"),
+    type = "structure",
+    members = {
+        SnapshotId = schema.new({
+            id = id.from(_N, "AssociateKmsKeyIdInput", "SnapshotId"),
+            type = "string",
+            name = "SnapshotId",
+            target_id = prelude.String.id,
+        }),
+        KmsKeyId = schema.new({
+            id = id.from(_N, "AssociateKmsKeyIdInput", "KmsKeyId"),
+            type = "string",
+            name = "KmsKeyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "AssociateKmsKeyIdInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.AssociateKmsKeyIdOutput = schema.new({
+    id = id.from(_N, "AssociateKmsKeyIdResult"),
+    type = "structure",
+    members = {
+        Return = schema.new({
+            id = id.from(_N, "AssociateKmsKeyIdOutput", "Return"),
+            type = "boolean",
+            name = "Return",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.XML_NAME] = { name = "return" },
+                [traits.EC2_QUERY_NAME] = { name = "Return" },
             },
         }),
     },
@@ -34975,6 +35062,23 @@ M.CreateSnapshotInput = schema.new({
     },
 })
 
+M.AssociatedKmsKey = schema.new({
+    id = id.from(_N, "AssociatedKmsKey"),
+    type = "structure",
+    members = {
+        KmsKeyId = schema.new({
+            id = id.from(_N, "AssociatedKmsKey", "KmsKeyId"),
+            type = "string",
+            name = "KmsKeyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "kmsKeyId" },
+                [traits.EC2_QUERY_NAME] = { name = "KmsKeyId" },
+            },
+        }),
+    },
+})
+
 M.CreateSnapshotOutput = schema.new({
     id = id.from(_N, "Snapshot"),
     type = "structure",
@@ -35088,6 +35192,17 @@ M.CreateSnapshotOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "fullSnapshotSizeInBytes" },
                 [traits.EC2_QUERY_NAME] = { name = "FullSnapshotSizeInBytes" },
+            },
+        }),
+        AssociatedKmsKeys = schema.new({
+            id = id.from(_N, "CreateSnapshotOutput", "AssociatedKmsKeys"),
+            type = "list",
+            name = "AssociatedKmsKeys",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.AssociatedKmsKey, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "associatedKmsKeySet" },
+                [traits.EC2_QUERY_NAME] = { name = "AssociatedKmsKeySet" },
             },
         }),
         SnapshotId = schema.new({
@@ -38249,6 +38364,195 @@ M.CreateTransitGatewayMulticastDomainOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "transitGatewayMulticastDomain" },
                 [traits.EC2_QUERY_NAME] = { name = "TransitGatewayMulticastDomain" },
+            },
+        }),
+    },
+})
+
+M.CreateTransitGatewayNetworkFunctionAttachmentInput = schema.new({
+    id = id.from(_N, "CreateTransitGatewayNetworkFunctionAttachmentRequest"),
+    type = "structure",
+    members = {
+        TransitGatewayId = schema.new({
+            id = id.from(_N, "CreateTransitGatewayNetworkFunctionAttachmentInput", "TransitGatewayId"),
+            type = "string",
+            name = "TransitGatewayId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ServiceName = schema.new({
+            id = id.from(_N, "CreateTransitGatewayNetworkFunctionAttachmentInput", "ServiceName"),
+            type = "string",
+            name = "ServiceName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AvailabilityZones = schema.new({
+            id = id.from(_N, "CreateTransitGatewayNetworkFunctionAttachmentInput", "AvailabilityZones"),
+            type = "list",
+            name = "AvailabilityZones",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "AvailabilityZone" },
+            },
+        }),
+        AvailabilityZoneIds = schema.new({
+            id = id.from(_N, "CreateTransitGatewayNetworkFunctionAttachmentInput", "AvailabilityZoneIds"),
+            type = "list",
+            name = "AvailabilityZoneIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "AvailabilityZoneId" },
+            },
+        }),
+        TagSpecifications = schema.new({
+            id = id.from(_N, "CreateTransitGatewayNetworkFunctionAttachmentInput", "TagSpecifications"),
+            type = "list",
+            name = "TagSpecifications",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "TagSpecification" },
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "CreateTransitGatewayNetworkFunctionAttachmentInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.TransitGatewayNetworkFunctionAttachment = schema.new({
+    id = id.from(_N, "TransitGatewayNetworkFunctionAttachment"),
+    type = "structure",
+    members = {
+        TransitGatewayAttachmentId = schema.new({
+            id = id.from(_N, "TransitGatewayNetworkFunctionAttachment", "TransitGatewayAttachmentId"),
+            type = "string",
+            name = "TransitGatewayAttachmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "transitGatewayAttachmentId" },
+                [traits.EC2_QUERY_NAME] = { name = "TransitGatewayAttachmentId" },
+            },
+        }),
+        TransitGatewayId = schema.new({
+            id = id.from(_N, "TransitGatewayNetworkFunctionAttachment", "TransitGatewayId"),
+            type = "string",
+            name = "TransitGatewayId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "transitGatewayId" },
+                [traits.EC2_QUERY_NAME] = { name = "TransitGatewayId" },
+            },
+        }),
+        TransitGatewayOwnerId = schema.new({
+            id = id.from(_N, "TransitGatewayNetworkFunctionAttachment", "TransitGatewayOwnerId"),
+            type = "string",
+            name = "TransitGatewayOwnerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "transitGatewayOwnerId" },
+                [traits.EC2_QUERY_NAME] = { name = "TransitGatewayOwnerId" },
+            },
+        }),
+        ResourceOwnerId = schema.new({
+            id = id.from(_N, "TransitGatewayNetworkFunctionAttachment", "ResourceOwnerId"),
+            type = "string",
+            name = "ResourceOwnerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "resourceOwnerId" },
+                [traits.EC2_QUERY_NAME] = { name = "ResourceOwnerId" },
+            },
+        }),
+        ResourceId = schema.new({
+            id = id.from(_N, "TransitGatewayNetworkFunctionAttachment", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "resourceId" },
+                [traits.EC2_QUERY_NAME] = { name = "ResourceId" },
+            },
+        }),
+        AvailabilityZones = schema.new({
+            id = id.from(_N, "TransitGatewayNetworkFunctionAttachment", "AvailabilityZones"),
+            type = "list",
+            name = "AvailabilityZones",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "availabilityZoneSet" },
+                [traits.EC2_QUERY_NAME] = { name = "AvailabilityZoneSet" },
+            },
+        }),
+        AvailabilityZoneIds = schema.new({
+            id = id.from(_N, "TransitGatewayNetworkFunctionAttachment", "AvailabilityZoneIds"),
+            type = "list",
+            name = "AvailabilityZoneIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "availabilityZoneIdSet" },
+                [traits.EC2_QUERY_NAME] = { name = "AvailabilityZoneIdSet" },
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "TransitGatewayNetworkFunctionAttachment", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "state" },
+                [traits.EC2_QUERY_NAME] = { name = "State" },
+            },
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "TransitGatewayNetworkFunctionAttachment", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "creationTime" },
+                [traits.EC2_QUERY_NAME] = { name = "CreationTime" },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TransitGatewayNetworkFunctionAttachment", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "tagSet" },
+                [traits.EC2_QUERY_NAME] = { name = "TagSet" },
+            },
+        }),
+    },
+})
+
+M.CreateTransitGatewayNetworkFunctionAttachmentOutput = schema.new({
+    id = id.from(_N, "CreateTransitGatewayNetworkFunctionAttachmentResult"),
+    type = "structure",
+    members = {
+        TransitGatewayNetworkFunctionAttachment = schema.new({
+            id = id.from(_N, "CreateTransitGatewayNetworkFunctionAttachmentOutput", "TransitGatewayNetworkFunctionAttachment"),
+            type = "structure",
+            name = "TransitGatewayNetworkFunctionAttachment",
+            target_id = id.from(_N, "TransitGatewayNetworkFunctionAttachment"),
+            target = M.TransitGatewayNetworkFunctionAttachment,
+            traits = {
+                [traits.XML_NAME] = { name = "transitGatewayNetworkFunctionAttachment" },
+                [traits.EC2_QUERY_NAME] = { name = "TransitGatewayNetworkFunctionAttachment" },
             },
         }),
     },
@@ -48022,6 +48326,46 @@ M.DeleteTransitGatewayMulticastDomainOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "transitGatewayMulticastDomain" },
                 [traits.EC2_QUERY_NAME] = { name = "TransitGatewayMulticastDomain" },
+            },
+        }),
+    },
+})
+
+M.DeleteTransitGatewayNetworkFunctionAttachmentInput = schema.new({
+    id = id.from(_N, "DeleteTransitGatewayNetworkFunctionAttachmentRequest"),
+    type = "structure",
+    members = {
+        TransitGatewayAttachmentId = schema.new({
+            id = id.from(_N, "DeleteTransitGatewayNetworkFunctionAttachmentInput", "TransitGatewayAttachmentId"),
+            type = "string",
+            name = "TransitGatewayAttachmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DeleteTransitGatewayNetworkFunctionAttachmentInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DeleteTransitGatewayNetworkFunctionAttachmentOutput = schema.new({
+    id = id.from(_N, "DeleteTransitGatewayNetworkFunctionAttachmentResult"),
+    type = "structure",
+    members = {
+        TransitGatewayNetworkFunctionAttachment = schema.new({
+            id = id.from(_N, "DeleteTransitGatewayNetworkFunctionAttachmentOutput", "TransitGatewayNetworkFunctionAttachment"),
+            type = "structure",
+            name = "TransitGatewayNetworkFunctionAttachment",
+            target_id = id.from(_N, "TransitGatewayNetworkFunctionAttachment"),
+            target = M.TransitGatewayNetworkFunctionAttachment,
+            traits = {
+                [traits.XML_NAME] = { name = "transitGatewayNetworkFunctionAttachment" },
+                [traits.EC2_QUERY_NAME] = { name = "TransitGatewayNetworkFunctionAttachment" },
             },
         }),
     },
@@ -75138,6 +75482,17 @@ M.Snapshot = schema.new({
                 [traits.EC2_QUERY_NAME] = { name = "FullSnapshotSizeInBytes" },
             },
         }),
+        AssociatedKmsKeys = schema.new({
+            id = id.from(_N, "Snapshot", "AssociatedKmsKeys"),
+            type = "list",
+            name = "AssociatedKmsKeys",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.AssociatedKmsKey, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "associatedKmsKeySet" },
+                [traits.EC2_QUERY_NAME] = { name = "AssociatedKmsKeySet" },
+            },
+        }),
         SnapshotId = schema.new({
             id = id.from(_N, "Snapshot", "SnapshotId"),
             type = "string",
@@ -79015,6 +79370,79 @@ M.DescribeTransitGatewayMulticastDomainsOutput = schema.new({
     },
 })
 
+M.DescribeTransitGatewayNetworkFunctionAttachmentsInput = schema.new({
+    id = id.from(_N, "DescribeTransitGatewayNetworkFunctionAttachmentsRequest"),
+    type = "structure",
+    members = {
+        TransitGatewayAttachmentIds = schema.new({
+            id = id.from(_N, "DescribeTransitGatewayNetworkFunctionAttachmentsInput", "TransitGatewayAttachmentIds"),
+            type = "list",
+            name = "TransitGatewayAttachmentIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "TransitGatewayAttachmentId" },
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "DescribeTransitGatewayNetworkFunctionAttachmentsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "Filter" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "DescribeTransitGatewayNetworkFunctionAttachmentsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeTransitGatewayNetworkFunctionAttachmentsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DescribeTransitGatewayNetworkFunctionAttachmentsInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DescribeTransitGatewayNetworkFunctionAttachmentsOutput = schema.new({
+    id = id.from(_N, "DescribeTransitGatewayNetworkFunctionAttachmentsResult"),
+    type = "structure",
+    members = {
+        TransitGatewayNetworkFunctionAttachments = schema.new({
+            id = id.from(_N, "DescribeTransitGatewayNetworkFunctionAttachmentsOutput", "TransitGatewayNetworkFunctionAttachments"),
+            type = "list",
+            name = "TransitGatewayNetworkFunctionAttachments",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.TransitGatewayNetworkFunctionAttachment, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "transitGatewayNetworkFunctionAttachmentSet" },
+                [traits.EC2_QUERY_NAME] = { name = "TransitGatewayNetworkFunctionAttachmentSet" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeTransitGatewayNetworkFunctionAttachmentsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
+            },
+        }),
+    },
+})
+
 M.DescribeTransitGatewayPeeringAttachmentsInput = schema.new({
     id = id.from(_N, "DescribeTransitGatewayPeeringAttachmentsRequest"),
     type = "structure",
@@ -81979,6 +82407,26 @@ M.VpcEndpointConnection = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "payerResponsibilitySet" },
                 [traits.EC2_QUERY_NAME] = { name = "PayerResponsibilitySet" },
+            },
+        }),
+        TransitGatewayAttachmentId = schema.new({
+            id = id.from(_N, "VpcEndpointConnection", "TransitGatewayAttachmentId"),
+            type = "string",
+            name = "TransitGatewayAttachmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "transitGatewayAttachmentId" },
+                [traits.EC2_QUERY_NAME] = { name = "TransitGatewayAttachmentId" },
+            },
+        }),
+        TransitGatewayAttachmentOwner = schema.new({
+            id = id.from(_N, "VpcEndpointConnection", "TransitGatewayAttachmentOwner"),
+            type = "string",
+            name = "TransitGatewayAttachmentOwner",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "transitGatewayAttachmentOwner" },
+                [traits.EC2_QUERY_NAME] = { name = "TransitGatewayAttachmentOwner" },
             },
         }),
     },
@@ -85182,6 +85630,51 @@ M.DisassociateIpamResourceDiscoveryOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "ipamResourceDiscoveryAssociation" },
                 [traits.EC2_QUERY_NAME] = { name = "IpamResourceDiscoveryAssociation" },
+            },
+        }),
+    },
+})
+
+M.DisassociateKmsKeyIdInput = schema.new({
+    id = id.from(_N, "DisassociateKmsKeyIdRequest"),
+    type = "structure",
+    members = {
+        SnapshotId = schema.new({
+            id = id.from(_N, "DisassociateKmsKeyIdInput", "SnapshotId"),
+            type = "string",
+            name = "SnapshotId",
+            target_id = prelude.String.id,
+        }),
+        KmsKeyId = schema.new({
+            id = id.from(_N, "DisassociateKmsKeyIdInput", "KmsKeyId"),
+            type = "string",
+            name = "KmsKeyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DisassociateKmsKeyIdInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DisassociateKmsKeyIdOutput = schema.new({
+    id = id.from(_N, "DisassociateKmsKeyIdResult"),
+    type = "structure",
+    members = {
+        Return = schema.new({
+            id = id.from(_N, "DisassociateKmsKeyIdOutput", "Return"),
+            type = "boolean",
+            name = "Return",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.XML_NAME] = { name = "return" },
+                [traits.EC2_QUERY_NAME] = { name = "Return" },
             },
         }),
     },
@@ -104359,6 +104852,86 @@ M.ModifyTransitGatewayMeteringPolicyOutput = schema.new({
     },
 })
 
+M.ModifyTransitGatewayNetworkFunctionAttachmentInput = schema.new({
+    id = id.from(_N, "ModifyTransitGatewayNetworkFunctionAttachmentRequest"),
+    type = "structure",
+    members = {
+        TransitGatewayAttachmentId = schema.new({
+            id = id.from(_N, "ModifyTransitGatewayNetworkFunctionAttachmentInput", "TransitGatewayAttachmentId"),
+            type = "string",
+            name = "TransitGatewayAttachmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AddAvailabilityZones = schema.new({
+            id = id.from(_N, "ModifyTransitGatewayNetworkFunctionAttachmentInput", "AddAvailabilityZones"),
+            type = "list",
+            name = "AddAvailabilityZones",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "AddAvailabilityZone" },
+            },
+        }),
+        AddAvailabilityZoneIds = schema.new({
+            id = id.from(_N, "ModifyTransitGatewayNetworkFunctionAttachmentInput", "AddAvailabilityZoneIds"),
+            type = "list",
+            name = "AddAvailabilityZoneIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "AddAvailabilityZoneId" },
+            },
+        }),
+        RemoveAvailabilityZones = schema.new({
+            id = id.from(_N, "ModifyTransitGatewayNetworkFunctionAttachmentInput", "RemoveAvailabilityZones"),
+            type = "list",
+            name = "RemoveAvailabilityZones",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "RemoveAvailabilityZone" },
+            },
+        }),
+        RemoveAvailabilityZoneIds = schema.new({
+            id = id.from(_N, "ModifyTransitGatewayNetworkFunctionAttachmentInput", "RemoveAvailabilityZoneIds"),
+            type = "list",
+            name = "RemoveAvailabilityZoneIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "RemoveAvailabilityZoneId" },
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "ModifyTransitGatewayNetworkFunctionAttachmentInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ModifyTransitGatewayNetworkFunctionAttachmentOutput = schema.new({
+    id = id.from(_N, "ModifyTransitGatewayNetworkFunctionAttachmentResult"),
+    type = "structure",
+    members = {
+        TransitGatewayNetworkFunctionAttachment = schema.new({
+            id = id.from(_N, "ModifyTransitGatewayNetworkFunctionAttachmentOutput", "TransitGatewayNetworkFunctionAttachment"),
+            type = "structure",
+            name = "TransitGatewayNetworkFunctionAttachment",
+            target_id = id.from(_N, "TransitGatewayNetworkFunctionAttachment"),
+            target = M.TransitGatewayNetworkFunctionAttachment,
+            traits = {
+                [traits.XML_NAME] = { name = "transitGatewayNetworkFunctionAttachment" },
+                [traits.EC2_QUERY_NAME] = { name = "TransitGatewayNetworkFunctionAttachment" },
+            },
+        }),
+    },
+})
+
 M.ModifyTransitGatewayPolicyTableEntryInput = schema.new({
     id = id.from(_N, "ModifyTransitGatewayPolicyTableEntryRequest"),
     type = "structure",
@@ -106295,6 +106868,12 @@ M.ModifyVpcEndpointServicePermissionsInput = schema.new({
             name = "RemoveAllowedPrincipals",
             target_id = prelude.Document.id,
             list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+        }),
+        PermissionType = schema.new({
+            id = id.from(_N, "ModifyVpcEndpointServicePermissionsInput", "PermissionType"),
+            type = "string",
+            name = "PermissionType",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -108661,6 +109240,16 @@ M.RejectVpcEndpointConnectionsInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.XML_NAME] = { name = "VpcEndpointId" },
+            },
+        }),
+        TransitGatewayAttachmentIds = schema.new({
+            id = id.from(_N, "RejectVpcEndpointConnectionsInput", "TransitGatewayAttachmentIds"),
+            type = "list",
+            name = "TransitGatewayAttachmentIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "TransitGatewayAttachmentId" },
             },
         }),
     },
@@ -114455,6 +115044,17 @@ M.AssociateIpamResourceDiscovery = schema.operation({
     },
 })
 
+M.AssociateKmsKeyId = schema.operation({
+    id = id.from("com.amazonaws.ec2", "AssociateKmsKeyId"),
+    input = M.AssociateKmsKeyIdInput,
+    output = M.AssociateKmsKeyIdOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.AssociateNatGatewayAddress = schema.operation({
     id = id.from("com.amazonaws.ec2", "AssociateNatGatewayAddress"),
     input = M.AssociateNatGatewayAddressInput,
@@ -115852,6 +116452,17 @@ M.CreateTransitGatewayMulticastDomain = schema.operation({
     },
 })
 
+M.CreateTransitGatewayNetworkFunctionAttachment = schema.operation({
+    id = id.from("com.amazonaws.ec2", "CreateTransitGatewayNetworkFunctionAttachment"),
+    input = M.CreateTransitGatewayNetworkFunctionAttachmentInput,
+    output = M.CreateTransitGatewayNetworkFunctionAttachmentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateTransitGatewayPeeringAttachment = schema.operation({
     id = id.from("com.amazonaws.ec2", "CreateTransitGatewayPeeringAttachment"),
     input = M.CreateTransitGatewayPeeringAttachmentInput,
@@ -116945,6 +117556,17 @@ M.DeleteTransitGatewayMulticastDomain = schema.operation({
     id = id.from("com.amazonaws.ec2", "DeleteTransitGatewayMulticastDomain"),
     input = M.DeleteTransitGatewayMulticastDomainInput,
     output = M.DeleteTransitGatewayMulticastDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTransitGatewayNetworkFunctionAttachment = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DeleteTransitGatewayNetworkFunctionAttachment"),
+    input = M.DeleteTransitGatewayNetworkFunctionAttachmentInput,
+    output = M.DeleteTransitGatewayNetworkFunctionAttachmentOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -119086,6 +119708,17 @@ M.DescribeTransitGatewayMulticastDomains = schema.operation({
     },
 })
 
+M.DescribeTransitGatewayNetworkFunctionAttachments = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DescribeTransitGatewayNetworkFunctionAttachments"),
+    input = M.DescribeTransitGatewayNetworkFunctionAttachmentsInput,
+    output = M.DescribeTransitGatewayNetworkFunctionAttachmentsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeTransitGatewayPeeringAttachments = schema.operation({
     id = id.from("com.amazonaws.ec2", "DescribeTransitGatewayPeeringAttachments"),
     input = M.DescribeTransitGatewayPeeringAttachmentsInput,
@@ -119871,6 +120504,17 @@ M.DisassociateIpamResourceDiscovery = schema.operation({
     id = id.from("com.amazonaws.ec2", "DisassociateIpamResourceDiscovery"),
     input = M.DisassociateIpamResourceDiscoveryInput,
     output = M.DisassociateIpamResourceDiscoveryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateKmsKeyId = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DisassociateKmsKeyId"),
+    input = M.DisassociateKmsKeyIdInput,
+    output = M.DisassociateKmsKeyIdOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -121994,6 +122638,17 @@ M.ModifyTransitGatewayMeteringPolicy = schema.operation({
     id = id.from("com.amazonaws.ec2", "ModifyTransitGatewayMeteringPolicy"),
     input = M.ModifyTransitGatewayMeteringPolicyInput,
     output = M.ModifyTransitGatewayMeteringPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyTransitGatewayNetworkFunctionAttachment = schema.operation({
+    id = id.from("com.amazonaws.ec2", "ModifyTransitGatewayNetworkFunctionAttachment"),
+    input = M.ModifyTransitGatewayNetworkFunctionAttachmentInput,
+    output = M.ModifyTransitGatewayNetworkFunctionAttachmentOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

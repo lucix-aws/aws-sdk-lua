@@ -4911,6 +4911,25 @@ local record M
         EvaluationFormVersion: number
     end
 
+    enum SessionEntityType
+        "USER"
+    end
+
+    record DeleteAllEntitySessionsInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The identifier of the entity whose sessions you want to delete. For USER, use the user ID or
+        -- the user ARN.
+        EntityId: string
+        -- The type of entity whose sessions you want to delete.
+        -- The only valid value is USER, which signs out a user in your Connect Customer
+        -- instance.
+        EntityType: string
+    end
+
+    record DeleteAllEntitySessionsOutput
+    end
+
     -- Request to DeleteAttachedFile API
     record DeleteAttachedFileInput
         -- The unique identifier of the Connect instance.

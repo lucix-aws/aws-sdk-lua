@@ -74,6 +74,8 @@ M.InferenceComponentSpecificationList = schema.new({ type = "list", list_member 
 
 M.ModelVariantConfigList = schema.new({ type = "list", list_member = M.ModelVariantConfig })
 
+M.RoutingTargetList = schema.new({ type = "list", list_member = M.RoutingTarget })
+
 M.DefaultDomainIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ContainerDefinitionList = schema.new({ type = "list", list_member = M.ContainerDefinition })
@@ -273,6 +275,8 @@ M.InferenceExperimentList = schema.new({ type = "list", list_member = M.Inferenc
 M.InferenceRecommendationsJobs = schema.new({ type = "list", list_member = M.InferenceRecommendationsJob })
 
 M.InferenceRecommendationsJobSteps = schema.new({ type = "list", list_member = M.InferenceRecommendationsJobStep })
+
+M.InferenceRouterSummaryList = schema.new({ type = "list", list_member = M.InferenceRouterSummary })
 
 M.JobSummaries = schema.new({ type = "list", list_member = M.JobSummary })
 
@@ -657,6 +661,8 @@ M.RecommendationJobSupportedResponseMIMETypes = schema.new({ type = "list", list
 M.RecommendationJobVpcSecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.RecommendationJobVpcSubnets = schema.new({ type = "list", list_member = prelude.String })
+
+M.DestinationList = schema.new({ type = "list", list_member = M.Destination })
 
 M.ContentClassifiers = schema.new({ type = "list", list_member = prelude.String })
 
@@ -15194,6 +15200,31 @@ M.CreateEndpointOutput = schema.new({
     },
 })
 
+M.CrossRegionTrafficConfig = schema.new({
+    id = id.from(_N, "CrossRegionTrafficConfig"),
+    type = "structure",
+    members = {
+        MaxInvocationsPerSecondPerInstance = schema.new({
+            id = id.from(_N, "CrossRegionTrafficConfig", "MaxInvocationsPerSecondPerInstance"),
+            type = "integer",
+            name = "MaxInvocationsPerSecondPerInstance",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxCrossRegionPercentPerEndpoint = schema.new({
+            id = id.from(_N, "CrossRegionTrafficConfig", "MaxCrossRegionPercentPerEndpoint"),
+            type = "integer",
+            name = "MaxCrossRegionPercentPerEndpoint",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DataCaptureConfig = schema.new({
     id = id.from(_N, "DataCaptureConfig"),
     type = "structure",
@@ -15712,6 +15743,13 @@ M.CreateEndpointConfigInput = schema.new({
             name = "MetricsConfig",
             target_id = id.from(_N, "MetricsConfig"),
             target = M.MetricsConfig,
+        }),
+        CrossRegionTrafficConfig = schema.new({
+            id = id.from(_N, "CreateEndpointConfigInput", "CrossRegionTrafficConfig"),
+            type = "structure",
+            name = "CrossRegionTrafficConfig",
+            target_id = id.from(_N, "CrossRegionTrafficConfig"),
+            target = M.CrossRegionTrafficConfig,
         }),
     },
 })
@@ -18575,6 +18613,235 @@ M.CreateInferenceRecommendationsJobOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.RoutingTargetAsyncInferenceClientConfig = schema.new({
+    id = id.from(_N, "RoutingTargetAsyncInferenceClientConfig"),
+    type = "structure",
+    members = {
+        MaxTimeInBacklogSeconds = schema.new({
+            id = id.from(_N, "RoutingTargetAsyncInferenceClientConfig", "MaxTimeInBacklogSeconds"),
+            type = "integer",
+            name = "MaxTimeInBacklogSeconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.RoutingTargetAsyncInferenceNotificationConfig = schema.new({
+    id = id.from(_N, "RoutingTargetAsyncInferenceNotificationConfig"),
+    type = "structure",
+    members = {
+        SuccessTopic = schema.new({
+            id = id.from(_N, "RoutingTargetAsyncInferenceNotificationConfig", "SuccessTopic"),
+            type = "string",
+            name = "SuccessTopic",
+            target_id = prelude.String.id,
+        }),
+        ErrorTopic = schema.new({
+            id = id.from(_N, "RoutingTargetAsyncInferenceNotificationConfig", "ErrorTopic"),
+            type = "string",
+            name = "ErrorTopic",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RoutingTargetAsyncInferenceOutputConfig = schema.new({
+    id = id.from(_N, "RoutingTargetAsyncInferenceOutputConfig"),
+    type = "structure",
+    members = {
+        S3OutputPath = schema.new({
+            id = id.from(_N, "RoutingTargetAsyncInferenceOutputConfig", "S3OutputPath"),
+            type = "string",
+            name = "S3OutputPath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        S3FailurePath = schema.new({
+            id = id.from(_N, "RoutingTargetAsyncInferenceOutputConfig", "S3FailurePath"),
+            type = "string",
+            name = "S3FailurePath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KmsKeyId = schema.new({
+            id = id.from(_N, "RoutingTargetAsyncInferenceOutputConfig", "KmsKeyId"),
+            type = "string",
+            name = "KmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        NotificationConfig = schema.new({
+            id = id.from(_N, "RoutingTargetAsyncInferenceOutputConfig", "NotificationConfig"),
+            type = "structure",
+            name = "NotificationConfig",
+            target_id = id.from(_N, "RoutingTargetAsyncInferenceNotificationConfig"),
+            target = M.RoutingTargetAsyncInferenceNotificationConfig,
+        }),
+    },
+})
+
+M.RoutingTargetAsyncInferenceConfig = schema.new({
+    id = id.from(_N, "RoutingTargetAsyncInferenceConfig"),
+    type = "structure",
+    members = {
+        OutputConfig = schema.new({
+            id = id.from(_N, "RoutingTargetAsyncInferenceConfig", "OutputConfig"),
+            type = "structure",
+            name = "OutputConfig",
+            target_id = id.from(_N, "RoutingTargetAsyncInferenceOutputConfig"),
+            target = M.RoutingTargetAsyncInferenceOutputConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientConfig = schema.new({
+            id = id.from(_N, "RoutingTargetAsyncInferenceConfig", "ClientConfig"),
+            type = "structure",
+            name = "ClientConfig",
+            target_id = id.from(_N, "RoutingTargetAsyncInferenceClientConfig"),
+            target = M.RoutingTargetAsyncInferenceClientConfig,
+        }),
+    },
+})
+
+M.Destination = schema.new({
+    id = id.from(_N, "Destination"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "Destination", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoutingStatus = schema.new({
+            id = id.from(_N, "Destination", "RoutingStatus"),
+            type = "string",
+            name = "RoutingStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RoutingTarget = schema.new({
+    id = id.from(_N, "RoutingTarget"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "RoutingTarget", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Destinations = schema.new({
+            id = id.from(_N, "RoutingTarget", "Destinations"),
+            type = "list",
+            name = "Destinations",
+            target_id = prelude.Document.id,
+            list_member = M.Destination,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AsyncInferenceConfig = schema.new({
+            id = id.from(_N, "RoutingTarget", "AsyncInferenceConfig"),
+            type = "structure",
+            name = "AsyncInferenceConfig",
+            target_id = id.from(_N, "RoutingTargetAsyncInferenceConfig"),
+            target = M.RoutingTargetAsyncInferenceConfig,
+        }),
+        RoutingPreference = schema.new({
+            id = id.from(_N, "RoutingTarget", "RoutingPreference"),
+            type = "string",
+            name = "RoutingPreference",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateInferenceRouterInput = schema.new({
+    id = id.from(_N, "CreateInferenceRouterInput"),
+    type = "structure",
+    members = {
+        InferenceRouterName = schema.new({
+            id = id.from(_N, "CreateInferenceRouterInput", "InferenceRouterName"),
+            type = "string",
+            name = "InferenceRouterName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoutingTargets = schema.new({
+            id = id.from(_N, "CreateInferenceRouterInput", "RoutingTargets"),
+            type = "list",
+            name = "RoutingTargets",
+            target_id = prelude.Document.id,
+            list_member = M.RoutingTarget,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateInferenceRouterInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateInferenceRouterInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateInferenceRouterOutput = schema.new({
+    id = id.from(_N, "CreateInferenceRouterOutput"),
+    type = "structure",
+    members = {
+        InferenceRouterArn = schema.new({
+            id = id.from(_N, "CreateInferenceRouterOutput", "InferenceRouterArn"),
+            type = "string",
+            name = "InferenceRouterArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ResourceAlreadyExists = schema.new({
+    id = id.from(_N, "ResourceAlreadyExists"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ResourceAlreadyExists", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -25757,6 +26024,27 @@ M.DeleteEndpointConfigInput = schema.new({
 
 M.DeleteEndpointConfigOutput = prelude.Unit
 
+M.DeleteEndpointPolicyInput = schema.new({
+    id = id.from(_N, "DeleteEndpointPolicyRequest"),
+    type = "structure",
+    members = {
+        EndpointName = schema.new({
+            id = id.from(_N, "DeleteEndpointPolicyInput", "EndpointName"),
+            type = "string",
+            name = "EndpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteEndpointPolicyOutput = schema.new({
+    id = id.from(_N, "DeleteEndpointPolicyResponse"),
+    type = "structure",
+})
+
 M.DeleteExperimentInput = schema.new({
     id = id.from(_N, "DeleteExperimentRequest"),
     type = "structure",
@@ -26066,6 +26354,24 @@ M.DeleteInferenceExperimentOutput = schema.new({
         }),
     },
 })
+
+M.DeleteInferenceRouterInput = schema.new({
+    id = id.from(_N, "DeleteInferenceRouterInput"),
+    type = "structure",
+    members = {
+        InferenceRouterName = schema.new({
+            id = id.from(_N, "DeleteInferenceRouterInput", "InferenceRouterName"),
+            type = "string",
+            name = "InferenceRouterName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteInferenceRouterOutput = prelude.Unit
 
 M.DeleteJobInput = schema.new({
     id = id.from(_N, "DeleteJobRequest"),
@@ -30719,6 +31025,13 @@ M.DescribeEndpointOutput = schema.new({
             target_id = id.from(_N, "MetricsConfig"),
             target = M.MetricsConfig,
         }),
+        CrossRegionTrafficConfig = schema.new({
+            id = id.from(_N, "DescribeEndpointOutput", "CrossRegionTrafficConfig"),
+            type = "structure",
+            name = "CrossRegionTrafficConfig",
+            target_id = id.from(_N, "CrossRegionTrafficConfig"),
+            target = M.CrossRegionTrafficConfig,
+        }),
     },
 })
 
@@ -30838,6 +31151,13 @@ M.DescribeEndpointConfigOutput = schema.new({
             name = "MetricsConfig",
             target_id = id.from(_N, "MetricsConfig"),
             target = M.MetricsConfig,
+        }),
+        CrossRegionTrafficConfig = schema.new({
+            id = id.from(_N, "DescribeEndpointConfigOutput", "CrossRegionTrafficConfig"),
+            type = "structure",
+            name = "CrossRegionTrafficConfig",
+            target_id = id.from(_N, "CrossRegionTrafficConfig"),
+            target = M.CrossRegionTrafficConfig,
         }),
     },
 })
@@ -33408,6 +33728,90 @@ M.DescribeInferenceRecommendationsJobOutput = schema.new({
             name = "EndpointPerformances",
             target_id = prelude.Document.id,
             list_member = M.EndpointPerformance,
+        }),
+    },
+})
+
+M.DescribeInferenceRouterInput = schema.new({
+    id = id.from(_N, "DescribeInferenceRouterInput"),
+    type = "structure",
+    members = {
+        InferenceRouterName = schema.new({
+            id = id.from(_N, "DescribeInferenceRouterInput", "InferenceRouterName"),
+            type = "string",
+            name = "InferenceRouterName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeInferenceRouterOutput = schema.new({
+    id = id.from(_N, "DescribeInferenceRouterOutput"),
+    type = "structure",
+    members = {
+        InferenceRouterName = schema.new({
+            id = id.from(_N, "DescribeInferenceRouterOutput", "InferenceRouterName"),
+            type = "string",
+            name = "InferenceRouterName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InferenceRouterArn = schema.new({
+            id = id.from(_N, "DescribeInferenceRouterOutput", "InferenceRouterArn"),
+            type = "string",
+            name = "InferenceRouterArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoutingTargets = schema.new({
+            id = id.from(_N, "DescribeInferenceRouterOutput", "RoutingTargets"),
+            type = "list",
+            name = "RoutingTargets",
+            target_id = prelude.Document.id,
+            list_member = M.RoutingTarget,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DescribeInferenceRouterOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StatusReason = schema.new({
+            id = id.from(_N, "DescribeInferenceRouterOutput", "StatusReason"),
+            type = "string",
+            name = "StatusReason",
+            target_id = prelude.String.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "DescribeInferenceRouterOutput", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "DescribeInferenceRouterOutput", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -41217,6 +41621,47 @@ M.GetDeviceFleetReportOutput = schema.new({
     },
 })
 
+M.GetEndpointPolicyInput = schema.new({
+    id = id.from(_N, "GetEndpointPolicyRequest"),
+    type = "structure",
+    members = {
+        EndpointName = schema.new({
+            id = id.from(_N, "GetEndpointPolicyInput", "EndpointName"),
+            type = "string",
+            name = "EndpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetEndpointPolicyOutput = schema.new({
+    id = id.from(_N, "GetEndpointPolicyResponse"),
+    type = "structure",
+    members = {
+        EndpointName = schema.new({
+            id = id.from(_N, "GetEndpointPolicyOutput", "EndpointName"),
+            type = "string",
+            name = "EndpointName",
+            target_id = prelude.String.id,
+        }),
+        EndpointArn = schema.new({
+            id = id.from(_N, "GetEndpointPolicyOutput", "EndpointArn"),
+            type = "string",
+            name = "EndpointArn",
+            target_id = prelude.String.id,
+        }),
+        ResourcePolicy = schema.new({
+            id = id.from(_N, "GetEndpointPolicyOutput", "ResourcePolicy"),
+            type = "string",
+            name = "ResourcePolicy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.GetLineageGroupPolicyInput = schema.new({
     id = id.from(_N, "GetLineageGroupPolicyRequest"),
     type = "structure",
@@ -42783,6 +43228,49 @@ M.InferenceRecommendationsJobStep = schema.new({
             name = "InferenceBenchmark",
             target_id = id.from(_N, "RecommendationJobInferenceBenchmark"),
             target = M.RecommendationJobInferenceBenchmark,
+        }),
+    },
+})
+
+M.InferenceRouterSummary = schema.new({
+    id = id.from(_N, "InferenceRouterSummary"),
+    type = "structure",
+    members = {
+        InferenceRouterName = schema.new({
+            id = id.from(_N, "InferenceRouterSummary", "InferenceRouterName"),
+            type = "string",
+            name = "InferenceRouterName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InferenceRouterArn = schema.new({
+            id = id.from(_N, "InferenceRouterSummary", "InferenceRouterArn"),
+            type = "string",
+            name = "InferenceRouterArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "InferenceRouterSummary", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "InferenceRouterSummary", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -46883,6 +47371,48 @@ M.ListInferenceRecommendationsJobStepsOutput = schema.new({
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListInferenceRecommendationsJobStepsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListInferenceRoutersInput = schema.new({
+    id = id.from(_N, "ListInferenceRoutersInput"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListInferenceRoutersInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListInferenceRoutersInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListInferenceRoutersOutput = schema.new({
+    id = id.from(_N, "ListInferenceRoutersOutput"),
+    type = "structure",
+    members = {
+        InferenceRouters = schema.new({
+            id = id.from(_N, "ListInferenceRoutersOutput", "InferenceRouters"),
+            type = "list",
+            name = "InferenceRouters",
+            target_id = prelude.Document.id,
+            list_member = M.InferenceRouterSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListInferenceRoutersOutput", "NextToken"),
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
@@ -54478,6 +55008,44 @@ M.Project = schema.new({
     },
 })
 
+M.PutEndpointPolicyInput = schema.new({
+    id = id.from(_N, "PutEndpointPolicyRequest"),
+    type = "structure",
+    members = {
+        EndpointName = schema.new({
+            id = id.from(_N, "PutEndpointPolicyInput", "EndpointName"),
+            type = "string",
+            name = "EndpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourcePolicy = schema.new({
+            id = id.from(_N, "PutEndpointPolicyInput", "ResourcePolicy"),
+            type = "string",
+            name = "ResourcePolicy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutEndpointPolicyOutput = schema.new({
+    id = id.from(_N, "PutEndpointPolicyResponse"),
+    type = "structure",
+    members = {
+        EndpointArn = schema.new({
+            id = id.from(_N, "PutEndpointPolicyOutput", "EndpointArn"),
+            type = "string",
+            name = "EndpointArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.PutModelPackageGroupPolicyInput = schema.new({
     id = id.from(_N, "PutModelPackageGroupPolicyInput"),
     type = "structure",
@@ -58449,6 +59017,48 @@ M.UpdateInferenceExperimentOutput = schema.new({
     },
 })
 
+M.UpdateInferenceRouterInput = schema.new({
+    id = id.from(_N, "UpdateInferenceRouterInput"),
+    type = "structure",
+    members = {
+        InferenceRouterName = schema.new({
+            id = id.from(_N, "UpdateInferenceRouterInput", "InferenceRouterName"),
+            type = "string",
+            name = "InferenceRouterName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoutingTargets = schema.new({
+            id = id.from(_N, "UpdateInferenceRouterInput", "RoutingTargets"),
+            type = "list",
+            name = "RoutingTargets",
+            target_id = prelude.Document.id,
+            list_member = M.RoutingTarget,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateInferenceRouterOutput = schema.new({
+    id = id.from(_N, "UpdateInferenceRouterOutput"),
+    type = "structure",
+    members = {
+        InferenceRouterArn = schema.new({
+            id = id.from(_N, "UpdateInferenceRouterOutput", "InferenceRouterArn"),
+            type = "string",
+            name = "InferenceRouterArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.UpdateMlflowAppInput = schema.new({
     id = id.from(_N, "UpdateMlflowAppRequest"),
     type = "structure",
@@ -60422,6 +61032,17 @@ M.CreateInferenceRecommendationsJob = schema.operation({
     },
 })
 
+M.CreateInferenceRouter = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateInferenceRouter"),
+    input = M.CreateInferenceRouterInput,
+    output = M.CreateInferenceRouterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateJob = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "CreateJob"),
     input = M.CreateJobInput,
@@ -61071,6 +61692,17 @@ M.DeleteEndpointConfig = schema.operation({
     },
 })
 
+M.DeleteEndpointPolicy = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteEndpointPolicy"),
+    input = M.DeleteEndpointPolicyInput,
+    output = M.DeleteEndpointPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteExperiment = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "DeleteExperiment"),
     input = M.DeleteExperimentInput,
@@ -61196,6 +61828,17 @@ M.DeleteInferenceExperiment = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "DeleteInferenceExperiment"),
     input = M.DeleteInferenceExperimentInput,
     output = M.DeleteInferenceExperimentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteInferenceRouter = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteInferenceRouter"),
+    input = M.DeleteInferenceRouterInput,
+    output = M.DeleteInferenceRouterOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -61984,6 +62627,17 @@ M.DescribeInferenceRecommendationsJob = schema.operation({
     },
 })
 
+M.DescribeInferenceRouter = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeInferenceRouter"),
+    input = M.DescribeInferenceRouterInput,
+    output = M.DescribeInferenceRouterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeJob = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "DescribeJob"),
     input = M.DescribeJobInput,
@@ -62461,6 +63115,17 @@ M.GetDeviceFleetReport = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "GetDeviceFleetReport"),
     input = M.GetDeviceFleetReportInput,
     output = M.GetDeviceFleetReportOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEndpointPolicy = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "GetEndpointPolicy"),
+    input = M.GetEndpointPolicyInput,
+    output = M.GetEndpointPolicyOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -63029,6 +63694,17 @@ M.ListInferenceRecommendationsJobSteps = schema.operation({
     },
 })
 
+M.ListInferenceRouters = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListInferenceRouters"),
+    input = M.ListInferenceRoutersInput,
+    output = M.ListInferenceRoutersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListJobs = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "ListJobs"),
     input = M.ListJobsInput,
@@ -63561,6 +64237,17 @@ M.ListWorkteams = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "ListWorkteams"),
     input = M.ListWorkteamsInput,
     output = M.ListWorkteamsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutEndpointPolicy = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "PutEndpointPolicy"),
+    input = M.PutEndpointPolicyInput,
+    output = M.PutEndpointPolicyOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -64254,6 +64941,17 @@ M.UpdateInferenceExperiment = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "UpdateInferenceExperiment"),
     input = M.UpdateInferenceExperimentInput,
     output = M.UpdateInferenceExperimentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateInferenceRouter = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "UpdateInferenceRouter"),
+    input = M.UpdateInferenceRouterInput,
+    output = M.UpdateInferenceRouterOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

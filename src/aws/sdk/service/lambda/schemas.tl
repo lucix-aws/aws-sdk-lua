@@ -108,6 +108,22 @@ M.KafkaSchemaRegistryAccessConfigList = schema.new({ type = "list", list_member 
 
 M.KafkaSchemaValidationConfigList = schema.new({ type = "list", list_member = M.KafkaSchemaValidationConfig })
 
+M.AcceleratorConfig = schema.new({
+    id = id.from(_N, "AcceleratorConfig"),
+    type = "structure",
+    members = {
+        AcceleratorMemorySize = schema.new({
+            id = id.from(_N, "AcceleratorConfig", "AcceleratorMemorySize"),
+            type = "int_enum",
+            name = "AcceleratorMemorySize",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.AccountLimit = schema.new({
     id = id.from(_N, "AccountLimit"),
     type = "structure",
@@ -6025,6 +6041,13 @@ M.CreateFunctionInput = schema.new({
             target_id = id.from(_N, "FunctionRuntimeConfig"),
             target = M.FunctionRuntimeConfig,
         }),
+        AcceleratorConfig = schema.new({
+            id = id.from(_N, "CreateFunctionInput", "AcceleratorConfig"),
+            type = "structure",
+            name = "AcceleratorConfig",
+            target_id = id.from(_N, "AcceleratorConfig"),
+            target = M.AcceleratorConfig,
+        }),
     },
 })
 
@@ -6515,6 +6538,13 @@ M.CreateFunctionOutput = schema.new({
             name = "RuntimeConfig",
             target_id = id.from(_N, "FunctionRuntimeConfig"),
             target = M.FunctionRuntimeConfig,
+        }),
+        AcceleratorConfig = schema.new({
+            id = id.from(_N, "CreateFunctionOutput", "AcceleratorConfig"),
+            type = "structure",
+            name = "AcceleratorConfig",
+            target_id = id.from(_N, "AcceleratorConfig"),
+            target = M.AcceleratorConfig,
         }),
     },
 })
@@ -7183,6 +7213,13 @@ M.FunctionConfiguration = schema.new({
             target_id = id.from(_N, "FunctionRuntimeConfig"),
             target = M.FunctionRuntimeConfig,
         }),
+        AcceleratorConfig = schema.new({
+            id = id.from(_N, "FunctionConfiguration", "AcceleratorConfig"),
+            type = "structure",
+            name = "AcceleratorConfig",
+            target_id = id.from(_N, "AcceleratorConfig"),
+            target = M.AcceleratorConfig,
+        }),
     },
 })
 
@@ -7620,6 +7657,13 @@ M.GetFunctionConfigurationOutput = schema.new({
             name = "RuntimeConfig",
             target_id = id.from(_N, "FunctionRuntimeConfig"),
             target = M.FunctionRuntimeConfig,
+        }),
+        AcceleratorConfig = schema.new({
+            id = id.from(_N, "GetFunctionConfigurationOutput", "AcceleratorConfig"),
+            type = "structure",
+            name = "AcceleratorConfig",
+            target_id = id.from(_N, "AcceleratorConfig"),
+            target = M.AcceleratorConfig,
         }),
     },
 })
@@ -10163,6 +10207,13 @@ M.UpdateFunctionCodeOutput = schema.new({
             target_id = id.from(_N, "FunctionRuntimeConfig"),
             target = M.FunctionRuntimeConfig,
         }),
+        AcceleratorConfig = schema.new({
+            id = id.from(_N, "UpdateFunctionCodeOutput", "AcceleratorConfig"),
+            type = "structure",
+            name = "AcceleratorConfig",
+            target_id = id.from(_N, "AcceleratorConfig"),
+            target = M.AcceleratorConfig,
+        }),
     },
 })
 
@@ -10318,6 +10369,13 @@ M.UpdateFunctionConfigurationInput = schema.new({
             name = "RuntimeConfig",
             target_id = id.from(_N, "FunctionRuntimeConfig"),
             target = M.FunctionRuntimeConfig,
+        }),
+        AcceleratorConfig = schema.new({
+            id = id.from(_N, "UpdateFunctionConfigurationInput", "AcceleratorConfig"),
+            type = "structure",
+            name = "AcceleratorConfig",
+            target_id = id.from(_N, "AcceleratorConfig"),
+            target = M.AcceleratorConfig,
         }),
     },
 })
@@ -10590,6 +10648,13 @@ M.UpdateFunctionConfigurationOutput = schema.new({
             name = "RuntimeConfig",
             target_id = id.from(_N, "FunctionRuntimeConfig"),
             target = M.FunctionRuntimeConfig,
+        }),
+        AcceleratorConfig = schema.new({
+            id = id.from(_N, "UpdateFunctionConfigurationOutput", "AcceleratorConfig"),
+            type = "structure",
+            name = "AcceleratorConfig",
+            target_id = id.from(_N, "AcceleratorConfig"),
+            target = M.AcceleratorConfig,
         }),
     },
 })
@@ -11420,6 +11485,13 @@ M.PublishVersionOutput = schema.new({
             name = "RuntimeConfig",
             target_id = id.from(_N, "FunctionRuntimeConfig"),
             target = M.FunctionRuntimeConfig,
+        }),
+        AcceleratorConfig = schema.new({
+            id = id.from(_N, "PublishVersionOutput", "AcceleratorConfig"),
+            type = "structure",
+            name = "AcceleratorConfig",
+            target_id = id.from(_N, "AcceleratorConfig"),
+            target = M.AcceleratorConfig,
         }),
     },
 })

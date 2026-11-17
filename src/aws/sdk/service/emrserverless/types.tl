@@ -377,6 +377,12 @@ local record M
         policyArns: {string}
     end
 
+    -- The Amazon EMR Serverless Flex settings for the job run.
+    record FlexExecution
+        -- Enables Amazon EMR Serverless Flex capacity for the job run and defaults to false. If set to true, the job run uses Flex capacity.
+        enabled: boolean
+    end
+
     -- The configurations for the Hive job driver.
     record Hive
         -- The query for the Hive job run.
@@ -481,6 +487,8 @@ local record M
         releaseLabel: string
         -- The attempt number of the job run execution.
         attempt: number
+        -- The Amazon EMR Serverless Flex settings for the job run attempt.
+        flexExecution: FlexExecution
     end
 
     record ListJobRunAttemptsOutput
@@ -539,6 +547,8 @@ local record M
         attemptCreatedAt: number
         -- The date and time of when the job run attempt was last updated.
         attemptUpdatedAt: number
+        -- The Amazon EMR Serverless Flex settings for the job run.
+        flexExecution: FlexExecution
     end
 
     record ListJobRunsOutput
@@ -916,6 +926,8 @@ local record M
         imageConfiguration: ImageConfiguration
         -- The specification applied to each worker type. Includes the JobRun-level ImageConfiguration when the applicationLevelDigestResolution is false for the application.
         workerTypeSpecifications: {string : WorkerTypeSpecification}
+        -- The Amazon EMR Serverless Flex settings for the job run.
+        flexExecution: FlexExecution
     end
 
     -- Information about a session, including the session state, configuration, and timestamps.
@@ -987,6 +999,8 @@ local record M
         mode: string
         -- The retry policy when job run starts.
         retryPolicy: RetryPolicy
+        -- The Amazon EMR Serverless Flex settings for the job run. If you don't specify these settings, the job run doesn't use Flex capacity.
+        flexExecution: FlexExecution
     end
 
     record StartSessionInput

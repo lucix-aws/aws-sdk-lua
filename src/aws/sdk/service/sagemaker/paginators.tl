@@ -796,6 +796,24 @@ function M.items_list_inference_recommendations_jobs(client, input)
     })
 end
 
+--- Returns a page iterator for listInferenceRouters.
+function M.pages_list_inference_routers(client, input)
+    return paginator.pages(client, "listInferenceRouters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InferenceRouters",
+    })
+end
+
+--- Returns an item iterator for listInferenceRouters.
+function M.items_list_inference_routers(client, input)
+    return paginator.items(client, "listInferenceRouters", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InferenceRouters",
+    })
+end
+
 --- Returns a page iterator for listJobSchemaVersions.
 function M.pages_list_job_schema_versions(client, input)
     return paginator.pages(client, "listJobSchemaVersions", input, {

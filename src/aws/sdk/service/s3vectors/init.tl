@@ -39,6 +39,7 @@ local record Client
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateIndexMode: function(Client, types.UpdateIndexModeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIndexModeOutput>
+    updateMetadataConfiguration: function(Client, types.UpdateMetadataConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMetadataConfigurationOutput>
 end
 
 local record M
@@ -165,6 +166,10 @@ end
 
 function C:updateIndexMode(input: types.UpdateIndexModeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIndexModeOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIndexMode as schema.OperationSchema, input, options) as async.Operation<types.UpdateIndexModeOutput>
+end
+
+function C:updateMetadataConfiguration(input: types.UpdateMetadataConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMetadataConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMetadataConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateMetadataConfigurationOutput>
 end
 
 return M

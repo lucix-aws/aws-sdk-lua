@@ -29,6 +29,16 @@ local record M
         resourceType: string
     end
 
+    enum MetricGroup
+        "STATEMENT_STATISTICS"
+    end
+
+    -- A metric group to enable for advanced monitoring.
+    record MetricGroupRequest
+        -- The name of the metric group to enable.
+        metricGroup: string
+    end
+
     -- Defines the structure for multi-Region cluster configurations, containing the witness region and linked cluster settings.
     record MultiRegionProperties
         -- The Region that serves as the witness region for a multi-Region cluster. The witness Region helps maintain cluster consistency and quorum.
@@ -50,6 +60,8 @@ local record M
         multiRegionProperties: MultiRegionProperties
         -- An optional resource-based policy document in JSON format that defines access permissions for the cluster.
         policy: string
+        -- The metric groups to enable for advanced monitoring on the cluster. Advanced monitoring collects detailed, query-level database metrics to help you analyze and resolve performance issues. If you omit this parameter, no metric groups are enabled.
+        metricGroups: {MetricGroupRequest}
         -- An optional field that controls whether to bypass the lockout prevention check. When set to true, this parameter allows you to apply a policy that might lock you out of the cluster. Use with caution.
         bypassPolicyLockoutSafetyCheck: boolean
     end
@@ -76,6 +88,12 @@ local record M
         encryptionStatus: string
     end
 
+    -- A metric group that you enabled for advanced monitoring on a cluster.
+    record MetricGroupResponse
+        -- The name of the metric group that you enabled.
+        metricGroup: string
+    end
+
     -- The output of a created cluster.
     record CreateClusterOutput
         -- The ID of the created cluster.
@@ -94,6 +112,8 @@ local record M
         deletionProtectionEnabled: boolean
         -- The connection endpoint for the created cluster.
         endpoint: string
+        -- The metric groups that you enabled for advanced monitoring on the created cluster.
+        metricGroups: {MetricGroupResponse}
     end
 
     -- The request processing has failed because of an unknown error, exception or failure.
@@ -218,6 +238,8 @@ local record M
         encryptionDetails: EncryptionDetails
         -- The connection endpoint for the cluster.
         endpoint: string
+        -- The metric groups that you enabled for advanced monitoring on the cluster. If you haven't enabled any metric groups, the list is empty.
+        metricGroups: {MetricGroupResponse}
     end
 
     record GetClusterPolicyInput
@@ -293,6 +315,8 @@ local record M
         clientToken: string
         -- The new multi-Region cluster configuration settings to be applied during an update operation.
         multiRegionProperties: MultiRegionProperties
+        -- The complete set of metric groups to enable for advanced monitoring on the cluster. This list replaces the current set, so any metric group that you don't include is disabled. To disable all metric groups, specify an empty list ([]). If you omit this parameter, the current setting doesn't change. To view the metric groups enabled on a cluster, use GetCluster.
+        metricGroups: {MetricGroupRequest}
     end
 
     -- The details of the cluster after it has been updated.

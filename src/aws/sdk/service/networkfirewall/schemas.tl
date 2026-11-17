@@ -32,6 +32,8 @@ M.AnalysisReports = schema.new({ type = "list", list_member = M.AnalysisReport }
 
 M.ContainerAssociations = schema.new({ type = "list", list_member = M.ContainerAssociationSummary })
 
+M.ContextStores = schema.new({ type = "list", list_member = M.ContextStore })
+
 M.FirewallPolicies = schema.new({ type = "list", list_member = M.FirewallPolicyMetadata })
 
 M.FirewallPoliciesV2 = schema.new({ type = "list", list_member = M.FirewallPolicyV2Metadata })
@@ -43,6 +45,8 @@ M.Firewalls = schema.new({ type = "list", list_member = M.FirewallMetadata })
 M.Flows = schema.new({ type = "list", list_member = M.Flow })
 
 M.FlowOperations = schema.new({ type = "list", list_member = M.FlowOperationMetadata })
+
+M.ResourceContexts = schema.new({ type = "list", list_member = M.ResourceContext })
 
 M.RuleGroups = schema.new({ type = "list", list_member = M.RuleGroupMetadata })
 
@@ -100,6 +104,8 @@ M.Route53ResolvedIPValidationAddresses = schema.new({ type = "list", list_member
 
 M.PortSets = schema.new({ type = "map", map_key = prelude.String, map_value = M.PortSet })
 
+M.ContextSets = schema.new({ type = "map", map_key = prelude.String, map_value = M.ContextSet })
+
 M.IPSetReferenceMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.IPSetReference })
 
 M.StatefulRules = schema.new({ type = "list", list_member = M.StatefulRule })
@@ -129,6 +135,8 @@ M.ServerCertificateScopes = schema.new({ type = "list", list_member = M.ServerCe
 M.LogDestinationMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.VariableDefinitionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContextDefinitionList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RuleOptions = schema.new({ type = "list", list_member = M.RuleOption })
 
@@ -1007,6 +1015,86 @@ M.ContainerMonitoringConfiguration = schema.new({
     },
 })
 
+M.ContextFilters = schema.new({
+    id = id.from(_N, "ContextFilters"),
+    type = "structure",
+    members = {
+        Region = schema.new({
+            id = id.from(_N, "ContextFilters", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "ContextFilters", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContextSet = schema.new({
+    id = id.from(_N, "ContextSet"),
+    type = "structure",
+    members = {
+        Definition = schema.new({
+            id = id.from(_N, "ContextSet", "Definition"),
+            type = "list",
+            name = "Definition",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ContextStore = schema.new({
+    id = id.from(_N, "ContextStore"),
+    type = "structure",
+    members = {
+        ContextStoreId = schema.new({
+            id = id.from(_N, "ContextStore", "ContextStoreId"),
+            type = "string",
+            name = "ContextStoreId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ContextStoreOwnerAccountId = schema.new({
+            id = id.from(_N, "ContextStore", "ContextStoreOwnerAccountId"),
+            type = "string",
+            name = "ContextStoreOwnerAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ContextStoreSyncState = schema.new({
+    id = id.from(_N, "ContextStoreSyncState"),
+    type = "structure",
+    members = {
+        SyncStatus = schema.new({
+            id = id.from(_N, "ContextStoreSyncState", "SyncStatus"),
+            type = "string",
+            name = "SyncStatus",
+            target_id = prelude.String.id,
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "ContextStoreSyncState", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.Tag = schema.new({
     id = id.from(_N, "Tag"),
     type = "structure",
@@ -1552,6 +1640,18 @@ M.Firewall = schema.new({
             target_id = id.from(_N, "VpcEndpoint"),
             target = M.VpcEndpoint,
         }),
+        ContextStoreId = schema.new({
+            id = id.from(_N, "Firewall", "ContextStoreId"),
+            type = "string",
+            name = "ContextStoreId",
+            target_id = prelude.String.id,
+        }),
+        ContextStoreOwnerAccountId = schema.new({
+            id = id.from(_N, "Firewall", "ContextStoreOwnerAccountId"),
+            type = "string",
+            name = "ContextStoreOwnerAccountId",
+            target_id = prelude.String.id,
+        }),
         TransparentFilteringNatScope = schema.new({
             id = id.from(_N, "Firewall", "TransparentFilteringNatScope"),
             type = "string",
@@ -1714,6 +1814,13 @@ M.FirewallStatus = schema.new({
             name = "TransitGatewayAttachmentSyncState",
             target_id = id.from(_N, "TransitGatewayAttachmentSyncState"),
             target = M.TransitGatewayAttachmentSyncState,
+        }),
+        ContextStoreSyncState = schema.new({
+            id = id.from(_N, "FirewallStatus", "ContextStoreSyncState"),
+            type = "structure",
+            name = "ContextStoreSyncState",
+            target_id = id.from(_N, "ContextStoreSyncState"),
+            target = M.ContextStoreSyncState,
         }),
     },
 })
@@ -2525,6 +2632,14 @@ M.RuleVariables = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = M.PortSet,
+        }),
+        ContextSets = schema.new({
+            id = id.from(_N, "RuleVariables", "ContextSets"),
+            type = "map",
+            name = "ContextSets",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.ContextSet,
         }),
     },
 })
@@ -6086,6 +6201,48 @@ M.ListContainerAssociationsOutput = schema.new({
     },
 })
 
+M.ListContextStoresInput = schema.new({
+    id = id.from(_N, "ListContextStoresRequest"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListContextStoresInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListContextStoresInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListContextStoresOutput = schema.new({
+    id = id.from(_N, "ListContextStoresResponse"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListContextStoresOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        ContextStores = schema.new({
+            id = id.from(_N, "ListContextStoresOutput", "ContextStores"),
+            type = "list",
+            name = "ContextStores",
+            target_id = prelude.Document.id,
+            list_member = M.ContextStore,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ListFirewallPoliciesInput = schema.new({
     id = id.from(_N, "ListFirewallPoliciesRequest"),
     type = "structure",
@@ -6419,6 +6576,104 @@ M.ListFlowOperationsOutput = schema.new({
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListFlowOperationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListResourcesInContextStoreInput = schema.new({
+    id = id.from(_N, "ListResourcesInContextStoreRequest"),
+    type = "structure",
+    members = {
+        ContextStoreId = schema.new({
+            id = id.from(_N, "ListResourcesInContextStoreInput", "ContextStoreId"),
+            type = "string",
+            name = "ContextStoreId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "ListResourcesInContextStoreInput", "Filters"),
+            type = "structure",
+            name = "Filters",
+            target_id = id.from(_N, "ContextFilters"),
+            target = M.ContextFilters,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListResourcesInContextStoreInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListResourcesInContextStoreInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceContext = schema.new({
+    id = id.from(_N, "ResourceContext"),
+    type = "structure",
+    members = {
+        ContextType = schema.new({
+            id = id.from(_N, "ResourceContext", "ContextType"),
+            type = "string",
+            name = "ContextType",
+            target_id = prelude.String.id,
+        }),
+        Region = schema.new({
+            id = id.from(_N, "ResourceContext", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+        }),
+        AvailabilityZone = schema.new({
+            id = id.from(_N, "ResourceContext", "AvailabilityZone"),
+            type = "string",
+            name = "AvailabilityZone",
+            target_id = prelude.String.id,
+        }),
+        AttachmentType = schema.new({
+            id = id.from(_N, "ResourceContext", "AttachmentType"),
+            type = "string",
+            name = "AttachmentType",
+            target_id = prelude.String.id,
+        }),
+        PublicId = schema.new({
+            id = id.from(_N, "ResourceContext", "PublicId"),
+            type = "string",
+            name = "PublicId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListResourcesInContextStoreOutput = schema.new({
+    id = id.from(_N, "ListResourcesInContextStoreResponse"),
+    type = "structure",
+    members = {
+        ResourceContexts = schema.new({
+            id = id.from(_N, "ListResourcesInContextStoreOutput", "ResourceContexts"),
+            type = "list",
+            name = "ResourceContexts",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceContext,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListResourcesInContextStoreOutput", "NextToken"),
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
@@ -8606,6 +8861,17 @@ M.ListContainerAssociations = schema.operation({
     },
 })
 
+M.ListContextStores = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "ListContextStores"),
+    input = M.ListContextStoresInput,
+    output = M.ListContextStoresOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListFirewallPolicies = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "ListFirewallPolicies"),
     input = M.ListFirewallPoliciesInput,
@@ -8654,6 +8920,17 @@ M.ListFlowOperations = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "ListFlowOperations"),
     input = M.ListFlowOperationsInput,
     output = M.ListFlowOperationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListResourcesInContextStore = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "ListResourcesInContextStore"),
+    input = M.ListResourcesInContextStoreInput,
+    output = M.ListResourcesInContextStoreOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

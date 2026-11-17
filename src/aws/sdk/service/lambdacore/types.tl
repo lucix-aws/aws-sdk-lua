@@ -31,6 +31,17 @@ local record M
         ManagedInstances: string
     end
 
+    enum ElasticIpType
+        "None"
+        "ServiceManaged"
+    end
+
+    -- How the connector's network interfaces get an Elastic IP address.
+    record ElasticIpConfiguration
+        -- The Elastic IP type for the connector's network interfaces.
+        Type: string
+    end
+
     enum NetworkProtocol
         "IPv4"
         "DualStack"
@@ -46,6 +57,8 @@ local record M
         NetworkProtocol: string
         -- The types of Lambda compute resources that can use this connector. Valid values are MicroVm and WebFunction. Specify exactly one value.
         AssociatedComputeResourceTypes: {string}
+        -- The Elastic IP configuration for the connector's ENIs. Specify ServiceManaged to have Lambda assign a service-managed Elastic IP address to each ENI. The operator role must allow ec2:AllocateAddress and ec2:AssociateAddress.
+        ElasticIpConfiguration: ElasticIpConfiguration
     end
 
     -- The network configuration for a network connector. Different connector types use different configuration shapes; specify the configuration that matches your connector type.
@@ -380,6 +393,7 @@ local record M
         "Ec2RequestLimitExceeded"
         "InsufficientRolePermissions"
         "InternalError"
+        "InternetGatewayNotAttached"
         "InvalidSecurityGroup"
         "InvalidSubnet"
         "SecurityGroupsPerInterfaceLimitExceeded"
@@ -391,6 +405,7 @@ local record M
         "Ec2RequestLimitExceeded"
         "InsufficientRolePermissions"
         "InternalError"
+        "InternetGatewayNotAttached"
         "InvalidSecurityGroup"
         "InvalidSubnet"
         "SecurityGroupsPerInterfaceLimitExceeded"

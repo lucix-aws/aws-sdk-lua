@@ -48,6 +48,24 @@ function M.items_list_agent_goals(client, input)
     })
 end
 
+--- Returns a page iterator for listAgentOrganizationalReports.
+function M.pages_list_agent_organizational_reports(client, input)
+    return paginator.pages(client, "listAgentOrganizationalReports", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listAgentOrganizationalReports.
+function M.items_list_agent_organizational_reports(client, input)
+    return paginator.items(client, "listAgentOrganizationalReports", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
 --- Returns a page iterator for listAgentProfiles.
 function M.pages_list_agent_profiles(client, input)
     return paginator.pages(client, "listAgentProfiles", input, {

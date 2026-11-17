@@ -7,6 +7,48 @@ local record M
         message: string
     end
 
+    enum OrgMembershipStatus
+        "IN_ORG"
+        "NOT_IN_ORG"
+        "UNKNOWN"
+    end
+
+    -- An account that you can add to the monitoring scope for a monitor, so that Network Flow Monitor can resolve the network paths for traffic to and from resources in the account.
+    record AccountToAdd
+        -- The ID of the account that you can add to the monitoring scope.
+        accountId: string
+        -- The Amazon Web Services Region of the traffic that Network Flow Monitor identified for the account.
+        region: string
+        -- Whether the account is a member of the same organization as the account that owns the monitor. The membership status can be one of the following IN_ORG: The account is a member of the same organization. NOT_IN_ORG: The account isn't a member of the same organization. UNKNOWN: Network Flow Monitor can't determine the organization membership of the account.
+        membership: string
+    end
+
+    -- The geographic location of the client for a network flow.
+    record ClientLocation
+        -- The city where the client is located.
+        city: string
+        -- The subdivision, such as a state or province, where the client is located.
+        subdivision: string
+        -- The country where the client is located.
+        country: string
+    end
+
+    -- The network that an address in a network flow belongs to.
+    record Network
+        -- The name of the autonomous system that the network belongs to.
+        asName: string
+        -- The autonomous system number (ASN) of the autonomous system that the network belongs to.
+        asNumber: number
+    end
+
+    -- Additional information about a network flow, such as the network that the remote address belongs to and the location of the client.
+    record AdditionalFlowInfo
+        -- The network that the remote address of the network flow belongs to.
+        network: Network
+        -- The location of the client for the network flow.
+        clientLocation: ClientLocation
+    end
+
     -- The requested resource is in use.
     record ConflictException
         message: string
@@ -102,6 +144,52 @@ local record M
         message: string
     end
 
+    enum PerformanceMonitorTargetType
+        "AWS::EC2::VPC"
+    end
+
+    -- A resource that a performance monitor tracks network performance for.
+    record PerformanceMonitorTarget
+        -- The Amazon Resource Name (ARN) of the resource that you want Network Flow Monitor to track network performance for.
+        identifier: string
+    end
+
+    record CreatePerformanceMonitorInput
+        -- The name of the performance monitor.
+        monitorName: string
+        -- The Amazon Resource Name (ARN) of the scope for the performance monitor.
+        scopeArn: string
+        -- The resources to monitor. Each target identifies a resource, currently a VPC, for which you can track network performance. For a VPC, specify the VPC ARN.
+        targets: {PerformanceMonitorTarget}
+        -- A unique, case-sensitive string of up to 64 ASCII characters that you specify to make an idempotent API request. If the token matches a previous request, the service ignores the request without returning an error. Don't reuse the same client token for other API requests.
+        clientToken: string
+        -- The tags for a performance monitor. You can add a maximum of 200 tags.
+        tags: {string : string}
+    end
+
+    enum PerformanceMonitorType
+        "VPC"
+    end
+
+    record CreatePerformanceMonitorOutput
+        -- The Amazon Resource Name (ARN) of the performance monitor.
+        monitorArn: string
+        -- The name of the performance monitor.
+        monitorName: string
+        -- The status of a performance monitor. The status can be one of the following PENDING: The performance monitor is in the process of being created. ACTIVE: The performance monitor is active. INACTIVE: The performance monitor is inactive. ERROR: The performance monitor can't be created or updated. DELETING: The performance monitor is in the process of being deleted.
+        monitorStatus: string
+        -- The type of resource that you monitor determines the type of the performance monitor.
+        monitorType: string
+        -- The resources that the performance monitor tracks network performance for.
+        targets: {PerformanceMonitorTarget}
+        -- The date and time when the performance monitor was created.
+        createdAt: number
+        -- The date and time when the performance monitor was last modified.
+        modifiedAt: number
+        -- The tags for a performance monitor.
+        tags: {string : string}
+    end
+
     -- A target ID is an internally-generated identifier for a target. A target allows you to identify all the resources in a Network Flow Monitor scope. Currently, a target is always an Amazon Web Services account.
     record TargetId
         -- The identifier for the account for a target.
@@ -169,6 +257,14 @@ local record M
         message: string
     end
 
+    record DeletePerformanceMonitorInput
+        -- The name of the performance monitor.
+        monitorName: string
+    end
+
+    record DeletePerformanceMonitorOutput
+    end
+
     record DeleteScopeInput
         -- The identifier for the scope that includes the resources you want to get data results for. A scope ID is an internally-generated identifier that includes all the resources for a specific root account.
         scopeId: string
@@ -185,6 +281,27 @@ local record M
         "AMAZON_S3"
         "AMAZON_DYNAMODB"
         "INTER_REGION"
+        "INTERNET"
+        "AWS_SERVICE"
+        "LOCAL_ZONE"
+        "TRANSIT_GATEWAY"
+    end
+
+    enum FilterOperator
+        "EQUALS"
+        "NOT_EQUALS"
+        "IN"
+        "CONTAINS"
+    end
+
+    -- A filter for a query, to return a subset of the results.
+    record FilterParameter
+        -- The name of the field that you want to filter on. The fields that you can specify depend on the type of query.
+        field: string
+        -- The operator to use to compare the field with the values that you specify. The operator can be one of the following EQUALS: The field matches a single value. NOT_EQUALS: The field doesn't match a single value. IN: The field matches any one of several values. CONTAINS: The field contains a value.
+        operator: string
+        -- The values to compare the field with.
+        values: {string}
     end
 
     record GetMonitorInput
@@ -208,6 +325,57 @@ local record M
         -- The date and time when the monitor was last modified.
         modifiedAt: number
         -- The tags for a monitor.
+        tags: {string : string}
+    end
+
+    record GetMonitorScopeSuggestionsInput
+        -- The Amazon Resource Name (ARN) of the monitor that you want to return scope suggestions for.
+        monitorArn: string
+        -- The number of query results that you want to return with this call.
+        maxResults: number
+        -- The token for the next set of results. You receive this token from a previous call.
+        nextToken: string
+    end
+
+    enum ScopeCoverageStatus
+        "COMPLETE"
+        "INCOMPLETE"
+        "PENDING"
+        "STALE"
+    end
+
+    record GetMonitorScopeSuggestionsOutput
+        -- The coverage status of the monitoring scope for the monitor. The status can be one of the following COMPLETE: The scope includes every account that sends traffic to, or receives traffic from, resources in the monitor. INCOMPLETE: There are accounts that you can add to the scope. PENDING: Network Flow Monitor is determining the coverage of the scope. STALE: The coverage of the scope was last determined too long ago to be current.
+        status: string
+        -- The accounts that you can add to the monitoring scope, so that Network Flow Monitor can resolve the network paths for traffic to and from resources in those accounts.
+        accountsToAdd: {AccountToAdd}
+        -- The token for the next set of results. You receive this token from a previous call.
+        nextToken: string
+        -- The date and time when Network Flow Monitor last determined the coverage of the monitoring scope.
+        updatedAt: number
+    end
+
+    record GetPerformanceMonitorInput
+        -- The name of the performance monitor.
+        monitorName: string
+    end
+
+    record GetPerformanceMonitorOutput
+        -- The Amazon Resource Name (ARN) of the performance monitor.
+        monitorArn: string
+        -- The name of the performance monitor.
+        monitorName: string
+        -- The status of a performance monitor. The status can be one of the following PENDING: The performance monitor is in the process of being created. ACTIVE: The performance monitor is active. INACTIVE: The performance monitor is inactive. ERROR: The performance monitor can't be created or updated. DELETING: The performance monitor is in the process of being deleted.
+        monitorStatus: string
+        -- The type of resource that you monitor determines the type of the performance monitor.
+        monitorType: string
+        -- The resources that the performance monitor tracks network performance for.
+        targets: {PerformanceMonitorTarget}
+        -- The date and time when the performance monitor was created.
+        createdAt: number
+        -- The date and time when the performance monitor was last modified.
+        modifiedAt: number
+        -- The tags for a performance monitor.
         tags: {string : string}
     end
 
@@ -302,6 +470,8 @@ local record M
         remoteSubnetArn: string
         -- The Amazon Resource Name (ARN) of a remote VPC.
         remoteVpcArn: string
+        -- Additional information about the network flow, such as the network that the remote address belongs to and the location of the client.
+        additionalFlowInfo: AdditionalFlowInfo
     end
 
     enum MetricUnit
@@ -339,6 +509,32 @@ local record M
         unit: string
         -- The top contributor network flows overall for a specific metric type, for example, the number of retransmissions.
         topContributors: {MonitorTopContributorsRow}
+        -- The token for the next set of results. You receive this token from a previous call.
+        nextToken: string
+    end
+
+    record GetQueryResultsPerformanceMonitorInput
+        -- The name of the performance monitor.
+        monitorName: string
+        -- The identifier for the query. A query ID is an internally-generated identifier for a specific query returned from an API call to start a query.
+        queryId: string
+        -- The token for the next set of results. You receive this token from a previous call.
+        nextToken: string
+        -- The number of query results that you want to return with this call.
+        maxResults: number
+    end
+
+    -- A column that a query returns, with its name and data type.
+    record QueryField
+        -- The name of the column.
+        name: string
+    end
+
+    record GetQueryResultsPerformanceMonitorOutput
+        -- The columns that the query returns, in the order that the values for each row appear in data.
+        fields: {QueryField}
+        -- The results of the query. Each row contains the values for the columns that fields describes, in the same order.
+        data: {{string}}
         -- The token for the next set of results. You receive this token from a previous call.
         nextToken: string
     end
@@ -433,6 +629,18 @@ local record M
         status: string
     end
 
+    record GetQueryStatusPerformanceMonitorInput
+        -- The name of the performance monitor.
+        monitorName: string
+        -- The identifier for the query. A query ID is an internally-generated identifier for a specific query returned from an API call to start a query.
+        queryId: string
+    end
+
+    record GetQueryStatusPerformanceMonitorOutput
+        -- When you run a query, use this call to check the status of the query to make sure that the query has SUCCEEDED before you review the results. QUEUED: The query is scheduled to run. RUNNING: The query is in progress but not complete. SUCCEEDED: The query completed successfully. FAILED: The query failed due to an error. CANCELED: The query was canceled.
+        status: string
+    end
+
     record GetQueryStatusWorkloadInsightsTopContributorsInput
         -- The identifier for the scope that includes the resources you want to get data results for. A scope ID is an internally-generated identifier that includes all the resources for a specific root account.
         scopeId: string
@@ -497,6 +705,38 @@ local record M
     record ListMonitorsOutput
         -- The monitors that are in an account.
         monitors: {MonitorSummary}
+        -- The token for the next set of results. You receive this token from a previous call.
+        nextToken: string
+    end
+
+    record ListPerformanceMonitorsInput
+        -- The token for the next set of results. You receive this token from a previous call.
+        nextToken: string
+        -- The number of performance monitors that you want to return with this call. If you don't specify a value, the default is 25.
+        maxResults: number
+        -- The status of the performance monitors that you want to return. If you don't specify a status, Network Flow Monitor returns performance monitors with any status.
+        monitorStatus: string
+        -- The type of the performance monitors that you want to return. If you don't specify a type, Network Flow Monitor returns performance monitors of any type.
+        monitorType: string
+    end
+
+    -- A summary of information about a performance monitor, including the ARN, the name, the status, and the resources that it tracks network performance for.
+    record PerformanceMonitorSummary
+        -- The Amazon Resource Name (ARN) of the performance monitor.
+        monitorArn: string
+        -- The name of the performance monitor.
+        monitorName: string
+        -- The status of a performance monitor. The status can be one of the following PENDING: The performance monitor is in the process of being created. ACTIVE: The performance monitor is active. INACTIVE: The performance monitor is inactive. ERROR: The performance monitor can't be created or updated. DELETING: The performance monitor is in the process of being deleted.
+        monitorStatus: string
+        -- The type of resource that you monitor determines the type of the performance monitor.
+        monitorType: string
+        -- The resources that the performance monitor tracks network performance for.
+        targets: {PerformanceMonitorTarget}
+    end
+
+    record ListPerformanceMonitorsOutput
+        -- The performance monitors in the account.
+        monitors: {PerformanceMonitorSummary}
         -- The token for the next set of results. You receive this token from a previous call.
         nextToken: string
     end
@@ -603,6 +843,70 @@ local record M
         -- The last date and time that the monitor was modified.
         modifiedAt: number
         -- The tags for a monitor.
+        tags: {string : string}
+    end
+
+    enum PerformanceMonitorQueryType
+        "TOP_PATHS"
+    end
+
+    record StartQueryPerformanceMonitorInput
+        -- The name of the performance monitor.
+        monitorName: string
+        -- The timestamp that is the date and time that is the beginning of the period that you want to retrieve results for with your query.
+        startTime: number
+        -- The timestamp that is the date and time end of the period that you want to retrieve results for with your query.
+        endTime: number
+        -- The type of query that you want to create. Specify TOP_PATHS to return the top paths for the performance monitor.
+        queryType: string
+        -- The filters for the query, to return a subset of the top paths. For a TOP_PATHS query, you can filter on the following fields: local_az_id: The Availability Zone ID of the local end of a path remote_az_id: The Availability Zone ID of the remote end of a path impact_level: The impact level of a path When you filter on impact_level, Network Flow Monitor compares the filter with the most severe impact level for the path over the time period of the query, and the traffic and round-trip time that Network Flow Monitor returns for each path still cover the full time period. Paths that have no impact data don't match an impact_level filter, including a NOT_EQUALS filter. Network Flow Monitor doesn't filter the subnet pairs within a path by impact level.
+        filterParameters: {FilterParameter}
+        -- The maximum number of top paths that you want the query to return.
+        limit: number
+    end
+
+    record StartQueryPerformanceMonitorOutput
+        -- The identifier for the query. A query ID is an internally-generated identifier for a specific query returned from an API call to start a query.
+        queryId: string
+    end
+
+    record StopQueryPerformanceMonitorInput
+        -- The name of the performance monitor.
+        monitorName: string
+        -- The identifier for the query. A query ID is an internally-generated identifier for a specific query returned from an API call to start a query.
+        queryId: string
+    end
+
+    record StopQueryPerformanceMonitorOutput
+    end
+
+    record UpdatePerformanceMonitorInput
+        -- The name of the performance monitor.
+        monitorName: string
+        -- The resources to add to the performance monitor.
+        targetsToAdd: {PerformanceMonitorTarget}
+        -- The resources to remove from the performance monitor.
+        targetsToRemove: {PerformanceMonitorTarget}
+        -- A unique, case-sensitive string of up to 64 ASCII characters that you specify to make an idempotent API request. If the token matches a previous request, the service ignores the request without returning an error. Don't reuse the same client token for other API requests.
+        clientToken: string
+    end
+
+    record UpdatePerformanceMonitorOutput
+        -- The Amazon Resource Name (ARN) of the performance monitor.
+        monitorArn: string
+        -- The name of the performance monitor.
+        monitorName: string
+        -- The status of a performance monitor. The status can be one of the following PENDING: The performance monitor is in the process of being created. ACTIVE: The performance monitor is active. INACTIVE: The performance monitor is inactive. ERROR: The performance monitor can't be created or updated. DELETING: The performance monitor is in the process of being deleted.
+        monitorStatus: string
+        -- The type of resource that you monitor determines the type of the performance monitor.
+        monitorType: string
+        -- The resources that the performance monitor tracks network performance for.
+        targets: {PerformanceMonitorTarget}
+        -- The date and time when the performance monitor was created.
+        createdAt: number
+        -- The date and time when the performance monitor was last modified.
+        modifiedAt: number
+        -- The tags for a performance monitor.
         tags: {string : string}
     end
 

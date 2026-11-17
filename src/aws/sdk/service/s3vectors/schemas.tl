@@ -30,11 +30,19 @@ M.ListVectorsOutputList = schema.new({ type = "list", list_member = M.ListOutput
 
 M.PutVectorsInputList = schema.new({ type = "list", list_member = M.PutInputVector })
 
+M.QueryTextList = schema.new({ type = "list", list_member = M.QueryText })
+
 M.QueryVectorsOutputList = schema.new({ type = "list", list_member = M.QueryOutputVector })
 
 M.NonFilterableMetadataKeys = schema.new({ type = "list", list_member = prelude.String })
 
+M.TextSearchConfigurations = schema.new({ type = "list", list_member = M.TextSearchConfiguration })
+
+M.TextSearchConfigurationKeys = schema.new({ type = "list", list_member = M.TextSearchConfigurationKey })
+
 M.Float32VectorData = schema.new({ type = "list", list_member = prelude.Float })
+
+M.Bm25ScoreList = schema.new({ type = "list", list_member = M.Bm25Score })
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -48,6 +56,31 @@ M.AccessDeniedException = schema.new({
             type = "string",
             name = "message",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Bm25Score = schema.new({
+    id = id.from(_N, "Bm25Score"),
+    type = "structure",
+    members = {
+        metadataKey = schema.new({
+            id = id.from(_N, "Bm25Score", "metadataKey"),
+            type = "string",
+            name = "metadataKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        score = schema.new({
+            id = id.from(_N, "Bm25Score", "score"),
+            type = "float",
+            name = "score",
+            target_id = prelude.Float.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -96,6 +129,34 @@ M.EncryptionConfiguration = schema.new({
     },
 })
 
+M.TextSearchConfiguration = schema.new({
+    id = id.from(_N, "TextSearchConfiguration"),
+    type = "structure",
+    members = {
+        metadataKey = schema.new({
+            id = id.from(_N, "TextSearchConfiguration", "metadataKey"),
+            type = "string",
+            name = "metadataKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        language = schema.new({
+            id = id.from(_N, "TextSearchConfiguration", "language"),
+            type = "string",
+            name = "language",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "TextSearchConfiguration", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.MetadataConfiguration = schema.new({
     id = id.from(_N, "MetadataConfiguration"),
     type = "structure",
@@ -107,7 +168,17 @@ M.MetadataConfiguration = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
+            },
+        }),
+        textSearchConfigurations = schema.new({
+            id = id.from(_N, "MetadataConfiguration", "textSearchConfigurations"),
+            type = "list",
+            name = "textSearchConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.TextSearchConfiguration,
+            traits = {
+                [traits.DEFAULT] = { value = smithy.mark_array({}) },
             },
         }),
     },
@@ -1114,6 +1185,105 @@ M.UpdateIndexModeOutput = schema.new({
     type = "structure",
 })
 
+M.MetadataConfigurationAdd = schema.new({
+    id = id.from(_N, "MetadataConfigurationAdd"),
+    type = "structure",
+    members = {
+        textSearchConfigurations = schema.new({
+            id = id.from(_N, "MetadataConfigurationAdd", "textSearchConfigurations"),
+            type = "list",
+            name = "textSearchConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.TextSearchConfiguration,
+        }),
+    },
+})
+
+M.TextSearchConfigurationKey = schema.new({
+    id = id.from(_N, "TextSearchConfigurationKey"),
+    type = "structure",
+    members = {
+        metadataKey = schema.new({
+            id = id.from(_N, "TextSearchConfigurationKey", "metadataKey"),
+            type = "string",
+            name = "metadataKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MetadataConfigurationDelete = schema.new({
+    id = id.from(_N, "MetadataConfigurationDelete"),
+    type = "structure",
+    members = {
+        textSearchConfigurations = schema.new({
+            id = id.from(_N, "MetadataConfigurationDelete", "textSearchConfigurations"),
+            type = "list",
+            name = "textSearchConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.TextSearchConfigurationKey,
+        }),
+    },
+})
+
+M.UpdateMetadataConfigurationInput = schema.new({
+    id = id.from(_N, "UpdateMetadataConfigurationInput"),
+    type = "structure",
+    members = {
+        vectorBucketName = schema.new({
+            id = id.from(_N, "UpdateMetadataConfigurationInput", "vectorBucketName"),
+            type = "string",
+            name = "vectorBucketName",
+            target_id = prelude.String.id,
+        }),
+        indexName = schema.new({
+            id = id.from(_N, "UpdateMetadataConfigurationInput", "indexName"),
+            type = "string",
+            name = "indexName",
+            target_id = prelude.String.id,
+        }),
+        indexArn = schema.new({
+            id = id.from(_N, "UpdateMetadataConfigurationInput", "indexArn"),
+            type = "string",
+            name = "indexArn",
+            target_id = prelude.String.id,
+        }),
+        add = schema.new({
+            id = id.from(_N, "UpdateMetadataConfigurationInput", "add"),
+            type = "structure",
+            name = "add",
+            target_id = id.from(_N, "MetadataConfigurationAdd"),
+            target = M.MetadataConfigurationAdd,
+        }),
+        delete = schema.new({
+            id = id.from(_N, "UpdateMetadataConfigurationInput", "delete"),
+            type = "structure",
+            name = "delete",
+            target_id = id.from(_N, "MetadataConfigurationDelete"),
+            target = M.MetadataConfigurationDelete,
+        }),
+    },
+})
+
+M.UpdateMetadataConfigurationOutput = schema.new({
+    id = id.from(_N, "UpdateMetadataConfigurationOutput"),
+    type = "structure",
+    members = {
+        indexArn = schema.new({
+            id = id.from(_N, "UpdateMetadataConfigurationOutput", "indexArn"),
+            type = "string",
+            name = "indexArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ListVectorsInput = schema.new({
     id = id.from(_N, "ListVectorsInput"),
     type = "structure",
@@ -1317,6 +1487,31 @@ M.PutVectorsOutput = schema.new({
     type = "structure",
 })
 
+M.QueryText = schema.new({
+    id = id.from(_N, "QueryText"),
+    type = "structure",
+    members = {
+        text = schema.new({
+            id = id.from(_N, "QueryText", "text"),
+            type = "string",
+            name = "text",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        metadataKey = schema.new({
+            id = id.from(_N, "QueryText", "metadataKey"),
+            type = "string",
+            name = "metadataKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.QueryVectorsInput = schema.new({
     id = id.from(_N, "QueryVectorsInput"),
     type = "structure",
@@ -1354,9 +1549,6 @@ M.QueryVectorsInput = schema.new({
             name = "queryVector",
             target_id = id.from(_N, "VectorData"),
             target = M.VectorData,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         filter = schema.new({
             id = id.from(_N, "QueryVectorsInput", "filter"),
@@ -1388,11 +1580,53 @@ M.QueryVectorsInput = schema.new({
                 [traits.DEFAULT] = { value = false },
             },
         }),
+        queryTexts = schema.new({
+            id = id.from(_N, "QueryVectorsInput", "queryTexts"),
+            type = "list",
+            name = "queryTexts",
+            target_id = prelude.Document.id,
+            list_member = M.QueryText,
+        }),
+        returnScores = schema.new({
+            id = id.from(_N, "QueryVectorsInput", "returnScores"),
+            type = "boolean",
+            name = "returnScores",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
         nextToken = schema.new({
             id = id.from(_N, "QueryVectorsInput", "nextToken"),
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.QueryScores = schema.new({
+    id = id.from(_N, "QueryScores"),
+    type = "structure",
+    members = {
+        fused = schema.new({
+            id = id.from(_N, "QueryScores", "fused"),
+            type = "float",
+            name = "fused",
+            target_id = prelude.Float.id,
+        }),
+        bm25Scores = schema.new({
+            id = id.from(_N, "QueryScores", "bm25Scores"),
+            type = "list",
+            name = "bm25Scores",
+            target_id = prelude.Document.id,
+            list_member = M.Bm25Score,
+        }),
+        vectorDistance = schema.new({
+            id = id.from(_N, "QueryScores", "vectorDistance"),
+            type = "float",
+            name = "vectorDistance",
+            target_id = prelude.Float.id,
         }),
     },
 })
@@ -1406,6 +1640,13 @@ M.QueryOutputVector = schema.new({
             type = "float",
             name = "distance",
             target_id = prelude.Float.id,
+        }),
+        scores = schema.new({
+            id = id.from(_N, "QueryOutputVector", "scores"),
+            type = "structure",
+            name = "scores",
+            target_id = id.from(_N, "QueryScores"),
+            target = M.QueryScores,
         }),
         key = schema.new({
             id = id.from(_N, "QueryOutputVector", "key"),
@@ -1977,6 +2218,18 @@ M.UpdateIndexMode = schema.operation({
     output = M.UpdateIndexModeOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/UpdateIndexMode" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMetadataConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3vectors", "UpdateMetadataConfiguration"),
+    input = M.UpdateMetadataConfigurationInput,
+    output = M.UpdateMetadataConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateMetadataConfiguration" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

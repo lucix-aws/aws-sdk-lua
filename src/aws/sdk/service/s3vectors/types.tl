@@ -7,6 +7,19 @@ local record M
         message: string
     end
 
+    enum AnalyzerStatus
+        "ACTIVE"
+        "BUILDING"
+    end
+
+    -- The raw BM25 relevance score for a single searchable metadata key.
+    record Bm25Score
+        -- The searchable metadata key that the score applies to.
+        metadataKey: string
+        -- The BM25 relevance score.
+        score: number
+    end
+
     -- The request failed because a vector bucket name or a vector index name already exists. Vector bucket names must be unique within your Amazon Web Services account for each Amazon Web Services Region. Vector index names must be unique within your vector bucket. Choose a different vector bucket name or vector index name, and try again.
     record ConflictException
         message: string
@@ -34,10 +47,35 @@ local record M
         kmsKeyArn: string
     end
 
+    enum LanguageCode
+        "en"
+        "fr"
+        "es"
+        "pt"
+        "it"
+        "de"
+        "nl"
+        "zh"
+        "ja"
+        "ko"
+    end
+
+    -- A full-text search configuration for a single metadata key.
+    record TextSearchConfiguration
+        -- The metadata key to make full-text searchable.
+        metadataKey: string
+        -- The language that the text search analyzer uses. Valid values are en (English), fr (French), es (Spanish), pt (Portuguese), it (Italian), de (German), nl (Dutch), zh (Chinese), ja (Japanese), and ko (Korean). If you don't specify a language, Amazon S3 Vectors uses the default standard analyzer.
+        language: string
+        -- The backfill status of the text search configuration. Valid values are ACTIVE, which indicates that the analyzer is built and serving queries, and BUILDING, which indicates that the analyzer is being backfilled and isn't yet serving queries. This field is returned by GetIndex.
+        status: string
+    end
+
     -- The metadata configuration for a vector index.
     record MetadataConfiguration
-        -- Non-filterable metadata keys allow you to enrich vectors with additional context during storage and retrieval. Unlike default metadata keys, these keys can’t be used as query filters. Non-filterable metadata keys can be retrieved but can’t be searched, queried, or filtered. You can access non-filterable metadata keys of your vectors after finding the vectors. For more information about non-filterable metadata keys, see Vectors and Limitations and restrictions in the Amazon S3 User Guide.
+        -- Non-filterable metadata keys allow you to enrich vectors with additional context during storage and retrieval. You can't use these keys in metadata filters. You can still make a non-filterable key full-text searchable by configuring it separately in textSearchConfigurations. You can retrieve non-filterable metadata keys after finding the vectors. For more information about non-filterable metadata keys, see Vectors and Limitations and restrictions in the Amazon S3 User Guide.
         nonFilterableMetadataKeys: {string}
+        -- Full-text search configurations for searchable metadata keys.
+        textSearchConfigurations: {TextSearchConfiguration}
     end
 
     record CreateIndexInput
@@ -354,6 +392,42 @@ local record M
     record UpdateIndexModeOutput
     end
 
+    -- Text search configurations to add to a vector index.
+    record MetadataConfigurationAdd
+        -- Text search configurations to add. Amazon S3 Vectors begins building the corresponding full-text indexes after the update is accepted.
+        textSearchConfigurations: {TextSearchConfiguration}
+    end
+
+    -- A searchable metadata key that identifies a text search configuration.
+    record TextSearchConfigurationKey
+        -- The searchable metadata key whose text search configuration to delete.
+        metadataKey: string
+    end
+
+    -- Text search configurations to delete from a vector index.
+    record MetadataConfigurationDelete
+        -- Searchable metadata keys whose text search configurations to delete.
+        textSearchConfigurations: {TextSearchConfigurationKey}
+    end
+
+    record UpdateMetadataConfigurationInput
+        -- The name of the vector bucket that contains the vector index.
+        vectorBucketName: string
+        -- The name of the vector index to update.
+        indexName: string
+        -- The Amazon Resource Name (ARN) of the vector index to update.
+        indexArn: string
+        -- Text search configurations to add to the vector index.
+        add: MetadataConfigurationAdd
+        -- Text search configurations to delete from the vector index.
+        delete: MetadataConfigurationDelete
+    end
+
+    record UpdateMetadataConfigurationOutput
+        -- The Amazon Resource Name (ARN) of the updated vector index.
+        indexArn: string
+    end
+
     record ListVectorsInput
         -- The name of the vector bucket.
         vectorBucketName: string
@@ -416,6 +490,14 @@ local record M
     record PutVectorsOutput
     end
 
+    -- A full-text search query for a single metadata key.
+    record QueryText
+        -- The full-text query string.
+        text: string
+        -- The searchable metadata key to query.
+        metadataKey: string
+    end
+
     record QueryVectorsInput
         -- The name of the vector bucket that contains the vector index.
         vectorBucketName: string
@@ -425,7 +507,7 @@ local record M
         indexArn: string
         -- The number of results to return for each query.
         topK: number
-        -- The query vector. Ensure that the query vector has the same dimension as the dimension of the vector index that's being queried. For example, if your vector index contains vectors with 384 dimensions, your query vector must also have 384 dimensions.
+        -- The query vector for vector similarity search. The query vector must have the same dimension as the vector index. For example, if the vector index has 384 dimensions, the query vector must also have 384 dimensions. You can omit this parameter when you supply queryTexts to perform a full-text-only search. A request must include queryVector, queryTexts, or both.
         queryVector: VectorData
         -- Metadata filter to apply during the query. For more information about metadata keys, see Metadata filtering in the Amazon S3 User Guide.
         filter: any
@@ -435,22 +517,38 @@ local record M
         returnMetadata: boolean
         -- Indicates whether to include the computed distance in the response. The default value is false.
         returnDistance: boolean
+        -- Full-text queries for searchable metadata keys. Omit queryVector to run a full-text-only search, or provide both fields to run a hybrid search. Each entry must target a distinct searchable metadata key.
+        queryTexts: {QueryText}
+        -- Indicates whether to include relevance scores in the response. Full-text-only results can include BM25 scores. Hybrid results can also include a Reciprocal Rank Fusion (RRF) score and vector distance. This setting doesn't add scores to vector-only requests. The default value is false.
+        returnScores: boolean
         -- Pagination token from a previous request. The value of this field is empty for an initial request.
         nextToken: string
     end
 
-    -- The attributes of a vector in the approximate nearest neighbor search.
+    -- Relevance scores for a full-text-only or hybrid search result.
+    record QueryScores
+        -- The Reciprocal Rank Fusion (RRF) score that combines the vector and full-text rankings. This field is returned only for hybrid requests.
+        fused: number
+        -- The BM25 scores for the searchable metadata keys that the result matched.
+        bm25Scores: {Bm25Score}
+        -- The distance from the query vector. This field is returned when a hybrid result matches the vector search.
+        vectorDistance: number
+    end
+
+    -- Contains the key and optional distance, relevance scores, and metadata for a vector returned by the QueryVectors operation.
     record QueryOutputVector
         -- The measure of similarity between the vector in the response and the query vector.
         distance: number
-        -- The key of the vector in the approximate nearest neighbor search.
+        -- The relevance scores for a full-text-only or hybrid result, when requested through returnScores.
+        scores: QueryScores
+        -- The key of the matching vector.
         key: string
         -- The metadata associated with the vector, if requested.
         metadata: any
     end
 
     record QueryVectorsOutput
-        -- The vectors in the approximate nearest neighbor search.
+        -- The matching vector results in ranked order. Results are ranked by vector distance for a vector-only search, by BM25 relevance for a full-text-only search, and by RRF score for a hybrid search.
         vectors: {QueryOutputVector}
         -- The distance metric that was used for the similarity search calculation. This is the same distance metric that was configured for the vector index when it was created.
         distanceMetric: string

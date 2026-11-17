@@ -3974,6 +3974,12 @@ local record M
     record DeploymentController
     end
 
+    -- The amount of time to allow in-flight requests to complete before a deregistering target is removed.
+    record GatewayConnectorDeregistrationDelay
+        -- The amount of time, in seconds, to wait before a deregistering target is removed. A value of 0 removes the target immediately. The valid range is 0-3600 seconds. The default value is 300 seconds.
+        timeoutSeconds: number
+    end
+
     -- The filters that determine which gateway ingress paths a connector applies to.
     record GatewayConnectorFilters
         -- The access types of the gateway ingress paths that the connector applies to. The access type can be one of the following values: PUBLIC - The ingress path is publicly accessible. PRIVATE - The ingress path is only accessible privately.
@@ -4021,6 +4027,8 @@ local record M
         healthCheck: GatewayConnectorHealthCheck
         -- The filters that control which gateway ingress paths the connector applies to.
         filters: GatewayConnectorFilters
+        -- The deregistration delay settings for the targets of this connector.
+        deregistrationDelay: GatewayConnectorDeregistrationDelay
     end
 
     -- The load balancer configuration to use with a service or task set. When you add, update, or remove a load balancer configuration, Amazon ECS starts a new deployment with the updated Elastic Load Balancing configuration. This causes tasks to register to and deregister from load balancers. We recommend that you verify this on a test environment before you update the Elastic Load Balancing configuration. A service-linked role is required for services that use multiple target groups. For more information, see Using service-linked roles in the Amazon Elastic Container Service Developer Guide.

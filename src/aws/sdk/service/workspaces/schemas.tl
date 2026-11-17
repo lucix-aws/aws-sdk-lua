@@ -4715,6 +4715,12 @@ M.WorkspaceDirectory = schema.new({
             target_id = id.from(_N, "StreamingProperties"),
             target = M.StreamingProperties,
         }),
+        WorkspaceOsUserMode = schema.new({
+            id = id.from(_N, "WorkspaceDirectory", "WorkspaceOsUserMode"),
+            type = "string",
+            name = "WorkspaceOsUserMode",
+            target_id = prelude.String.id,
+        }),
         ErrorMessage = schema.new({
             id = id.from(_N, "WorkspaceDirectory", "ErrorMessage"),
             type = "string",
@@ -6618,6 +6624,12 @@ M.RegisterWorkspaceDirectoryInput = schema.new({
             id = id.from(_N, "RegisterWorkspaceDirectoryInput", "UserIdentityType"),
             type = "string",
             name = "UserIdentityType",
+            target_id = prelude.String.id,
+        }),
+        WorkspaceOsUserMode = schema.new({
+            id = id.from(_N, "RegisterWorkspaceDirectoryInput", "WorkspaceOsUserMode"),
+            type = "string",
+            name = "WorkspaceOsUserMode",
             target_id = prelude.String.id,
         }),
         IdcInstanceArn = schema.new({

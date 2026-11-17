@@ -94,6 +94,7 @@ local record Client
     forgotPassword: function(Client, types.ForgotPasswordInput, ? base_client.InvokeOptions): async.Operation<types.ForgotPasswordOutput>
     getClientToken: function(Client, types.GetClientTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetClientTokenOutput>
     getCSVHeader: function(Client, types.GetCSVHeaderInput, ? base_client.InvokeOptions): async.Operation<types.GetCSVHeaderOutput>
+    getDerivedToken: function(Client, types.GetDerivedTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetDerivedTokenOutput>
     getDevice: function(Client, types.GetDeviceInput, ? base_client.InvokeOptions): async.Operation<types.GetDeviceOutput>
     getGroup: function(Client, types.GetGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetGroupOutput>
     getIdentityProviderByIdentifier: function(Client, types.GetIdentityProviderByIdentifierInput, ? base_client.InvokeOptions): async.Operation<types.GetIdentityProviderByIdentifierOutput>
@@ -504,6 +505,10 @@ end
 
 function C:getCSVHeader(input: types.GetCSVHeaderInput, options?: base_client.InvokeOptions): async.Operation<types.GetCSVHeaderOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCSVHeader as schema.OperationSchema, input, options) as async.Operation<types.GetCSVHeaderOutput>
+end
+
+function C:getDerivedToken(input: types.GetDerivedTokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetDerivedTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDerivedToken as schema.OperationSchema, input, options) as async.Operation<types.GetDerivedTokenOutput>
 end
 
 function C:getDevice(input: types.GetDeviceInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeviceOutput>

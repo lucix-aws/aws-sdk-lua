@@ -19,6 +19,7 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     getRequestAuthorizationDetails: function(Client, types.GetRequestAuthorizationDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetRequestAuthorizationDetailsOutput>
+    getRequestAuthorizationPolicy: function(Client, types.GetRequestAuthorizationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetRequestAuthorizationPolicyOutput>
 end
 
 local record M
@@ -65,6 +66,10 @@ end
 
 function C:getRequestAuthorizationDetails(input: types.GetRequestAuthorizationDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetRequestAuthorizationDetailsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRequestAuthorizationDetails as schema.OperationSchema, input, options) as async.Operation<types.GetRequestAuthorizationDetailsOutput>
+end
+
+function C:getRequestAuthorizationPolicy(input: types.GetRequestAuthorizationPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetRequestAuthorizationPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRequestAuthorizationPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetRequestAuthorizationPolicyOutput>
 end
 
 return M

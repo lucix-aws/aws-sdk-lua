@@ -713,6 +713,9 @@ M.DescribeStream = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.CONTEXT_PARAMS] = {
+            StreamArn = "StreamArn",
+        },
     },
 })
 
@@ -724,6 +727,9 @@ M.GetRecords = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.CONTEXT_PARAMS] = {
+            ShardIterator = "ShardIterator",
+        },
     },
 })
 
@@ -734,6 +740,9 @@ M.GetShardIterator = schema.operation({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            StreamArn = "StreamArn",
         },
     },
 })

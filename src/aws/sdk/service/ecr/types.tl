@@ -1510,6 +1510,17 @@ local record M
     record DescribeRegistryInput
     end
 
+    -- The delete replication configuration for a replication rule. When delete replication
+    -- is enabled, the service replicates image deletions and image tag removals in the source
+    -- registry to the replication destinations.
+    record DeleteReplication
+        -- Specifies whether delete replication is enabled. If set to true, the
+        -- service replicates image deletions and image tag removals from the source registry to
+        -- each replication destination. If set to false, the service does not
+        -- replicate image deletions or image tag removals.
+        enabled: boolean
+    end
+
     -- An array of objects representing the destination for a replication rule.
     record ReplicationDestination
         -- The Region to replicate to.
@@ -1547,6 +1558,12 @@ local record M
         -- repository filter for a replication rule provides a method for controlling which
         -- repositories in a private registry are replicated.
         repositoryFilters: {RepositoryFilter}
+        -- The delete replication settings for the replication rule. When delete replication is
+        -- enabled, the service replicates image deletions and image tag removals from the source
+        -- registry to the replication destinations. If you do not specify this parameter, the
+        -- service does not replicate image deletions or image tag removals for the replication
+        -- rule.
+        deleteReplication: DeleteReplication
     end
 
     -- The replication configuration for a registry.

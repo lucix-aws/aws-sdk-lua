@@ -84,6 +84,10 @@ M.ScopeListType = schema.new({ type = "list", list_member = prelude.String })
 
 M.ListOfStringTypes = schema.new({ type = "list", list_member = prelude.String })
 
+M.AudienceListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceListType = schema.new({ type = "list", list_member = prelude.String })
+
 M.ProvidersListType = schema.new({ type = "list", list_member = M.ProviderDescription })
 
 M.ResourceServersListType = schema.new({ type = "list", list_member = M.ResourceServerType })
@@ -7846,6 +7850,147 @@ M.GetCSVHeaderOutput = schema.new({
     },
 })
 
+M.GetDerivedTokenInput = schema.new({
+    id = id.from(_N, "GetDerivedTokenRequest"),
+    type = "structure",
+    members = {
+        ClientId = schema.new({
+            id = id.from(_N, "GetDerivedTokenInput", "ClientId"),
+            type = "string",
+            name = "ClientId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientSecret = schema.new({
+            id = id.from(_N, "GetDerivedTokenInput", "ClientSecret"),
+            type = "string",
+            name = "ClientSecret",
+            target_id = prelude.String.id,
+        }),
+        SubjectToken = schema.new({
+            id = id.from(_N, "GetDerivedTokenInput", "SubjectToken"),
+            type = "string",
+            name = "SubjectToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SubjectTokenType = schema.new({
+            id = id.from(_N, "GetDerivedTokenInput", "SubjectTokenType"),
+            type = "string",
+            name = "SubjectTokenType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SubjectTokenProviderName = schema.new({
+            id = id.from(_N, "GetDerivedTokenInput", "SubjectTokenProviderName"),
+            type = "string",
+            name = "SubjectTokenProviderName",
+            target_id = prelude.String.id,
+        }),
+        ActorToken = schema.new({
+            id = id.from(_N, "GetDerivedTokenInput", "ActorToken"),
+            type = "string",
+            name = "ActorToken",
+            target_id = prelude.String.id,
+        }),
+        ActorTokenType = schema.new({
+            id = id.from(_N, "GetDerivedTokenInput", "ActorTokenType"),
+            type = "string",
+            name = "ActorTokenType",
+            target_id = prelude.String.id,
+        }),
+        ActorTokenProviderName = schema.new({
+            id = id.from(_N, "GetDerivedTokenInput", "ActorTokenProviderName"),
+            type = "string",
+            name = "ActorTokenProviderName",
+            target_id = prelude.String.id,
+        }),
+        Scopes = schema.new({
+            id = id.from(_N, "GetDerivedTokenInput", "Scopes"),
+            type = "list",
+            name = "Scopes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Audiences = schema.new({
+            id = id.from(_N, "GetDerivedTokenInput", "Audiences"),
+            type = "list",
+            name = "Audiences",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Resources = schema.new({
+            id = id.from(_N, "GetDerivedTokenInput", "Resources"),
+            type = "list",
+            name = "Resources",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        RequestedTokenType = schema.new({
+            id = id.from(_N, "GetDerivedTokenInput", "RequestedTokenType"),
+            type = "string",
+            name = "RequestedTokenType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetDerivedTokenOutput = schema.new({
+    id = id.from(_N, "GetDerivedTokenResponse"),
+    type = "structure",
+    members = {
+        IssuedToken = schema.new({
+            id = id.from(_N, "GetDerivedTokenOutput", "IssuedToken"),
+            type = "string",
+            name = "IssuedToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IssuedTokenType = schema.new({
+            id = id.from(_N, "GetDerivedTokenOutput", "IssuedTokenType"),
+            type = "string",
+            name = "IssuedTokenType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TokenType = schema.new({
+            id = id.from(_N, "GetDerivedTokenOutput", "TokenType"),
+            type = "string",
+            name = "TokenType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExpiresIn = schema.new({
+            id = id.from(_N, "GetDerivedTokenOutput", "ExpiresIn"),
+            type = "integer",
+            name = "ExpiresIn",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Scopes = schema.new({
+            id = id.from(_N, "GetDerivedTokenOutput", "Scopes"),
+            type = "list",
+            name = "Scopes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.GetDeviceInput = schema.new({
     id = id.from(_N, "GetDeviceRequest"),
     type = "structure",
@@ -12871,6 +13016,17 @@ M.GetCSVHeader = schema.operation({
     id = id.from("com.amazonaws.cognitoidentityprovider", "GetCSVHeader"),
     input = M.GetCSVHeaderInput,
     output = M.GetCSVHeaderOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDerivedToken = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "GetDerivedToken"),
+    input = M.GetDerivedTokenInput,
+    output = M.GetDerivedTokenOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

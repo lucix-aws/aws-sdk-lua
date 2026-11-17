@@ -569,7 +569,14 @@ local record M
         -- The ID of the VPC endpoint service.
         ServiceId: string
         -- The IDs of the interface VPC endpoints.
+        -- You must specify either VpcEndpointIds or TransitGatewayAttachmentIds,
+        -- but not both.
         VpcEndpointIds: {string}
+        -- The IDs of the transit gateway attachments to accept. This parameter is supported only for
+        -- Gateway Load Balancer endpoint services.
+        -- You must specify either VpcEndpointIds or TransitGatewayAttachmentIds,
+        -- but not both.
+        TransitGatewayAttachmentIds: {string}
     end
 
     -- Information about the error that occurred. For more information about errors, see Error codes.
@@ -1356,6 +1363,11 @@ local record M
         "fulfilled"
     end
 
+    enum PermissionType
+        "vpc-endpoint"
+        "transit-gateway-attachment"
+    end
+
     enum PrincipalType
         "All"
         "Service"
@@ -1375,6 +1387,8 @@ local record M
         ServicePermissionId: string
         -- The ID of the service.
         ServiceId: string
+        -- The type of permission granted to the principal.
+        PermissionType: string
     end
 
     -- Add an operating Region to an IPAM. Operating Regions are Amazon Web Services Regions where the IPAM is allowed to manage IP address CIDRs. IPAM only discovers and monitors resources in the Amazon Web Services Regions you select as operating Regions.
@@ -1856,6 +1870,8 @@ local record M
         Tags: {Tag}
         -- The ID of the service.
         ServiceId: string
+        -- The type of permission granted to the principal.
+        PermissionType: string
     end
 
     enum AllowsMultipleInstanceTypes
@@ -2416,6 +2432,23 @@ local record M
     record AssociateIpamResourceDiscoveryOutput
         -- A resource discovery association. An associated resource discovery is a resource discovery that has been associated with an IPAM.
         IpamResourceDiscoveryAssociation: IpamResourceDiscoveryAssociation
+    end
+
+    record AssociateKmsKeyIdInput
+        -- The ID of the Amazon EBS snapshot.
+        SnapshotId: string
+        -- The ID, alias, or ARN of the KMS key to associate with the snapshot. You can
+        -- specify a key ID, key alias, key ARN, or alias ARN.
+        KmsKeyId: string
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record AssociateKmsKeyIdOutput
+        -- Returns true if the request succeeds; otherwise, it returns an error.
+        Return: boolean
     end
 
     record AssociateNatGatewayAddressInput
@@ -15196,6 +15229,14 @@ local record M
         DryRun: boolean
     end
 
+    -- Describes an KMS key that is associated with an Amazon EBS snapshot, in addition to the
+    -- key the snapshot is encrypted under. An associated key provides a second way to access the
+    -- snapshot's data for cross-account sharing and copying.
+    record AssociatedKmsKey
+        -- The Amazon Resource Name (ARN) of the associated KMS key.
+        KmsKeyId: string
+    end
+
     enum SnapshotState
         "pending"
         "completed"
@@ -15257,6 +15298,8 @@ local record M
         -- This is the full snapshot size and represents the size of all the blocks that were
         -- written to the source volume at the time the snapshot was created.
         FullSnapshotSizeInBytes: number
+        -- The additional KMS keys that are associated with the snapshot.
+        AssociatedKmsKeys: {AssociatedKmsKey}
         -- The ID of the snapshot. Each snapshot receives a unique identifier when it is
         -- created.
         SnapshotId: string
@@ -16323,6 +16366,57 @@ local record M
     record CreateTransitGatewayMulticastDomainOutput
         -- Information about the transit gateway multicast domain.
         TransitGatewayMulticastDomain: TransitGatewayMulticastDomain
+    end
+
+    record CreateTransitGatewayNetworkFunctionAttachmentInput
+        -- The ID of the transit gateway. The transit gateway must be in the available state.
+        TransitGatewayId: string
+        -- The name of the Gateway Load Balancer endpoint service.
+        ServiceName: string
+        -- The names of the Availability Zones for the attachment. You must specify at least one Availability Zone,
+        -- using this parameter, AvailabilityZoneIds, or both.
+        -- Each Availability Zone must be supported by both the transit gateway and the endpoint service.
+        AvailabilityZones: {string}
+        -- The IDs of the Availability Zones for the attachment. You must specify at least one Availability Zone,
+        -- using this parameter, AvailabilityZones, or both.
+        -- Each Availability Zone must be supported by both the transit gateway and the endpoint service.
+        AvailabilityZoneIds: {string}
+        -- The tags to apply to the network function attachment.
+        TagSpecifications: {TagSpecification}
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    -- Contains information about a transit gateway network function attachment, including the attachment ID, the transit gateway, the endpoint service,
+    -- the Availability Zones, and the state of the attachment.
+    record TransitGatewayNetworkFunctionAttachment
+        -- The ID of the attachment.
+        TransitGatewayAttachmentId: string
+        -- The ID of the transit gateway.
+        TransitGatewayId: string
+        -- The ID of the Amazon Web Services account that owns the transit gateway.
+        TransitGatewayOwnerId: string
+        -- The ID of the Amazon Web Services account that owns the attachment.
+        ResourceOwnerId: string
+        -- The name of the Gateway Load Balancer endpoint service.
+        ResourceId: string
+        -- The names of the Availability Zones for the attachment.
+        AvailabilityZones: {string}
+        -- The IDs of the Availability Zones for the attachment.
+        AvailabilityZoneIds: {string}
+        -- The state of the attachment.
+        State: string
+        -- The date and time the attachment was created.
+        CreationTime: number
+        -- The tags for the attachment.
+        Tags: {Tag}
+    end
+
+    record CreateTransitGatewayNetworkFunctionAttachmentOutput
+        -- Information about the network function attachment.
+        TransitGatewayNetworkFunctionAttachment: TransitGatewayNetworkFunctionAttachment
     end
 
     -- Describes whether dynamic routing is enabled or disabled for the transit gateway peering request.
@@ -19863,6 +19957,20 @@ local record M
     record DeleteTransitGatewayMulticastDomainOutput
         -- Information about the deleted transit gateway multicast domain.
         TransitGatewayMulticastDomain: TransitGatewayMulticastDomain
+    end
+
+    record DeleteTransitGatewayNetworkFunctionAttachmentInput
+        -- The ID of the network function attachment.
+        TransitGatewayAttachmentId: string
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record DeleteTransitGatewayNetworkFunctionAttachmentOutput
+        -- Information about the deleted network function attachment.
+        TransitGatewayNetworkFunctionAttachment: TransitGatewayNetworkFunctionAttachment
     end
 
     record DeleteTransitGatewayPeeringAttachmentInput
@@ -30653,6 +30761,8 @@ local record M
         -- This is the full snapshot size and represents the size of all the blocks that were
         -- written to the source volume at the time the snapshot was created.
         FullSnapshotSizeInBytes: number
+        -- The additional KMS keys that are associated with the snapshot.
+        AssociatedKmsKeys: {AssociatedKmsKey}
         -- The ID of the snapshot. Each snapshot receives a unique identifier when it is
         -- created.
         SnapshotId: string
@@ -32341,6 +32451,33 @@ local record M
         NextToken: string
     end
 
+    record DescribeTransitGatewayNetworkFunctionAttachmentsInput
+        -- The IDs of the network function attachments.
+        TransitGatewayAttachmentIds: {string}
+        -- One or more filters. The possible values are:
+        -- service-name - The name of the Gateway Load Balancer endpoint service.
+        -- state - The state of the attachment. Valid values are available | deleted | deleting | failed | failing | modifying | pendingAcceptance | pending | rollingBack | rejected | rejecting.
+        -- transit-gateway-attachment-id - The ID of the attachment.
+        -- transit-gateway-id - The ID of the transit gateway.
+        Filters: {Filter}
+        -- The maximum number of results to return with a single call.
+        -- To retrieve the remaining results, make another call with the returned nextToken value.
+        MaxResults: number
+        -- The token for the next page of results.
+        NextToken: string
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record DescribeTransitGatewayNetworkFunctionAttachmentsOutput
+        -- Information about the network function attachments.
+        TransitGatewayNetworkFunctionAttachments: {TransitGatewayNetworkFunctionAttachment}
+        -- The token to use to retrieve the next page of results. This value is null when there are no more results to return.
+        NextToken: string
+    end
+
     record DescribeTransitGatewayPeeringAttachmentsInput
         -- One or more IDs of the transit gateway peering attachments.
         TransitGatewayAttachmentIds: {string}
@@ -33401,6 +33538,8 @@ local record M
         -- The filters.
         -- ip-address-type - The IP address type (ipv4 | ipv6).
         -- service-id - The ID of the service.
+        -- transit-gateway-attachment-id - The ID of the transit gateway
+        -- attachment.
         -- vpc-endpoint-owner - The ID of the Amazon Web Services account ID
         -- that owns the endpoint.
         -- vpc-endpoint-region - The Region of the endpoint or cross-region
@@ -33449,6 +33588,12 @@ local record M
         VpcEndpointRegion: string
         -- The payer responsibility settings for the endpoint.
         PayerResponsibilities: {PayerResponsibilityEntry}
+        -- The ID of the transit gateway attachment, if the connection is for a transit gateway
+        -- attachment.
+        TransitGatewayAttachmentId: string
+        -- The ID of the Amazon Web Services account that owns the transit gateway attachment, if the
+        -- connection is for a transit gateway attachment.
+        TransitGatewayAttachmentOwner: string
     end
 
     record DescribeVpcEndpointConnectionsOutput
@@ -33537,6 +33682,8 @@ local record M
         -- The ID of the service.
         ServiceId: string
         -- The filters.
+        -- permission-type - The permission type (vpc-endpoint |
+        -- transit-gateway-attachment).
         -- principal - The ARN of the principal.
         -- principal-type - The principal type (All |
         -- Service | OrganizationUnit | Account
@@ -34637,6 +34784,22 @@ local record M
     record DisassociateIpamResourceDiscoveryOutput
         -- A resource discovery association.
         IpamResourceDiscoveryAssociation: IpamResourceDiscoveryAssociation
+    end
+
+    record DisassociateKmsKeyIdInput
+        -- The ID of the Amazon EBS snapshot.
+        SnapshotId: string
+        -- The ID, alias, or ARN of the associated KMS key to remove from the snapshot.
+        KmsKeyId: string
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record DisassociateKmsKeyIdOutput
+        -- Returns true if the request succeeds; otherwise, it returns an error.
+        Return: boolean
     end
 
     record DisassociateNatGatewayAddressInput
@@ -41877,6 +42040,28 @@ local record M
         TransitGatewayMeteringPolicy: TransitGatewayMeteringPolicy
     end
 
+    record ModifyTransitGatewayNetworkFunctionAttachmentInput
+        -- The ID of the network function attachment.
+        TransitGatewayAttachmentId: string
+        -- The names of the Availability Zones to add to the attachment. You can't add and remove the same Availability Zone in a single request.
+        AddAvailabilityZones: {string}
+        -- The IDs of the Availability Zones to add to the attachment. You can't add and remove the same Availability Zone in a single request.
+        AddAvailabilityZoneIds: {string}
+        -- The names of the Availability Zones to remove from the attachment. Each Availability Zone must be currently in the attachment.
+        RemoveAvailabilityZones: {string}
+        -- The IDs of the Availability Zones to remove from the attachment. Each Availability Zone must be currently in the attachment.
+        RemoveAvailabilityZoneIds: {string}
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record ModifyTransitGatewayNetworkFunctionAttachmentOutput
+        -- Information about the network function attachment.
+        TransitGatewayNetworkFunctionAttachment: TransitGatewayNetworkFunctionAttachment
+    end
+
     record ModifyTransitGatewayPolicyTableEntryInput
         -- The ID of the transit gateway policy table.
         TransitGatewayPolicyTableId: string
@@ -42566,6 +42751,17 @@ local record M
         -- The Amazon Resource Names (ARN) of the principals.
         -- Permissions are revoked for principals in this list.
         RemoveAllowedPrincipals: {string}
+        -- The type of permission to add or remove. The permission type applies to all principals
+        -- in AddAllowedPrincipals and RemoveAllowedPrincipals.
+        -- vpc-endpoint - Principals can create VPC endpoints that connect to
+        -- the endpoint service.
+        -- transit-gateway-attachment - Principals can create transit gateway
+        -- attachments that connect to the endpoint service. This permission type is supported only
+        -- for Gateway Load Balancer endpoint services. You can grant it only to Amazon Web Services accounts
+        -- (arn:aws:iam::account-id:root). You can't grant it
+        -- to users, IAM roles, organizations, organizational units, or all principals (*).
+        -- Default: vpc-endpoint
+        PermissionType: string
     end
 
     record ModifyVpcEndpointServicePermissionsOutput
@@ -43453,7 +43649,14 @@ local record M
         -- The ID of the service.
         ServiceId: string
         -- The IDs of the VPC endpoints.
+        -- You must specify either VpcEndpointIds or TransitGatewayAttachmentIds,
+        -- but not both.
         VpcEndpointIds: {string}
+        -- The IDs of the transit gateway attachments to reject. This parameter is supported only for
+        -- Gateway Load Balancer endpoint services.
+        -- You must specify either VpcEndpointIds or TransitGatewayAttachmentIds,
+        -- but not both.
+        TransitGatewayAttachmentIds: {string}
     end
 
     record RejectVpcEndpointConnectionsOutput

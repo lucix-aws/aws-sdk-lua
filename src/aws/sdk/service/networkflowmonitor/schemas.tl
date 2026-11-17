@@ -10,6 +10,8 @@ local _N = "com.amazonaws.networkflowmonitor"
 
 local M: {string:any} = {}
 
+M.AccountToAddList = schema.new({ type = "list", list_member = M.AccountToAdd })
+
 M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
@@ -22,6 +24,16 @@ M.MonitorRemoteResources = schema.new({ type = "list", list_member = M.MonitorRe
 
 M.MonitorTopContributorsRowList = schema.new({ type = "list", list_member = M.MonitorTopContributorsRow })
 
+M.PerformanceMonitorSummaryList = schema.new({ type = "list", list_member = M.PerformanceMonitorSummary })
+
+M.PerformanceMonitorTargets = schema.new({ type = "list", list_member = M.PerformanceMonitorTarget })
+
+M.QueryFields = schema.new({ type = "list", list_member = M.QueryField })
+
+M.QueryData = schema.new({ type = "list", list_member = M.QueryRow })
+
+M.FilterParameters = schema.new({ type = "list", list_member = M.FilterParameter })
+
 M.ScopeSummaryList = schema.new({ type = "list", list_member = M.ScopeSummary })
 
 M.TargetResourceList = schema.new({ type = "list", list_member = M.TargetResource })
@@ -30,7 +42,11 @@ M.WorkloadInsightsTopContributorsRowList = schema.new({ type = "list", list_memb
 
 M.WorkloadInsightsTopContributorsDataPoints = schema.new({ type = "list", list_member = M.WorkloadInsightsTopContributorsDataPoint })
 
+M.QueryRow = schema.new({ type = "list", list_member = prelude.String })
+
 M.TraversedConstructsList = schema.new({ type = "list", list_member = M.TraversedComponent })
+
+M.FilterValues = schema.new({ type = "list", list_member = prelude.String })
 
 M.WorkloadInsightsTopContributorsTimestampsList = schema.new({ type = "list", list_member = prelude.Timestamp })
 
@@ -48,6 +64,105 @@ M.AccessDeniedException = schema.new({
             type = "string",
             name = "message",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AccountToAdd = schema.new({
+    id = id.from(_N, "AccountToAdd"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "AccountToAdd", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        region = schema.new({
+            id = id.from(_N, "AccountToAdd", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        membership = schema.new({
+            id = id.from(_N, "AccountToAdd", "membership"),
+            type = "string",
+            name = "membership",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ClientLocation = schema.new({
+    id = id.from(_N, "ClientLocation"),
+    type = "structure",
+    members = {
+        city = schema.new({
+            id = id.from(_N, "ClientLocation", "city"),
+            type = "string",
+            name = "city",
+            target_id = prelude.String.id,
+        }),
+        subdivision = schema.new({
+            id = id.from(_N, "ClientLocation", "subdivision"),
+            type = "string",
+            name = "subdivision",
+            target_id = prelude.String.id,
+        }),
+        country = schema.new({
+            id = id.from(_N, "ClientLocation", "country"),
+            type = "string",
+            name = "country",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Network = schema.new({
+    id = id.from(_N, "Network"),
+    type = "structure",
+    members = {
+        asName = schema.new({
+            id = id.from(_N, "Network", "asName"),
+            type = "string",
+            name = "asName",
+            target_id = prelude.String.id,
+        }),
+        asNumber = schema.new({
+            id = id.from(_N, "Network", "asNumber"),
+            type = "long",
+            name = "asNumber",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.AdditionalFlowInfo = schema.new({
+    id = id.from(_N, "AdditionalFlowInfo"),
+    type = "structure",
+    members = {
+        network = schema.new({
+            id = id.from(_N, "AdditionalFlowInfo", "network"),
+            type = "structure",
+            name = "network",
+            target_id = id.from(_N, "Network"),
+            target = M.Network,
+        }),
+        clientLocation = schema.new({
+            id = id.from(_N, "AdditionalFlowInfo", "clientLocation"),
+            type = "structure",
+            name = "clientLocation",
+            target_id = id.from(_N, "ClientLocation"),
+            target = M.ClientLocation,
         }),
     },
 })
@@ -321,6 +436,159 @@ M.ValidationException = schema.new({
     },
 })
 
+M.PerformanceMonitorTarget = schema.new({
+    id = id.from(_N, "PerformanceMonitorTarget"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "PerformanceMonitorTarget", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        identifier = schema.new({
+            id = id.from(_N, "PerformanceMonitorTarget", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreatePerformanceMonitorInput = schema.new({
+    id = id.from(_N, "CreatePerformanceMonitorInput"),
+    type = "structure",
+    members = {
+        monitorName = schema.new({
+            id = id.from(_N, "CreatePerformanceMonitorInput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scopeArn = schema.new({
+            id = id.from(_N, "CreatePerformanceMonitorInput", "scopeArn"),
+            type = "string",
+            name = "scopeArn",
+            target_id = prelude.String.id,
+        }),
+        targets = schema.new({
+            id = id.from(_N, "CreatePerformanceMonitorInput", "targets"),
+            type = "list",
+            name = "targets",
+            target_id = prelude.Document.id,
+            list_member = M.PerformanceMonitorTarget,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreatePerformanceMonitorInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreatePerformanceMonitorInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreatePerformanceMonitorOutput = schema.new({
+    id = id.from(_N, "CreatePerformanceMonitorOutput"),
+    type = "structure",
+    members = {
+        monitorArn = schema.new({
+            id = id.from(_N, "CreatePerformanceMonitorOutput", "monitorArn"),
+            type = "string",
+            name = "monitorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        monitorName = schema.new({
+            id = id.from(_N, "CreatePerformanceMonitorOutput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        monitorStatus = schema.new({
+            id = id.from(_N, "CreatePerformanceMonitorOutput", "monitorStatus"),
+            type = "string",
+            name = "monitorStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        monitorType = schema.new({
+            id = id.from(_N, "CreatePerformanceMonitorOutput", "monitorType"),
+            type = "string",
+            name = "monitorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        targets = schema.new({
+            id = id.from(_N, "CreatePerformanceMonitorOutput", "targets"),
+            type = "list",
+            name = "targets",
+            target_id = prelude.Document.id,
+            list_member = M.PerformanceMonitorTarget,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CreatePerformanceMonitorOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        modifiedAt = schema.new({
+            id = id.from(_N, "CreatePerformanceMonitorOutput", "modifiedAt"),
+            type = "timestamp",
+            name = "modifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreatePerformanceMonitorOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
 M.TargetId = schema.new({
     id = id.from(_N, "TargetId"),
     type = "union",
@@ -500,6 +768,28 @@ M.ResourceNotFoundException = schema.new({
     },
 })
 
+M.DeletePerformanceMonitorInput = schema.new({
+    id = id.from(_N, "DeletePerformanceMonitorInput"),
+    type = "structure",
+    members = {
+        monitorName = schema.new({
+            id = id.from(_N, "DeletePerformanceMonitorInput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeletePerformanceMonitorOutput = schema.new({
+    id = id.from(_N, "DeletePerformanceMonitorOutput"),
+    type = "structure",
+})
+
 M.DeleteScopeInput = schema.new({
     id = id.from(_N, "DeleteScopeInput"),
     type = "structure",
@@ -520,6 +810,41 @@ M.DeleteScopeInput = schema.new({
 M.DeleteScopeOutput = schema.new({
     id = id.from(_N, "DeleteScopeOutput"),
     type = "structure",
+})
+
+M.FilterParameter = schema.new({
+    id = id.from(_N, "FilterParameter"),
+    type = "structure",
+    members = {
+        field = schema.new({
+            id = id.from(_N, "FilterParameter", "field"),
+            type = "string",
+            name = "field",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        operator = schema.new({
+            id = id.from(_N, "FilterParameter", "operator"),
+            type = "string",
+            name = "operator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        values = schema.new({
+            id = id.from(_N, "FilterParameter", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
 })
 
 M.GetMonitorInput = schema.new({
@@ -610,6 +935,175 @@ M.GetMonitorOutput = schema.new({
         }),
         tags = schema.new({
             id = id.from(_N, "GetMonitorOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.GetMonitorScopeSuggestionsInput = schema.new({
+    id = id.from(_N, "GetMonitorScopeSuggestionsInput"),
+    type = "structure",
+    members = {
+        monitorArn = schema.new({
+            id = id.from(_N, "GetMonitorScopeSuggestionsInput", "monitorArn"),
+            type = "string",
+            name = "monitorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "monitorArn" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "GetMonitorScopeSuggestionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "GetMonitorScopeSuggestionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.GetMonitorScopeSuggestionsOutput = schema.new({
+    id = id.from(_N, "GetMonitorScopeSuggestionsOutput"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "GetMonitorScopeSuggestionsOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        accountsToAdd = schema.new({
+            id = id.from(_N, "GetMonitorScopeSuggestionsOutput", "accountsToAdd"),
+            type = "list",
+            name = "accountsToAdd",
+            target_id = prelude.Document.id,
+            list_member = M.AccountToAdd,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "GetMonitorScopeSuggestionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "GetMonitorScopeSuggestionsOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.GetPerformanceMonitorInput = schema.new({
+    id = id.from(_N, "GetPerformanceMonitorInput"),
+    type = "structure",
+    members = {
+        monitorName = schema.new({
+            id = id.from(_N, "GetPerformanceMonitorInput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetPerformanceMonitorOutput = schema.new({
+    id = id.from(_N, "GetPerformanceMonitorOutput"),
+    type = "structure",
+    members = {
+        monitorArn = schema.new({
+            id = id.from(_N, "GetPerformanceMonitorOutput", "monitorArn"),
+            type = "string",
+            name = "monitorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        monitorName = schema.new({
+            id = id.from(_N, "GetPerformanceMonitorOutput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        monitorStatus = schema.new({
+            id = id.from(_N, "GetPerformanceMonitorOutput", "monitorStatus"),
+            type = "string",
+            name = "monitorStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        monitorType = schema.new({
+            id = id.from(_N, "GetPerformanceMonitorOutput", "monitorType"),
+            type = "string",
+            name = "monitorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        targets = schema.new({
+            id = id.from(_N, "GetPerformanceMonitorOutput", "targets"),
+            type = "list",
+            name = "targets",
+            target_id = prelude.Document.id,
+            list_member = M.PerformanceMonitorTarget,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetPerformanceMonitorOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        modifiedAt = schema.new({
+            id = id.from(_N, "GetPerformanceMonitorOutput", "modifiedAt"),
+            type = "timestamp",
+            name = "modifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "GetPerformanceMonitorOutput", "tags"),
             type = "map",
             name = "tags",
             target_id = prelude.Document.id,
@@ -894,6 +1388,13 @@ M.MonitorTopContributorsRow = schema.new({
             name = "remoteVpcArn",
             target_id = prelude.String.id,
         }),
+        additionalFlowInfo = schema.new({
+            id = id.from(_N, "MonitorTopContributorsRow", "additionalFlowInfo"),
+            type = "structure",
+            name = "additionalFlowInfo",
+            target_id = id.from(_N, "AdditionalFlowInfo"),
+            target = M.AdditionalFlowInfo,
+        }),
     },
 })
 
@@ -916,6 +1417,109 @@ M.GetQueryResultsMonitorTopContributorsOutput = schema.new({
         }),
         nextToken = schema.new({
             id = id.from(_N, "GetQueryResultsMonitorTopContributorsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetQueryResultsPerformanceMonitorInput = schema.new({
+    id = id.from(_N, "GetQueryResultsPerformanceMonitorInput"),
+    type = "structure",
+    members = {
+        monitorName = schema.new({
+            id = id.from(_N, "GetQueryResultsPerformanceMonitorInput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        queryId = schema.new({
+            id = id.from(_N, "GetQueryResultsPerformanceMonitorInput", "queryId"),
+            type = "string",
+            name = "queryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "GetQueryResultsPerformanceMonitorInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "GetQueryResultsPerformanceMonitorInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.QueryField = schema.new({
+    id = id.from(_N, "QueryField"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "QueryField", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "QueryField", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetQueryResultsPerformanceMonitorOutput = schema.new({
+    id = id.from(_N, "GetQueryResultsPerformanceMonitorOutput"),
+    type = "structure",
+    members = {
+        fields = schema.new({
+            id = id.from(_N, "GetQueryResultsPerformanceMonitorOutput", "fields"),
+            type = "list",
+            name = "fields",
+            target_id = prelude.Document.id,
+            list_member = M.QueryField,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        data = schema.new({
+            id = id.from(_N, "GetQueryResultsPerformanceMonitorOutput", "data"),
+            type = "list",
+            name = "data",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "list", list_member = prelude.String }),
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "GetQueryResultsPerformanceMonitorOutput", "nextToken"),
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
@@ -1205,6 +1809,49 @@ M.GetQueryStatusMonitorTopContributorsOutput = schema.new({
     },
 })
 
+M.GetQueryStatusPerformanceMonitorInput = schema.new({
+    id = id.from(_N, "GetQueryStatusPerformanceMonitorInput"),
+    type = "structure",
+    members = {
+        monitorName = schema.new({
+            id = id.from(_N, "GetQueryStatusPerformanceMonitorInput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        queryId = schema.new({
+            id = id.from(_N, "GetQueryStatusPerformanceMonitorInput", "queryId"),
+            type = "string",
+            name = "queryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetQueryStatusPerformanceMonitorOutput = schema.new({
+    id = id.from(_N, "GetQueryStatusPerformanceMonitorOutput"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "GetQueryStatusPerformanceMonitorOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetQueryStatusWorkloadInsightsTopContributorsInput = schema.new({
     id = id.from(_N, "GetQueryStatusWorkloadInsightsTopContributorsInput"),
     type = "structure",
@@ -1444,6 +2091,122 @@ M.ListMonitorsOutput = schema.new({
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListMonitorsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListPerformanceMonitorsInput = schema.new({
+    id = id.from(_N, "ListPerformanceMonitorsInput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListPerformanceMonitorsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListPerformanceMonitorsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        monitorStatus = schema.new({
+            id = id.from(_N, "ListPerformanceMonitorsInput", "monitorStatus"),
+            type = "string",
+            name = "monitorStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "monitorStatus" },
+            },
+        }),
+        monitorType = schema.new({
+            id = id.from(_N, "ListPerformanceMonitorsInput", "monitorType"),
+            type = "string",
+            name = "monitorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "monitorType" },
+            },
+        }),
+    },
+})
+
+M.PerformanceMonitorSummary = schema.new({
+    id = id.from(_N, "PerformanceMonitorSummary"),
+    type = "structure",
+    members = {
+        monitorArn = schema.new({
+            id = id.from(_N, "PerformanceMonitorSummary", "monitorArn"),
+            type = "string",
+            name = "monitorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        monitorName = schema.new({
+            id = id.from(_N, "PerformanceMonitorSummary", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        monitorStatus = schema.new({
+            id = id.from(_N, "PerformanceMonitorSummary", "monitorStatus"),
+            type = "string",
+            name = "monitorStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        monitorType = schema.new({
+            id = id.from(_N, "PerformanceMonitorSummary", "monitorType"),
+            type = "string",
+            name = "monitorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        targets = schema.new({
+            id = id.from(_N, "PerformanceMonitorSummary", "targets"),
+            type = "list",
+            name = "targets",
+            target_id = prelude.Document.id,
+            list_member = M.PerformanceMonitorTarget,
+        }),
+    },
+})
+
+M.ListPerformanceMonitorsOutput = schema.new({
+    id = id.from(_N, "ListPerformanceMonitorsOutput"),
+    type = "structure",
+    members = {
+        monitors = schema.new({
+            id = id.from(_N, "ListPerformanceMonitorsOutput", "monitors"),
+            type = "list",
+            name = "monitors",
+            target_id = prelude.Document.id,
+            list_member = M.PerformanceMonitorSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListPerformanceMonitorsOutput", "nextToken"),
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
@@ -1799,6 +2562,232 @@ M.UpdateMonitorOutput = schema.new({
         }),
         tags = schema.new({
             id = id.from(_N, "UpdateMonitorOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.StartQueryPerformanceMonitorInput = schema.new({
+    id = id.from(_N, "StartQueryPerformanceMonitorInput"),
+    type = "structure",
+    members = {
+        monitorName = schema.new({
+            id = id.from(_N, "StartQueryPerformanceMonitorInput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        startTime = schema.new({
+            id = id.from(_N, "StartQueryPerformanceMonitorInput", "startTime"),
+            type = "timestamp",
+            name = "startTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        endTime = schema.new({
+            id = id.from(_N, "StartQueryPerformanceMonitorInput", "endTime"),
+            type = "timestamp",
+            name = "endTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        queryType = schema.new({
+            id = id.from(_N, "StartQueryPerformanceMonitorInput", "queryType"),
+            type = "string",
+            name = "queryType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        filterParameters = schema.new({
+            id = id.from(_N, "StartQueryPerformanceMonitorInput", "filterParameters"),
+            type = "list",
+            name = "filterParameters",
+            target_id = prelude.Document.id,
+            list_member = M.FilterParameter,
+        }),
+        limit = schema.new({
+            id = id.from(_N, "StartQueryPerformanceMonitorInput", "limit"),
+            type = "integer",
+            name = "limit",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.StartQueryPerformanceMonitorOutput = schema.new({
+    id = id.from(_N, "StartQueryPerformanceMonitorOutput"),
+    type = "structure",
+    members = {
+        queryId = schema.new({
+            id = id.from(_N, "StartQueryPerformanceMonitorOutput", "queryId"),
+            type = "string",
+            name = "queryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StopQueryPerformanceMonitorInput = schema.new({
+    id = id.from(_N, "StopQueryPerformanceMonitorInput"),
+    type = "structure",
+    members = {
+        monitorName = schema.new({
+            id = id.from(_N, "StopQueryPerformanceMonitorInput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        queryId = schema.new({
+            id = id.from(_N, "StopQueryPerformanceMonitorInput", "queryId"),
+            type = "string",
+            name = "queryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.StopQueryPerformanceMonitorOutput = schema.new({
+    id = id.from(_N, "StopQueryPerformanceMonitorOutput"),
+    type = "structure",
+})
+
+M.UpdatePerformanceMonitorInput = schema.new({
+    id = id.from(_N, "UpdatePerformanceMonitorInput"),
+    type = "structure",
+    members = {
+        monitorName = schema.new({
+            id = id.from(_N, "UpdatePerformanceMonitorInput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        targetsToAdd = schema.new({
+            id = id.from(_N, "UpdatePerformanceMonitorInput", "targetsToAdd"),
+            type = "list",
+            name = "targetsToAdd",
+            target_id = prelude.Document.id,
+            list_member = M.PerformanceMonitorTarget,
+        }),
+        targetsToRemove = schema.new({
+            id = id.from(_N, "UpdatePerformanceMonitorInput", "targetsToRemove"),
+            type = "list",
+            name = "targetsToRemove",
+            target_id = prelude.Document.id,
+            list_member = M.PerformanceMonitorTarget,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "UpdatePerformanceMonitorInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.UpdatePerformanceMonitorOutput = schema.new({
+    id = id.from(_N, "UpdatePerformanceMonitorOutput"),
+    type = "structure",
+    members = {
+        monitorArn = schema.new({
+            id = id.from(_N, "UpdatePerformanceMonitorOutput", "monitorArn"),
+            type = "string",
+            name = "monitorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        monitorName = schema.new({
+            id = id.from(_N, "UpdatePerformanceMonitorOutput", "monitorName"),
+            type = "string",
+            name = "monitorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        monitorStatus = schema.new({
+            id = id.from(_N, "UpdatePerformanceMonitorOutput", "monitorStatus"),
+            type = "string",
+            name = "monitorStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        monitorType = schema.new({
+            id = id.from(_N, "UpdatePerformanceMonitorOutput", "monitorType"),
+            type = "string",
+            name = "monitorType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        targets = schema.new({
+            id = id.from(_N, "UpdatePerformanceMonitorOutput", "targets"),
+            type = "list",
+            name = "targets",
+            target_id = prelude.Document.id,
+            list_member = M.PerformanceMonitorTarget,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "UpdatePerformanceMonitorOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        modifiedAt = schema.new({
+            id = id.from(_N, "UpdatePerformanceMonitorOutput", "modifiedAt"),
+            type = "timestamp",
+            name = "modifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "UpdatePerformanceMonitorOutput", "tags"),
             type = "map",
             name = "tags",
             target_id = prelude.Document.id,
@@ -2196,6 +3185,18 @@ M.CreateMonitor = schema.operation({
     },
 })
 
+M.CreatePerformanceMonitor = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "CreatePerformanceMonitor"),
+    input = M.CreatePerformanceMonitorInput,
+    output = M.CreatePerformanceMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/performance-monitors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateScope = schema.operation({
     id = id.from("com.amazonaws.networkflowmonitor", "CreateScope"),
     input = M.CreateScopeInput,
@@ -2214,6 +3215,18 @@ M.DeleteMonitor = schema.operation({
     output = M.DeleteMonitorOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/monitors/{monitorName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePerformanceMonitor = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "DeletePerformanceMonitor"),
+    input = M.DeletePerformanceMonitorInput,
+    output = M.DeletePerformanceMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/performance-monitors/{monitorName}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -2244,12 +3257,48 @@ M.GetMonitor = schema.operation({
     },
 })
 
+M.GetMonitorScopeSuggestions = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "GetMonitorScopeSuggestions"),
+    input = M.GetMonitorScopeSuggestionsInput,
+    output = M.GetMonitorScopeSuggestionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/monitor-scope-suggestions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPerformanceMonitor = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "GetPerformanceMonitor"),
+    input = M.GetPerformanceMonitorInput,
+    output = M.GetPerformanceMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/performance-monitors/{monitorName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetQueryResultsMonitorTopContributors = schema.operation({
     id = id.from("com.amazonaws.networkflowmonitor", "GetQueryResultsMonitorTopContributors"),
     input = M.GetQueryResultsMonitorTopContributorsInput,
     output = M.GetQueryResultsMonitorTopContributorsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/monitors/{monitorName}/topContributorsQueries/{queryId}/results" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueryResultsPerformanceMonitor = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "GetQueryResultsPerformanceMonitor"),
+    input = M.GetQueryResultsPerformanceMonitorInput,
+    output = M.GetQueryResultsPerformanceMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/performance-monitors/{monitorName}/queries/{queryId}/results" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -2286,6 +3335,18 @@ M.GetQueryStatusMonitorTopContributors = schema.operation({
     output = M.GetQueryStatusMonitorTopContributorsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/monitors/{monitorName}/topContributorsQueries/{queryId}/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQueryStatusPerformanceMonitor = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "GetQueryStatusPerformanceMonitor"),
+    input = M.GetQueryStatusPerformanceMonitorInput,
+    output = M.GetQueryStatusPerformanceMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/performance-monitors/{monitorName}/queries/{queryId}/status" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -2340,6 +3401,18 @@ M.ListMonitors = schema.operation({
     },
 })
 
+M.ListPerformanceMonitors = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "ListPerformanceMonitors"),
+    input = M.ListPerformanceMonitorsInput,
+    output = M.ListPerformanceMonitorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/performance-monitors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListScopes = schema.operation({
     id = id.from("com.amazonaws.networkflowmonitor", "ListScopes"),
     input = M.ListScopesInput,
@@ -2376,6 +3449,18 @@ M.StartQueryMonitorTopContributors = schema.operation({
     },
 })
 
+M.StartQueryPerformanceMonitor = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "StartQueryPerformanceMonitor"),
+    input = M.StartQueryPerformanceMonitorInput,
+    output = M.StartQueryPerformanceMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/performance-monitors/{monitorName}/queries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.StartQueryWorkloadInsightsTopContributors = schema.operation({
     id = id.from("com.amazonaws.networkflowmonitor", "StartQueryWorkloadInsightsTopContributors"),
     input = M.StartQueryWorkloadInsightsTopContributorsInput,
@@ -2406,6 +3491,18 @@ M.StopQueryMonitorTopContributors = schema.operation({
     output = M.StopQueryMonitorTopContributorsOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/monitors/{monitorName}/topContributorsQueries/{queryId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopQueryPerformanceMonitor = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "StopQueryPerformanceMonitor"),
+    input = M.StopQueryPerformanceMonitorInput,
+    output = M.StopQueryPerformanceMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/performance-monitors/{monitorName}/queries/{queryId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -2466,6 +3563,18 @@ M.UpdateMonitor = schema.operation({
     output = M.UpdateMonitorOutput,
     traits = {
         [traits.HTTP] = { method = "PATCH", path = "/monitors/{monitorName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdatePerformanceMonitor = schema.operation({
+    id = id.from("com.amazonaws.networkflowmonitor", "UpdatePerformanceMonitor"),
+    input = M.UpdatePerformanceMonitorInput,
+    output = M.UpdatePerformanceMonitorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/performance-monitors/{monitorName}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

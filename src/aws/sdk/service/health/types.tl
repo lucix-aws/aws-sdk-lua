@@ -2,6 +2,14 @@
 
 local record M
 
+    -- An entity representing an affected account, including its account ID and associated tags.
+    record AccountEntity
+        -- The 12-digit Amazon Web Services account numbers that contains the affected entities.
+        accountId: string
+        -- A map of tag key-value pairs attached to the affected account.
+        accountTags: {string : string}
+    end
+
     enum entityStatusCode
         "IMPAIRED"
         "UNIMPAIRED"
@@ -18,6 +26,31 @@ local record M
         count: number
         -- The number of affected entities aggregated by the entity status codes.
         statuses: {string : number}
+    end
+
+    enum AccountTagType
+        "ACCOUNT_RESOURCE_TAG"
+    end
+
+    -- A tag key-value pair associated with a resource in an account.
+    record AccountTag
+        -- The tag key.
+        key: string
+        -- The tag value.
+        value: string
+    end
+
+    -- A filter for narrowing down affected accounts in an organization event.
+    record AffectedAccountFilter
+        -- The unique identifier for the event. The event ARN has the
+        -- arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
+        -- format.
+        -- For example, an event ARN might look like the following:
+        -- arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
+        eventArn: string
+        -- A map of tag keys to lists of tag values. A tag matches when its key is in the map and its value is one of the values listed for that key. Matching is case sensitive, and the filter matches when at least one key in the map matches.
+        -- An account is returned when its own tags, or the tags of one of its affected resources, match.
+        tags: {string : {string}}
     end
 
     -- Information about an entity that is affected by a Health event.
@@ -42,11 +75,58 @@ local record M
         -- The most recent status of the entity affected by the event. The possible values are
         -- IMPAIRED, UNIMPAIRED, UNKNOWN, PENDING, and RESOLVED.
         statusCode: string
-        -- A map of entity tags attached to the affected entity.
+        -- A map of resource tag key-value pairs attached to the affected entity.
+        resourceTags: {string : string}
+        -- A map of account tag key-value pairs attached to the affected entity.
+        accountTags: {string : string}
+        -- A map of resource tag key-value pairs attached to the affected entity.
         -- Currently, the tags property isn't supported.
         tags: {string : string}
         -- Additional metadata about the affected entity.
         entityMetadata: {string : string}
+    end
+
+    enum TagKeyStatus
+        "PENDING"
+        "ACTIVE"
+    end
+
+    -- A resource tag key configured for Health event tracking.
+    record ResourceTagKey
+        -- The tag key name.
+        key: string
+        -- Whether this tag key is enabled for EventBridge notifications.
+        enabledForEventBridge: boolean
+        -- The current status of the tag key configuration.
+        status: string
+    end
+
+    record ConfigureTagsInput
+        -- The list of resource tag keys to configure for Health event tracking.
+        tagKeys: {ResourceTagKey}
+    end
+
+    record ConfigureTagsOutput
+        -- The list of resource tag keys that were successfully configured.
+        configuredTagKeys: {ResourceTagKey}
+    end
+
+    -- A tag key configured for an organization.
+    record TagKeyForOrganization
+        -- The tag key name.
+        key: string
+        -- Whether this tag key is enabled for EventBridge notifications.
+        enabledForEventBridge: boolean
+    end
+
+    record ConfigureTagsForOrganizationInput
+        -- The list of tag keys to configure for Health event tracking across the organization.
+        tagKeys: {TagKeyForOrganization}
+    end
+
+    record ConfigureTagsForOrganizationOutput
+        -- The list of tag keys that were successfully configured for the organization.
+        configuredTagKeys: {TagKeyForOrganization}
     end
 
     record DescribeAffectedAccountsForOrganizationInput
@@ -63,6 +143,8 @@ local record M
         nextToken: string
         -- The maximum number of items to return in one batch, between 10 and 100, inclusive.
         maxResults: number
+        -- Values to narrow the results returned.
+        filter: AffectedAccountFilter
     end
 
     enum eventScopeCode
@@ -74,6 +156,8 @@ local record M
     record DescribeAffectedAccountsForOrganizationOutput
         -- A JSON set of elements of the affected accounts.
         affectedAccounts: {string}
+        -- The list of affected account entities, including account IDs and their associated tags.
+        affectedAccountEntities: {AccountEntity}
         -- This parameter specifies if the Health event is a public Amazon Web Services service event or an account-specific event.
         -- If the eventScopeCode value is PUBLIC, then the
         -- affectedAccounts value is always empty.
@@ -122,9 +206,9 @@ local record M
         entityValues: {string}
         -- A list of the most recent dates and times that the entity was updated.
         lastUpdatedTimes: {DateTimeRange}
-        -- A map of entity tags attached to the affected entity.
+        -- A map of resource tag key-value pairs to filter affected entities.
         -- Currently, the tags property isn't supported.
-        tags: {{string : string}}
+        tags: {string : {string}}
         -- A list of entity status codes (IMPAIRED, UNIMPAIRED, or
         -- UNKNOWN).
         statusCodes: {string}
@@ -171,6 +255,9 @@ local record M
         awsAccountId: string
         -- A list of entity status codes.
         statusCodes: {string}
+        -- A map of tag keys to lists of tag values. A tag matches when its key is in the map and its value is one of the values listed for that key. Matching is case sensitive, and the filter matches when at least one key in the map matches.
+        -- An entity is returned when the tags of the resource, or of the account it belongs to, match. When you specify several filters in organizationEntityAccountFilters, the tags must be identical in every filter.
+        tags: {string : {string}}
     end
 
     -- The values used to filter results from the DescribeEventDetailsForOrganization and DescribeAffectedEntitiesForOrganization operations.
@@ -238,9 +325,18 @@ local record M
         nextToken: string
     end
 
+    -- A filter for narrowing down the entity aggregates returned by DescribeEntityAggregates.
+    record EntityAggregateFilter
+        -- A map of tag keys to lists of tag values. A tag matches when its key is in the map and its value is one of the values listed for that key. Matching is case sensitive, and the filter matches when at least one key in the map matches.
+        -- Only entities whose tags match are included in the aggregates.
+        tags: {string : {string}}
+    end
+
     record DescribeEntityAggregatesInput
         -- A list of event ARNs (unique identifiers). For example: "arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-CDE456", "arn:aws:health:us-west-1::event/EBS/AWS_EBS_LOST_VOLUME/AWS_EBS_LOST_VOLUME_CHI789_JKL101"
         eventArns: {string}
+        -- Values to narrow the results returned.
+        filter: EntityAggregateFilter
     end
 
     -- The number of entities that are affected by one or more events. Returned by the DescribeEntityAggregates operation.
@@ -262,11 +358,20 @@ local record M
         entityAggregates: {EntityAggregate}
     end
 
+    -- A filter for narrowing down the entity aggregates returned by DescribeEntityAggregatesForOrganization.
+    record OrganizationEntityAggregateFilter
+        -- A map of tag keys to lists of tag values. A tag matches when its key is in the map and its value is one of the values listed for that key. Matching is case sensitive, and the filter matches when at least one key in the map matches.
+        -- Only entities whose tags match are included in the aggregates.
+        tags: {string : {string}}
+    end
+
     record DescribeEntityAggregatesForOrganizationInput
         -- A list of event ARNs (unique identifiers). For example: "arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-CDE456", "arn:aws:health:us-west-1::event/EBS/AWS_EBS_LOST_VOLUME/AWS_EBS_LOST_VOLUME_CHI789_JKL101"
         eventArns: {string}
         -- A list of 12-digit Amazon Web Services account numbers that contains the affected entities.
         awsAccountIds: {string}
+        -- Values to narrow the results returned.
+        filter: OrganizationEntityAggregateFilter
     end
 
     -- The aggregate results of entities affected by the specified event in your organization.
@@ -347,9 +452,9 @@ local record M
         -- issue, accountNotification, or scheduledChange. Currently,
         -- the investigation value isn't supported at this time.
         eventTypeCategories: {string}
-        -- A map of entity tags attached to the affected entity.
+        -- A map of resource tag key-value pairs to filter affected entities.
         -- Currently, the tags property isn't supported.
-        tags: {{string : string}}
+        tags: {string : {string}}
         -- A list of event status codes.
         eventStatusCodes: {string}
         -- A list of persona values to filter events. Use this to filter events based on their target audience: OPERATIONS, SECURITY, or BILLING.
@@ -521,7 +626,7 @@ local record M
         -- We couldn't find a public event that matches your request. To find an event that is account specific, you must enter an Amazon Web Services account ID in the request.
         -- We couldn't find an account specific event for the specified Amazon Web Services account. To find an event that is public, you must enter a null value for the Amazon Web Services account ID in the request.
         -- Your Amazon Web Services account doesn't include the Amazon Web Services Support plan required to use the
-        -- Health API. You must have either a Business, Enterprise On-Ramp, or Enterprise Support plan.
+        -- Health API. You must have either a Amazon Web Services Business Support+, Amazon Web Services Enterprise Support, or Amazon Web Services Unified Operations plan.
         errorMessage: string
     end
 
@@ -594,6 +699,9 @@ local record M
         eventStatusCodes: {string}
         -- A list of persona values to filter events. Use this to filter events based on their target audience: OPERATIONS, SECURITY, or BILLING.
         personas: {string}
+        -- A map of tag keys to lists of tag values. A tag matches when its key is in the map and its value is one of the values listed for that key. Matching is case sensitive, and the filter matches when at least one key in the map matches.
+        -- An event is returned when one of its affected accounts, or one of the entities of those accounts, has tags that match.
+        tags: {string : {string}}
     end
 
     record DescribeEventsForOrganizationInput
@@ -780,7 +888,7 @@ local record M
         -- retrieve the next batch of results, reissue the search request and include the returned token.
         -- When all results have been returned, the response does not contain a pagination token value.
         nextToken: string
-        -- The maximum number of items to return in one batch, between 1 and 20, inclusive.
+        -- The maximum number of items to return in one batch, between 10 and 100, inclusive.
         maxResults: number
     end
 
@@ -822,6 +930,119 @@ local record M
         nextToken: string
     end
 
+    record DescribeTagKeysInput
+    end
+
+    record DescribeTagKeysOutput
+        -- The list of configured resource tag keys and their status.
+        keys: {ResourceTagKey}
+    end
+
+    record DescribeTagKeysForOrganizationInput
+    end
+
+    -- A tag key configured for Health event tracking across an organization.
+    record OrganizationTagKey
+        -- The tag key name.
+        key: string
+        -- Whether this tag key is enabled for EventBridge notifications.
+        enabledForEventBridge: boolean
+        -- The current status of the tag key configuration.
+        status: string
+    end
+
+    record DescribeTagKeysForOrganizationOutput
+        -- The list of configured tag keys for the organization and their status.
+        keys: {OrganizationTagKey}
+    end
+
+    record DescribeTagsInput
+        -- If the results of a search are large, only a portion of the
+        -- results are returned, and a nextToken pagination token is returned in the response. To
+        -- retrieve the next batch of results, reissue the search request and include the returned token.
+        -- When all results have been returned, the response does not contain a pagination token value.
+        nextToken: string
+        -- The maximum number of items to return in one batch, between 10 and 100, inclusive.
+        maxResults: number
+    end
+
+    record DescribeTagsOutput
+        -- The list of resource tags associated with Health events.
+        tags: {AccountTag}
+        -- If the results of a search are large, only a portion of the
+        -- results are returned, and a nextToken pagination token is returned in the response. To
+        -- retrieve the next batch of results, reissue the search request and include the returned token.
+        -- When all results have been returned, the response does not contain a pagination token value.
+        nextToken: string
+    end
+
+    enum OrganizationTagType
+        "ORGANIZATION_RESOURCE_TAG"
+        "ORGANIZATION_ACCOUNT_TAG"
+    end
+
+    -- A filter for narrowing down the tags returned by DescribeTagsForOrganization.
+    record DescribeTagsForOrganizationFilter
+        -- The types of tags to include in the results.
+        tagTypes: {string}
+    end
+
+    record DescribeTagsForOrganizationInput
+        -- Values to narrow the results returned.
+        filter: DescribeTagsForOrganizationFilter
+        -- If the results of a search are large, only a portion of the
+        -- results are returned, and a nextToken pagination token is returned in the response. To
+        -- retrieve the next batch of results, reissue the search request and include the returned token.
+        -- When all results have been returned, the response does not contain a pagination token value.
+        nextToken: string
+        -- The maximum number of items to return in one batch, between 10 and 100, inclusive.
+        maxResults: number
+    end
+
+    -- A tag key-value pair associated with a resource across an organization.
+    record OrganizationTag
+        -- The tag key.
+        key: string
+        -- The tag value.
+        value: string
+    end
+
+    record DescribeTagsForOrganizationOutput
+        -- The list of tags associated with Health events across the organization.
+        tags: {OrganizationTag}
+        -- If the results of a search are large, only a portion of the
+        -- results are returned, and a nextToken pagination token is returned in the response. To
+        -- retrieve the next batch of results, reissue the search request and include the returned token.
+        -- When all results have been returned, the response does not contain a pagination token value.
+        nextToken: string
+    end
+
+    record DescribeTagsOnboardingStatusInput
+    end
+
+    enum TagsOnboardingStatus
+        "ENABLED"
+        "DISABLED"
+    end
+
+    record DescribeTagsOnboardingStatusOutput
+        -- The current onboarding status of the tags feature for the account.
+        status: string
+    end
+
+    record DescribeTagsOnboardingStatusForOrganizationInput
+    end
+
+    enum TagsOnboardingStatusForOrganization
+        "ENABLED"
+        "DISABLED"
+    end
+
+    record DescribeTagsOnboardingStatusForOrganizationOutput
+        -- The current onboarding status of the tags feature for the organization.
+        status: string
+    end
+
     -- EnableHealthServiceAccessForOrganization is already in progress. Wait for the
     -- action to complete before trying again. To get the current status, use the DescribeHealthServiceStatusForOrganization operation.
     record ConcurrentModificationException
@@ -834,10 +1055,34 @@ local record M
     record DisableHealthServiceAccessForOrganizationOutput
     end
 
+    record DisableTagsInput
+    end
+
+    record DisableTagsOutput
+    end
+
+    record DisableTagsForOrganizationInput
+    end
+
+    record DisableTagsForOrganizationOutput
+    end
+
     record EnableHealthServiceAccessForOrganizationInput
     end
 
     record EnableHealthServiceAccessForOrganizationOutput
+    end
+
+    record EnableTagsInput
+    end
+
+    record EnableTagsOutput
+    end
+
+    record EnableTagsForOrganizationInput
+    end
+
+    record EnableTagsForOrganizationOutput
     end
 
 end

@@ -8,37 +8,246 @@ local endpoint = require("smithy.endpoint")
 local ruleset = require("aws.sdk.service.dynamodbstreams.endpoint_rules")
 
 describe("endpoint rules", function()
-    it("For custom endpoint with region not set and fips disabled", function()
+    it("For region af-south-1 with FIPS disabled and DualStack disabled", function()
         local params = {
-            Endpoint = "https://example.com",
+            Region = "af-south-1",
             UseFIPS = false,
+            UseDualStack = false,
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://example.com", result.url)
+        assert.are.equal("https://streams.dynamodb.af-south-1.amazonaws.com", result.url)
     end)
 
-    it("For custom endpoint with fips enabled", function()
+    it("For region ap-east-1 with FIPS disabled and DualStack disabled", function()
         local params = {
-            Endpoint = "https://example.com",
-            UseFIPS = true,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_nil(result, "expected error but got result")
-        assert.is_not_nil(err, "expected error but got nil")
-        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
-    end)
-
-    it("For custom endpoint with fips disabled and dualstack enabled", function()
-        local params = {
-            Endpoint = "https://example.com",
+            Region = "ap-east-1",
             UseFIPS = false,
-            UseDualStack = true,
+            UseDualStack = false,
         }
         local result, err = endpoint.resolve(ruleset, params)
-        assert.is_nil(result, "expected error but got result")
-        assert.is_not_nil(err, "expected error but got nil")
-        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.ap-east-1.amazonaws.com", result.url)
+    end)
+
+    it("For region ap-northeast-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "ap-northeast-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.ap-northeast-1.amazonaws.com", result.url)
+    end)
+
+    it("For region ap-northeast-2 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "ap-northeast-2",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.ap-northeast-2.amazonaws.com", result.url)
+    end)
+
+    it("For region ap-northeast-3 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "ap-northeast-3",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.ap-northeast-3.amazonaws.com", result.url)
+    end)
+
+    it("For region ap-south-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "ap-south-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.ap-south-1.amazonaws.com", result.url)
+    end)
+
+    it("For region ap-southeast-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "ap-southeast-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.ap-southeast-1.amazonaws.com", result.url)
+    end)
+
+    it("For region ap-southeast-2 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "ap-southeast-2",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.ap-southeast-2.amazonaws.com", result.url)
+    end)
+
+    it("For region ap-southeast-3 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "ap-southeast-3",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.ap-southeast-3.amazonaws.com", result.url)
+    end)
+
+    it("For region ca-central-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "ca-central-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.ca-central-1.amazonaws.com", result.url)
+    end)
+
+    it("For region eu-central-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "eu-central-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.eu-central-1.amazonaws.com", result.url)
+    end)
+
+    it("For region eu-north-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "eu-north-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.eu-north-1.amazonaws.com", result.url)
+    end)
+
+    it("For region eu-south-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "eu-south-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.eu-south-1.amazonaws.com", result.url)
+    end)
+
+    it("For region eu-west-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "eu-west-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("For region eu-west-2 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "eu-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.eu-west-2.amazonaws.com", result.url)
+    end)
+
+    it("For region eu-west-3 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "eu-west-3",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.eu-west-3.amazonaws.com", result.url)
+    end)
+
+    it("For region me-south-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "me-south-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.me-south-1.amazonaws.com", result.url)
+    end)
+
+    it("For region sa-east-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "sa-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.sa-east-1.amazonaws.com", result.url)
+    end)
+
+    it("For region us-east-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("For region us-east-2 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "us-east-2",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-2.amazonaws.com", result.url)
+    end)
+
+    it("For region us-west-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "us-west-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-west-1.amazonaws.com", result.url)
+    end)
+
+    it("For region us-west-2 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-west-2.amazonaws.com", result.url)
     end)
 
     it("For region us-east-1 with FIPS enabled and DualStack enabled", function()
@@ -74,48 +283,15 @@ describe("endpoint rules", function()
         assert.are.equal("https://streams-dynamodb.us-east-1.api.aws", result.url)
     end)
 
-    it("For region us-east-1 with FIPS disabled and DualStack disabled", function()
+    it("For region cn-north-1 with FIPS disabled and DualStack disabled", function()
         local params = {
-            Region = "us-east-1",
+            Region = "cn-north-1",
             UseFIPS = false,
             UseDualStack = false,
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
-    end)
-
-    it("For region cn-northwest-1 with FIPS enabled and DualStack enabled", function()
-        local params = {
-            Region = "cn-northwest-1",
-            UseFIPS = true,
-            UseDualStack = true,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://streams-dynamodb-fips.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
-    end)
-
-    it("For region cn-northwest-1 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "cn-northwest-1",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://streams.dynamodb-fips.cn-northwest-1.amazonaws.com.cn", result.url)
-    end)
-
-    it("For region cn-northwest-1 with FIPS disabled and DualStack enabled", function()
-        local params = {
-            Region = "cn-northwest-1",
-            UseFIPS = false,
-            UseDualStack = true,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://streams-dynamodb.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+        assert.are.equal("https://streams.dynamodb.cn-north-1.amazonaws.com.cn", result.url)
     end)
 
     it("For region cn-northwest-1 with FIPS disabled and DualStack disabled", function()
@@ -129,147 +305,59 @@ describe("endpoint rules", function()
         assert.are.equal("https://streams.dynamodb.cn-northwest-1.amazonaws.com.cn", result.url)
     end)
 
-    it("For region eusc-de-east-1 with FIPS enabled and DualStack disabled", function()
+    it("For region cn-north-1 with FIPS enabled and DualStack enabled", function()
         local params = {
-            Region = "eusc-de-east-1",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://streams.dynamodb-fips.eusc-de-east-1.amazonaws.eu", result.url)
-    end)
-
-    it("For region eusc-de-east-1 with FIPS disabled and DualStack disabled", function()
-        local params = {
-            Region = "eusc-de-east-1",
-            UseFIPS = false,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://streams.dynamodb.eusc-de-east-1.amazonaws.eu", result.url)
-    end)
-
-    it("For region us-iso-east-1 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "us-iso-east-1",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://streams.dynamodb-fips.us-iso-east-1.c2s.ic.gov", result.url)
-    end)
-
-    it("For region us-iso-east-1 with FIPS disabled and DualStack disabled", function()
-        local params = {
-            Region = "us-iso-east-1",
-            UseFIPS = false,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://streams.dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
-    end)
-
-    it("For region us-isob-east-1 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "us-isob-east-1",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://streams.dynamodb-fips.us-isob-east-1.sc2s.sgov.gov", result.url)
-    end)
-
-    it("For region us-isob-east-1 with FIPS disabled and DualStack disabled", function()
-        local params = {
-            Region = "us-isob-east-1",
-            UseFIPS = false,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://streams.dynamodb.us-isob-east-1.sc2s.sgov.gov", result.url)
-    end)
-
-    it("For region eu-isoe-west-1 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "eu-isoe-west-1",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://streams.dynamodb-fips.eu-isoe-west-1.cloud.adc-e.uk", result.url)
-    end)
-
-    it("For region eu-isoe-west-1 with FIPS disabled and DualStack disabled", function()
-        local params = {
-            Region = "eu-isoe-west-1",
-            UseFIPS = false,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://streams.dynamodb.eu-isoe-west-1.cloud.adc-e.uk", result.url)
-    end)
-
-    it("For region us-isof-south-1 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "us-isof-south-1",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://streams.dynamodb-fips.us-isof-south-1.csp.hci.ic.gov", result.url)
-    end)
-
-    it("For region us-isof-south-1 with FIPS disabled and DualStack disabled", function()
-        local params = {
-            Region = "us-isof-south-1",
-            UseFIPS = false,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://streams.dynamodb.us-isof-south-1.csp.hci.ic.gov", result.url)
-    end)
-
-    it("For region us-gov-west-1 with FIPS enabled and DualStack enabled", function()
-        local params = {
-            Region = "us-gov-west-1",
+            Region = "cn-north-1",
             UseFIPS = true,
             UseDualStack = true,
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://streams-dynamodb-fips.us-gov-west-1.api.aws", result.url)
+        assert.are.equal("https://streams-dynamodb-fips.cn-north-1.api.amazonwebservices.com.cn", result.url)
     end)
 
-    it("For region us-gov-west-1 with FIPS enabled and DualStack disabled", function()
+    it("For region cn-north-1 with FIPS enabled and DualStack disabled", function()
         local params = {
-            Region = "us-gov-west-1",
+            Region = "cn-north-1",
             UseFIPS = true,
             UseDualStack = false,
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://streams.dynamodb.us-gov-west-1.amazonaws.com", result.url)
+        assert.are.equal("https://streams.dynamodb-fips.cn-north-1.amazonaws.com.cn", result.url)
     end)
 
-    it("For region us-gov-west-1 with FIPS disabled and DualStack enabled", function()
+    it("For region cn-north-1 with FIPS disabled and DualStack enabled", function()
         local params = {
-            Region = "us-gov-west-1",
+            Region = "cn-north-1",
             UseFIPS = false,
             UseDualStack = true,
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://streams-dynamodb.us-gov-west-1.api.aws", result.url)
+        assert.are.equal("https://streams-dynamodb.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("For region us-gov-east-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "us-gov-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("For region us-gov-east-1 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "us-gov-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-gov-east-1.amazonaws.com", result.url)
     end)
 
     it("For region us-gov-west-1 with FIPS disabled and DualStack disabled", function()
@@ -283,12 +371,5149 @@ describe("endpoint rules", function()
         assert.are.equal("https://streams.dynamodb.us-gov-west-1.amazonaws.com", result.url)
     end)
 
+    it("For region us-gov-west-1 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "us-gov-west-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("For region us-gov-east-1 with FIPS enabled and DualStack enabled", function()
+        local params = {
+            Region = "us-gov-east-1",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("For region us-gov-east-1 with FIPS disabled and DualStack enabled", function()
+        local params = {
+            Region = "us-gov-east-1",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("For region us-iso-east-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "us-iso-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("For region us-iso-east-1 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "us-iso-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("For region us-isob-east-1 with FIPS disabled and DualStack disabled", function()
+        local params = {
+            Region = "us-isob-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-isob-east-1.sc2s.sgov.gov", result.url)
+    end)
+
+    it("For region us-isob-east-1 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "us-isob-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.us-isob-east-1.sc2s.sgov.gov", result.url)
+    end)
+
+    it("For custom endpoint with region set and fips disabled and dualstack disabled", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("For custom endpoint with region not set and fips disabled and dualstack disabled", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("For custom endpoint with fips enabled and dualstack disabled", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("For custom endpoint with fips disabled and dualstack enabled", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = true,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
+    end)
+
     it("Missing region", function()
         local params = {}
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_nil(result, "expected error but got result")
         assert.is_not_nil(err, "expected error but got nil")
         assert.are.equal("Invalid Configuration: Missing Region", err)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false, Endpoint=https://example.com}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true, Endpoint=https://example.com}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false, Endpoint=https://example.com}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true, Endpoint=https://example.com}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false, Endpoint=https://example.com}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true, Endpoint=https://example.com}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false, Endpoint=https://example.com}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true, Endpoint=https://example.com}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false, Endpoint=https://example.com}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true, Endpoint=https://example.com}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false, Endpoint=https://example.com}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true, Endpoint=https://example.com}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+            Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
+    end)
+
+    it("{Region=local, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            Region = "local",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.local.amazonaws.com", result.url)
+    end)
+
+    it("{UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: Missing Region", err)
+    end)
+
+    it("{Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false, StreamArn=arn:aws:dynamodb:us-east-1:not_an_account:table/T/stream/2024-01-01T00:00:00.000}", function()
+        local params = {
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+            StreamArn = "arn:aws:dynamodb:us-east-1:not_an_account:table/T/stream/2024-01-01T00:00:00.000",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Credentials-sourced account ID parameter is invalid", err)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:af-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:af-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:kinesis:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:kinesis:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:af-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:af-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, StreamArn=arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            StreamArn = "arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, StreamArn=arn:aws:dynamodb:af-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            StreamArn = "arn:aws:dynamodb:af-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, StreamArn=arn:aws:kinesis:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            StreamArn = "arn:aws:kinesis:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, StreamArn=arn:aws:dynamodb:af-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, ShardIterator=arn:aws:dynamodb:af-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            StreamArn = "arn:aws:dynamodb:af-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            ShardIterator = "arn:aws:dynamodb:af-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.us-east-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.us-east-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.us-east-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("{Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:af-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:af-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:kinesis:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:kinesis:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:af-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:af-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, StreamArn=arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            StreamArn = "arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, StreamArn=arn:aws:dynamodb:af-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            StreamArn = "arn:aws:dynamodb:af-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, StreamArn=arn:aws:kinesis:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            StreamArn = "arn:aws:kinesis:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, StreamArn=arn:aws:dynamodb:af-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, ShardIterator=arn:aws:dynamodb:af-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            StreamArn = "arn:aws:dynamodb:af-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            ShardIterator = "arn:aws:dynamodb:af-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.us-east-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.us-east-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.us-east-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("{Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("AccountIdEndpointMode is required but no AccountID was provided or able to be loaded", err)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Credentials-sourced account ID parameter is invalid", err)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("AccountIdEndpointMode is required but no AccountID was provided or able to be loaded", err)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:af-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:af-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("AccountIdEndpointMode is required but no AccountID was provided or able to be loaded", err)
+    end)
+
+    it("{StreamArn=arn:aws:kinesis:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:kinesis:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("AccountIdEndpointMode is required but no AccountID was provided or able to be loaded", err)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:af-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:af-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("AccountIdEndpointMode is required but no AccountID was provided or able to be loaded", err)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, StreamArn=arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            StreamArn = "arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, StreamArn=arn:aws:dynamodb:af-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            StreamArn = "arn:aws:dynamodb:af-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, StreamArn=arn:aws:kinesis:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            StreamArn = "arn:aws:kinesis:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, StreamArn=arn:aws:dynamodb:af-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, ShardIterator=arn:aws:dynamodb:af-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            StreamArn = "arn:aws:dynamodb:af-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            ShardIterator = "arn:aws:dynamodb:af-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.us-east-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.us-east-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.us-east-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:us-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:us-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.us-east-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=eu-west-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=eu-west-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=eu-west-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=eu-west-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.eu-west-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=eu-west-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.eu-west-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=eu-west-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.eu-west-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=eu-west-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=eu-west-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=eu-west-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=eu-west-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.eu-west-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=eu-west-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.eu-west-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=eu-west-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.eu-west-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=eu-west-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=eu-west-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=eu-west-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=eu-west-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.eu-west-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=eu-west-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.eu-west-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=eu-west-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.eu-west-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=eu-west-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=eu-west-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=eu-west-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=eu-west-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.eu-west-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=eu-west-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.eu-west-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=eu-west-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.eu-west-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=eu-west-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=eu-west-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=eu-west-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=eu-west-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.eu-west-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=eu-west-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.eu-west-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=eu-west-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.eu-west-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=eu-west-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=eu-west-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=eu-west-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.eu-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=eu-west-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.eu-west-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=eu-west-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:eu-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.eu-west-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=eu-west-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:eu-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "eu-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.eu-west-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=me-central-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.me-central-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-central-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.me-central-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-central-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.me-central-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=me-central-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.me-central-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-central-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.me-central-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-central-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.me-central-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=me-central-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.me-central-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-central-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.me-central-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-central-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.me-central-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=me-central-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.me-central-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-central-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.me-central-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-central-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.me-central-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=me-central-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.me-central-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-central-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.me-central-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-central-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.me-central-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=me-central-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.me-central-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-central-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.me-central-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-central-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.me-central-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=me-central-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.me-central-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-central-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.me-central-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-central-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.me-central-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=me-central-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.me-central-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-central-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.me-central-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-central-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.me-central-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=me-central-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-central-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-central-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{AccountId=111111111111, Region=me-central-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-central-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-central-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{AccountId=111111111111, Region=me-central-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-central-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-central-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{AccountId=111111111111, Region=me-central-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-central-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-central-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-central-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-central-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-central-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{AccountId=111111111111, Region=me-south-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.me-south-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-south-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.me-south-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-south-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.me-south-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=me-south-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.me-south-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-south-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.me-south-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-south-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.me-south-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=me-south-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.me-south-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-south-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.me-south-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-south-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.me-south-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=me-south-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.me-south-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-south-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.me-south-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-south-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.me-south-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=me-south-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.me-south-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-south-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.me-south-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-south-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.me-south-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=me-south-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.me-south-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-south-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.me-south-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-south-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.me-south-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=me-south-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.me-south-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-south-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.me-south-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-south-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.me-south-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=me-south-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.me-south-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-south-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.me-south-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-south-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.me-south-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=me-south-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-south-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-south-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{AccountId=111111111111, Region=me-south-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-south-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-south-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{AccountId=111111111111, Region=me-south-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-south-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-south-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{AccountId=111111111111, Region=me-south-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{StreamArn=arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=me-south-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws:dynamodb:me-south-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{ShardIterator=arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=me-south-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws:dynamodb:me-south-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "me-south-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-north-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-north-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-north-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-north-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-north-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-north-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-north-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-north-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-north-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-north-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-north-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-north-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-north-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-north-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-north-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-north-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-north-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-north-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-north-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-north-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-north-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-north-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-north-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-north-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-north-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-north-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-north-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-north-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-north-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-north-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-north-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-north-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-north-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.cn-north-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-north-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-north-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-north-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-north-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-north-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-north-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-northwest-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-northwest-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-northwest-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-northwest-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-northwest-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-northwest-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-northwest-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-northwest-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-northwest-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-northwest-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-northwest-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-northwest-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-northwest-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-northwest-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-northwest-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-northwest-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-northwest-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-northwest-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-northwest-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-northwest-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-northwest-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-northwest-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-northwest-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-northwest-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-northwest-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-northwest-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-northwest-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-northwest-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-northwest-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-northwest-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-northwest-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-northwest-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-northwest-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.cn-northwest-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=cn-northwest-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=cn-northwest-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-cn:dynamodb:cn-northwest-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=cn-northwest-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-cn:dynamodb:cn-northwest-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "cn-northwest-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.us-gov-east-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.us-gov-east-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-west-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-west-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-west-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-west-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-west-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-west-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-west-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-west-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-west-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-west-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-west-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-west-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-west-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-west-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-west-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-west-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-west-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-west-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-west-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-west-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-west-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-west-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-west-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-west-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-west-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-west-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-west-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-west-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-west-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-west-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-west-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-west-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-west-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.us-gov-west-1.amazonaws.com", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-gov-west-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb-fips.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-gov-west-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-us-gov:dynamodb:us-gov-west-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://222222222222.streams-ddb-fips.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-gov-west-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-us-gov:dynamodb:us-gov-west-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-gov-west-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://333333333333.streams-ddb-fips.us-gov-west-1.api.aws", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-iso-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-iso-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-iso-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-iso-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.us-iso-east-1.api.aws.ic.gov", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-iso-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.us-iso-east-1.api.aws.ic.gov", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-iso-east-1, AccountIdEndpointMode=preferred, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.us-iso-east-1.api.aws.ic.gov", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-iso-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-iso-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-iso-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-iso-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.us-iso-east-1.api.aws.ic.gov", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-iso-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.us-iso-east-1.api.aws.ic.gov", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-iso-east-1, AccountIdEndpointMode=preferred, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "preferred",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.us-iso-east-1.api.aws.ic.gov", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-iso-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-iso-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-iso-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-iso-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.us-iso-east-1.api.aws.ic.gov", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-iso-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.us-iso-east-1.api.aws.ic.gov", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-iso-east-1, AccountIdEndpointMode=disabled, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb.us-iso-east-1.api.aws.ic.gov", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-iso-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-iso-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-iso-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb-fips.us-iso-east-1.c2s.ic.gov", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-iso-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.us-iso-east-1.api.aws.ic.gov", result.url)
+    end)
+
+    it("{StreamArn=arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-iso-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.us-iso-east-1.api.aws.ic.gov", result.url)
+    end)
+
+    it("{ShardIterator=arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-iso-east-1, AccountIdEndpointMode=disabled, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "disabled",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams-dynamodb-fips.us-iso-east-1.api.aws.ic.gov", result.url)
+    end)
+
+    it("{AccountId=111111111111, Region=us-iso-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{StreamArn=arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-iso-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{ShardIterator=arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-iso-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{AccountId=111111111111, Region=us-iso-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{StreamArn=arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-iso-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{ShardIterator=arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-iso-east-1, AccountIdEndpointMode=required, UseFIPS=false, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{AccountId=111111111111, Region=us-iso-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{StreamArn=arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-iso-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            StreamArn = "arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{ShardIterator=arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-iso-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=false}", function()
+        local params = {
+            ShardIterator = "arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{AccountId=111111111111, Region=us-iso-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            AccountId = "111111111111",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{StreamArn=arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000, Region=us-iso-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            StreamArn = "arn:aws-iso:dynamodb:us-iso-east-1:222222222222:table/T/stream/2024-01-01T00:00:00.000",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{ShardIterator=arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz, Region=us-iso-east-1, AccountIdEndpointMode=required, UseFIPS=true, UseDualStack=true}", function()
+        local params = {
+            ShardIterator = "arn:aws-iso:dynamodb:us-iso-east-1:333333333333:table/T/stream/2024-01-01T00:00:00.000|1|AAAAAAAAAAIxyz",
+            Region = "us-iso-east-1",
+            AccountIdEndpointMode = "required",
+            UseFIPS = true,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("Invalid Configuration: AccountIdEndpointMode is required but account endpoints are not supported in this region", err)
+    end)
+
+    it("{Region=us-new-1, AccountIdEndpointMode=preferred, AccountId=111111111111, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            Region = "us-new-1",
+            AccountIdEndpointMode = "preferred",
+            AccountId = "111111111111",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.us-new-1.amazonaws.com", result.url)
+    end)
+
+    it("{Region=cn-new-1, AccountIdEndpointMode=preferred, AccountId=111111111111, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            Region = "cn-new-1",
+            AccountIdEndpointMode = "preferred",
+            AccountId = "111111111111",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.cn-new-1.amazonaws.com.cn", result.url)
+    end)
+
+    it("{Region=us-gov-new-1, AccountIdEndpointMode=preferred, AccountId=111111111111, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            Region = "us-gov-new-1",
+            AccountIdEndpointMode = "preferred",
+            AccountId = "111111111111",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://111111111111.streams-ddb.us-gov-new-1.amazonaws.com", result.url)
+    end)
+
+    it("{Region=us-iso-new-1, AccountIdEndpointMode=preferred, AccountId=111111111111, UseFIPS=false, UseDualStack=false}", function()
+        local params = {
+            Region = "us-iso-new-1",
+            AccountIdEndpointMode = "preferred",
+            AccountId = "111111111111",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://streams.dynamodb.us-iso-new-1.c2s.ic.gov", result.url)
     end)
 
 end)

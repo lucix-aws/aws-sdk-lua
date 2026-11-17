@@ -16,13 +16,13 @@ M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.Val
 
 M.ProfileArns = schema.new({ type = "list", list_member = prelude.String })
 
-M.Pillars = schema.new({ type = "list", list_member = prelude.String })
-
-M.AggregationConfigurations = schema.new({ type = "list", list_member = M.AggregationConfiguration })
-
 M.Tags = schema.new({ type = "list", list_member = M.Tag })
 
+M.Pillars = schema.new({ type = "list", list_member = prelude.String })
+
 M.FieldErrors = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AggregationConfigurations = schema.new({ type = "list", list_member = M.AggregationConfiguration })
 
 M.ProfileQuestionUpdates = schema.new({ type = "list", list_member = M.ProfileQuestionUpdate })
 
@@ -46,6 +46,8 @@ M.WorkloadProfileArns = schema.new({ type = "list", list_member = prelude.String
 
 M.ReviewTemplateArns = schema.new({ type = "list", list_member = prelude.String })
 
+M.PreferenceEntries = schema.new({ type = "list", list_member = M.PreferenceEntry })
+
 M.StringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ImpactDetails = schema.new({ type = "list", list_member = prelude.String })
@@ -64,11 +66,15 @@ M.RecommendationGoals = schema.new({ type = "list", list_member = M.Recommendati
 
 M.AgentRecommendationRemediations = schema.new({ type = "list", list_member = M.AgentRecommendationRemediation })
 
+M.GenerationRecommendationTypes = schema.new({ type = "list", list_member = prelude.String })
+
 M.ConsolidatedReportMetrics = schema.new({ type = "list", list_member = M.ConsolidatedReportMetric })
 
 M.ContextSummaries = schema.new({ type = "list", list_member = M.ContextSummary })
 
 M.GoalSummaries = schema.new({ type = "list", list_member = M.GoalSummary })
+
+M.OrganizationalReportSummaryList = schema.new({ type = "list", list_member = M.OrganizationalReportSummary })
 
 M.AgentProfileSummaries = schema.new({ type = "list", list_member = M.AgentProfileSummary })
 
@@ -114,6 +120,8 @@ M.WorkloadSummaries = schema.new({ type = "list", list_member = M.WorkloadSummar
 
 M.WorkloadShareSummaries = schema.new({ type = "list", list_member = M.WorkloadShareSummary })
 
+M.PreferenceUpdates = schema.new({ type = "list", list_member = M.PreferenceUpdate })
+
 M.RecommendationTypes = schema.new({ type = "list", list_member = prelude.String })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
@@ -136,7 +144,33 @@ M.ContextResourceTypeList = schema.new({ type = "list", list_member = prelude.St
 
 M.ContextResourceTagList = schema.new({ type = "list", list_member = M.ContextResourceTag })
 
+M.ContextOrganizationalUnitIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrganizationalUnitEntryList = schema.new({ type = "list", list_member = M.OrganizationalUnitEntry })
+
+M.OrganizationalAccountEntryList = schema.new({ type = "list", list_member = M.OrganizationalAccountEntry })
+
+M.OrganizationalReportAccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrganizationalUnitIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PillarList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PriorityList = schema.new({ type = "list", list_member = prelude.String })
+
 M.WorkloadResourceDefinition = schema.new({ type = "list", list_member = prelude.String })
+
+M.PillarCountList = schema.new({ type = "list", list_member = M.PillarCount })
+
+M.PriorityCountList = schema.new({ type = "list", list_member = M.PriorityCount })
+
+M.FailedAccountList = schema.new({ type = "list", list_member = M.FailedAccount })
+
+M.FailedOrganizationalUnitList = schema.new({ type = "list", list_member = M.FailedOrganizationalUnit })
 
 M.RecommendedFixSteps = schema.new({ type = "list", list_member = prelude.String })
 
@@ -371,27 +405,75 @@ M.AggregationConfiguration = schema.new({
     },
 })
 
-M.Tag = schema.new({
-    id = id.from(_N, "Tag"),
+M.OrganizationalAccountEntry = schema.new({
+    id = id.from(_N, "OrganizationalAccountEntry"),
     type = "structure",
     members = {
-        key = schema.new({
-            id = id.from(_N, "Tag", "key"),
+        accountId = schema.new({
+            id = id.from(_N, "OrganizationalAccountEntry", "accountId"),
             type = "string",
-            name = "key",
+            name = "accountId",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
         }),
-        value = schema.new({
-            id = id.from(_N, "Tag", "value"),
+        regions = schema.new({
+            id = id.from(_N, "OrganizationalAccountEntry", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.OrganizationalUnitEntry = schema.new({
+    id = id.from(_N, "OrganizationalUnitEntry"),
+    type = "structure",
+    members = {
+        organizationalUnitId = schema.new({
+            id = id.from(_N, "OrganizationalUnitEntry", "organizationalUnitId"),
             type = "string",
-            name = "value",
+            name = "organizationalUnitId",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        regions = schema.new({
+            id = id.from(_N, "OrganizationalUnitEntry", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.OrganizationalAggregationConfiguration = schema.new({
+    id = id.from(_N, "OrganizationalAggregationConfiguration"),
+    type = "structure",
+    members = {
+        organizationalUnits = schema.new({
+            id = id.from(_N, "OrganizationalAggregationConfiguration", "organizationalUnits"),
+            type = "list",
+            name = "organizationalUnits",
+            target_id = prelude.Document.id,
+            list_member = M.OrganizationalUnitEntry,
+        }),
+        accounts = schema.new({
+            id = id.from(_N, "OrganizationalAggregationConfiguration", "accounts"),
+            type = "list",
+            name = "accounts",
+            target_id = prelude.Document.id,
+            list_member = M.OrganizationalAccountEntry,
         }),
     },
 })
@@ -433,9 +515,6 @@ M.AgentProfileSummary = schema.new({
             name = "pillars",
             target_id = prelude.Document.id,
             list_member = prelude.String,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         deletionProtection = schema.new({
             id = id.from(_N, "AgentProfileSummary", "deletionProtection"),
@@ -446,14 +525,17 @@ M.AgentProfileSummary = schema.new({
                 [traits.DEFAULT] = { value = true },
             },
         }),
+        profileType = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "profileType"),
+            type = "string",
+            name = "profileType",
+            target_id = prelude.String.id,
+        }),
         executionRoleArn = schema.new({
             id = id.from(_N, "AgentProfileSummary", "executionRoleArn"),
             type = "string",
             name = "executionRoleArn",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         aggregationConfiguration = schema.new({
             id = id.from(_N, "AgentProfileSummary", "aggregationConfiguration"),
@@ -461,9 +543,6 @@ M.AgentProfileSummary = schema.new({
             name = "aggregationConfiguration",
             target_id = prelude.Document.id,
             list_member = M.AggregationConfiguration,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         arn = schema.new({
             id = id.from(_N, "AgentProfileSummary", "arn"),
@@ -493,13 +572,6 @@ M.AgentProfileSummary = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
-        }),
-        tags = schema.new({
-            id = id.from(_N, "AgentProfileSummary", "tags"),
-            type = "list",
-            name = "tags",
-            target_id = prelude.Document.id,
-            list_member = M.Tag,
         }),
         createdBy = schema.new({
             id = id.from(_N, "AgentProfileSummary", "createdBy"),
@@ -533,6 +605,38 @@ M.AgentProfileSummary = schema.new({
             target_id = prelude.Timestamp.id,
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        organizationalAggregationConfiguration = schema.new({
+            id = id.from(_N, "AgentProfileSummary", "organizationalAggregationConfiguration"),
+            type = "structure",
+            name = "organizationalAggregationConfiguration",
+            target_id = id.from(_N, "OrganizationalAggregationConfiguration"),
+            target = M.OrganizationalAggregationConfiguration,
+        }),
+    },
+})
+
+M.ErrorDetails = schema.new({
+    id = id.from(_N, "ErrorDetails"),
+    type = "structure",
+    members = {
+        code = schema.new({
+            id = id.from(_N, "ErrorDetails", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "ErrorDetails", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
             },
         }),
     },
@@ -618,6 +722,63 @@ M.AgentRecommendationGenerationSummary = schema.new({
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
         }),
+        generationType = schema.new({
+            id = id.from(_N, "AgentRecommendationGenerationSummary", "generationType"),
+            type = "string",
+            name = "generationType",
+            target_id = prelude.String.id,
+        }),
+        generationRecommendationTypes = schema.new({
+            id = id.from(_N, "AgentRecommendationGenerationSummary", "generationRecommendationTypes"),
+            type = "list",
+            name = "generationRecommendationTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        startedAt = schema.new({
+            id = id.from(_N, "AgentRecommendationGenerationSummary", "startedAt"),
+            type = "timestamp",
+            name = "startedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        endedAt = schema.new({
+            id = id.from(_N, "AgentRecommendationGenerationSummary", "endedAt"),
+            type = "timestamp",
+            name = "endedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        errorDetails = schema.new({
+            id = id.from(_N, "AgentRecommendationGenerationSummary", "errorDetails"),
+            type = "structure",
+            name = "errorDetails",
+            target_id = id.from(_N, "ErrorDetails"),
+            target = M.ErrorDetails,
+        }),
+    },
+})
+
+M.AutoRemediation = schema.new({
+    id = id.from(_N, "AutoRemediation"),
+    type = "structure",
+    members = {
+        deepLink = schema.new({
+            id = id.from(_N, "AutoRemediation", "deepLink"),
+            type = "string",
+            name = "deepLink",
+            target_id = prelude.String.id,
+        }),
+        cliCommand = schema.new({
+            id = id.from(_N, "AutoRemediation", "cliCommand"),
+            type = "string",
+            name = "cliCommand",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -694,6 +855,13 @@ M.AgentRecommendationItemSummary = schema.new({
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
+        }),
+        autoRemediation = schema.new({
+            id = id.from(_N, "AgentRecommendationItemSummary", "autoRemediation"),
+            type = "structure",
+            name = "autoRemediation",
+            target_id = id.from(_N, "AutoRemediation"),
+            target = M.AutoRemediation,
         }),
     },
 })
@@ -2003,6 +2171,13 @@ M.ContextContent = schema.new({
             target_id = prelude.Document.id,
             list_member = M.ContextResourceTag,
         }),
+        organizationalUnitIds = schema.new({
+            id = id.from(_N, "ContextContent", "organizationalUnitIds"),
+            type = "list",
+            name = "organizationalUnitIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         applicationOverview = schema.new({
             id = id.from(_N, "ContextContent", "applicationOverview"),
             type = "string",
@@ -2141,6 +2316,333 @@ M.ContextSummary = schema.new({
     },
 })
 
+M.FailedAccount = schema.new({
+    id = id.from(_N, "FailedAccount"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "FailedAccount", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reason = schema.new({
+            id = id.from(_N, "FailedAccount", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FailedOrganizationalUnit = schema.new({
+    id = id.from(_N, "FailedOrganizationalUnit"),
+    type = "structure",
+    members = {
+        organizationalUnitId = schema.new({
+            id = id.from(_N, "FailedOrganizationalUnit", "organizationalUnitId"),
+            type = "string",
+            name = "organizationalUnitId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reason = schema.new({
+            id = id.from(_N, "FailedOrganizationalUnit", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PillarCount = schema.new({
+    id = id.from(_N, "PillarCount"),
+    type = "structure",
+    members = {
+        pillar = schema.new({
+            id = id.from(_N, "PillarCount", "pillar"),
+            type = "string",
+            name = "pillar",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        count = schema.new({
+            id = id.from(_N, "PillarCount", "count"),
+            type = "long",
+            name = "count",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PriorityCount = schema.new({
+    id = id.from(_N, "PriorityCount"),
+    type = "structure",
+    members = {
+        priority = schema.new({
+            id = id.from(_N, "PriorityCount", "priority"),
+            type = "string",
+            name = "priority",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        count = schema.new({
+            id = id.from(_N, "PriorityCount", "count"),
+            type = "long",
+            name = "count",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CoverageSummary = schema.new({
+    id = id.from(_N, "CoverageSummary"),
+    type = "structure",
+    members = {
+        totalAccountsInScope = schema.new({
+            id = id.from(_N, "CoverageSummary", "totalAccountsInScope"),
+            type = "long",
+            name = "totalAccountsInScope",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        accountsWithProfile = schema.new({
+            id = id.from(_N, "CoverageSummary", "accountsWithProfile"),
+            type = "long",
+            name = "accountsWithProfile",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        accountsWithoutProfile = schema.new({
+            id = id.from(_N, "CoverageSummary", "accountsWithoutProfile"),
+            type = "long",
+            name = "accountsWithoutProfile",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        failedAccountCount = schema.new({
+            id = id.from(_N, "CoverageSummary", "failedAccountCount"),
+            type = "long",
+            name = "failedAccountCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        totalProfiles = schema.new({
+            id = id.from(_N, "CoverageSummary", "totalProfiles"),
+            type = "long",
+            name = "totalProfiles",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        totalRecommendations = schema.new({
+            id = id.from(_N, "CoverageSummary", "totalRecommendations"),
+            type = "long",
+            name = "totalRecommendations",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        recommendationCountByPillar = schema.new({
+            id = id.from(_N, "CoverageSummary", "recommendationCountByPillar"),
+            type = "list",
+            name = "recommendationCountByPillar",
+            target_id = prelude.Document.id,
+            list_member = M.PillarCount,
+        }),
+        recommendationCountByPriority = schema.new({
+            id = id.from(_N, "CoverageSummary", "recommendationCountByPriority"),
+            type = "list",
+            name = "recommendationCountByPriority",
+            target_id = prelude.Document.id,
+            list_member = M.PriorityCount,
+        }),
+        failedAccounts = schema.new({
+            id = id.from(_N, "CoverageSummary", "failedAccounts"),
+            type = "list",
+            name = "failedAccounts",
+            target_id = prelude.Document.id,
+            list_member = M.FailedAccount,
+        }),
+        failedOrganizationalUnits = schema.new({
+            id = id.from(_N, "CoverageSummary", "failedOrganizationalUnits"),
+            type = "list",
+            name = "failedOrganizationalUnits",
+            target_id = prelude.Document.id,
+            list_member = M.FailedOrganizationalUnit,
+        }),
+    },
+})
+
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "Tag", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "Tag", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAgentBasicProfileInput = schema.new({
+    id = id.from(_N, "CreateAgentBasicProfileRequest"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "CreateAgentBasicProfileInput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateAgentBasicProfileOutput = schema.new({
+    id = id.from(_N, "CreateAgentBasicProfileResponse"),
+    type = "structure",
+    members = {
+        createdBy = schema.new({
+            id = id.from(_N, "CreateAgentBasicProfileOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CreateAgentBasicProfileOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastModifiedBy = schema.new({
+            id = id.from(_N, "CreateAgentBasicProfileOutput", "lastModifiedBy"),
+            type = "string",
+            name = "lastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "CreateAgentBasicProfileOutput", "lastModifiedAt"),
+            type = "timestamp",
+            name = "lastModifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "CreateAgentBasicProfileOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceId = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        QuotaCode = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "QuotaCode"),
+            type = "string",
+            name = "QuotaCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ServiceCode = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "ServiceCode"),
+            type = "string",
+            name = "ServiceCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CreateAgentContextInput = schema.new({
     id = id.from(_N, "CreateAgentContextRequest"),
     type = "structure",
@@ -2205,55 +2707,6 @@ M.CreateAgentContextOutput = schema.new({
             name = "context",
             target_id = id.from(_N, "ContextSummary"),
             target = M.ContextSummary,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ServiceQuotaExceededException = schema.new({
-    id = id.from(_N, "ServiceQuotaExceededException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        ResourceId = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "ResourceId"),
-            type = "string",
-            name = "ResourceId",
-            target_id = prelude.String.id,
-        }),
-        ResourceType = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "ResourceType"),
-            type = "string",
-            name = "ResourceType",
-            target_id = prelude.String.id,
-        }),
-        QuotaCode = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "QuotaCode"),
-            type = "string",
-            name = "QuotaCode",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        ServiceCode = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "ServiceCode"),
-            type = "string",
-            name = "ServiceCode",
-            target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -2406,6 +2859,363 @@ M.CreateAgentGoalOutput = schema.new({
             name = "goal",
             target_id = id.from(_N, "GoalSummary"),
             target = M.GoalSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAgentOrganizationalProfileInput = schema.new({
+    id = id.from(_N, "CreateAgentOrganizationalProfileRequest"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileInput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        businessOverview = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileInput", "businessOverview"),
+            type = "string",
+            name = "businessOverview",
+            target_id = prelude.String.id,
+        }),
+        pillars = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileInput", "pillars"),
+            type = "list",
+            name = "pillars",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileInput", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = true },
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        organizationalAggregationConfiguration = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileInput", "organizationalAggregationConfiguration"),
+            type = "structure",
+            name = "organizationalAggregationConfiguration",
+            target_id = id.from(_N, "OrganizationalAggregationConfiguration"),
+            target = M.OrganizationalAggregationConfiguration,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileInput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateAgentOrganizationalProfileOutput = schema.new({
+    id = id.from(_N, "CreateAgentOrganizationalProfileResponse"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        businessOverview = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileOutput", "businessOverview"),
+            type = "string",
+            name = "businessOverview",
+            target_id = prelude.String.id,
+        }),
+        pillars = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileOutput", "pillars"),
+            type = "list",
+            name = "pillars",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileOutput", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = true },
+            },
+        }),
+        organizationId = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileOutput", "organizationId"),
+            type = "string",
+            name = "organizationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        organizationalAggregationConfiguration = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileOutput", "organizationalAggregationConfiguration"),
+            type = "structure",
+            name = "organizationalAggregationConfiguration",
+            target_id = id.from(_N, "OrganizationalAggregationConfiguration"),
+            target = M.OrganizationalAggregationConfiguration,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eligibleForScheduledGeneration = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileOutput", "eligibleForScheduledGeneration"),
+            type = "boolean",
+            name = "eligibleForScheduledGeneration",
+            target_id = prelude.Boolean.id,
+        }),
+        eligibleForArchitectureGeneration = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileOutput", "eligibleForArchitectureGeneration"),
+            type = "boolean",
+            name = "eligibleForArchitectureGeneration",
+            target_id = prelude.Boolean.id,
+        }),
+        fieldErrors = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileOutput", "fieldErrors"),
+            type = "map",
+            name = "fieldErrors",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileOutput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastModifiedBy = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileOutput", "lastModifiedBy"),
+            type = "string",
+            name = "lastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalProfileOutput", "lastModifiedAt"),
+            type = "timestamp",
+            name = "lastModifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.TimeWindow = schema.new({
+    id = id.from(_N, "TimeWindow"),
+    type = "structure",
+    members = {
+        from = schema.new({
+            id = id.from(_N, "TimeWindow", "from"),
+            type = "timestamp",
+            name = "from",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        to = schema.new({
+            id = id.from(_N, "TimeWindow", "to"),
+            type = "timestamp",
+            name = "to",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.OrganizationalReportFilters = schema.new({
+    id = id.from(_N, "OrganizationalReportFilters"),
+    type = "structure",
+    members = {
+        accountIds = schema.new({
+            id = id.from(_N, "OrganizationalReportFilters", "accountIds"),
+            type = "list",
+            name = "accountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        organizationalUnitIds = schema.new({
+            id = id.from(_N, "OrganizationalReportFilters", "organizationalUnitIds"),
+            type = "list",
+            name = "organizationalUnitIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        pillars = schema.new({
+            id = id.from(_N, "OrganizationalReportFilters", "pillars"),
+            type = "list",
+            name = "pillars",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        recommendationTypes = schema.new({
+            id = id.from(_N, "OrganizationalReportFilters", "recommendationTypes"),
+            type = "list",
+            name = "recommendationTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        statuses = schema.new({
+            id = id.from(_N, "OrganizationalReportFilters", "statuses"),
+            type = "list",
+            name = "statuses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        priorities = schema.new({
+            id = id.from(_N, "OrganizationalReportFilters", "priorities"),
+            type = "list",
+            name = "priorities",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        createdAtRange = schema.new({
+            id = id.from(_N, "OrganizationalReportFilters", "createdAtRange"),
+            type = "structure",
+            name = "createdAtRange",
+            target_id = id.from(_N, "TimeWindow"),
+            target = M.TimeWindow,
+        }),
+        updatedAtRange = schema.new({
+            id = id.from(_N, "OrganizationalReportFilters", "updatedAtRange"),
+            type = "structure",
+            name = "updatedAtRange",
+            target_id = id.from(_N, "TimeWindow"),
+            target = M.TimeWindow,
+        }),
+    },
+})
+
+M.CreateAgentOrganizationalReportInput = schema.new({
+    id = id.from(_N, "CreateAgentOrganizationalReportRequest"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalReportInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        label = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalReportInput", "label"),
+            type = "string",
+            name = "label",
+            target_id = prelude.String.id,
+        }),
+        filters = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalReportInput", "filters"),
+            type = "structure",
+            name = "filters",
+            target_id = id.from(_N, "OrganizationalReportFilters"),
+            target = M.OrganizationalReportFilters,
+        }),
+    },
+})
+
+M.CreateAgentOrganizationalReportOutput = schema.new({
+    id = id.from(_N, "CreateAgentOrganizationalReportResponse"),
+    type = "structure",
+    members = {
+        reportId = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalReportOutput", "reportId"),
+            type = "string",
+            name = "reportId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "CreateAgentOrganizationalReportOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -3472,6 +4282,28 @@ M.DeleteAgentGoalOutput = schema.new({
     type = "structure",
 })
 
+M.DeleteAgentOrganizationalReportInput = schema.new({
+    id = id.from(_N, "DeleteAgentOrganizationalReportRequest"),
+    type = "structure",
+    members = {
+        reportId = schema.new({
+            id = id.from(_N, "DeleteAgentOrganizationalReportInput", "reportId"),
+            type = "string",
+            name = "reportId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAgentOrganizationalReportOutput = schema.new({
+    id = id.from(_N, "DeleteAgentOrganizationalReportResponse"),
+    type = "structure",
+})
+
 M.DeleteAgentProfileInput = schema.new({
     id = id.from(_N, "DeleteAgentProfileRequest"),
     type = "structure",
@@ -3491,6 +4323,50 @@ M.DeleteAgentProfileInput = schema.new({
 
 M.DeleteAgentProfileOutput = schema.new({
     id = id.from(_N, "DeleteAgentProfileResponse"),
+    type = "structure",
+})
+
+M.DeleteAgentProfilePolicyInput = schema.new({
+    id = id.from(_N, "DeleteAgentProfilePolicyRequest"),
+    type = "structure",
+    members = {
+        profileArn = schema.new({
+            id = id.from(_N, "DeleteAgentProfilePolicyInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAgentProfilePolicyOutput = schema.new({
+    id = id.from(_N, "DeleteAgentProfilePolicyResponse"),
+    type = "structure",
+})
+
+M.DeleteAgentRecommendationPolicyInput = schema.new({
+    id = id.from(_N, "DeleteAgentRecommendationPolicyRequest"),
+    type = "structure",
+    members = {
+        recommendationArn = schema.new({
+            id = id.from(_N, "DeleteAgentRecommendationPolicyInput", "recommendationArn"),
+            type = "string",
+            name = "recommendationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAgentRecommendationPolicyOutput = schema.new({
+    id = id.from(_N, "DeleteAgentRecommendationPolicyResponse"),
     type = "structure",
 })
 
@@ -3842,31 +4718,6 @@ M.DisassociateProfilesInput = schema.new({
 
 M.DisassociateProfilesOutput = prelude.Unit
 
-M.ErrorDetails = schema.new({
-    id = id.from(_N, "ErrorDetails"),
-    type = "structure",
-    members = {
-        code = schema.new({
-            id = id.from(_N, "ErrorDetails", "code"),
-            type = "string",
-            name = "code",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        message = schema.new({
-            id = id.from(_N, "ErrorDetails", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
 M.ExportLensInput = schema.new({
     id = id.from(_N, "ExportLensInput"),
     type = "structure",
@@ -3994,6 +4845,202 @@ M.GetAgentGoalOutput = schema.new({
     },
 })
 
+M.GetAgentOrganizationalReportInput = schema.new({
+    id = id.from(_N, "GetAgentOrganizationalReportRequest"),
+    type = "structure",
+    members = {
+        reportId = schema.new({
+            id = id.from(_N, "GetAgentOrganizationalReportInput", "reportId"),
+            type = "string",
+            name = "reportId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetAgentOrganizationalReportOutput = schema.new({
+    id = id.from(_N, "GetAgentOrganizationalReportResponse"),
+    type = "structure",
+    members = {
+        reportId = schema.new({
+            id = id.from(_N, "GetAgentOrganizationalReportOutput", "reportId"),
+            type = "string",
+            name = "reportId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ownerAccountId = schema.new({
+            id = id.from(_N, "GetAgentOrganizationalReportOutput", "ownerAccountId"),
+            type = "string",
+            name = "ownerAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        organizationId = schema.new({
+            id = id.from(_N, "GetAgentOrganizationalReportOutput", "organizationId"),
+            type = "string",
+            name = "organizationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        label = schema.new({
+            id = id.from(_N, "GetAgentOrganizationalReportOutput", "label"),
+            type = "string",
+            name = "label",
+            target_id = prelude.String.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "GetAgentOrganizationalReportOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetAgentOrganizationalReportOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        filters = schema.new({
+            id = id.from(_N, "GetAgentOrganizationalReportOutput", "filters"),
+            type = "structure",
+            name = "filters",
+            target_id = id.from(_N, "OrganizationalReportFilters"),
+            target = M.OrganizationalReportFilters,
+        }),
+        coverageSummary = schema.new({
+            id = id.from(_N, "GetAgentOrganizationalReportOutput", "coverageSummary"),
+            type = "structure",
+            name = "coverageSummary",
+            target_id = id.from(_N, "CoverageSummary"),
+            target = M.CoverageSummary,
+        }),
+    },
+})
+
+M.GetAgentOrganizationalReportDataInput = schema.new({
+    id = id.from(_N, "GetAgentOrganizationalReportDataRequest"),
+    type = "structure",
+    members = {
+        reportId = schema.new({
+            id = id.from(_N, "GetAgentOrganizationalReportDataInput", "reportId"),
+            type = "string",
+            name = "reportId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        format = schema.new({
+            id = id.from(_N, "GetAgentOrganizationalReportDataInput", "format"),
+            type = "string",
+            name = "format",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "format" },
+            },
+        }),
+    },
+})
+
+M.GetAgentOrganizationalReportDataOutput = schema.new({
+    id = id.from(_N, "GetAgentOrganizationalReportDataResponse"),
+    type = "structure",
+    members = {
+        downloadUrl = schema.new({
+            id = id.from(_N, "GetAgentOrganizationalReportDataOutput", "downloadUrl"),
+            type = "string",
+            name = "downloadUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        expiresAt = schema.new({
+            id = id.from(_N, "GetAgentOrganizationalReportDataOutput", "expiresAt"),
+            type = "timestamp",
+            name = "expiresAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.GetAgentPreferencesInput = schema.new({
+    id = id.from(_N, "GetAgentPreferencesRequest"),
+    type = "structure",
+})
+
+M.PreferenceEntry = schema.new({
+    id = id.from(_N, "PreferenceEntry"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "PreferenceEntry", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "PreferenceEntry", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        detail = schema.new({
+            id = id.from(_N, "PreferenceEntry", "detail"),
+            type = "string",
+            name = "detail",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetAgentPreferencesOutput = schema.new({
+    id = id.from(_N, "GetAgentPreferencesResponse"),
+    type = "structure",
+    members = {
+        preferences = schema.new({
+            id = id.from(_N, "GetAgentPreferencesOutput", "preferences"),
+            type = "list",
+            name = "preferences",
+            target_id = prelude.Document.id,
+            list_member = M.PreferenceEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetAgentProfileInput = schema.new({
     id = id.from(_N, "GetAgentProfileRequest"),
     type = "structure",
@@ -4048,9 +5095,6 @@ M.GetAgentProfileOutput = schema.new({
             name = "pillars",
             target_id = prelude.Document.id,
             list_member = prelude.String,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         deletionProtection = schema.new({
             id = id.from(_N, "GetAgentProfileOutput", "deletionProtection"),
@@ -4061,14 +5105,17 @@ M.GetAgentProfileOutput = schema.new({
                 [traits.DEFAULT] = { value = true },
             },
         }),
+        profileType = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "profileType"),
+            type = "string",
+            name = "profileType",
+            target_id = prelude.String.id,
+        }),
         executionRoleArn = schema.new({
             id = id.from(_N, "GetAgentProfileOutput", "executionRoleArn"),
             type = "string",
             name = "executionRoleArn",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         aggregationConfiguration = schema.new({
             id = id.from(_N, "GetAgentProfileOutput", "aggregationConfiguration"),
@@ -4076,9 +5123,6 @@ M.GetAgentProfileOutput = schema.new({
             name = "aggregationConfiguration",
             target_id = prelude.Document.id,
             list_member = M.AggregationConfiguration,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         arn = schema.new({
             id = id.from(_N, "GetAgentProfileOutput", "arn"),
@@ -4148,6 +5192,55 @@ M.GetAgentProfileOutput = schema.new({
             target_id = prelude.Timestamp.id,
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        organizationalAggregationConfiguration = schema.new({
+            id = id.from(_N, "GetAgentProfileOutput", "organizationalAggregationConfiguration"),
+            type = "structure",
+            name = "organizationalAggregationConfiguration",
+            target_id = id.from(_N, "OrganizationalAggregationConfiguration"),
+            target = M.OrganizationalAggregationConfiguration,
+        }),
+    },
+})
+
+M.GetAgentProfilePolicyInput = schema.new({
+    id = id.from(_N, "GetAgentProfilePolicyRequest"),
+    type = "structure",
+    members = {
+        profileArn = schema.new({
+            id = id.from(_N, "GetAgentProfilePolicyInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetAgentProfilePolicyOutput = schema.new({
+    id = id.from(_N, "GetAgentProfilePolicyResponse"),
+    type = "structure",
+    members = {
+        profileArn = schema.new({
+            id = id.from(_N, "GetAgentProfilePolicyOutput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policy = schema.new({
+            id = id.from(_N, "GetAgentProfilePolicyOutput", "policy"),
+            type = "string",
+            name = "policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
             },
         }),
     },
@@ -4770,18 +5863,18 @@ M.GetAgentRecommendationGenerationOutput = schema.new({
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
         }),
-        additionalContext = schema.new({
-            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "additionalContext"),
-            type = "document",
-            name = "additionalContext",
-            target_id = prelude.Document.id,
+        generationType = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "generationType"),
+            type = "string",
+            name = "generationType",
+            target_id = prelude.String.id,
         }),
-        scope = schema.new({
-            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "scope"),
-            type = "structure",
-            name = "scope",
-            target_id = id.from(_N, "Scope"),
-            target = M.Scope,
+        generationRecommendationTypes = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "generationRecommendationTypes"),
+            type = "list",
+            name = "generationRecommendationTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
         startedAt = schema.new({
             id = id.from(_N, "GetAgentRecommendationGenerationOutput", "startedAt"),
@@ -4801,6 +5894,26 @@ M.GetAgentRecommendationGenerationOutput = schema.new({
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
         }),
+        errorDetails = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "errorDetails"),
+            type = "structure",
+            name = "errorDetails",
+            target_id = id.from(_N, "ErrorDetails"),
+            target = M.ErrorDetails,
+        }),
+        additionalContext = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "additionalContext"),
+            type = "document",
+            name = "additionalContext",
+            target_id = prelude.Document.id,
+        }),
+        scope = schema.new({
+            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "scope"),
+            type = "structure",
+            name = "scope",
+            target_id = id.from(_N, "Scope"),
+            target = M.Scope,
+        }),
         progress = schema.new({
             id = id.from(_N, "GetAgentRecommendationGenerationOutput", "progress"),
             type = "structure",
@@ -4808,12 +5921,47 @@ M.GetAgentRecommendationGenerationOutput = schema.new({
             target_id = id.from(_N, "Progress"),
             target = M.Progress,
         }),
-        errorDetails = schema.new({
-            id = id.from(_N, "GetAgentRecommendationGenerationOutput", "errorDetails"),
-            type = "structure",
-            name = "errorDetails",
-            target_id = id.from(_N, "ErrorDetails"),
-            target = M.ErrorDetails,
+    },
+})
+
+M.GetAgentRecommendationPolicyInput = schema.new({
+    id = id.from(_N, "GetAgentRecommendationPolicyRequest"),
+    type = "structure",
+    members = {
+        recommendationArn = schema.new({
+            id = id.from(_N, "GetAgentRecommendationPolicyInput", "recommendationArn"),
+            type = "string",
+            name = "recommendationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetAgentRecommendationPolicyOutput = schema.new({
+    id = id.from(_N, "GetAgentRecommendationPolicyResponse"),
+    type = "structure",
+    members = {
+        recommendationArn = schema.new({
+            id = id.from(_N, "GetAgentRecommendationPolicyOutput", "recommendationArn"),
+            type = "string",
+            name = "recommendationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policy = schema.new({
+            id = id.from(_N, "GetAgentRecommendationPolicyOutput", "policy"),
+            type = "string",
+            name = "policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -7076,6 +8224,123 @@ M.ListAgentGoalsOutput = schema.new({
     },
 })
 
+M.ListAgentOrganizationalReportsInput = schema.new({
+    id = id.from(_N, "ListAgentOrganizationalReportsRequest"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListAgentOrganizationalReportsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAgentOrganizationalReportsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "ListAgentOrganizationalReportsInput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "state" },
+            },
+        }),
+    },
+})
+
+M.OrganizationalReportSummary = schema.new({
+    id = id.from(_N, "OrganizationalReportSummary"),
+    type = "structure",
+    members = {
+        reportId = schema.new({
+            id = id.from(_N, "OrganizationalReportSummary", "reportId"),
+            type = "string",
+            name = "reportId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ownerAccountId = schema.new({
+            id = id.from(_N, "OrganizationalReportSummary", "ownerAccountId"),
+            type = "string",
+            name = "ownerAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        organizationId = schema.new({
+            id = id.from(_N, "OrganizationalReportSummary", "organizationId"),
+            type = "string",
+            name = "organizationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        label = schema.new({
+            id = id.from(_N, "OrganizationalReportSummary", "label"),
+            type = "string",
+            name = "label",
+            target_id = prelude.String.id,
+        }),
+        state = schema.new({
+            id = id.from(_N, "OrganizationalReportSummary", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "OrganizationalReportSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.ListAgentOrganizationalReportsOutput = schema.new({
+    id = id.from(_N, "ListAgentOrganizationalReportsResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListAgentOrganizationalReportsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.OrganizationalReportSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAgentOrganizationalReportsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListAgentProfilesInput = schema.new({
     id = id.from(_N, "ListAgentProfilesRequest"),
     type = "structure",
@@ -9240,6 +10505,84 @@ M.ListWorkloadSharesOutput = schema.new({
     },
 })
 
+M.PreferenceUpdate = schema.new({
+    id = id.from(_N, "PreferenceUpdate"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "PreferenceUpdate", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "PreferenceUpdate", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutAgentPreferencesInput = schema.new({
+    id = id.from(_N, "PutAgentPreferencesRequest"),
+    type = "structure",
+    members = {
+        preferences = schema.new({
+            id = id.from(_N, "PutAgentPreferencesInput", "preferences"),
+            type = "list",
+            name = "preferences",
+            target_id = prelude.Document.id,
+            list_member = M.PreferenceUpdate,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutAgentPreferencesOutput = schema.new({
+    id = id.from(_N, "PutAgentPreferencesResponse"),
+    type = "structure",
+})
+
+M.PutAgentProfilePolicyInput = schema.new({
+    id = id.from(_N, "PutAgentProfilePolicyRequest"),
+    type = "structure",
+    members = {
+        profileArn = schema.new({
+            id = id.from(_N, "PutAgentProfilePolicyInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        policy = schema.new({
+            id = id.from(_N, "PutAgentProfilePolicyInput", "policy"),
+            type = "string",
+            name = "policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutAgentProfilePolicyOutput = schema.new({
+    id = id.from(_N, "PutAgentProfilePolicyResponse"),
+    type = "structure",
+})
+
 M.PutAgentRecommendationFeedbackInput = schema.new({
     id = id.from(_N, "PutAgentRecommendationFeedbackRequest"),
     type = "structure",
@@ -9281,6 +10624,97 @@ M.PutAgentRecommendationFeedbackInput = schema.new({
 M.PutAgentRecommendationFeedbackOutput = schema.new({
     id = id.from(_N, "PutAgentRecommendationFeedbackResponse"),
     type = "structure",
+})
+
+M.PutAgentRecommendationPolicyInput = schema.new({
+    id = id.from(_N, "PutAgentRecommendationPolicyRequest"),
+    type = "structure",
+    members = {
+        recommendationArn = schema.new({
+            id = id.from(_N, "PutAgentRecommendationPolicyInput", "recommendationArn"),
+            type = "string",
+            name = "recommendationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        policy = schema.new({
+            id = id.from(_N, "PutAgentRecommendationPolicyInput", "policy"),
+            type = "string",
+            name = "policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutAgentRecommendationPolicyOutput = schema.new({
+    id = id.from(_N, "PutAgentRecommendationPolicyResponse"),
+    type = "structure",
+})
+
+M.SendAgentOrganizationalReportDataToS3Input = schema.new({
+    id = id.from(_N, "SendAgentOrganizationalReportDataToS3Request"),
+    type = "structure",
+    members = {
+        reportId = schema.new({
+            id = id.from(_N, "SendAgentOrganizationalReportDataToS3Input", "reportId"),
+            type = "string",
+            name = "reportId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        format = schema.new({
+            id = id.from(_N, "SendAgentOrganizationalReportDataToS3Input", "format"),
+            type = "string",
+            name = "format",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        bucketArn = schema.new({
+            id = id.from(_N, "SendAgentOrganizationalReportDataToS3Input", "bucketArn"),
+            type = "string",
+            name = "bucketArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        objectKey = schema.new({
+            id = id.from(_N, "SendAgentOrganizationalReportDataToS3Input", "objectKey"),
+            type = "string",
+            name = "objectKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SendAgentOrganizationalReportDataToS3Output = schema.new({
+    id = id.from(_N, "SendAgentOrganizationalReportDataToS3Response"),
+    type = "structure",
+    members = {
+        deliveredTo = schema.new({
+            id = id.from(_N, "SendAgentOrganizationalReportDataToS3Output", "deliveredTo"),
+            type = "string",
+            name = "deliveredTo",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
 })
 
 M.ShareInvitation = schema.new({
@@ -9374,9 +10808,6 @@ M.StartAgentRecommendationGenerationInput = schema.new({
             name = "scope",
             target_id = id.from(_N, "Scope"),
             target = M.Scope,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
     },
 })
@@ -9668,6 +11099,202 @@ M.UpdateAgentGoalOutput = schema.new({
     },
 })
 
+M.UpdateAgentOrganizationalProfileInput = schema.new({
+    id = id.from(_N, "UpdateAgentOrganizationalProfileRequest"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        profileArn = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileInput", "profileArn"),
+            type = "string",
+            name = "profileArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileInput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        businessOverview = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileInput", "businessOverview"),
+            type = "string",
+            name = "businessOverview",
+            target_id = prelude.String.id,
+        }),
+        pillars = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileInput", "pillars"),
+            type = "list",
+            name = "pillars",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileInput", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+        }),
+        organizationalAggregationConfiguration = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileInput", "organizationalAggregationConfiguration"),
+            type = "structure",
+            name = "organizationalAggregationConfiguration",
+            target_id = id.from(_N, "OrganizationalAggregationConfiguration"),
+            target = M.OrganizationalAggregationConfiguration,
+        }),
+    },
+})
+
+M.UpdateAgentOrganizationalProfileOutput = schema.new({
+    id = id.from(_N, "UpdateAgentOrganizationalProfileResponse"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        businessOverview = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileOutput", "businessOverview"),
+            type = "string",
+            name = "businessOverview",
+            target_id = prelude.String.id,
+        }),
+        pillars = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileOutput", "pillars"),
+            type = "list",
+            name = "pillars",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileOutput", "deletionProtection"),
+            type = "boolean",
+            name = "deletionProtection",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = true },
+            },
+        }),
+        organizationId = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileOutput", "organizationId"),
+            type = "string",
+            name = "organizationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        organizationalAggregationConfiguration = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileOutput", "organizationalAggregationConfiguration"),
+            type = "structure",
+            name = "organizationalAggregationConfiguration",
+            target_id = id.from(_N, "OrganizationalAggregationConfiguration"),
+            target = M.OrganizationalAggregationConfiguration,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eligibleForScheduledGeneration = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileOutput", "eligibleForScheduledGeneration"),
+            type = "boolean",
+            name = "eligibleForScheduledGeneration",
+            target_id = prelude.Boolean.id,
+        }),
+        eligibleForArchitectureGeneration = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileOutput", "eligibleForArchitectureGeneration"),
+            type = "boolean",
+            name = "eligibleForArchitectureGeneration",
+            target_id = prelude.Boolean.id,
+        }),
+        fieldErrors = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileOutput", "fieldErrors"),
+            type = "map",
+            name = "fieldErrors",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastModifiedBy = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileOutput", "lastModifiedBy"),
+            type = "string",
+            name = "lastModifiedBy",
+            target_id = prelude.String.id,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "UpdateAgentOrganizationalProfileOutput", "lastModifiedAt"),
+            type = "timestamp",
+            name = "lastModifiedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
 M.UpdateAgentProfileInput = schema.new({
     id = id.from(_N, "UpdateAgentProfileRequest"),
     type = "structure",
@@ -9835,13 +11462,6 @@ M.UpdateAgentProfileOutput = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
-        }),
-        tags = schema.new({
-            id = id.from(_N, "UpdateAgentProfileOutput", "tags"),
-            type = "list",
-            name = "tags",
-            target_id = prelude.Document.id,
-            list_member = M.Tag,
         }),
         createdBy = schema.new({
             id = id.from(_N, "UpdateAgentProfileOutput", "createdBy"),
@@ -10874,6 +12494,21 @@ M.AssociateProfiles = schema.operation({
     },
 })
 
+M.CreateAgentBasicProfile = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "CreateAgentBasicProfile"),
+    input = M.CreateAgentBasicProfileInput,
+    output = M.CreateAgentBasicProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/v1/agent-basic-profile" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
+    },
+})
+
 M.CreateAgentContext = schema.operation({
     id = id.from("com.amazonaws.wellarchitected", "CreateAgentContext"),
     input = M.CreateAgentContextInput,
@@ -10895,6 +12530,36 @@ M.CreateAgentGoal = schema.operation({
     output = M.CreateAgentGoalOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/api/v1/agent-profiles/{profileArn}/goals" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
+    },
+})
+
+M.CreateAgentOrganizationalProfile = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "CreateAgentOrganizationalProfile"),
+    input = M.CreateAgentOrganizationalProfileInput,
+    output = M.CreateAgentOrganizationalProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/v1/agent-organizational-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
+    },
+})
+
+M.CreateAgentOrganizationalReport = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "CreateAgentOrganizationalReport"),
+    input = M.CreateAgentOrganizationalReportInput,
+    output = M.CreateAgentOrganizationalReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/v1/agent-organizational-reports" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -11057,12 +12722,57 @@ M.DeleteAgentGoal = schema.operation({
     },
 })
 
+M.DeleteAgentOrganizationalReport = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "DeleteAgentOrganizationalReport"),
+    input = M.DeleteAgentOrganizationalReportInput,
+    output = M.DeleteAgentOrganizationalReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/agent-organizational-reports/{reportId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
+    },
+})
+
 M.DeleteAgentProfile = schema.operation({
     id = id.from("com.amazonaws.wellarchitected", "DeleteAgentProfile"),
     input = M.DeleteAgentProfileInput,
     output = M.DeleteAgentProfileOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/api/v1/agent-profiles/{profileArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
+    },
+})
+
+M.DeleteAgentProfilePolicy = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "DeleteAgentProfilePolicy"),
+    input = M.DeleteAgentProfilePolicyInput,
+    output = M.DeleteAgentProfilePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/agent-profiles/{profileArn}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
+    },
+})
+
+M.DeleteAgentRecommendationPolicy = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "DeleteAgentRecommendationPolicy"),
+    input = M.DeleteAgentRecommendationPolicyInput,
+    output = M.DeleteAgentRecommendationPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/api/v1/agent-recommendations/{recommendationArn}/policy" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -11234,12 +12944,72 @@ M.GetAgentGoal = schema.operation({
     },
 })
 
+M.GetAgentOrganizationalReport = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetAgentOrganizationalReport"),
+    input = M.GetAgentOrganizationalReportInput,
+    output = M.GetAgentOrganizationalReportOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/agent-organizational-reports/{reportId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
+    },
+})
+
+M.GetAgentOrganizationalReportData = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetAgentOrganizationalReportData"),
+    input = M.GetAgentOrganizationalReportDataInput,
+    output = M.GetAgentOrganizationalReportDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/agent-organizational-reports/{reportId}/data" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
+    },
+})
+
+M.GetAgentPreferences = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetAgentPreferences"),
+    input = M.GetAgentPreferencesInput,
+    output = M.GetAgentPreferencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/agent-preferences" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
+    },
+})
+
 M.GetAgentProfile = schema.operation({
     id = id.from("com.amazonaws.wellarchitected", "GetAgentProfile"),
     input = M.GetAgentProfileInput,
     output = M.GetAgentProfileOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/api/v1/agent-profiles/{profileArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
+    },
+})
+
+M.GetAgentProfilePolicy = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetAgentProfilePolicy"),
+    input = M.GetAgentProfilePolicyInput,
+    output = M.GetAgentProfilePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/agent-profiles/{profileArn}/policy" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -11270,6 +13040,21 @@ M.GetAgentRecommendationGeneration = schema.operation({
     output = M.GetAgentRecommendationGenerationOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/api/v1/agent-profiles/{profileArn}/generations/{generationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
+    },
+})
+
+M.GetAgentRecommendationPolicy = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "GetAgentRecommendationPolicy"),
+    input = M.GetAgentRecommendationPolicyInput,
+    output = M.GetAgentRecommendationPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/agent-recommendations/{recommendationArn}/policy" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -11480,6 +13265,21 @@ M.ListAgentGoals = schema.operation({
     output = M.ListAgentGoalsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/api/v1/agent-profiles/{profileArn}/goals" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
+    },
+})
+
+M.ListAgentOrganizationalReports = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "ListAgentOrganizationalReports"),
+    input = M.ListAgentOrganizationalReportsInput,
+    output = M.ListAgentOrganizationalReportsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/api/v1/agent-organizational-reports" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -11777,12 +13577,72 @@ M.ListWorkloadShares = schema.operation({
     },
 })
 
+M.PutAgentPreferences = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "PutAgentPreferences"),
+    input = M.PutAgentPreferencesInput,
+    output = M.PutAgentPreferencesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/api/v1/agent-preferences" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
+    },
+})
+
+M.PutAgentProfilePolicy = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "PutAgentProfilePolicy"),
+    input = M.PutAgentProfilePolicyInput,
+    output = M.PutAgentProfilePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/api/v1/agent-profiles/{profileArn}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
+    },
+})
+
 M.PutAgentRecommendationFeedback = schema.operation({
     id = id.from("com.amazonaws.wellarchitected", "PutAgentRecommendationFeedback"),
     input = M.PutAgentRecommendationFeedbackInput,
     output = M.PutAgentRecommendationFeedbackOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/api/v1/agent-recommendations/{recommendationArn}/feedback" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
+    },
+})
+
+M.PutAgentRecommendationPolicy = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "PutAgentRecommendationPolicy"),
+    input = M.PutAgentRecommendationPolicyInput,
+    output = M.PutAgentRecommendationPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/api/v1/agent-recommendations/{recommendationArn}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
+    },
+})
+
+M.SendAgentOrganizationalReportDataToS3 = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "SendAgentOrganizationalReportDataToS3"),
+    input = M.SendAgentOrganizationalReportDataToS3Input,
+    output = M.SendAgentOrganizationalReportDataToS3Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/api/v1/agent-organizational-reports/{reportId}/send-to-s3" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -11852,6 +13712,21 @@ M.UpdateAgentGoal = schema.operation({
     output = M.UpdateAgentGoalOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/api/v1/agent-profiles/{profileArn}/goals/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            SubServiceType = { value = "AGENT" },
+        },
+    },
+})
+
+M.UpdateAgentOrganizationalProfile = schema.operation({
+    id = id.from("com.amazonaws.wellarchitected", "UpdateAgentOrganizationalProfile"),
+    input = M.UpdateAgentOrganizationalProfileInput,
+    output = M.UpdateAgentOrganizationalProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/api/v1/agent-organizational-profiles/{profileArn}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

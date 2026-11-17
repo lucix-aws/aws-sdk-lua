@@ -18,9 +18,15 @@ M.PolicyInfoList = schema.new({ type = "list", list_member = M.PolicyInfo })
 
 M.MatchedPolicyList = schema.new({ type = "list", list_member = M.MatchedPolicy })
 
+M.CheckList = schema.new({ type = "list", list_member = M.Check })
+
 M.AttachedToList = schema.new({ type = "list", list_member = M.AttachedTo })
 
+M.PolicySource = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.MatchedStatementList = schema.new({ type = "list", list_member = M.MatchedStatement })
+
+M.PolicyTypeList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -122,6 +128,51 @@ M.MatchedPolicy = schema.new({
     },
 })
 
+M.Check = schema.new({
+    id = id.from(_N, "Check"),
+    type = "structure",
+    members = {
+        checkType = schema.new({
+            id = id.from(_N, "Check", "checkType"),
+            type = "string",
+            name = "checkType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        evaluatedEffect = schema.new({
+            id = id.from(_N, "Check", "evaluatedEffect"),
+            type = "string",
+            name = "evaluatedEffect",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        targetArn = schema.new({
+            id = id.from(_N, "Check", "targetArn"),
+            type = "string",
+            name = "targetArn",
+            target_id = prelude.String.id,
+        }),
+        relevantPolicyTypes = schema.new({
+            id = id.from(_N, "Check", "relevantPolicyTypes"),
+            type = "list",
+            name = "relevantPolicyTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        matchedPolicies = schema.new({
+            id = id.from(_N, "Check", "matchedPolicies"),
+            type = "list",
+            name = "matchedPolicies",
+            target_id = prelude.Document.id,
+            list_member = M.MatchedPolicy,
+        }),
+    },
+})
+
 M.Evaluation = schema.new({
     id = id.from(_N, "Evaluation"),
     type = "structure",
@@ -165,6 +216,13 @@ M.Evaluation = schema.new({
             target_id = prelude.Document.id,
             list_member = M.MatchedPolicy,
         }),
+        checks = schema.new({
+            id = id.from(_N, "Evaluation", "checks"),
+            type = "list",
+            name = "checks",
+            target_id = prelude.Document.id,
+            list_member = M.Check,
+        }),
     },
 })
 
@@ -196,6 +254,14 @@ M.PolicyInfo = schema.new({
             name = "attachedTo",
             target_id = prelude.Document.id,
             list_member = M.AttachedTo,
+        }),
+        policySource = schema.new({
+            id = id.from(_N, "PolicyInfo", "policySource"),
+            type = "map",
+            name = "policySource",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
     },
 })
@@ -301,6 +367,49 @@ M.ValidationException = schema.new({
     },
 })
 
+M.GetRequestAuthorizationPolicyInput = schema.new({
+    id = id.from(_N, "GetRequestAuthorizationPolicyInput"),
+    type = "structure",
+    members = {
+        authorizationId = schema.new({
+            id = id.from(_N, "GetRequestAuthorizationPolicyInput", "authorizationId"),
+            type = "string",
+            name = "authorizationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        policyUri = schema.new({
+            id = id.from(_N, "GetRequestAuthorizationPolicyInput", "policyUri"),
+            type = "string",
+            name = "policyUri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "policyUri" },
+            },
+        }),
+    },
+})
+
+M.GetRequestAuthorizationPolicyOutput = schema.new({
+    id = id.from(_N, "GetRequestAuthorizationPolicyOutput"),
+    type = "structure",
+    members = {
+        policyDocument = schema.new({
+            id = id.from(_N, "GetRequestAuthorizationPolicyOutput", "policyDocument"),
+            type = "document",
+            name = "policyDocument",
+            target_id = prelude.Document.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 -- Fix forward references for recursive schemas
 for _, _s in pairs(M) do
     local s = _s as {string:any}
@@ -332,6 +441,18 @@ M.GetRequestAuthorizationDetails = schema.operation({
     output = M.GetRequestAuthorizationDetailsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/authorization-details/{authorizationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRequestAuthorizationPolicy = schema.operation({
+    id = id.from("com.amazonaws.iamtoolbox", "GetRequestAuthorizationPolicy"),
+    input = M.GetRequestAuthorizationPolicyInput,
+    output = M.GetRequestAuthorizationPolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/authorization-details/{authorizationId}/policy" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

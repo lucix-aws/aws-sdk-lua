@@ -58,6 +58,24 @@ function M.items_list_container_associations(client, input)
     })
 end
 
+--- Returns a page iterator for listContextStores.
+function M.pages_list_context_stores(client, input)
+    return paginator.pages(client, "listContextStores", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ContextStores",
+    })
+end
+
+--- Returns an item iterator for listContextStores.
+function M.items_list_context_stores(client, input)
+    return paginator.items(client, "listContextStores", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ContextStores",
+    })
+end
+
 --- Returns a page iterator for listFirewallPolicies.
 function M.pages_list_firewall_policies(client, input)
     return paginator.pages(client, "listFirewallPolicies", input, {
@@ -145,6 +163,24 @@ function M.items_list_flow_operations(client, input)
         input_token = "NextToken",
         output_token = "NextToken",
         items = "FlowOperations",
+    })
+end
+
+--- Returns a page iterator for listResourcesInContextStore.
+function M.pages_list_resources_in_context_store(client, input)
+    return paginator.pages(client, "listResourcesInContextStore", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResourceContexts",
+    })
+end
+
+--- Returns an item iterator for listResourcesInContextStore.
+function M.items_list_resources_in_context_store(client, input)
+    return paginator.items(client, "listResourcesInContextStore", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ResourceContexts",
     })
 end
 

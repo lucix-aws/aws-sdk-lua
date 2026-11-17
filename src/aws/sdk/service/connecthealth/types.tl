@@ -55,6 +55,8 @@ local record M
         "IN_PROGRESS"
         "FAILED"
         "COMPLETED"
+        "PENDING"
+        "SKIPPED"
     end
 
     -- Details about a generated artifact including location and status
@@ -64,6 +66,28 @@ local record M
         status: string
         -- The reason for failure if the artifact generation failed
         failureReason: string
+    end
+
+    enum ChecklistItemStatus
+        "DISCUSSED"
+        "PARTIALLY_DISCUSSED"
+        "NOT_DISCUSSED"
+    end
+
+    -- Contains a checklist item and its discussion status.
+    record ChecklistItem
+        -- The key that uniquely identifies the item within the checklist. For a managed note template, this value is a service-defined section key, such as CHIEF_COMPLAINT. For a custom note template, this value is the sectionHeader of the section that you defined.
+        itemKey: string
+        -- The discussion status of the checklist item. The following values are valid: DISCUSSED: The conversation has covered the item. PARTIALLY_DISCUSSED: The conversation has covered part of the item. NOT_DISCUSSED: The conversation has not covered the item. The status usually progresses toward DISCUSSED, but it can return to NOT_DISCUSSED if a speaker retracts a statement.
+        status: string
+    end
+
+    -- Contains the sections of a note template checklist and the discussion status of each section.
+    record Checklist
+        -- The identifier of the checklist. For a managed note template, this value is the template type, such as HISTORY_AND_PHYSICAL. For a custom note template, this value is CUSTOM_ followed by the template base, such as CUSTOM_GIRPP.
+        checklistId: string
+        -- The checklist items in template order. The list contains one item for each checklist section, including sections that have not been discussed.
+        items: {ChecklistItem}
     end
 
     -- Results of clinical note generation including note, transcript, and summary
@@ -158,6 +182,65 @@ local record M
         message: string
     end
 
+    -- The configuration of a medical coding dataset. Amazon Connect Health uses the coded examples that are in the input location when you create the dataset, and writes evaluation scores to the output location, with your permissions. Later changes to the input location don't change the dataset.
+    record MedicalCodingDatasetConfig
+        -- The Amazon S3 location of your coded examples. You need s3:GetObject and s3:ListBucket permissions for it, and kms:Decrypt if you encrypt it with an AWS KMS key.
+        s3InputPath: string
+        -- The Amazon S3 location where Amazon Connect Health writes the evaluation scores for the dataset. You need s3:PutObject permission for it, and kms:GenerateDataKey if you encrypt it with an AWS KMS key.
+        s3OutputPath: string
+    end
+
+    -- The configuration of a Dataset. Set one member, which determines the dataset type.
+    record DatasetConfig
+        -- The configuration of a medical coding dataset, which tailors medical coding jobs to your coded examples.
+        medicalCoding: MedicalCodingDatasetConfig
+    end
+
+    record CreateDatasetInput
+        -- The unique identifier of the parent Domain.
+        domainId: string
+        -- A name for the dataset.
+        name: string
+        -- The configuration of the dataset. The member that you set determines the dataset type. You can't change the configuration after you create the dataset.
+        config: DatasetConfig
+        -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the operation returns the dataset that the first request created. If you reuse a clientToken with different parameters, the request fails with ConflictException. Use a new clientToken for a request with different parameters.
+        clientToken: string
+    end
+
+    enum DatasetStatus
+        "CREATING"
+        "ACTIVE"
+        "CREATE_FAILED"
+        "DELETING"
+        "DELETE_FAILED"
+        "DELETED"
+    end
+
+    enum DatasetType
+        "MEDICAL_CODING"
+    end
+
+    record CreateDatasetOutput
+        -- The Amazon Resource Name (ARN) of the dataset.
+        arn: string
+        -- The unique identifier of the dataset.
+        datasetId: string
+        -- The status of the dataset. A new dataset has the status CREATING.
+        status: string
+        -- The date and time that the dataset was created.
+        createdAt: number
+    end
+
+    -- The request exceeds a service quota.
+    record ServiceQuotaExceededException
+        message: string
+    end
+
+    -- This error is thrown when the client exceeds the allowed request rate.
+    record ThrottlingException
+        message: string
+    end
+
     -- Input configuration for creating a web application. Used only in CreateDomain operation input.
     record CreateWebAppConfiguration
         -- ARN of the IAM role used for EHR operations.
@@ -220,11 +303,6 @@ local record M
         createdAt: number
     end
 
-    -- The request exceeds a service quota.
-    record ServiceQuotaExceededException
-        message: string
-    end
-
     record CreateSubscriptionInput
         -- The unique identifier of the parent Domain.
         domainId: string
@@ -252,6 +330,22 @@ local record M
         subscription: SubscriptionDescription
     end
 
+    record DeleteDatasetInput
+        -- The unique identifier of the parent Domain.
+        domainId: string
+        -- The unique identifier of the dataset to delete.
+        datasetId: string
+    end
+
+    record DeleteDatasetOutput
+        -- The Amazon Resource Name (ARN) of the dataset.
+        arn: string
+        -- The unique identifier of the dataset.
+        datasetId: string
+        -- The status of the dataset. After Amazon Connect Health accepts the request, the status is DELETING.
+        status: string
+    end
+
     record DeleteDomainInput
         -- The id of the Domain to delete
         domainId: string
@@ -264,6 +358,46 @@ local record M
         arn: string
         -- Current status of Domain
         status: string
+    end
+
+    record GetDatasetInput
+        -- The unique identifier of the parent Domain.
+        domainId: string
+        -- The unique identifier of the dataset.
+        datasetId: string
+    end
+
+    -- The results of building a medical coding dataset.
+    record MedicalCodingDatasetArtifacts
+        -- The Amazon S3 location, under the s3OutputPath of the dataset, of the evaluation scores for the dataset.
+        evaluationS3Uri: string
+    end
+
+    -- The results of building a Dataset, by dataset type.
+    record DatasetArtifacts
+        -- The results of building a medical coding dataset.
+        medicalCoding: MedicalCodingDatasetArtifacts
+    end
+
+    record GetDatasetOutput
+        -- The Amazon Resource Name (ARN) of the dataset.
+        arn: string
+        -- The unique identifier of the dataset.
+        datasetId: string
+        -- The name of the dataset.
+        name: string
+        -- The configuration that you provided when you created the dataset.
+        config: DatasetConfig
+        -- The status of the dataset.
+        status: string
+        -- Details about the status of the dataset, such as the reason that it failed to build or delete.
+        statusDetails: string
+        -- The results of building the dataset, such as medical coding evaluation scores. Available after Amazon Connect Health builds the dataset.
+        artifacts: DatasetArtifacts
+        -- The date and time that the dataset was created.
+        createdAt: number
+        -- The date and time that the dataset was last updated.
+        updatedAt: number
     end
 
     record GetDomainInput
@@ -283,6 +417,102 @@ local record M
         createdAt: number
         -- Tags associated with the Domain
         tags: {string : string}
+    end
+
+    record GetMedicalCodingJobInput
+        -- The unique identifier of the parent Domain.
+        domainId: string
+        -- The unique identifier of the medical coding job.
+        jobId: string
+    end
+
+    enum EncounterType
+        "TELEHEALTH"
+        "IN_PERSON"
+    end
+
+    -- Encounter context for a medical coding job. All fields are optional.
+    record MedicalCodesEncounterContext
+        -- The type of the encounter, either in person or telehealth.
+        encounterType: string
+        -- The reason for the encounter. The reason can contain letters, numbers, spaces, periods, commas, and hyphens, and can't contain only spaces.
+        encounterReason: string
+        -- Specifies whether the encounter took place outside regular business hours.
+        afterHours: boolean
+        -- The date of the encounter, in YYYY-MM-DD format. The date can't be more than one day after the current date in UTC.
+        encounterDate: string
+        -- The duration of the encounter, in minutes, from 1 to 1440.
+        encounterDurationMinutes: number
+    end
+
+    enum JobStatus
+        "SUBMITTED"
+        "IN_PROGRESS"
+        "FAILED"
+        "SUCCEEDED"
+    end
+
+    -- The location of the results of a medical coding job.
+    record MedicalCodingOutput
+        -- The Amazon S3 location of the medical codes that the job generated.
+        uri: string
+    end
+
+    -- The output configuration for a medical coding job.
+    record MedicalCodingOutputDataConfig
+        -- The Amazon S3 location where Amazon Connect Health writes the results of the job.
+        s3OutputPath: string
+    end
+
+    enum Sex
+        "MALE"
+        "FEMALE"
+        "NON_BINARY"
+        "UNKNOWN"
+    end
+
+    enum PatientStatus
+        "NEW"
+        "ESTABLISHED"
+    end
+
+    -- Patient context for a medical coding job. All fields are optional.
+    record MedicalCodesPatientContext
+        -- The sex of the patient.
+        sex: string
+        -- The status of the patient, either new or established.
+        status: string
+        -- The date of birth of the patient, in YYYY-MM-DD format. The date can't be after the current date in UTC.
+        dateOfBirth: string
+        -- The insurance of the patient.
+        insurance: string
+    end
+
+    record GetMedicalCodingJobOutput
+        -- The unique identifier of the medical coding job.
+        jobId: string
+        -- The Amazon Resource Name (ARN) of the medical coding job.
+        jobArn: string
+        -- The status of the medical coding job.
+        jobStatus: string
+        -- The date and time that the medical coding job was created.
+        creationTime: number
+        -- The date and time that the medical coding job was last updated.
+        updatedTime: number
+        -- The clinical text that the medical coding job codes.
+        text: string
+        -- The patient context that you provided for the job.
+        patientContext: MedicalCodesPatientContext
+        -- The encounter context that you provided for the job.
+        encounterContext: MedicalCodesEncounterContext
+        -- The output configuration that you provided for the job.
+        outputDataConfig: MedicalCodingOutputDataConfig
+        -- The unique identifier of the dataset that the job codes against. Not returned if the job uses the general medical coding knowledge base.
+        datasetId: string
+        -- The location of the job results. Returned when the job succeeds.
+        medicalCodingOutput: MedicalCodingOutput
+        -- Details about the status of the job, such as the reason that it failed.
+        statusDetails: string
     end
 
     record GetMedicalScribeListeningSessionInput
@@ -317,10 +547,26 @@ local record M
         "flac"
     end
 
+    -- Results of medical code generation, including the medical codes and the medical coding job.
+    record MedicalCodeGenerationResult
+        -- Details about the generated medical codes. If the status is SKIPPED, medical codes weren't generated, for example because the clinical note wasn't generated or had no content.
+        medicalCodesResult: ArtifactDetails
+        -- The identifier of the medical coding job that generated the medical codes. To submit feedback on the medical codes, use this value as the artifactSourceId, with the artifactType MEDICAL_CODES, in SubmitFeedback.
+        jobId: string
+    end
+
     -- Results of post-stream actions performed after the audio stream ended
     record MedicalScribePostStreamActionsResult
         -- Results of clinical note generation
         clinicalNoteGenerationResult: ClinicalNoteGenerationResult
+        -- Results of medical code generation. Returned if medical code generation runs for the session. Not returned if you set enabled to false in medicalCodeGenerationSettings.
+        medicalCodeGenerationResult: MedicalCodeGenerationResult
+    end
+
+    -- Response containing settings for medical code generation.
+    record MedicalCodeGenerationSettingsResponse
+        -- Indicates whether medical code generation was requested for the session.
+        enabled: boolean
     end
 
     -- Response containing settings for post-stream actions
@@ -328,6 +574,8 @@ local record M
         outputS3Uri: string
         -- Settings for clinical note generation
         clinicalNoteGenerationSettings: ClinicalNoteGenerationSettingsResponse
+        -- Settings for medical code generation. Returned only if you specified medicalCodeGenerationSettings when you started the session.
+        medicalCodeGenerationSettings: MedicalCodeGenerationSettingsResponse
     end
 
     enum MedicalScribeStreamStatus
@@ -359,6 +607,8 @@ local record M
         postStreamActionResult: MedicalScribePostStreamActionsResult
         -- Indicates whether encounter context was provided
         encounterContextProvided: boolean
+        -- Indicates whether medical coding context was provided.
+        medicalCodingContextProvided: boolean
         -- The current status of the stream
         streamStatus: string
         -- The timestamp when the stream was created
@@ -370,11 +620,6 @@ local record M
     record GetMedicalScribeListeningSessionOutput
         -- Details about the Medical Scribe listening session
         medicalScribeListeningSessionDetails: MedicalScribeListeningSessionDetails
-    end
-
-    -- This error is thrown when the client exceeds the allowed request rate.
-    record ThrottlingException
-        message: string
     end
 
     record GetPatientInsightsJobInput
@@ -422,13 +667,6 @@ local record M
     -- Output of patient insights job
     record InsightsOutput
         uri: string
-    end
-
-    enum JobStatus
-        "SUBMITTED"
-        "IN_PROGRESS"
-        "FAILED"
-        "SUCCEEDED"
     end
 
     -- Configuration details for insights output.
@@ -499,6 +737,40 @@ local record M
         subscription: SubscriptionDescription
     end
 
+    record ListDatasetsInput
+        -- The unique identifier of the parent Domain.
+        domainId: string
+        -- The token for the next page of results, from a previous ListDatasets response. If you don't specify a value, the operation returns the first page of results.
+        nextToken: string
+        -- The maximum number of datasets to return in one page. The default is 100.
+        maxResults: number
+    end
+
+    -- Summary information about a Dataset.
+    record DatasetSummary
+        -- The Amazon Resource Name (ARN) of the dataset.
+        arn: string
+        -- The unique identifier of the dataset.
+        datasetId: string
+        -- The name of the dataset.
+        name: string
+        -- The status of the dataset.
+        status: string
+        -- Details about the status of the dataset, such as the reason that it failed to build or delete.
+        statusDetails: string
+        -- The date and time that the dataset was created.
+        createdAt: number
+        -- The date and time that the dataset was last updated.
+        updatedAt: number
+    end
+
+    record ListDatasetsOutput
+        -- A list of dataset summaries.
+        items: {DatasetSummary}
+        -- The token for the next page of results. Not returned if there are no more results.
+        nextToken: string
+    end
+
     record ListDomainsInput
         -- Filter by Domain status.
         status: string
@@ -552,6 +824,32 @@ local record M
         tags: {string : string}
     end
 
+    record StartMedicalCodingJobInput
+        -- The unique identifier of the parent Domain.
+        domainId: string
+        -- The clinical text to generate medical codes for, such as a clinical note.
+        text: string
+        -- Patient context for the job. Providing this information can improve the accuracy of the medical codes.
+        patientContext: MedicalCodesPatientContext
+        -- Encounter context for the job. Providing this information can improve the accuracy of the medical codes.
+        encounterContext: MedicalCodesEncounterContext
+        -- The output configuration for the job.
+        outputDataConfig: MedicalCodingOutputDataConfig
+        -- The unique identifier of an ACTIVE medical coding dataset in the Domain to code against. If you don't specify a dataset, the job uses the general medical coding knowledge base.
+        datasetId: string
+        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        clientToken: string
+    end
+
+    record StartMedicalCodingJobOutput
+        -- The Amazon Resource Name (ARN) of the medical coding job.
+        jobArn: string
+        -- The unique identifier of the medical coding job.
+        jobId: string
+        -- The date and time that the medical coding job was created.
+        creationTime: number
+    end
+
     -- An event containing audio data for the Medical Scribe stream
     record MedicalScribeAudioEvent
         -- The audio data chunk
@@ -564,10 +862,36 @@ local record M
         audioChunk: string
     end
 
+    -- Patient and encounter context for medical code generation. Providing this information can improve the accuracy of the medical codes. To provide it, you must also set enabled to true in medicalCodeGenerationSettings. All fields are optional. The service generates medical codes without any field that you leave out.
+    record MedicalCodingContext
+        -- The sex of the patient.
+        sex: string
+        -- The status of the patient, either new or established.
+        status: string
+        -- The date of birth of the patient, in YYYY-MM-DD format. The date can't be after the current date in UTC.
+        dateOfBirth: string
+        -- The type of the encounter, either in person or telehealth.
+        encounterType: string
+        -- The reason for the encounter. The reason can contain letters, numbers, spaces, periods, commas, and hyphens, and can't contain only spaces.
+        encounterReason: string
+        -- Specifies whether the encounter took place outside regular business hours.
+        afterHours: boolean
+        -- The date of the encounter, in YYYY-MM-DD format. The date can't be more than one day after the current date in UTC.
+        encounterDate: string
+    end
+
     -- Context information about the clinical encounter
     record EncounterContext
         -- Unstructured context information in markdown format
         unstructuredContext: string
+        -- Structured patient and encounter context for medical code generation.
+        medicalCodingContext: MedicalCodingContext
+    end
+
+    -- Settings for generating medical codes from the clinical note after the session ends. Medical code generation is in preview release and is subject to change. Medical code generation is available in the US East (N. Virginia) and US West (Oregon) AWS Regions.
+    record MedicalCodeGenerationSettings
+        -- Specifies whether to generate medical codes for the session. If you set this to true, the service generates medical codes from the clinical note after the session ends, using your permissions for medical coding, the output Amazon S3 location, and the AWS KMS key. You can set this to true only in a Region where medical code generation is available. To provide a medicalCodingContext, you must set this to true.
+        enabled: boolean
     end
 
     -- Settings for actions to perform after the audio stream ends
@@ -575,6 +899,8 @@ local record M
         outputS3Uri: string
         -- Settings for clinical note generation
         clinicalNoteGenerationSettings: ClinicalNoteGenerationSettings
+        -- Settings for medical code generation. Medical code generation is in preview release and is subject to change.
+        medicalCodeGenerationSettings: MedicalCodeGenerationSettings
     end
 
     -- An event containing configuration for the Medical Scribe session
@@ -620,6 +946,82 @@ local record M
         inputStream: function(): string, string
     end
 
+    -- Real-time extraction is in preview release for Amazon Connect Health and is subject to change. To request access to this feature, contact your AWS account team. The session's checklist as of this point in the session. Each event carries every item with its current status, not only the items that changed.
+    record MedicalScribeChecklistEvent
+        -- The version of this snapshot. Versions increase within a session and can skip values. Keep the snapshot with the highest version and ignore any event whose version is not higher, including after you reconnect to the session. Versions of checklist events and periodontal chart events are independent.
+        snapshotVersion: number
+        -- The checklists for the session. The list is empty when no checklist is active.
+        checklists: {Checklist}
+    end
+
+    enum PeriodontalReviewReason
+        "SITE_NOT_CHARTED"
+        "VALUE_NOT_CHARTED"
+        "READING_COUNT_MISMATCH"
+        "LINE_UNCLEAR"
+        "TOOTH_UNCLEAR"
+        "MISSING_TOOTH_CONFLICT"
+        "MEASUREMENT_NOT_CHARTED"
+        "SESSION_ISSUE"
+    end
+
+    enum PeriodontalSiteName
+        "DB"
+        "B"
+        "MB"
+        "DL"
+        "L"
+        "ML"
+    end
+
+    -- An item of the periodontal chart that needs the clinician's confirmation.
+    record PeriodontalReview
+        -- The reason for review. The following values are valid: SITE_NOT_CHARTED: One or more sites have no reading. VALUE_NOT_CHARTED: A dictated value or charting instruction was not charted, for example because the value was out of range or not valid at its position. READING_COUNT_MISMATCH: The number of dictated values did not match the number of open sites. The values were charted as dictated. LINE_UNCLEAR: A line of dictation could not be interpreted and was not charted. TOOTH_UNCLEAR: A line of dictation did not identify the tooth and was not charted. MISSING_TOOTH_CONFLICT: The dictation conflicts with a tooth marked as missing. MEASUREMENT_NOT_CHARTED: The dictation included a measurement that the chart does not record, such as plaque, calculus, or the mucogingival junction. SESSION_ISSUE: The exam setup could not be used and all teeth were assumed to be present, or the earlier chart could not be restored and charting restarted.
+        reason: string
+        -- The tooth that the item refers to.
+        toothNumber: number
+        -- The probing sites of that tooth that the item refers to.
+        sites: {string}
+    end
+
+    -- The measurements at one probing site of a tooth.
+    record PeriodontalSite
+        -- The probing site. The following values are valid: DB: Distobuccal. B: Buccal. MB: Mesiobuccal. DL: Distolingual. L: Lingual. ML: Mesiolingual.
+        site: string
+        -- The probing depth, in millimeters. The value ranges from 0 to 15.
+        probingDepth: number
+        -- The gingival recession, in millimeters. The value ranges from -5 to 15. For example, -1 represents "plus one."
+        recession: number
+        -- Specifies whether the site bled during probing.
+        bleeding: boolean
+        -- Specifies whether suppuration was present at the site.
+        suppuration: boolean
+    end
+
+    -- The chart for one tooth.
+    record PeriodontalTooth
+        -- The tooth number in the Universal Numbering System. The value ranges from 1 to 32.
+        toothNumber: number
+        -- Specifies whether the tooth is missing.
+        missing: boolean
+        -- The tooth mobility grade. The value ranges from 0 to 3.
+        mobility: number
+        -- The furcation involvement class. The value ranges from 0 to 3.
+        furcation: number
+        -- The probing sites that have a recorded measurement, in the order MB, B, DB, ML, L, DL.
+        sites: {PeriodontalSite}
+    end
+
+    -- Real-time extraction is in preview release for Amazon Connect Health and is subject to change. To request access to this feature, contact your AWS account team. The periodontal chart as of this point in the session. Each event carries every tooth charted so far, not only the teeth that changed.
+    record MedicalScribePeriodontalChartEvent
+        -- The version of this snapshot. Versions increase within a session and can skip values. Keep the snapshot with the highest version and ignore any event whose version is not higher, including after you reconnect to the session. Versions of checklist events and periodontal chart events are independent.
+        snapshotVersion: number
+        -- The teeth that have a recorded value or are marked missing, in ascending toothNumber order.
+        teeth: {PeriodontalTooth}
+        -- Items that need the clinician's confirmation.
+        reviewItems: {PeriodontalReview}
+    end
+
     -- A segment of transcript text with timing and channel information
     record MedicalScribeTranscriptSegment
         -- The unique identifier for this segment
@@ -642,11 +1044,15 @@ local record M
         transcriptSegment: MedicalScribeTranscriptSegment
     end
 
-    -- Output stream from Medical Scribe containing transcript events and errors
+    -- The output stream of a listening session. It carries transcript events, periodontal chart events, checklist events, and errors.
     record MedicalScribeOutputStream
         transcriptEvent: MedicalScribeTranscriptEvent
         internalFailureException: InternalServerException
         validationException: ValidationException
+        -- Real-time extraction is in preview release for Amazon Connect Health and is subject to change. To request access to this feature, contact your AWS account team. A snapshot of the periodontal chart. Amazon Connect Health sends this event only when real-time extraction is enabled for the account and periodontal charting is dictated during the session.
+        periodontalChartEvent: MedicalScribePeriodontalChartEvent
+        -- Real-time extraction is in preview release for Amazon Connect Health and is subject to change. To request access to this feature, contact your AWS account team. A snapshot of the session's checklist. Amazon Connect Health sends this event only when real-time extraction is enabled for the account and the session uses a supported note template.
+        checklistEvent: MedicalScribeChecklistEvent
     end
 
     record StartMedicalScribeListeningSessionOutput
@@ -664,7 +1070,7 @@ local record M
         mediaSampleRateHertz: number
         -- The encoding for the input audio
         mediaEncoding: string
-        -- The output stream containing transcript events
+        -- The output stream that contains transcript events, periodontal chart events, checklist events, and errors.
         responseStream: function(): string, string
     end
 
@@ -685,6 +1091,33 @@ local record M
         jobId: string
         -- Date and time the patient insights job was submitted.
         creationTime: number
+    end
+
+    enum FeedbackArtifactType
+        "CLINICAL_DOC"
+        "MEDICAL_CODES"
+    end
+
+    record SubmitFeedbackInput
+        -- The unique identifier of the parent Domain.
+        domainId: string
+        -- The identifier of the artifact source. For a clinical document, this is the session ID. For a set of medical codes, this is the medical coding job ID.
+        artifactSourceId: string
+        -- The unique identifier of the Subscription.
+        subscriptionId: string
+        -- The type of artifact that you submit feedback for. The following values are valid: CLINICAL_DOC is the clinical document generated for an ambient documentation session. MEDICAL_CODES is the set of medical codes generated by a medical coding job.
+        artifactType: string
+        -- The Amazon Simple Storage Service (Amazon S3) URI of the final artifact that the clinician signed.
+        signedArtifactS3Uri: string
+        -- The Amazon S3 URI of the clinical document or set of medical codes that Amazon Connect Health generated.
+        generatedArtifactS3Uri: string
+        -- Optional comments about the feedback.
+        comments: string
+        -- A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request but does not return an error.
+        clientToken: string
+    end
+
+    record SubmitFeedbackOutput
     end
 
     record TagResourceInput

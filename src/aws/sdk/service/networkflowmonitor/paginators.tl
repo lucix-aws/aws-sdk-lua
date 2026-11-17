@@ -4,6 +4,24 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for getMonitorScopeSuggestions.
+function M.pages_get_monitor_scope_suggestions(client, input)
+    return paginator.pages(client, "getMonitorScopeSuggestions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accountsToAdd",
+    })
+end
+
+--- Returns an item iterator for getMonitorScopeSuggestions.
+function M.items_get_monitor_scope_suggestions(client, input)
+    return paginator.items(client, "getMonitorScopeSuggestions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "accountsToAdd",
+    })
+end
+
 --- Returns a page iterator for getQueryResultsMonitorTopContributors.
 function M.pages_get_query_results_monitor_top_contributors(client, input)
     return paginator.pages(client, "getQueryResultsMonitorTopContributors", input, {
@@ -19,6 +37,24 @@ function M.items_get_query_results_monitor_top_contributors(client, input)
         input_token = "nextToken",
         output_token = "nextToken",
         items = "topContributors",
+    })
+end
+
+--- Returns a page iterator for getQueryResultsPerformanceMonitor.
+function M.pages_get_query_results_performance_monitor(client, input)
+    return paginator.pages(client, "getQueryResultsPerformanceMonitor", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "data",
+    })
+end
+
+--- Returns an item iterator for getQueryResultsPerformanceMonitor.
+function M.items_get_query_results_performance_monitor(client, input)
+    return paginator.items(client, "getQueryResultsPerformanceMonitor", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "data",
     })
 end
 
@@ -70,6 +106,24 @@ end
 --- Returns an item iterator for listMonitors.
 function M.items_list_monitors(client, input)
     return paginator.items(client, "listMonitors", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "monitors",
+    })
+end
+
+--- Returns a page iterator for listPerformanceMonitors.
+function M.pages_list_performance_monitors(client, input)
+    return paginator.pages(client, "listPerformanceMonitors", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "monitors",
+    })
+end
+
+--- Returns an item iterator for listPerformanceMonitors.
+function M.items_list_performance_monitors(client, input)
+    return paginator.items(client, "listPerformanceMonitors", input, {
         input_token = "nextToken",
         output_token = "nextToken",
         items = "monitors",

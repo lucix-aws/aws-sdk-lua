@@ -2,6 +2,14 @@
 
 local record M
 
+    type AcceleratorMemoryGB = number
+
+    -- The accelerator resource settings for a Lambda execution environment, including the amount of accelerator memory to allocate.
+    record AcceleratorConfig
+        -- The minimum amount of memory (in GB) of each accelerator device exposed to the execution environment. Lambda might allocate more, depending on the accelerator instance types available.
+        AcceleratorMemorySize: number
+    end
+
     -- Limits that are related to concurrency and storage. All file and storage sizes are in bytes.
     record AccountLimit
         -- The amount of storage space that you can use for all deployment packages and layer archives.
@@ -268,6 +276,7 @@ local record M
 
     enum CapacityProviderPredefinedMetricType
         "LambdaCapacityProviderAverageCPUUtilization"
+        "LambdaCapacityProviderAverageGPUUtilization"
     end
 
     -- A scaling policy for the capacity provider that automatically adjusts capacity to maintain a target value for a specific metric.
@@ -1976,7 +1985,7 @@ local record M
         Variables: {string : string}
     end
 
-    -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console).
+    -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For functions that use AcceleratorConfig, the maximum is 32,768 MB. For more information, see Configuring ephemeral storage (console).
     record EphemeralStorage
         -- The size of the function's /tmp directory.
         Size: number
@@ -2190,7 +2199,7 @@ local record M
         ImageConfig: ImageConfig
         -- The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is x86_64.
         Architectures: {string}
-        -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console).
+        -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For functions that use AcceleratorConfig, the maximum is 32,768 MB. For more information, see Configuring ephemeral storage (console).
         EphemeralStorage: EphemeralStorage
         -- The function's SnapStart setting.
         SnapStart: SnapStart
@@ -2204,6 +2213,8 @@ local record M
         DurableConfig: DurableConfig
         -- The customer-managed runtime configuration for your function. Specifies the customer-managed runtime and the runtime alias that your function uses.
         RuntimeConfig: FunctionRuntimeConfig
+        -- The accelerator resource settings for a Lambda execution environment.
+        AcceleratorConfig: AcceleratorConfig
     end
 
     -- Error messages for environment variables that couldn't be applied.
@@ -2280,6 +2291,7 @@ local record M
         "FunctionError.TooManyExtensions"
         "FunctionError.InitResourceExhausted"
         "DisallowedByVpcEncryptionControl"
+        "IncompatibleAcceleratorInstanceTypes"
         "DependencyError"
     end
 
@@ -2364,6 +2376,7 @@ local record M
         "FunctionError.InitResourceExhausted"
         "DisallowedByVpcEncryptionControl"
         "DrainingDurableExecutions"
+        "IncompatibleAcceleratorInstanceTypes"
         "DependencyError"
     end
 
@@ -2451,7 +2464,7 @@ local record M
         ImageConfigResponse: ImageConfigResponse
         -- The instruction set architecture that the function supports. Architecture is a string array with one of the valid values. The default architecture value is x86_64.
         Architectures: {string}
-        -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console).
+        -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For functions that use AcceleratorConfig, the maximum is 32,768 MB. For more information, see Configuring ephemeral storage (console).
         EphemeralStorage: EphemeralStorage
         -- Set ApplyOn to PublishedVersions to create a snapshot of the initialized execution environment when you publish a function version. For more information, see Improving startup performance with Lambda SnapStart.
         SnapStart: SnapStartResponse
@@ -2469,6 +2482,8 @@ local record M
         DurableConfig: DurableConfig
         -- The customer-managed runtime configuration for your function. Specifies the customer-managed runtime and the runtime alias that your function uses.
         RuntimeConfig: FunctionRuntimeConfig
+        -- The accelerator resource settings for a Lambda execution environment.
+        AcceleratorConfig: AcceleratorConfig
     end
 
     -- The maximum number of function versions that can be associated with a single capacity provider has been exceeded. For more information, see Lambda quotas.
@@ -2673,7 +2688,7 @@ local record M
         ImageConfigResponse: ImageConfigResponse
         -- The instruction set architecture that the function supports. Architecture is a string array with one of the valid values. The default architecture value is x86_64.
         Architectures: {string}
-        -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console).
+        -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For functions that use AcceleratorConfig, the maximum is 32,768 MB. For more information, see Configuring ephemeral storage (console).
         EphemeralStorage: EphemeralStorage
         -- Set ApplyOn to PublishedVersions to create a snapshot of the initialized execution environment when you publish a function version. For more information, see Improving startup performance with Lambda SnapStart.
         SnapStart: SnapStartResponse
@@ -2691,6 +2706,8 @@ local record M
         DurableConfig: DurableConfig
         -- The customer-managed runtime configuration for your function. Specifies the customer-managed runtime and the runtime alias that your function uses.
         RuntimeConfig: FunctionRuntimeConfig
+        -- The accelerator resource settings for a Lambda execution environment.
+        AcceleratorConfig: AcceleratorConfig
     end
 
     -- An object that contains details about an error related to retrieving tags.
@@ -2809,7 +2826,7 @@ local record M
         ImageConfigResponse: ImageConfigResponse
         -- The instruction set architecture that the function supports. Architecture is a string array with one of the valid values. The default architecture value is x86_64.
         Architectures: {string}
-        -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console).
+        -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For functions that use AcceleratorConfig, the maximum is 32,768 MB. For more information, see Configuring ephemeral storage (console).
         EphemeralStorage: EphemeralStorage
         -- Set ApplyOn to PublishedVersions to create a snapshot of the initialized execution environment when you publish a function version. For more information, see Improving startup performance with Lambda SnapStart.
         SnapStart: SnapStartResponse
@@ -2827,6 +2844,8 @@ local record M
         DurableConfig: DurableConfig
         -- The customer-managed runtime configuration for your function. Specifies the customer-managed runtime and the runtime alias that your function uses.
         RuntimeConfig: FunctionRuntimeConfig
+        -- The accelerator resource settings for a Lambda execution environment.
+        AcceleratorConfig: AcceleratorConfig
     end
 
     record GetFunctionRecursionConfigInput
@@ -3602,7 +3621,7 @@ local record M
         ImageConfigResponse: ImageConfigResponse
         -- The instruction set architecture that the function supports. Architecture is a string array with one of the valid values. The default architecture value is x86_64.
         Architectures: {string}
-        -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console).
+        -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For functions that use AcceleratorConfig, the maximum is 32,768 MB. For more information, see Configuring ephemeral storage (console).
         EphemeralStorage: EphemeralStorage
         -- Set ApplyOn to PublishedVersions to create a snapshot of the initialized execution environment when you publish a function version. For more information, see Improving startup performance with Lambda SnapStart.
         SnapStart: SnapStartResponse
@@ -3620,6 +3639,8 @@ local record M
         DurableConfig: DurableConfig
         -- The customer-managed runtime configuration for your function. Specifies the customer-managed runtime and the runtime alias that your function uses.
         RuntimeConfig: FunctionRuntimeConfig
+        -- The accelerator resource settings for a Lambda execution environment.
+        AcceleratorConfig: AcceleratorConfig
     end
 
     record UpdateFunctionConfigurationInput
@@ -3655,7 +3676,7 @@ local record M
         FileSystemConfigs: {FileSystemConfig}
         -- Container image configuration values that override the values in the container image Docker file.
         ImageConfig: ImageConfig
-        -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console).
+        -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For functions that use AcceleratorConfig, the maximum is 32,768 MB. For more information, see Configuring ephemeral storage (console).
         EphemeralStorage: EphemeralStorage
         -- The function's SnapStart setting.
         SnapStart: SnapStart
@@ -3667,6 +3688,8 @@ local record M
         DurableConfig: DurableConfig
         -- The customer-managed runtime configuration for your function. Specifies the customer-managed runtime and the runtime alias that your function uses.
         RuntimeConfig: FunctionRuntimeConfig
+        -- The accelerator resource settings for a Lambda execution environment.
+        AcceleratorConfig: AcceleratorConfig
     end
 
     -- Details about a function's configuration.
@@ -3735,7 +3758,7 @@ local record M
         ImageConfigResponse: ImageConfigResponse
         -- The instruction set architecture that the function supports. Architecture is a string array with one of the valid values. The default architecture value is x86_64.
         Architectures: {string}
-        -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console).
+        -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For functions that use AcceleratorConfig, the maximum is 32,768 MB. For more information, see Configuring ephemeral storage (console).
         EphemeralStorage: EphemeralStorage
         -- Set ApplyOn to PublishedVersions to create a snapshot of the initialized execution environment when you publish a function version. For more information, see Improving startup performance with Lambda SnapStart.
         SnapStart: SnapStartResponse
@@ -3753,6 +3776,8 @@ local record M
         DurableConfig: DurableConfig
         -- The customer-managed runtime configuration for your function. Specifies the customer-managed runtime and the runtime alias that your function uses.
         RuntimeConfig: FunctionRuntimeConfig
+        -- The accelerator resource settings for a Lambda execution environment.
+        AcceleratorConfig: AcceleratorConfig
     end
 
     record UpdateFunctionUrlConfigInput
@@ -3991,7 +4016,7 @@ local record M
         ImageConfigResponse: ImageConfigResponse
         -- The instruction set architecture that the function supports. Architecture is a string array with one of the valid values. The default architecture value is x86_64.
         Architectures: {string}
-        -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console).
+        -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For functions that use AcceleratorConfig, the maximum is 32,768 MB. For more information, see Configuring ephemeral storage (console).
         EphemeralStorage: EphemeralStorage
         -- Set ApplyOn to PublishedVersions to create a snapshot of the initialized execution environment when you publish a function version. For more information, see Improving startup performance with Lambda SnapStart.
         SnapStart: SnapStartResponse
@@ -4009,6 +4034,8 @@ local record M
         DurableConfig: DurableConfig
         -- The customer-managed runtime configuration for your function. Specifies the customer-managed runtime and the runtime alias that your function uses.
         RuntimeConfig: FunctionRuntimeConfig
+        -- The accelerator resource settings for a Lambda execution environment.
+        AcceleratorConfig: AcceleratorConfig
     end
 
     record GetAccountSettingsInput

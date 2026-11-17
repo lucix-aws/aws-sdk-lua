@@ -19,19 +19,26 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     activateSubscription: function(Client, types.ActivateSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.ActivateSubscriptionOutput>
+    createDataset: function(Client, types.CreateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
     createDomain: function(Client, types.CreateDomainInput, ? base_client.InvokeOptions): async.Operation<types.CreateDomainOutput>
     createSubscription: function(Client, types.CreateSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.CreateSubscriptionOutput>
     deactivateSubscription: function(Client, types.DeactivateSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DeactivateSubscriptionOutput>
+    deleteDataset: function(Client, types.DeleteDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
     deleteDomain: function(Client, types.DeleteDomainInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDomainOutput>
+    getDataset: function(Client, types.GetDatasetInput, ? base_client.InvokeOptions): async.Operation<types.GetDatasetOutput>
     getDomain: function(Client, types.GetDomainInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainOutput>
+    getMedicalCodingJob: function(Client, types.GetMedicalCodingJobInput, ? base_client.InvokeOptions): async.Operation<types.GetMedicalCodingJobOutput>
     getMedicalScribeListeningSession: function(Client, types.GetMedicalScribeListeningSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetMedicalScribeListeningSessionOutput>
     getPatientInsightsJob: function(Client, types.GetPatientInsightsJobInput, ? base_client.InvokeOptions): async.Operation<types.GetPatientInsightsJobOutput>
     getSubscription: function(Client, types.GetSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.GetSubscriptionOutput>
+    listDatasets: function(Client, types.ListDatasetsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
     listDomains: function(Client, types.ListDomainsInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainsOutput>
     listSubscriptions: function(Client, types.ListSubscriptionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSubscriptionsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    startMedicalCodingJob: function(Client, types.StartMedicalCodingJobInput, ? base_client.InvokeOptions): async.Operation<types.StartMedicalCodingJobOutput>
     startMedicalScribeListeningSession: function(Client, types.StartMedicalScribeListeningSessionInput, ? base_client.InvokeOptions): async.Operation<types.StartMedicalScribeListeningSessionOutput>
     startPatientInsightsJob: function(Client, types.StartPatientInsightsJobInput, ? base_client.InvokeOptions): async.Operation<types.StartPatientInsightsJobOutput>
+    submitFeedback: function(Client, types.SubmitFeedbackInput, ? base_client.InvokeOptions): async.Operation<types.SubmitFeedbackOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
@@ -82,6 +89,10 @@ function C:activateSubscription(input: types.ActivateSubscriptionInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ActivateSubscription as schema.OperationSchema, input, options) as async.Operation<types.ActivateSubscriptionOutput>
 end
 
+function C:createDataset(input: types.CreateDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataset as schema.OperationSchema, input, options) as async.Operation<types.CreateDatasetOutput>
+end
+
 function C:createDomain(input: types.CreateDomainInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDomainOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDomain as schema.OperationSchema, input, options) as async.Operation<types.CreateDomainOutput>
 end
@@ -94,12 +105,24 @@ function C:deactivateSubscription(input: types.DeactivateSubscriptionInput, opti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeactivateSubscription as schema.OperationSchema, input, options) as async.Operation<types.DeactivateSubscriptionOutput>
 end
 
+function C:deleteDataset(input: types.DeleteDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataset as schema.OperationSchema, input, options) as async.Operation<types.DeleteDatasetOutput>
+end
+
 function C:deleteDomain(input: types.DeleteDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDomainOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDomain as schema.OperationSchema, input, options) as async.Operation<types.DeleteDomainOutput>
 end
 
+function C:getDataset(input: types.GetDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.GetDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataset as schema.OperationSchema, input, options) as async.Operation<types.GetDatasetOutput>
+end
+
 function C:getDomain(input: types.GetDomainInput, options?: base_client.InvokeOptions): async.Operation<types.GetDomainOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDomain as schema.OperationSchema, input, options) as async.Operation<types.GetDomainOutput>
+end
+
+function C:getMedicalCodingJob(input: types.GetMedicalCodingJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetMedicalCodingJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMedicalCodingJob as schema.OperationSchema, input, options) as async.Operation<types.GetMedicalCodingJobOutput>
 end
 
 function C:getMedicalScribeListeningSession(input: types.GetMedicalScribeListeningSessionInput, options?: base_client.InvokeOptions): async.Operation<types.GetMedicalScribeListeningSessionOutput>
@@ -114,6 +137,10 @@ function C:getSubscription(input: types.GetSubscriptionInput, options?: base_cli
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSubscription as schema.OperationSchema, input, options) as async.Operation<types.GetSubscriptionOutput>
 end
 
+function C:listDatasets(input: types.ListDatasetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasets as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetsOutput>
+end
+
 function C:listDomains(input: types.ListDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDomainsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDomains as schema.OperationSchema, input, options) as async.Operation<types.ListDomainsOutput>
 end
@@ -126,12 +153,20 @@ function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
+function C:startMedicalCodingJob(input: types.StartMedicalCodingJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartMedicalCodingJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMedicalCodingJob as schema.OperationSchema, input, options) as async.Operation<types.StartMedicalCodingJobOutput>
+end
+
 function C:startMedicalScribeListeningSession(input: types.StartMedicalScribeListeningSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StartMedicalScribeListeningSessionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMedicalScribeListeningSession as schema.OperationSchema, input, options) as async.Operation<types.StartMedicalScribeListeningSessionOutput>
 end
 
 function C:startPatientInsightsJob(input: types.StartPatientInsightsJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartPatientInsightsJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartPatientInsightsJob as schema.OperationSchema, input, options) as async.Operation<types.StartPatientInsightsJobOutput>
+end
+
+function C:submitFeedback(input: types.SubmitFeedbackInput, options?: base_client.InvokeOptions): async.Operation<types.SubmitFeedbackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SubmitFeedback as schema.OperationSchema, input, options) as async.Operation<types.SubmitFeedbackOutput>
 end
 
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>

@@ -18,6 +18,8 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    configureTags: function(Client, types.ConfigureTagsInput, ? base_client.InvokeOptions): async.Operation<types.ConfigureTagsOutput>
+    configureTagsForOrganization: function(Client, types.ConfigureTagsForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.ConfigureTagsForOrganizationOutput>
     describeAffectedAccountsForOrganization: function(Client, types.DescribeAffectedAccountsForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAffectedAccountsForOrganizationOutput>
     describeAffectedEntities: function(Client, types.DescribeAffectedEntitiesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAffectedEntitiesOutput>
     describeAffectedEntitiesForOrganization: function(Client, types.DescribeAffectedEntitiesForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAffectedEntitiesForOrganizationOutput>
@@ -31,8 +33,18 @@ local record Client
     describeEventTypes: function(Client, types.DescribeEventTypesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEventTypesOutput>
     describeHealthServiceStatusForOrganization: function(Client, types.DescribeHealthServiceStatusForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeHealthServiceStatusForOrganizationOutput>
     describeServiceLifecycle: function(Client, types.DescribeServiceLifecycleInput, ? base_client.InvokeOptions): async.Operation<types.DescribeServiceLifecycleOutput>
+    describeTagKeys: function(Client, types.DescribeTagKeysInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTagKeysOutput>
+    describeTagKeysForOrganization: function(Client, types.DescribeTagKeysForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTagKeysForOrganizationOutput>
+    describeTags: function(Client, types.DescribeTagsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTagsOutput>
+    describeTagsForOrganization: function(Client, types.DescribeTagsForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTagsForOrganizationOutput>
+    describeTagsOnboardingStatus: function(Client, types.DescribeTagsOnboardingStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTagsOnboardingStatusOutput>
+    describeTagsOnboardingStatusForOrganization: function(Client, types.DescribeTagsOnboardingStatusForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTagsOnboardingStatusForOrganizationOutput>
     disableHealthServiceAccessForOrganization: function(Client, types.DisableHealthServiceAccessForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DisableHealthServiceAccessForOrganizationOutput>
+    disableTags: function(Client, types.DisableTagsInput, ? base_client.InvokeOptions): async.Operation<types.DisableTagsOutput>
+    disableTagsForOrganization: function(Client, types.DisableTagsForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.DisableTagsForOrganizationOutput>
     enableHealthServiceAccessForOrganization: function(Client, types.EnableHealthServiceAccessForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.EnableHealthServiceAccessForOrganizationOutput>
+    enableTags: function(Client, types.EnableTagsInput, ? base_client.InvokeOptions): async.Operation<types.EnableTagsOutput>
+    enableTagsForOrganization: function(Client, types.EnableTagsForOrganizationInput, ? base_client.InvokeOptions): async.Operation<types.EnableTagsForOrganizationOutput>
 end
 
 local record M
@@ -75,6 +87,14 @@ function M.new(cfg?: base_client.ClientConfig): Client
     sdk_defaults.resolve_identity_resolver(c)
     local self = setmetatable(base_client.new(c) as Client, Client_mt)
     return self
+end
+
+function C:configureTags(input: types.ConfigureTagsInput, options?: base_client.InvokeOptions): async.Operation<types.ConfigureTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConfigureTags as schema.OperationSchema, input, options) as async.Operation<types.ConfigureTagsOutput>
+end
+
+function C:configureTagsForOrganization(input: types.ConfigureTagsForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.ConfigureTagsForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ConfigureTagsForOrganization as schema.OperationSchema, input, options) as async.Operation<types.ConfigureTagsForOrganizationOutput>
 end
 
 function C:describeAffectedAccountsForOrganization(input: types.DescribeAffectedAccountsForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAffectedAccountsForOrganizationOutput>
@@ -129,12 +149,52 @@ function C:describeServiceLifecycle(input: types.DescribeServiceLifecycleInput, 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeServiceLifecycle as schema.OperationSchema, input, options) as async.Operation<types.DescribeServiceLifecycleOutput>
 end
 
+function C:describeTagKeys(input: types.DescribeTagKeysInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTagKeysOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTagKeys as schema.OperationSchema, input, options) as async.Operation<types.DescribeTagKeysOutput>
+end
+
+function C:describeTagKeysForOrganization(input: types.DescribeTagKeysForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTagKeysForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTagKeysForOrganization as schema.OperationSchema, input, options) as async.Operation<types.DescribeTagKeysForOrganizationOutput>
+end
+
+function C:describeTags(input: types.DescribeTagsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTags as schema.OperationSchema, input, options) as async.Operation<types.DescribeTagsOutput>
+end
+
+function C:describeTagsForOrganization(input: types.DescribeTagsForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTagsForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTagsForOrganization as schema.OperationSchema, input, options) as async.Operation<types.DescribeTagsForOrganizationOutput>
+end
+
+function C:describeTagsOnboardingStatus(input: types.DescribeTagsOnboardingStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTagsOnboardingStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTagsOnboardingStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribeTagsOnboardingStatusOutput>
+end
+
+function C:describeTagsOnboardingStatusForOrganization(input: types.DescribeTagsOnboardingStatusForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTagsOnboardingStatusForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTagsOnboardingStatusForOrganization as schema.OperationSchema, input, options) as async.Operation<types.DescribeTagsOnboardingStatusForOrganizationOutput>
+end
+
 function C:disableHealthServiceAccessForOrganization(input: types.DisableHealthServiceAccessForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DisableHealthServiceAccessForOrganizationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableHealthServiceAccessForOrganization as schema.OperationSchema, input, options) as async.Operation<types.DisableHealthServiceAccessForOrganizationOutput>
 end
 
+function C:disableTags(input: types.DisableTagsInput, options?: base_client.InvokeOptions): async.Operation<types.DisableTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableTags as schema.OperationSchema, input, options) as async.Operation<types.DisableTagsOutput>
+end
+
+function C:disableTagsForOrganization(input: types.DisableTagsForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.DisableTagsForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableTagsForOrganization as schema.OperationSchema, input, options) as async.Operation<types.DisableTagsForOrganizationOutput>
+end
+
 function C:enableHealthServiceAccessForOrganization(input: types.EnableHealthServiceAccessForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.EnableHealthServiceAccessForOrganizationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableHealthServiceAccessForOrganization as schema.OperationSchema, input, options) as async.Operation<types.EnableHealthServiceAccessForOrganizationOutput>
+end
+
+function C:enableTags(input: types.EnableTagsInput, options?: base_client.InvokeOptions): async.Operation<types.EnableTagsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableTags as schema.OperationSchema, input, options) as async.Operation<types.EnableTagsOutput>
+end
+
+function C:enableTagsForOrganization(input: types.EnableTagsForOrganizationInput, options?: base_client.InvokeOptions): async.Operation<types.EnableTagsForOrganizationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableTagsForOrganization as schema.OperationSchema, input, options) as async.Operation<types.EnableTagsForOrganizationOutput>
 end
 
 return M

@@ -20,12 +20,14 @@ local record Client
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     acceptAttachment: function(Client, types.AcceptAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.AcceptAttachmentOutput>
     associateConnectPeer: function(Client, types.AssociateConnectPeerInput, ? base_client.InvokeOptions): async.Operation<types.AssociateConnectPeerOutput>
+    associateContextStore: function(Client, types.AssociateContextStoreInput, ? base_client.InvokeOptions): async.Operation<types.AssociateContextStoreOutput>
     associateCustomerGateway: function(Client, types.AssociateCustomerGatewayInput, ? base_client.InvokeOptions): async.Operation<types.AssociateCustomerGatewayOutput>
     associateLink: function(Client, types.AssociateLinkInput, ? base_client.InvokeOptions): async.Operation<types.AssociateLinkOutput>
     associateTransitGatewayConnectPeer: function(Client, types.AssociateTransitGatewayConnectPeerInput, ? base_client.InvokeOptions): async.Operation<types.AssociateTransitGatewayConnectPeerOutput>
     createConnectAttachment: function(Client, types.CreateConnectAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectAttachmentOutput>
     createConnection: function(Client, types.CreateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectionOutput>
     createConnectPeer: function(Client, types.CreateConnectPeerInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectPeerOutput>
+    createContextStore: function(Client, types.CreateContextStoreInput, ? base_client.InvokeOptions): async.Operation<types.CreateContextStoreOutput>
     createCoreNetwork: function(Client, types.CreateCoreNetworkInput, ? base_client.InvokeOptions): async.Operation<types.CreateCoreNetworkOutput>
     createCoreNetworkPrefixListAssociation: function(Client, types.CreateCoreNetworkPrefixListAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCoreNetworkPrefixListAssociationOutput>
     createDevice: function(Client, types.CreateDeviceInput, ? base_client.InvokeOptions): async.Operation<types.CreateDeviceOutput>
@@ -40,6 +42,7 @@ local record Client
     deleteAttachment: function(Client, types.DeleteAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAttachmentOutput>
     deleteConnection: function(Client, types.DeleteConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectionOutput>
     deleteConnectPeer: function(Client, types.DeleteConnectPeerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectPeerOutput>
+    deleteContextStore: function(Client, types.DeleteContextStoreInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContextStoreOutput>
     deleteCoreNetwork: function(Client, types.DeleteCoreNetworkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCoreNetworkOutput>
     deleteCoreNetworkPolicyVersion: function(Client, types.DeleteCoreNetworkPolicyVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCoreNetworkPolicyVersionOutput>
     deleteCoreNetworkPrefixListAssociation: function(Client, types.DeleteCoreNetworkPrefixListAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCoreNetworkPrefixListAssociationOutput>
@@ -52,6 +55,7 @@ local record Client
     deregisterTransitGateway: function(Client, types.DeregisterTransitGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterTransitGatewayOutput>
     describeGlobalNetworks: function(Client, types.DescribeGlobalNetworksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGlobalNetworksOutput>
     disassociateConnectPeer: function(Client, types.DisassociateConnectPeerInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateConnectPeerOutput>
+    disassociateContextStore: function(Client, types.DisassociateContextStoreInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateContextStoreOutput>
     disassociateCustomerGateway: function(Client, types.DisassociateCustomerGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateCustomerGatewayOutput>
     disassociateLink: function(Client, types.DisassociateLinkInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateLinkOutput>
     disassociateTransitGatewayConnectPeer: function(Client, types.DisassociateTransitGatewayConnectPeerInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateTransitGatewayConnectPeerOutput>
@@ -60,6 +64,9 @@ local record Client
     getConnections: function(Client, types.GetConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectionsOutput>
     getConnectPeer: function(Client, types.GetConnectPeerInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectPeerOutput>
     getConnectPeerAssociations: function(Client, types.GetConnectPeerAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectPeerAssociationsOutput>
+    getContextStore: function(Client, types.GetContextStoreInput, ? base_client.InvokeOptions): async.Operation<types.GetContextStoreOutput>
+    getContextStoreAssociation: function(Client, types.GetContextStoreAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetContextStoreAssociationOutput>
+    getContextVersion: function(Client, types.GetContextVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetContextVersionOutput>
     getCoreNetwork: function(Client, types.GetCoreNetworkInput, ? base_client.InvokeOptions): async.Operation<types.GetCoreNetworkOutput>
     getCoreNetworkChangeEvents: function(Client, types.GetCoreNetworkChangeEventsInput, ? base_client.InvokeOptions): async.Operation<types.GetCoreNetworkChangeEventsOutput>
     getCoreNetworkChangeSet: function(Client, types.GetCoreNetworkChangeSetInput, ? base_client.InvokeOptions): async.Operation<types.GetCoreNetworkChangeSetOutput>
@@ -87,6 +94,10 @@ local record Client
     listAttachmentRoutingPolicyAssociations: function(Client, types.ListAttachmentRoutingPolicyAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAttachmentRoutingPolicyAssociationsOutput>
     listAttachments: function(Client, types.ListAttachmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListAttachmentsOutput>
     listConnectPeers: function(Client, types.ListConnectPeersInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectPeersOutput>
+    listContextChanges: function(Client, types.ListContextChangesInput, ? base_client.InvokeOptions): async.Operation<types.ListContextChangesOutput>
+    listContexts: function(Client, types.ListContextsInput, ? base_client.InvokeOptions): async.Operation<types.ListContextsOutput>
+    listContextStoreAssociations: function(Client, types.ListContextStoreAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListContextStoreAssociationsOutput>
+    listContextStores: function(Client, types.ListContextStoresInput, ? base_client.InvokeOptions): async.Operation<types.ListContextStoresOutput>
     listCoreNetworkPolicyVersions: function(Client, types.ListCoreNetworkPolicyVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListCoreNetworkPolicyVersionsOutput>
     listCoreNetworkPrefixListAssociations: function(Client, types.ListCoreNetworkPrefixListAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCoreNetworkPrefixListAssociationsOutput>
     listCoreNetworkRoutingInformation: function(Client, types.ListCoreNetworkRoutingInformationInput, ? base_client.InvokeOptions): async.Operation<types.ListCoreNetworkRoutingInformationOutput>
@@ -107,6 +118,7 @@ local record Client
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateAttachmentNatConfiguration: function(Client, types.UpdateAttachmentNatConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAttachmentNatConfigurationOutput>
     updateConnection: function(Client, types.UpdateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectionOutput>
+    updateContextStore: function(Client, types.UpdateContextStoreInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContextStoreOutput>
     updateCoreNetwork: function(Client, types.UpdateCoreNetworkInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCoreNetworkOutput>
     updateDevice: function(Client, types.UpdateDeviceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDeviceOutput>
     updateDirectConnectGatewayAttachment: function(Client, types.UpdateDirectConnectGatewayAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDirectConnectGatewayAttachmentOutput>
@@ -167,6 +179,10 @@ function C:associateConnectPeer(input: types.AssociateConnectPeerInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateConnectPeer as schema.OperationSchema, input, options) as async.Operation<types.AssociateConnectPeerOutput>
 end
 
+function C:associateContextStore(input: types.AssociateContextStoreInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateContextStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateContextStore as schema.OperationSchema, input, options) as async.Operation<types.AssociateContextStoreOutput>
+end
+
 function C:associateCustomerGateway(input: types.AssociateCustomerGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateCustomerGatewayOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateCustomerGateway as schema.OperationSchema, input, options) as async.Operation<types.AssociateCustomerGatewayOutput>
 end
@@ -189,6 +205,10 @@ end
 
 function C:createConnectPeer(input: types.CreateConnectPeerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectPeerOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnectPeer as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectPeerOutput>
+end
+
+function C:createContextStore(input: types.CreateContextStoreInput, options?: base_client.InvokeOptions): async.Operation<types.CreateContextStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateContextStore as schema.OperationSchema, input, options) as async.Operation<types.CreateContextStoreOutput>
 end
 
 function C:createCoreNetwork(input: types.CreateCoreNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCoreNetworkOutput>
@@ -247,6 +267,10 @@ function C:deleteConnectPeer(input: types.DeleteConnectPeerInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnectPeer as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectPeerOutput>
 end
 
+function C:deleteContextStore(input: types.DeleteContextStoreInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteContextStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteContextStore as schema.OperationSchema, input, options) as async.Operation<types.DeleteContextStoreOutput>
+end
+
 function C:deleteCoreNetwork(input: types.DeleteCoreNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCoreNetworkOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCoreNetwork as schema.OperationSchema, input, options) as async.Operation<types.DeleteCoreNetworkOutput>
 end
@@ -295,6 +319,10 @@ function C:disassociateConnectPeer(input: types.DisassociateConnectPeerInput, op
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateConnectPeer as schema.OperationSchema, input, options) as async.Operation<types.DisassociateConnectPeerOutput>
 end
 
+function C:disassociateContextStore(input: types.DisassociateContextStoreInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateContextStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateContextStore as schema.OperationSchema, input, options) as async.Operation<types.DisassociateContextStoreOutput>
+end
+
 function C:disassociateCustomerGateway(input: types.DisassociateCustomerGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateCustomerGatewayOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateCustomerGateway as schema.OperationSchema, input, options) as async.Operation<types.DisassociateCustomerGatewayOutput>
 end
@@ -325,6 +353,18 @@ end
 
 function C:getConnectPeerAssociations(input: types.GetConnectPeerAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectPeerAssociationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnectPeerAssociations as schema.OperationSchema, input, options) as async.Operation<types.GetConnectPeerAssociationsOutput>
+end
+
+function C:getContextStore(input: types.GetContextStoreInput, options?: base_client.InvokeOptions): async.Operation<types.GetContextStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContextStore as schema.OperationSchema, input, options) as async.Operation<types.GetContextStoreOutput>
+end
+
+function C:getContextStoreAssociation(input: types.GetContextStoreAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetContextStoreAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContextStoreAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetContextStoreAssociationOutput>
+end
+
+function C:getContextVersion(input: types.GetContextVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetContextVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetContextVersion as schema.OperationSchema, input, options) as async.Operation<types.GetContextVersionOutput>
 end
 
 function C:getCoreNetwork(input: types.GetCoreNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.GetCoreNetworkOutput>
@@ -435,6 +475,22 @@ function C:listConnectPeers(input: types.ListConnectPeersInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectPeers as schema.OperationSchema, input, options) as async.Operation<types.ListConnectPeersOutput>
 end
 
+function C:listContextChanges(input: types.ListContextChangesInput, options?: base_client.InvokeOptions): async.Operation<types.ListContextChangesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContextChanges as schema.OperationSchema, input, options) as async.Operation<types.ListContextChangesOutput>
+end
+
+function C:listContexts(input: types.ListContextsInput, options?: base_client.InvokeOptions): async.Operation<types.ListContextsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContexts as schema.OperationSchema, input, options) as async.Operation<types.ListContextsOutput>
+end
+
+function C:listContextStoreAssociations(input: types.ListContextStoreAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListContextStoreAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContextStoreAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListContextStoreAssociationsOutput>
+end
+
+function C:listContextStores(input: types.ListContextStoresInput, options?: base_client.InvokeOptions): async.Operation<types.ListContextStoresOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContextStores as schema.OperationSchema, input, options) as async.Operation<types.ListContextStoresOutput>
+end
+
 function C:listCoreNetworkPolicyVersions(input: types.ListCoreNetworkPolicyVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCoreNetworkPolicyVersionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCoreNetworkPolicyVersions as schema.OperationSchema, input, options) as async.Operation<types.ListCoreNetworkPolicyVersionsOutput>
 end
@@ -513,6 +569,10 @@ end
 
 function C:updateConnection(input: types.UpdateConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnection as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectionOutput>
+end
+
+function C:updateContextStore(input: types.UpdateContextStoreInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateContextStoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateContextStore as schema.OperationSchema, input, options) as async.Operation<types.UpdateContextStoreOutput>
 end
 
 function C:updateCoreNetwork(input: types.UpdateCoreNetworkInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCoreNetworkOutput>

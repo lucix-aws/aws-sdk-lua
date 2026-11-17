@@ -10,7 +10,13 @@ local _N = "com.amazonaws.health"
 
 local M: {string:any} = {}
 
+M.ConfigureTagsResourceTagKeyList = schema.new({ type = "list", list_member = M.ResourceTagKey })
+
+M.ConfigureTagsForOrganizationTagKeyList = schema.new({ type = "list", list_member = M.TagKeyForOrganization })
+
 M.affectedAccountsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AffectedAccountEntityList = schema.new({ type = "list", list_member = M.AccountEntity })
 
 M.EntityList = schema.new({ type = "list", list_member = M.AffectedEntity })
 
@@ -52,15 +58,29 @@ M.EventTypeList = schema.new({ type = "list", list_member = M.EventType })
 
 M.ServiceLifecycleList = schema.new({ type = "list", list_member = M.ServiceLifecycle })
 
+M.ResourceTagKeyList = schema.new({ type = "list", list_member = M.ResourceTagKey })
+
+M.OrganizationTagKeyList = schema.new({ type = "list", list_member = M.OrganizationTagKey })
+
+M.AccountTagList = schema.new({ type = "list", list_member = M.AccountTag })
+
+M.OrganizationTagList = schema.new({ type = "list", list_member = M.OrganizationTag })
+
+M.AffectedAccountsForOrganizationTagFilter = schema.new({ type = "map", map_key = prelude.String, map_value = M.AffectedAccountsForOrganizationTagValueList })
+
 M.entityArnList = schema.new({ type = "list", list_member = prelude.String })
 
 M.entityValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.dateTimeRangeList = schema.new({ type = "list", list_member = M.DateTimeRange })
 
-M.tagFilter = schema.new({ type = "list", list_member = M.tagSet })
+M.DescribeAffectedEntitiesTagFilter = schema.new({ type = "map", map_key = prelude.String, map_value = M.DescribeAffectedEntitiesTagValueList })
 
 M.entityStatusCodeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DescribeEntityAggregatesTagFilter = schema.new({ type = "map", map_key = prelude.String, map_value = M.DescribeEntityAggregatesTagValueList })
+
+M.OrganizationEntityAggregateTagFilter = schema.new({ type = "map", map_key = prelude.String, map_value = M.OrganizationEntityAggregateTagValueList })
 
 M.EventActionabilityList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -74,11 +94,15 @@ M.availabilityZones = schema.new({ type = "list", list_member = prelude.String }
 
 M.eventTypeCategoryList2 = schema.new({ type = "list", list_member = prelude.String })
 
+M.DescribeEventsTagFilter = schema.new({ type = "map", map_key = prelude.String, map_value = M.DescribeEventsTagValueList })
+
 M.eventStatusCodeList = schema.new({ type = "list", list_member = prelude.String })
 
 M.EventPersonaList = schema.new({ type = "list", list_member = prelude.String })
 
 M.awsAccountIdsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OrganizationEventTagFilter = schema.new({ type = "map", map_key = prelude.String, map_value = M.OrganizationEventTagValueList })
 
 M.EventTypeCodeList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -88,19 +112,62 @@ M.EventTypeActionabilityList = schema.new({ type = "list", list_member = prelude
 
 M.EventTypePersonaList = schema.new({ type = "list", list_member = prelude.String })
 
+M.OrganizationTagTypeFilter = schema.new({ type = "list", list_member = prelude.String })
+
+M.AffectedAccountsForOrganizationTagValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountTagSet = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DescribeAffectedEntitiesTagValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ResourceTagSet = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.tagSet = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.entityMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.AffectedEntitiesForOrganizationTagFilter = schema.new({ type = "map", map_key = prelude.String, map_value = M.AffectedEntitiesForOrganizationTagValueList })
+
+M.DescribeEntityAggregatesTagValueList = schema.new({ type = "list", list_member = prelude.String })
+
 M.entityStatuses = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
+M.OrganizationEntityAggregateTagValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AccountEntityAggregatesList = schema.new({ type = "list", list_member = M.AccountEntityAggregate })
 
+M.DescribeEventsTagValueList = schema.new({ type = "list", list_member = prelude.String })
+
 M.eventMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.OrganizationEventTagValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.LifecycleEventList = schema.new({ type = "list", list_member = M.LifecycleEvent })
 
+M.AffectedEntitiesForOrganizationTagValueList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ImpactRiskList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountEntity = schema.new({
+    id = id.from(_N, "AccountEntity"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "AccountEntity", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+        accountTags = schema.new({
+            id = id.from(_N, "AccountEntity", "accountTags"),
+            type = "map",
+            name = "accountTags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
 
 M.AccountEntityAggregate = schema.new({
     id = id.from(_N, "AccountEntityAggregate"),
@@ -128,6 +195,52 @@ M.AccountEntityAggregate = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.Integer,
+        }),
+    },
+})
+
+M.AccountTag = schema.new({
+    id = id.from(_N, "AccountTag"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "AccountTag", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+        }),
+        value = schema.new({
+            id = id.from(_N, "AccountTag", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+        }),
+        type = schema.new({
+            id = id.from(_N, "AccountTag", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AffectedAccountFilter = schema.new({
+    id = id.from(_N, "AffectedAccountFilter"),
+    type = "structure",
+    members = {
+        eventArn = schema.new({
+            id = id.from(_N, "AffectedAccountFilter", "eventArn"),
+            type = "string",
+            name = "eventArn",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "AffectedAccountFilter", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
@@ -178,6 +291,22 @@ M.AffectedEntity = schema.new({
             name = "statusCode",
             target_id = prelude.String.id,
         }),
+        resourceTags = schema.new({
+            id = id.from(_N, "AffectedEntity", "resourceTags"),
+            type = "map",
+            name = "resourceTags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        accountTags = schema.new({
+            id = id.from(_N, "AffectedEntity", "accountTags"),
+            type = "map",
+            name = "accountTags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
         tags = schema.new({
             id = id.from(_N, "AffectedEntity", "tags"),
             type = "map",
@@ -193,6 +322,118 @@ M.AffectedEntity = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+    },
+})
+
+M.ResourceTagKey = schema.new({
+    id = id.from(_N, "ResourceTagKey"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "ResourceTagKey", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+        }),
+        enabledForEventBridge = schema.new({
+            id = id.from(_N, "ResourceTagKey", "enabledForEventBridge"),
+            type = "boolean",
+            name = "enabledForEventBridge",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "ResourceTagKey", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConfigureTagsInput = schema.new({
+    id = id.from(_N, "ConfigureTagsRequest"),
+    type = "structure",
+    members = {
+        tagKeys = schema.new({
+            id = id.from(_N, "ConfigureTagsInput", "tagKeys"),
+            type = "list",
+            name = "tagKeys",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTagKey,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConfigureTagsOutput = schema.new({
+    id = id.from(_N, "ConfigureTagsResponse"),
+    type = "structure",
+    members = {
+        configuredTagKeys = schema.new({
+            id = id.from(_N, "ConfigureTagsOutput", "configuredTagKeys"),
+            type = "list",
+            name = "configuredTagKeys",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTagKey,
+        }),
+    },
+})
+
+M.TagKeyForOrganization = schema.new({
+    id = id.from(_N, "TagKeyForOrganization"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "TagKeyForOrganization", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+        }),
+        enabledForEventBridge = schema.new({
+            id = id.from(_N, "TagKeyForOrganization", "enabledForEventBridge"),
+            type = "boolean",
+            name = "enabledForEventBridge",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
+M.ConfigureTagsForOrganizationInput = schema.new({
+    id = id.from(_N, "ConfigureTagsForOrganizationRequest"),
+    type = "structure",
+    members = {
+        tagKeys = schema.new({
+            id = id.from(_N, "ConfigureTagsForOrganizationInput", "tagKeys"),
+            type = "list",
+            name = "tagKeys",
+            target_id = prelude.Document.id,
+            list_member = M.TagKeyForOrganization,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConfigureTagsForOrganizationOutput = schema.new({
+    id = id.from(_N, "ConfigureTagsForOrganizationResponse"),
+    type = "structure",
+    members = {
+        configuredTagKeys = schema.new({
+            id = id.from(_N, "ConfigureTagsForOrganizationOutput", "configuredTagKeys"),
+            type = "list",
+            name = "configuredTagKeys",
+            target_id = prelude.Document.id,
+            list_member = M.TagKeyForOrganization,
         }),
     },
 })
@@ -222,6 +463,13 @@ M.DescribeAffectedAccountsForOrganizationInput = schema.new({
             name = "maxResults",
             target_id = prelude.Integer.id,
         }),
+        filter = schema.new({
+            id = id.from(_N, "DescribeAffectedAccountsForOrganizationInput", "filter"),
+            type = "structure",
+            name = "filter",
+            target_id = id.from(_N, "AffectedAccountFilter"),
+            target = M.AffectedAccountFilter,
+        }),
     },
 })
 
@@ -235,6 +483,13 @@ M.DescribeAffectedAccountsForOrganizationOutput = schema.new({
             name = "affectedAccounts",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        affectedAccountEntities = schema.new({
+            id = id.from(_N, "DescribeAffectedAccountsForOrganizationOutput", "affectedAccountEntities"),
+            type = "list",
+            name = "affectedAccountEntities",
+            target_id = prelude.Document.id,
+            list_member = M.AccountEntity,
         }),
         eventScopeCode = schema.new({
             id = id.from(_N, "DescribeAffectedAccountsForOrganizationOutput", "eventScopeCode"),
@@ -323,10 +578,11 @@ M.EntityFilter = schema.new({
         }),
         tags = schema.new({
             id = id.from(_N, "EntityFilter", "tags"),
-            type = "list",
+            type = "map",
             name = "tags",
             target_id = prelude.Document.id,
-            list_member = M.tagSet,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         statusCodes = schema.new({
             id = id.from(_N, "EntityFilter", "statusCodes"),
@@ -434,6 +690,14 @@ M.EntityAccountFilter = schema.new({
             name = "statusCodes",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "EntityAccountFilter", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
     },
 })
@@ -557,6 +821,21 @@ M.DescribeAffectedEntitiesForOrganizationOutput = schema.new({
     },
 })
 
+M.EntityAggregateFilter = schema.new({
+    id = id.from(_N, "EntityAggregateFilter"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "EntityAggregateFilter", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
+        }),
+    },
+})
+
 M.DescribeEntityAggregatesInput = schema.new({
     id = id.from(_N, "DescribeEntityAggregatesRequest"),
     type = "structure",
@@ -567,6 +846,13 @@ M.DescribeEntityAggregatesInput = schema.new({
             name = "eventArns",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        filter = schema.new({
+            id = id.from(_N, "DescribeEntityAggregatesInput", "filter"),
+            type = "structure",
+            name = "filter",
+            target_id = id.from(_N, "EntityAggregateFilter"),
+            target = M.EntityAggregateFilter,
         }),
     },
 })
@@ -615,6 +901,21 @@ M.DescribeEntityAggregatesOutput = schema.new({
     },
 })
 
+M.OrganizationEntityAggregateFilter = schema.new({
+    id = id.from(_N, "OrganizationEntityAggregateFilter"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "OrganizationEntityAggregateFilter", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
+        }),
+    },
+})
+
 M.DescribeEntityAggregatesForOrganizationInput = schema.new({
     id = id.from(_N, "DescribeEntityAggregatesForOrganizationRequest"),
     type = "structure",
@@ -635,6 +936,13 @@ M.DescribeEntityAggregatesForOrganizationInput = schema.new({
             name = "awsAccountIds",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        filter = schema.new({
+            id = id.from(_N, "DescribeEntityAggregatesForOrganizationInput", "filter"),
+            type = "structure",
+            name = "filter",
+            target_id = id.from(_N, "OrganizationEntityAggregateFilter"),
+            target = M.OrganizationEntityAggregateFilter,
         }),
     },
 })
@@ -780,10 +1088,11 @@ M.EventFilter = schema.new({
         }),
         tags = schema.new({
             id = id.from(_N, "EventFilter", "tags"),
-            type = "list",
+            type = "map",
             name = "tags",
             target_id = prelude.Document.id,
-            list_member = M.tagSet,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
         eventStatusCodes = schema.new({
             id = id.from(_N, "EventFilter", "eventStatusCodes"),
@@ -1333,6 +1642,14 @@ M.OrganizationEventFilter = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        tags = schema.new({
+            id = id.from(_N, "OrganizationEventFilter", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
+        }),
     },
 })
 
@@ -1751,6 +2068,220 @@ M.DescribeServiceLifecycleOutput = schema.new({
     },
 })
 
+M.DescribeTagKeysInput = prelude.Unit
+
+M.DescribeTagKeysOutput = schema.new({
+    id = id.from(_N, "DescribeTagKeysResponse"),
+    type = "structure",
+    members = {
+        keys = schema.new({
+            id = id.from(_N, "DescribeTagKeysOutput", "keys"),
+            type = "list",
+            name = "keys",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceTagKey,
+        }),
+    },
+})
+
+M.DescribeTagKeysForOrganizationInput = prelude.Unit
+
+M.OrganizationTagKey = schema.new({
+    id = id.from(_N, "OrganizationTagKey"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "OrganizationTagKey", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+        }),
+        enabledForEventBridge = schema.new({
+            id = id.from(_N, "OrganizationTagKey", "enabledForEventBridge"),
+            type = "boolean",
+            name = "enabledForEventBridge",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "OrganizationTagKey", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeTagKeysForOrganizationOutput = schema.new({
+    id = id.from(_N, "DescribeTagKeysForOrganizationResponse"),
+    type = "structure",
+    members = {
+        keys = schema.new({
+            id = id.from(_N, "DescribeTagKeysForOrganizationOutput", "keys"),
+            type = "list",
+            name = "keys",
+            target_id = prelude.Document.id,
+            list_member = M.OrganizationTagKey,
+        }),
+    },
+})
+
+M.DescribeTagsInput = schema.new({
+    id = id.from(_N, "DescribeTagsRequest"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "DescribeTagsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "DescribeTagsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.DescribeTagsOutput = schema.new({
+    id = id.from(_N, "DescribeTagsResponse"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "DescribeTagsOutput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.AccountTag,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "DescribeTagsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeTagsForOrganizationFilter = schema.new({
+    id = id.from(_N, "DescribeTagsForOrganizationFilter"),
+    type = "structure",
+    members = {
+        tagTypes = schema.new({
+            id = id.from(_N, "DescribeTagsForOrganizationFilter", "tagTypes"),
+            type = "list",
+            name = "tagTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.DescribeTagsForOrganizationInput = schema.new({
+    id = id.from(_N, "DescribeTagsForOrganizationRequest"),
+    type = "structure",
+    members = {
+        filter = schema.new({
+            id = id.from(_N, "DescribeTagsForOrganizationInput", "filter"),
+            type = "structure",
+            name = "filter",
+            target_id = id.from(_N, "DescribeTagsForOrganizationFilter"),
+            target = M.DescribeTagsForOrganizationFilter,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "DescribeTagsForOrganizationInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "DescribeTagsForOrganizationInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.OrganizationTag = schema.new({
+    id = id.from(_N, "OrganizationTag"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "OrganizationTag", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+        }),
+        value = schema.new({
+            id = id.from(_N, "OrganizationTag", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+        }),
+        type = schema.new({
+            id = id.from(_N, "OrganizationTag", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeTagsForOrganizationOutput = schema.new({
+    id = id.from(_N, "DescribeTagsForOrganizationResponse"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "DescribeTagsForOrganizationOutput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.OrganizationTag,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "DescribeTagsForOrganizationOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeTagsOnboardingStatusInput = prelude.Unit
+
+M.DescribeTagsOnboardingStatusOutput = schema.new({
+    id = id.from(_N, "DescribeTagsOnboardingStatusResponse"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "DescribeTagsOnboardingStatusOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeTagsOnboardingStatusForOrganizationInput = prelude.Unit
+
+M.DescribeTagsOnboardingStatusForOrganizationOutput = schema.new({
+    id = id.from(_N, "DescribeTagsOnboardingStatusForOrganizationResponse"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "DescribeTagsOnboardingStatusForOrganizationOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ConcurrentModificationException = schema.new({
     id = id.from(_N, "ConcurrentModificationException"),
     type = "structure",
@@ -1771,9 +2302,25 @@ M.DisableHealthServiceAccessForOrganizationInput = prelude.Unit
 
 M.DisableHealthServiceAccessForOrganizationOutput = prelude.Unit
 
+M.DisableTagsInput = prelude.Unit
+
+M.DisableTagsOutput = prelude.Unit
+
+M.DisableTagsForOrganizationInput = prelude.Unit
+
+M.DisableTagsForOrganizationOutput = prelude.Unit
+
 M.EnableHealthServiceAccessForOrganizationInput = prelude.Unit
 
 M.EnableHealthServiceAccessForOrganizationOutput = prelude.Unit
+
+M.EnableTagsInput = prelude.Unit
+
+M.EnableTagsOutput = prelude.Unit
+
+M.EnableTagsForOrganizationInput = prelude.Unit
+
+M.EnableTagsForOrganizationOutput = prelude.Unit
 
 -- Fix forward references for recursive schemas
 for _, _s in pairs(M) do
@@ -1793,6 +2340,28 @@ end
 M.Service = schema.service({
     id = id.from("com.amazonaws.health", "AWSHealth_20160804"),
     version = "2016-08-04",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConfigureTags = schema.operation({
+    id = id.from("com.amazonaws.health", "ConfigureTags"),
+    input = M.ConfigureTagsInput,
+    output = M.ConfigureTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ConfigureTagsForOrganization = schema.operation({
+    id = id.from("com.amazonaws.health", "ConfigureTagsForOrganization"),
+    input = M.ConfigureTagsForOrganizationInput,
+    output = M.ConfigureTagsForOrganizationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -1943,6 +2512,72 @@ M.DescribeServiceLifecycle = schema.operation({
     },
 })
 
+M.DescribeTagKeys = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeTagKeys"),
+    input = M.DescribeTagKeysInput,
+    output = M.DescribeTagKeysOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTagKeysForOrganization = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeTagKeysForOrganization"),
+    input = M.DescribeTagKeysForOrganizationInput,
+    output = M.DescribeTagKeysForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTags = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeTags"),
+    input = M.DescribeTagsInput,
+    output = M.DescribeTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTagsForOrganization = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeTagsForOrganization"),
+    input = M.DescribeTagsForOrganizationInput,
+    output = M.DescribeTagsForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTagsOnboardingStatus = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeTagsOnboardingStatus"),
+    input = M.DescribeTagsOnboardingStatusInput,
+    output = M.DescribeTagsOnboardingStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTagsOnboardingStatusForOrganization = schema.operation({
+    id = id.from("com.amazonaws.health", "DescribeTagsOnboardingStatusForOrganization"),
+    input = M.DescribeTagsOnboardingStatusForOrganizationInput,
+    output = M.DescribeTagsOnboardingStatusForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DisableHealthServiceAccessForOrganization = schema.operation({
     id = id.from("com.amazonaws.health", "DisableHealthServiceAccessForOrganization"),
     input = M.DisableHealthServiceAccessForOrganizationInput,
@@ -1954,10 +2589,54 @@ M.DisableHealthServiceAccessForOrganization = schema.operation({
     },
 })
 
+M.DisableTags = schema.operation({
+    id = id.from("com.amazonaws.health", "DisableTags"),
+    input = M.DisableTagsInput,
+    output = M.DisableTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisableTagsForOrganization = schema.operation({
+    id = id.from("com.amazonaws.health", "DisableTagsForOrganization"),
+    input = M.DisableTagsForOrganizationInput,
+    output = M.DisableTagsForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.EnableHealthServiceAccessForOrganization = schema.operation({
     id = id.from("com.amazonaws.health", "EnableHealthServiceAccessForOrganization"),
     input = M.EnableHealthServiceAccessForOrganizationInput,
     output = M.EnableHealthServiceAccessForOrganizationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableTags = schema.operation({
+    id = id.from("com.amazonaws.health", "EnableTags"),
+    input = M.EnableTagsInput,
+    output = M.EnableTagsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableTagsForOrganization = schema.operation({
+    id = id.from("com.amazonaws.health", "EnableTagsForOrganization"),
+    input = M.EnableTagsForOrganizationInput,
+    output = M.EnableTagsForOrganizationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

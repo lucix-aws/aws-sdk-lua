@@ -45,6 +45,7 @@ local record Client
     associateInstanceEventWindow: function(Client, types.AssociateInstanceEventWindowInput, ? base_client.InvokeOptions): async.Operation<types.AssociateInstanceEventWindowOutput>
     associateIpamByoasn: function(Client, types.AssociateIpamByoasnInput, ? base_client.InvokeOptions): async.Operation<types.AssociateIpamByoasnOutput>
     associateIpamResourceDiscovery: function(Client, types.AssociateIpamResourceDiscoveryInput, ? base_client.InvokeOptions): async.Operation<types.AssociateIpamResourceDiscoveryOutput>
+    associateKmsKeyId: function(Client, types.AssociateKmsKeyIdInput, ? base_client.InvokeOptions): async.Operation<types.AssociateKmsKeyIdOutput>
     associateNatGatewayAddress: function(Client, types.AssociateNatGatewayAddressInput, ? base_client.InvokeOptions): async.Operation<types.AssociateNatGatewayAddressOutput>
     associateNetworkingFlexCostAllocationPolicy: function(Client, types.AssociateNetworkingFlexCostAllocationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.AssociateNetworkingFlexCostAllocationPolicyOutput>
     associateRouteServer: function(Client, types.AssociateRouteServerInput, ? base_client.InvokeOptions): async.Operation<types.AssociateRouteServerOutput>
@@ -172,6 +173,7 @@ local record Client
     createTransitGatewayMeteringPolicy: function(Client, types.CreateTransitGatewayMeteringPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayMeteringPolicyOutput>
     createTransitGatewayMeteringPolicyEntry: function(Client, types.CreateTransitGatewayMeteringPolicyEntryInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayMeteringPolicyEntryOutput>
     createTransitGatewayMulticastDomain: function(Client, types.CreateTransitGatewayMulticastDomainInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayMulticastDomainOutput>
+    createTransitGatewayNetworkFunctionAttachment: function(Client, types.CreateTransitGatewayNetworkFunctionAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayNetworkFunctionAttachmentOutput>
     createTransitGatewayPeeringAttachment: function(Client, types.CreateTransitGatewayPeeringAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayPeeringAttachmentOutput>
     createTransitGatewayPolicyTable: function(Client, types.CreateTransitGatewayPolicyTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayPolicyTableOutput>
     createTransitGatewayPolicyTableEntry: function(Client, types.CreateTransitGatewayPolicyTableEntryInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayPolicyTableEntryOutput>
@@ -272,6 +274,7 @@ local record Client
     deleteTransitGatewayMeteringPolicy: function(Client, types.DeleteTransitGatewayMeteringPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayMeteringPolicyOutput>
     deleteTransitGatewayMeteringPolicyEntry: function(Client, types.DeleteTransitGatewayMeteringPolicyEntryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayMeteringPolicyEntryOutput>
     deleteTransitGatewayMulticastDomain: function(Client, types.DeleteTransitGatewayMulticastDomainInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayMulticastDomainOutput>
+    deleteTransitGatewayNetworkFunctionAttachment: function(Client, types.DeleteTransitGatewayNetworkFunctionAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayNetworkFunctionAttachmentOutput>
     deleteTransitGatewayPeeringAttachment: function(Client, types.DeleteTransitGatewayPeeringAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayPeeringAttachmentOutput>
     deleteTransitGatewayPolicyTable: function(Client, types.DeleteTransitGatewayPolicyTableInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayPolicyTableOutput>
     deleteTransitGatewayPolicyTableEntry: function(Client, types.DeleteTransitGatewayPolicyTableEntryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayPolicyTableEntryOutput>
@@ -466,6 +469,7 @@ local record Client
     describeTransitGatewayConnects: function(Client, types.DescribeTransitGatewayConnectsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayConnectsOutput>
     describeTransitGatewayMeteringPolicies: function(Client, types.DescribeTransitGatewayMeteringPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayMeteringPoliciesOutput>
     describeTransitGatewayMulticastDomains: function(Client, types.DescribeTransitGatewayMulticastDomainsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayMulticastDomainsOutput>
+    describeTransitGatewayNetworkFunctionAttachments: function(Client, types.DescribeTransitGatewayNetworkFunctionAttachmentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayNetworkFunctionAttachmentsOutput>
     describeTransitGatewayPeeringAttachments: function(Client, types.DescribeTransitGatewayPeeringAttachmentsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayPeeringAttachmentsOutput>
     describeTransitGatewayPolicyTables: function(Client, types.DescribeTransitGatewayPolicyTablesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayPolicyTablesOutput>
     describeTransitGatewayRouteTableAnnouncements: function(Client, types.DescribeTransitGatewayRouteTableAnnouncementsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayRouteTableAnnouncementsOutput>
@@ -538,6 +542,7 @@ local record Client
     disassociateInstanceEventWindow: function(Client, types.DisassociateInstanceEventWindowInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateInstanceEventWindowOutput>
     disassociateIpamByoasn: function(Client, types.DisassociateIpamByoasnInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateIpamByoasnOutput>
     disassociateIpamResourceDiscovery: function(Client, types.DisassociateIpamResourceDiscoveryInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateIpamResourceDiscoveryOutput>
+    disassociateKmsKeyId: function(Client, types.DisassociateKmsKeyIdInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateKmsKeyIdOutput>
     disassociateNatGatewayAddress: function(Client, types.DisassociateNatGatewayAddressInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateNatGatewayAddressOutput>
     disassociateNetworkingFlexCostAllocationPolicy: function(Client, types.DisassociateNetworkingFlexCostAllocationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateNetworkingFlexCostAllocationPolicyOutput>
     disassociateRouteServer: function(Client, types.DisassociateRouteServerInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateRouteServerOutput>
@@ -731,6 +736,7 @@ local record Client
     modifyTransitGateway: function(Client, types.ModifyTransitGatewayInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayOutput>
     modifyTransitGatewayAttachmentNatConfiguration: function(Client, types.ModifyTransitGatewayAttachmentNatConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayAttachmentNatConfigurationOutput>
     modifyTransitGatewayMeteringPolicy: function(Client, types.ModifyTransitGatewayMeteringPolicyInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayMeteringPolicyOutput>
+    modifyTransitGatewayNetworkFunctionAttachment: function(Client, types.ModifyTransitGatewayNetworkFunctionAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayNetworkFunctionAttachmentOutput>
     modifyTransitGatewayPolicyTableEntry: function(Client, types.ModifyTransitGatewayPolicyTableEntryInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayPolicyTableEntryOutput>
     modifyTransitGatewayPrefixListReference: function(Client, types.ModifyTransitGatewayPrefixListReferenceInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayPrefixListReferenceOutput>
     modifyTransitGatewayVpcAttachment: function(Client, types.ModifyTransitGatewayVpcAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayVpcAttachmentOutput>
@@ -991,6 +997,10 @@ end
 
 function C:associateIpamResourceDiscovery(input: types.AssociateIpamResourceDiscoveryInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateIpamResourceDiscoveryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateIpamResourceDiscovery as schema.OperationSchema, input, options) as async.Operation<types.AssociateIpamResourceDiscoveryOutput>
+end
+
+function C:associateKmsKeyId(input: types.AssociateKmsKeyIdInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateKmsKeyIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateKmsKeyId as schema.OperationSchema, input, options) as async.Operation<types.AssociateKmsKeyIdOutput>
 end
 
 function C:associateNatGatewayAddress(input: types.AssociateNatGatewayAddressInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateNatGatewayAddressOutput>
@@ -1501,6 +1511,10 @@ function C:createTransitGatewayMulticastDomain(input: types.CreateTransitGateway
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayMulticastDomain as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayMulticastDomainOutput>
 end
 
+function C:createTransitGatewayNetworkFunctionAttachment(input: types.CreateTransitGatewayNetworkFunctionAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayNetworkFunctionAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayNetworkFunctionAttachment as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayNetworkFunctionAttachmentOutput>
+end
+
 function C:createTransitGatewayPeeringAttachment(input: types.CreateTransitGatewayPeeringAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayPeeringAttachmentOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayPeeringAttachment as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayPeeringAttachmentOutput>
 end
@@ -1899,6 +1913,10 @@ end
 
 function C:deleteTransitGatewayMulticastDomain(input: types.DeleteTransitGatewayMulticastDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayMulticastDomainOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTransitGatewayMulticastDomain as schema.OperationSchema, input, options) as async.Operation<types.DeleteTransitGatewayMulticastDomainOutput>
+end
+
+function C:deleteTransitGatewayNetworkFunctionAttachment(input: types.DeleteTransitGatewayNetworkFunctionAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayNetworkFunctionAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTransitGatewayNetworkFunctionAttachment as schema.OperationSchema, input, options) as async.Operation<types.DeleteTransitGatewayNetworkFunctionAttachmentOutput>
 end
 
 function C:deleteTransitGatewayPeeringAttachment(input: types.DeleteTransitGatewayPeeringAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayPeeringAttachmentOutput>
@@ -2677,6 +2695,10 @@ function C:describeTransitGatewayMulticastDomains(input: types.DescribeTransitGa
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTransitGatewayMulticastDomains as schema.OperationSchema, input, options) as async.Operation<types.DescribeTransitGatewayMulticastDomainsOutput>
 end
 
+function C:describeTransitGatewayNetworkFunctionAttachments(input: types.DescribeTransitGatewayNetworkFunctionAttachmentsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayNetworkFunctionAttachmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTransitGatewayNetworkFunctionAttachments as schema.OperationSchema, input, options) as async.Operation<types.DescribeTransitGatewayNetworkFunctionAttachmentsOutput>
+end
+
 function C:describeTransitGatewayPeeringAttachments(input: types.DescribeTransitGatewayPeeringAttachmentsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTransitGatewayPeeringAttachmentsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTransitGatewayPeeringAttachments as schema.OperationSchema, input, options) as async.Operation<types.DescribeTransitGatewayPeeringAttachmentsOutput>
 end
@@ -2963,6 +2985,10 @@ end
 
 function C:disassociateIpamResourceDiscovery(input: types.DisassociateIpamResourceDiscoveryInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateIpamResourceDiscoveryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateIpamResourceDiscovery as schema.OperationSchema, input, options) as async.Operation<types.DisassociateIpamResourceDiscoveryOutput>
+end
+
+function C:disassociateKmsKeyId(input: types.DisassociateKmsKeyIdInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateKmsKeyIdOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateKmsKeyId as schema.OperationSchema, input, options) as async.Operation<types.DisassociateKmsKeyIdOutput>
 end
 
 function C:disassociateNatGatewayAddress(input: types.DisassociateNatGatewayAddressInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateNatGatewayAddressOutput>
@@ -3735,6 +3761,10 @@ end
 
 function C:modifyTransitGatewayMeteringPolicy(input: types.ModifyTransitGatewayMeteringPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayMeteringPolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyTransitGatewayMeteringPolicy as schema.OperationSchema, input, options) as async.Operation<types.ModifyTransitGatewayMeteringPolicyOutput>
+end
+
+function C:modifyTransitGatewayNetworkFunctionAttachment(input: types.ModifyTransitGatewayNetworkFunctionAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayNetworkFunctionAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyTransitGatewayNetworkFunctionAttachment as schema.OperationSchema, input, options) as async.Operation<types.ModifyTransitGatewayNetworkFunctionAttachmentOutput>
 end
 
 function C:modifyTransitGatewayPolicyTableEntry(input: types.ModifyTransitGatewayPolicyTableEntryInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayPolicyTableEntryOutput>

@@ -20,10 +20,21 @@ local record M
         nextToken: string
     end
 
-    enum EvaluatedEffect
+    enum CheckType
+        "SERVICE_CONTROL_POLICY"
+        "RESOURCE_CONTROL_POLICY"
+        "VPC_ENDPOINT"
+        "RESOURCE"
+        "PRINCIPAL"
+        "PERMISSIONS_BOUNDARY"
+        "SESSION"
+    end
+
+    enum CheckEffect
         "ALLOW"
-        "EXPLICIT_DENY"
+        "NO_IMPACT"
         "IMPLICIT_DENY"
+        "EXPLICIT_DENY"
     end
 
     enum StatementEffect
@@ -47,20 +58,6 @@ local record M
         matchedStatements: {MatchedStatement}
     end
 
-    -- Represents an individual evaluation for a single action and resource pair. This includes the context, the resulting effect, and any policies that matched.
-    record Evaluation
-        -- The action evaluated for this request (for example, iam:PassRole).
-        action: string
-        -- The resource that the action targeted. This is typically a resource ARN, but can be a wildcard ARN that matches multiple resources, or empty for actions that are not resource-specific.
-        resource: string
-        -- The context keys and values specific to this evaluation. These are applied on top of the request context.
-        context: {string : any}
-        -- The result of the evaluation. Valid values: ALLOW - The action was allowed. EXPLICIT_DENY - The action was explicitly denied by a policy. IMPLICIT_DENY - The action was denied because no policy allowed it.
-        evaluatedEffect: string
-        -- The policies that matched during evaluation of this action and resource. An implicit denial produces no matched policies.
-        matchedPolicies: {MatchedPolicy}
-    end
-
     enum PolicyType
         "IDENTITY_BASED_POLICY"
         "RESOURCE_BASED_POLICY"
@@ -71,14 +68,52 @@ local record M
         "VPC_ENDPOINT_POLICY"
     end
 
-    -- Contains details about a policy evaluated during authorization. Details include the policy type, whether it is inline or managed, a URI that identifies it, and the entities it is attached to.
+    -- Represents one authorization requirement considered during an evaluation and its result.
+    record Check
+        -- The type of requirement that the check evaluates. Valid values: SERVICE_CONTROL_POLICY - The service control policies (SCPs) attached to one organization target, such as a root, organizational unit, or account, that apply to the principal. RESOURCE_CONTROL_POLICY - The resource control policies (RCPs) attached to one organization target that apply to the resource. VPC_ENDPOINT - The VPC endpoint policy for the endpoint through which the request passes. RESOURCE - The resource owner's resource-based policies, when the owner must allow the request separately, such as a cross-account request or a request to an AWS KMS key. PRINCIPAL - The principal's identity-based policies attached to the IAM user or role. PERMISSIONS_BOUNDARY - The permissions boundary on the IAM user or role. SESSION - The role session that made the request, decided by its session policies.
+        checkType: string
+        -- The result of evaluating this requirement. Valid values: ALLOW - A statement that applies to this check allows the request. EXPLICIT_DENY - A deny statement that applies to this check matches. IMPLICIT_DENY - The check required an allow and nothing that applies to it allows the request. NO_IMPACT - No statement in this check matched, and no allow was needed because another path allowed the request.
+        evaluatedEffect: string
+        -- The ARN that distinguishes this check from other checks of the same type. This value is absent when the check type alone identifies the check. For SCP and RCP checks, this is the AWS Organizations ARN of the root, organizational unit, or account that the evaluated policies are attached to.
+        targetArn: string
+        -- The policy types used to satisfy this check, plus the type of every policy with a statement that matched in it. matchedPolicies lists matching policies in the top-level policies list.
+        relevantPolicyTypes: {string}
+        -- Policies in this list have statements that matched for this check. Each URI corresponds to an entry in the top-level policies list. Only policies in the top-level list are included. The check effect can reflect a matched policy omitted from this list, so this list can be empty even when the effect is ALLOW.
+        matchedPolicies: {MatchedPolicy}
+    end
+
+    enum EvaluatedEffect
+        "ALLOW"
+        "EXPLICIT_DENY"
+        "IMPLICIT_DENY"
+    end
+
+    -- Represents an individual evaluation for a single action and resource pair. This includes the context, the resulting effect, and any policies that matched.
+    record Evaluation
+        -- The action evaluated for this request (for example, iam:PassRole).
+        action: string
+        -- The resource that the action targeted. This is typically a resource ARN, but can be a wildcard ARN that matches multiple resources, or empty for actions that are not resource-specific.
+        resource: string
+        -- The context keys and values specific to this evaluation. These are applied on top of the request context.
+        context: {string : any}
+        -- The result of the evaluation. Valid values: ALLOW - The action was allowed. EXPLICIT_DENY - The action was explicitly denied by a policy. IMPLICIT_DENY - The action was denied because at least one required authorization check had no matching allow statement.
+        evaluatedEffect: string
+        -- matchedPolicies is deprecated. Use checks instead. This value contains the policies that matched during evaluation of this action and resource.
+        matchedPolicies: {MatchedPolicy}
+        -- checks contains the authorization checks that explain an evaluation result. Each check is one authorization requirement and reports its result and policies from the top-level policies list with matching statements. The output lists RCP checks from the organization root to the account, then SCP checks from the organization root to the account. It then lists VPC endpoint, resource, principal, permissions boundary, and session checks. When checks is present, an EXPLICIT_DENY evaluation includes an EXPLICIT_DENY check. When checks is present for an IMPLICIT_DENY evaluation, it includes an IMPLICIT_DENY check and no EXPLICIT_DENY check. For more information about how IAM evaluates policies, see Policy evaluation logic. PRINCIPAL, PERMISSIONS_BOUNDARY, and SESSION checks appear when they apply to the principal that made the request, even if none of their policies matched. A missing allow produces IMPLICIT_DENY, or NO_IMPACT when another path already allowed the request. Returned when the caller is in the request principal's account or organization. The absence of checks does not mean no authorization checks applied.
+        checks: {Check}
+    end
+
+    -- Contains details about a policy evaluated during authorization. Details include the policy type, whether it is inline or managed, a URI that identifies it, the entities it is attached to, and its source, if present.
     record PolicyInfo
         -- Specifies whether this is an inline policy (true) or a managed policy (false).
         inline: boolean
-        -- A URI that identifies the policy. Use this URI to cross-reference the policy with the matching policies in each evaluation. The value depends on the policy type: For managed policies, this is the policy ARN. For inline policies, which have no ARN, this is an opaque identifier.
+        -- A URI that identifies the policy. Use this URI to cross-reference the policy with the matching policies in each evaluation. To retrieve the policy document, pass this URI as the policyUri parameter of GetRequestAuthorizationPolicy, together with the same authorization ID. The value depends on the policy type: For managed policies, this is the policy ARN. For inline policies, which have no ARN, this is an opaque identifier.
         uri: string
         -- The entities that the policy is attached to. For identity, session, and resource-based policies, this is typically a single entity. For organization control policies (SCPs and RCPs), it can be multiple entities at different levels of the organization hierarchy.
         attachedTo: {AttachedTo}
+        -- What the policy was built from, such as a KMS key policy or grant. Absent for other policies. The type and typeName keys are always present. type identifies the policy-source kind. typeName is its readable name. Compare type, not typeName. A policy source can include additional keys that depend on its type. For example, a KMS grant includes a grantId key that identifies the grant. A grant has no ARN. Use the grant ID with the KMS key ARN in attachedTo to find the grant with the AWS KMS ListGrants operation. New types and keys can be added, so clients should ignore types and keys they don't recognize.
+        policySource: {string : string}
     end
 
     record GetRequestAuthorizationDetailsOutput
@@ -97,7 +132,7 @@ local record M
         message: string
     end
 
-    -- The requested authorization details do not exist in this region or have expired. Verify that the authorization ID from the access denied error message is correct and the call is made in the region where the denial occurred. Ensure that the calling principal belongs to the same account or organization as the original denied request.
+    -- The requested policy or authorization details do not exist in this region or have expired. Verify that the authorization ID from the access denied error message is correct and the call is made in the region where the denial occurred. Ensure that the calling principal belongs to the same account or organization as the original denied request. If you specified a policy URI, verify that it is from the policies list that GetRequestAuthorizationDetails returns for the same authorization ID.
     record ResourceNotFoundException
         message: string
     end
@@ -105,6 +140,18 @@ local record M
     -- The request is malformed or is missing one or more required parameters. Check the request parameters and try again.
     record ValidationException
         message: string
+    end
+
+    record GetRequestAuthorizationPolicyInput
+        -- The authorization ID received in the access denied error message. This ID identifies the request whose evaluated policy you want to retrieve.
+        authorizationId: string
+        -- The URI of the policy to retrieve. Use the uri value from the policies list returned by GetRequestAuthorizationDetails for the same authorization ID.
+        policyUri: string
+    end
+
+    record GetRequestAuthorizationPolicyOutput
+        -- The policy document evaluated for the denied request, returned as a JSON object. For some AWS services and policy types, this document includes all actions relevant to the service that processed the denied request, but might omit actions for other services.
+        policyDocument: any
     end
 
 end

@@ -66,6 +66,7 @@ local record Client
     createInferenceComponent: function(Client, types.CreateInferenceComponentInput, ? base_client.InvokeOptions): async.Operation<types.CreateInferenceComponentOutput>
     createInferenceExperiment: function(Client, types.CreateInferenceExperimentInput, ? base_client.InvokeOptions): async.Operation<types.CreateInferenceExperimentOutput>
     createInferenceRecommendationsJob: function(Client, types.CreateInferenceRecommendationsJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateInferenceRecommendationsJobOutput>
+    createInferenceRouter: function(Client, types.CreateInferenceRouterInput, ? base_client.InvokeOptions): async.Operation<types.CreateInferenceRouterOutput>
     createJob: function(Client, types.CreateJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateJobOutput>
     createLabelingJob: function(Client, types.CreateLabelingJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateLabelingJobOutput>
     createMlflowApp: function(Client, types.CreateMlflowAppInput, ? base_client.InvokeOptions): async.Operation<types.CreateMlflowAppOutput>
@@ -125,6 +126,7 @@ local record Client
     deleteEdgeDeploymentStage: function(Client, types.DeleteEdgeDeploymentStageInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEdgeDeploymentStageOutput>
     deleteEndpoint: function(Client, types.DeleteEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEndpointOutput>
     deleteEndpointConfig: function(Client, types.DeleteEndpointConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEndpointConfigOutput>
+    deleteEndpointPolicy: function(Client, types.DeleteEndpointPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEndpointPolicyOutput>
     deleteExperiment: function(Client, types.DeleteExperimentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteExperimentOutput>
     deleteFeatureGroup: function(Client, types.DeleteFeatureGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFeatureGroupOutput>
     deleteFlowDefinition: function(Client, types.DeleteFlowDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFlowDefinitionOutput>
@@ -137,6 +139,7 @@ local record Client
     deleteImageVersion: function(Client, types.DeleteImageVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteImageVersionOutput>
     deleteInferenceComponent: function(Client, types.DeleteInferenceComponentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInferenceComponentOutput>
     deleteInferenceExperiment: function(Client, types.DeleteInferenceExperimentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInferenceExperimentOutput>
+    deleteInferenceRouter: function(Client, types.DeleteInferenceRouterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInferenceRouterOutput>
     deleteJob: function(Client, types.DeleteJobInput, ? base_client.InvokeOptions): async.Operation<types.DeleteJobOutput>
     deleteMlflowApp: function(Client, types.DeleteMlflowAppInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMlflowAppOutput>
     deleteMlflowTrackingServer: function(Client, types.DeleteMlflowTrackingServerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMlflowTrackingServerOutput>
@@ -208,6 +211,7 @@ local record Client
     describeInferenceComponent: function(Client, types.DescribeInferenceComponentInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInferenceComponentOutput>
     describeInferenceExperiment: function(Client, types.DescribeInferenceExperimentInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInferenceExperimentOutput>
     describeInferenceRecommendationsJob: function(Client, types.DescribeInferenceRecommendationsJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInferenceRecommendationsJobOutput>
+    describeInferenceRouter: function(Client, types.DescribeInferenceRouterInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInferenceRouterOutput>
     describeJob: function(Client, types.DescribeJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobOutput>
     describeJobSchemaVersion: function(Client, types.DescribeJobSchemaVersionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobSchemaVersionOutput>
     describeLabelingJob: function(Client, types.DescribeLabelingJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLabelingJobOutput>
@@ -252,6 +256,7 @@ local record Client
     enableSagemakerServicecatalogPortfolio: function(Client, types.EnableSagemakerServicecatalogPortfolioInput, ? base_client.InvokeOptions): async.Operation<types.EnableSagemakerServicecatalogPortfolioOutput>
     extendTrainingPlan: function(Client, types.ExtendTrainingPlanInput, ? base_client.InvokeOptions): async.Operation<types.ExtendTrainingPlanOutput>
     getDeviceFleetReport: function(Client, types.GetDeviceFleetReportInput, ? base_client.InvokeOptions): async.Operation<types.GetDeviceFleetReportOutput>
+    getEndpointPolicy: function(Client, types.GetEndpointPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetEndpointPolicyOutput>
     getLineageGroupPolicy: function(Client, types.GetLineageGroupPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetLineageGroupPolicyOutput>
     getModelPackageGroupPolicy: function(Client, types.GetModelPackageGroupPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetModelPackageGroupPolicyOutput>
     getSagemakerServicecatalogPortfolioStatus: function(Client, types.GetSagemakerServicecatalogPortfolioStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetSagemakerServicecatalogPortfolioStatusOutput>
@@ -303,6 +308,7 @@ local record Client
     listInferenceExperiments: function(Client, types.ListInferenceExperimentsInput, ? base_client.InvokeOptions): async.Operation<types.ListInferenceExperimentsOutput>
     listInferenceRecommendationsJobs: function(Client, types.ListInferenceRecommendationsJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListInferenceRecommendationsJobsOutput>
     listInferenceRecommendationsJobSteps: function(Client, types.ListInferenceRecommendationsJobStepsInput, ? base_client.InvokeOptions): async.Operation<types.ListInferenceRecommendationsJobStepsOutput>
+    listInferenceRouters: function(Client, types.ListInferenceRoutersInput, ? base_client.InvokeOptions): async.Operation<types.ListInferenceRoutersOutput>
     listJobs: function(Client, types.ListJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
     listJobSchemaVersions: function(Client, types.ListJobSchemaVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobSchemaVersionsOutput>
     listLabelingJobs: function(Client, types.ListLabelingJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListLabelingJobsOutput>
@@ -352,6 +358,7 @@ local record Client
     listUserProfiles: function(Client, types.ListUserProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListUserProfilesOutput>
     listWorkforces: function(Client, types.ListWorkforcesInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkforcesOutput>
     listWorkteams: function(Client, types.ListWorkteamsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkteamsOutput>
+    putEndpointPolicy: function(Client, types.PutEndpointPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutEndpointPolicyOutput>
     putModelPackageGroupPolicy: function(Client, types.PutModelPackageGroupPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutModelPackageGroupPolicyOutput>
     queryLineage: function(Client, types.QueryLineageInput, ? base_client.InvokeOptions): async.Operation<types.QueryLineageOutput>
     registerDevices: function(Client, types.RegisterDevicesInput, ? base_client.InvokeOptions): async.Operation<types.RegisterDevicesOutput>
@@ -415,6 +422,7 @@ local record Client
     updateInferenceComponent: function(Client, types.UpdateInferenceComponentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInferenceComponentOutput>
     updateInferenceComponentRuntimeConfig: function(Client, types.UpdateInferenceComponentRuntimeConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInferenceComponentRuntimeConfigOutput>
     updateInferenceExperiment: function(Client, types.UpdateInferenceExperimentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInferenceExperimentOutput>
+    updateInferenceRouter: function(Client, types.UpdateInferenceRouterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInferenceRouterOutput>
     updateMlflowApp: function(Client, types.UpdateMlflowAppInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMlflowAppOutput>
     updateMlflowTrackingServer: function(Client, types.UpdateMlflowTrackingServerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMlflowTrackingServerOutput>
     updateModelCard: function(Client, types.UpdateModelCardInput, ? base_client.InvokeOptions): async.Operation<types.UpdateModelCardOutput>
@@ -671,6 +679,10 @@ function C:createInferenceRecommendationsJob(input: types.CreateInferenceRecomme
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInferenceRecommendationsJob as schema.OperationSchema, input, options) as async.Operation<types.CreateInferenceRecommendationsJobOutput>
 end
 
+function C:createInferenceRouter(input: types.CreateInferenceRouterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInferenceRouterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInferenceRouter as schema.OperationSchema, input, options) as async.Operation<types.CreateInferenceRouterOutput>
+end
+
 function C:createJob(input: types.CreateJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateJob as schema.OperationSchema, input, options) as async.Operation<types.CreateJobOutput>
 end
@@ -907,6 +919,10 @@ function C:deleteEndpointConfig(input: types.DeleteEndpointConfigInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEndpointConfig as schema.OperationSchema, input, options) as async.Operation<types.DeleteEndpointConfigOutput>
 end
 
+function C:deleteEndpointPolicy(input: types.DeleteEndpointPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEndpointPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEndpointPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteEndpointPolicyOutput>
+end
+
 function C:deleteExperiment(input: types.DeleteExperimentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteExperimentOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteExperiment as schema.OperationSchema, input, options) as async.Operation<types.DeleteExperimentOutput>
 end
@@ -953,6 +969,10 @@ end
 
 function C:deleteInferenceExperiment(input: types.DeleteInferenceExperimentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInferenceExperimentOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInferenceExperiment as schema.OperationSchema, input, options) as async.Operation<types.DeleteInferenceExperimentOutput>
+end
+
+function C:deleteInferenceRouter(input: types.DeleteInferenceRouterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInferenceRouterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInferenceRouter as schema.OperationSchema, input, options) as async.Operation<types.DeleteInferenceRouterOutput>
 end
 
 function C:deleteJob(input: types.DeleteJobInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteJobOutput>
@@ -1239,6 +1259,10 @@ function C:describeInferenceRecommendationsJob(input: types.DescribeInferenceRec
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInferenceRecommendationsJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeInferenceRecommendationsJobOutput>
 end
 
+function C:describeInferenceRouter(input: types.DescribeInferenceRouterInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInferenceRouterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInferenceRouter as schema.OperationSchema, input, options) as async.Operation<types.DescribeInferenceRouterOutput>
+end
+
 function C:describeJob(input: types.DescribeJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeJobOutput>
 end
@@ -1413,6 +1437,10 @@ end
 
 function C:getDeviceFleetReport(input: types.GetDeviceFleetReportInput, options?: base_client.InvokeOptions): async.Operation<types.GetDeviceFleetReportOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDeviceFleetReport as schema.OperationSchema, input, options) as async.Operation<types.GetDeviceFleetReportOutput>
+end
+
+function C:getEndpointPolicy(input: types.GetEndpointPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetEndpointPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEndpointPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetEndpointPolicyOutput>
 end
 
 function C:getLineageGroupPolicy(input: types.GetLineageGroupPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetLineageGroupPolicyOutput>
@@ -1619,6 +1647,10 @@ function C:listInferenceRecommendationsJobSteps(input: types.ListInferenceRecomm
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInferenceRecommendationsJobSteps as schema.OperationSchema, input, options) as async.Operation<types.ListInferenceRecommendationsJobStepsOutput>
 end
 
+function C:listInferenceRouters(input: types.ListInferenceRoutersInput, options?: base_client.InvokeOptions): async.Operation<types.ListInferenceRoutersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInferenceRouters as schema.OperationSchema, input, options) as async.Operation<types.ListInferenceRoutersOutput>
+end
+
 function C:listJobs(input: types.ListJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobs as schema.OperationSchema, input, options) as async.Operation<types.ListJobsOutput>
 end
@@ -1813,6 +1845,10 @@ end
 
 function C:listWorkteams(input: types.ListWorkteamsInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkteamsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkteams as schema.OperationSchema, input, options) as async.Operation<types.ListWorkteamsOutput>
+end
+
+function C:putEndpointPolicy(input: types.PutEndpointPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutEndpointPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutEndpointPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutEndpointPolicyOutput>
 end
 
 function C:putModelPackageGroupPolicy(input: types.PutModelPackageGroupPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutModelPackageGroupPolicyOutput>
@@ -2065,6 +2101,10 @@ end
 
 function C:updateInferenceExperiment(input: types.UpdateInferenceExperimentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInferenceExperimentOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInferenceExperiment as schema.OperationSchema, input, options) as async.Operation<types.UpdateInferenceExperimentOutput>
+end
+
+function C:updateInferenceRouter(input: types.UpdateInferenceRouterInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInferenceRouterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInferenceRouter as schema.OperationSchema, input, options) as async.Operation<types.UpdateInferenceRouterOutput>
 end
 
 function C:updateMlflowApp(input: types.UpdateMlflowAppInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMlflowAppOutput>
